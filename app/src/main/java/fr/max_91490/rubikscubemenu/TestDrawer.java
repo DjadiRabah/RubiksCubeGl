@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class TestDrawer extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -51,18 +52,23 @@ public class TestDrawer extends AppCompatActivity implements NavigationView.OnNa
 
         switch (id){
             case R.id.nav_restart :
+                Toast.makeText(TestDrawer.this, "Recommencer le Rubik's Cube !", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_mix:
+                Toast.makeText(TestDrawer.this, "Mélanger le Rubik's Cube !", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_rbsize:
+                Toast.makeText(TestDrawer.this, "Choisir taille", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_lockrotation:
+                Toast.makeText(TestDrawer.this, "Rotation bloquée", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.play_website:
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
                 startActivity(browserIntent);
                 break;
             case R.id.play_credits:
+                Toast.makeText(TestDrawer.this, "À propos", Toast.LENGTH_SHORT).show();
                 break;
 
             default:
