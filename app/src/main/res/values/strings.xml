@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">RubX Cube</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="content_main_msg">Ici sera placé le cube en 3D !</string>
+    <string name="title_activity_nav">NavActivity</string>
+    <string name="quick_desc">Une application démentielle !</string>
+    <string name="nav_play">Jouer</string>
+    <string name="nav_solve">Résoudre</string>
+    <string name="nav_achievements">Succès</string>
+    <string name="nav_settings">Options</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="achievements_fragment">Page des succès</string>
+    <string name="play_fragment">Page de jeu</string>
+    <string name="settings_fragment">Page des paramètres</string>
+    <string name="solver_fragment">Page du solveur</string>
+    <string name="title_activity_camera_scan">CameraScan</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="nav_restart">Recommencer</string>
+    <string name="nav_retry">Mélanger</string>
+    <string name="nav_size">Choisir taille</string>
+    <string name="nav_lock">Bloquer rotation</string>
+    <string name="nav_others">Autres</string>
+    <string name="nav_website">Site Internte</string>
+    <string name="nav_webite">Site Web</string>
+    <string name="nav_credits">À propos</string>
+</resources>

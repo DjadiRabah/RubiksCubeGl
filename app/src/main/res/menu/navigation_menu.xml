@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+    <item
+        android:id="@+id/nav_restart"
+        android:icon="@drawable/baseline_refresh_black_24dp"
+        android:title="@string/nav_restart" />
+    </group>
+
+    <group android:checkableBehavior="single">
+    <item
+        android:id="@+id/nav_mix"
+        android:icon="@drawable/baseline_cached_black_24dp"
+        android:title="@string/nav_retry" />
+    </group>
+
+    <group android:checkableBehavior="single">
+    <item
+        android:id="@+id/nav_rbsize"
+        android:icon="@drawable/baseline_compare_arrows_black_24dp"
+        android:title="@string/nav_size" />
+    </group>
+
+    <group android:checkableBehavior="single">
+    <item
+        android:id="@+id/nav_lockrotation"
+        android:icon="@drawable/baseline_lock_black_24dp"
+        android:title="@string/nav_lock" />
+    </group>
+
+    <item android:title="@string/nav_others">
+
+        <menu>
+
+            <group android:checkableBehavior="single">
+
+                <item
+
+                    android:id="@+id/play_website"
+
+
+                    android:title="@string/nav_webite" />
+
+                <item
+
+                    android:id="@+id/play_credits"
+
+
+                    android:title="@string/nav_credits" />
+
+            </group>
+
+        </menu>
+
+    </item>
+
+</menu>
