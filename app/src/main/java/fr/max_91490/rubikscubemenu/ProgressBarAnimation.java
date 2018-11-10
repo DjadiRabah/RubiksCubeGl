@@ -34,7 +34,7 @@ public class ProgressBarAnimation extends Animation {
         percent_loaded.setText((int)value + "%");
 
         if(value == to){
-            context.startActivity(new Intent(context, TestDrawer.class));
+            context.startActivity(new Intent(context, NavActivity.class));
         }
 
     }

@@ -43,7 +43,6 @@ public class TestDrawer extends AppCompatActivity implements NavigationView.OnNa
         }
     }
 
-
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
