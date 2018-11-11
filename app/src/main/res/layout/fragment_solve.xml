@@ -5,35 +5,47 @@
     android:layout_height="match_parent"
     tools:context=".SolveFragment">
 
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
     <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:orientation="vertical"
+        android:weightSum="3">
+
         <TextView
             android:id="@+id/solver_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
             android:text="@string/solver_fragment"
-            android:layout_alignParentLeft="true" />
-
-        <Button
-            android:id="@+id/btn_input"
+            android:gravity="center"
+            android:textSize="23sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/solver_text"
-            android:text="Saisie Manuelle" />
+            android:layout_weight="1"
+            android:textColor="@color/colorWhite"
+            android:background="@color/colorPrimary"
+            />
 
         <Button
-            android:id="@+id/btn_scan"
+            android:id="@+id/button3"
             android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:text="@string/manual_input"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/btn_input"
-            android:text="Scan" />
-
-    </RelativeLayout>
+            style="?android:attr/borderlessButtonStyle"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/button_border"
+            />
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:text="@string/camera_input"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/button_border"
+            style="?android:attr/borderlessButtonStyle"
+            />
+    </LinearLayout>
 
 </FrameLayout>

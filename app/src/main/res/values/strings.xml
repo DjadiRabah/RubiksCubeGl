@@ -15,10 +15,10 @@
     <string name="nav_settings">Settings</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="achievements_fragment">Page des succès</string>
-    <string name="play_fragment">Page de jeu</string>
-    <string name="settings_fragment">Page des paramètres</string>
-    <string name="solver_fragment">Page du solveur</string>
+    <string name="achievements_fragment">Achievements</string>
+    <string name="play_fragment">Play</string>
+    <string name="settings_fragment">Settings</string>
+    <string name="solver_fragment">Solver</string>
     <string name="title_activity_camera_scan">CameraScan</string>
     <string name="title_activity_main2">Main2Activity</string>
 
@@ -37,4 +37,6 @@
     <string name="choose_text">Choose Fragment</string>
     <string name="choose_mixed">Mixed Randomly</string>
     <string name="choose_step">Start Step</string>
+    <string name="camera_input">Camera Input</string>
+    <string name="manual_input">Manual Input</string>
 </resources>
