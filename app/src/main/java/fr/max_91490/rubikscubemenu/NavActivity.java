@@ -1,9 +1,11 @@
 package fr.max_91490.rubikscubemenu;
 
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -15,7 +17,7 @@ public class NavActivity extends AppCompatActivity {
     private BottomNavigationView mainNav;
     private FrameLayout mainFrame;
 
-    private PlayFragment playFragment;
+    private ChooseStepFragment chooseStepFragment;
     private SolveFragment solveFragment;
     private AchievementsFragment achievementsFragment;
     private SettingsFragment settingsFragment;
@@ -30,12 +32,12 @@ public class NavActivity extends AppCompatActivity {
         mainFrame = (FrameLayout) findViewById(R.id.main_frame);
         mainNav = (BottomNavigationView) findViewById(R.id.main_nav);
 
-        playFragment = new PlayFragment();
+        chooseStepFragment = new ChooseStepFragment();
         solveFragment = new SolveFragment();
         achievementsFragment = new AchievementsFragment();
         settingsFragment = new SettingsFragment();
 
-        setFragment(playFragment);
+        setFragment(chooseStepFragment);
 
         mainNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -45,7 +47,7 @@ public class NavActivity extends AppCompatActivity {
                 switch(menuItem.getItemId()){
 
                     case R.id.nav_play :
-                        setFragment(playFragment);
+                        setFragment(chooseStepFragment);
                         return true;
 
                     case R.id.nav_solve :
@@ -75,5 +77,29 @@ public class NavActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.main_frame, fragment);
         fragmentTransaction.commit();
 
+    }
+
+    @Override
+    public void onBackPressed(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MyDialogTheme);
+
+        builder.setMessage("Do you really want to quit ?").setTitle("Quit ?");
+
+        builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        });
+
+        builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                finishAffinity();
+                System.exit(0);
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

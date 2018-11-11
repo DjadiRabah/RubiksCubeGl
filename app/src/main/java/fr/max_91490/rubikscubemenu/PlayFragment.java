@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -37,6 +39,15 @@ public class PlayFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_play, container, false);
 
+        FloatingActionButton fab = (FloatingActionButton)view.findViewById(R.id.undo_fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Clic sur retour !", Snackbar.LENGTH_SHORT)
+                        .setAction("Action", null).show();
+            }
+        });
+
         // 1 - Configure Toolbar
         this.toolbar = (Toolbar) view.findViewById(R.id.play_toolbar);
      //   ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
@@ -53,8 +64,6 @@ public class PlayFragment extends Fragment {
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-
-
     }
 /*
     @Override

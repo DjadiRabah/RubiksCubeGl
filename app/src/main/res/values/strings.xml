@@ -9,10 +9,10 @@
     <string name="content_main_msg">Ici sera placé le cube en 3D !</string>
     <string name="title_activity_nav">NavActivity</string>
     <string name="quick_desc">Une application démentielle !</string>
-    <string name="nav_play">Jouer</string>
-    <string name="nav_solve">Résoudre</string>
-    <string name="nav_achievements">Succès</string>
-    <string name="nav_settings">Options</string>
+    <string name="nav_play">Play</string>
+    <string name="nav_solve">Solver</string>
+    <string name="nav_achievements">Achievements</string>
+    <string name="nav_settings">Settings</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="achievements_fragment">Page des succès</string>
@@ -25,12 +25,16 @@
 
     <string name="open">Open</string>
     <string name="close">Close</string>
-    <string name="nav_restart">Recommencer</string>
-    <string name="nav_retry">Mélanger</string>
-    <string name="nav_size">Choisir taille</string>
-    <string name="nav_lock">Bloquer rotation</string>
-    <string name="nav_others">Autres</string>
-    <string name="nav_website">Site Internte</string>
-    <string name="nav_webite">Site Web</string>
-    <string name="nav_credits">À propos</string>
+    <string name="nav_restart">Retry</string>
+    <string name="nav_retry">Mix</string>
+    <string name="nav_size">Choose Size</string>
+    <string name="nav_lock">Lock Rotation</string>
+    <string name="nav_others">Others</string>
+    <string name="nav_website">Website</string>
+    <string name="nav_credits">About</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="choose_text">Choose Fragment</string>
+    <string name="choose_mixed">Mixed Randomly</string>
+    <string name="choose_step">Start Step</string>
 </resources>

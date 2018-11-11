@@ -34,7 +34,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="fr.max_91490.rubikscubemenu.NavActivity" />
         </activity>
-        <activity android:name=".TestDrawer"></activity>
+        <activity android:name=".TestDrawer" />
     </application>
 
 </manifest>

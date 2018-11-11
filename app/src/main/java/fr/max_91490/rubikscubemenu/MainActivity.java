@@ -34,4 +34,7 @@ public class MainActivity extends AppCompatActivity {
         anim.setDuration(8000);
         progressBar.setAnimation(anim);
     }
+
+    @Override
+    public void onBackPressed(){}
 }
