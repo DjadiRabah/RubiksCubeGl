@@ -50,13 +50,9 @@ public class PlayFragment extends Fragment {
 
         // 1 - Configure Toolbar
         this.toolbar = (Toolbar) view.findViewById(R.id.play_toolbar);
-     //   ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-     //   ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(null);
+      // ((NavActivity)getActivity()).setSupportActionBar(this.toolbar);
+      //((NavActivity)getActivity()).getSupportActionBar().setTitle(null);
 
-
-    //    this.configureDrawerLayout();
-
-     //   this.configureNavigationView();
 
         return view;
     }
