@@ -38,7 +38,7 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
 
         gl.glLoadIdentity();
 
-    //    mCubeRotation -= 0.15f;
+        mCubeRotation -= 0.15f;
     }
 
     @Override
