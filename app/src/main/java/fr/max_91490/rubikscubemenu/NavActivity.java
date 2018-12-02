@@ -17,7 +17,7 @@ public class NavActivity extends AppCompatActivity {
     private BottomNavigationView mainNav;
     private FrameLayout mainFrame;
 
-    private ChooseStepFragment chooseStepFragment;
+    private PlayFragment playFragment;
     private SolveFragment solveFragment;
     private AchievementsFragment achievementsFragment;
     private SettingsFragment settingsFragment;
@@ -32,12 +32,12 @@ public class NavActivity extends AppCompatActivity {
         mainFrame = (FrameLayout) findViewById(R.id.main_frame);
         mainNav = (BottomNavigationView) findViewById(R.id.main_nav);
 
-        chooseStepFragment = new ChooseStepFragment();
+        playFragment = new PlayFragment();
         solveFragment = new SolveFragment();
         achievementsFragment = new AchievementsFragment();
         settingsFragment = new SettingsFragment();
 
-        setFragment(chooseStepFragment);
+        setFragment(playFragment);
 
         mainNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -47,7 +47,7 @@ public class NavActivity extends AppCompatActivity {
                 switch(menuItem.getItemId()){
 
                     case R.id.nav_play :
-                        setFragment(chooseStepFragment);
+                        setFragment(playFragment);
                         return true;
 
                     case R.id.nav_solve :
