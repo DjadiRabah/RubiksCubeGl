@@ -1,4 +1,4 @@
-package fr.max_91490.rubikscubemenu;
+package com.example.rabah.myapplication;
 
 import javax.microedition.khronos.opengles.GL10;
 
@@ -18,12 +18,6 @@ public class Face
                 r, g,  b);
             }
         }
-    }
-
-    public void rotate(GL10 gl)
-    {
-        /*gl.glRotatef(180,0.0f,1.0f,0.0f);
-        gl.glTranslatef(0.0f, 0.0f, 1.0f);*/
     }
 
     public void draw(GL10 gl)
