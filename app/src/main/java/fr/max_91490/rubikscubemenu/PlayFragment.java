@@ -87,9 +87,16 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
             case R.id.nav_rbsize:
                 Toast.makeText(getActivity(), "Choisir taille", Toast.LENGTH_SHORT).show();
                 break;
+
             case R.id.nav_lockrotation:
-                Toast.makeText(getActivity(), "Rotation bloquée", Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(getActivity(), "Locked", Toast.LENGTH_SHORT).show();
+
+                item.setIcon(getResources().getDrawable(R.drawable.outline_lock_open_black_24dp));
+                item.setTitle("Unlock");
+
                 break;
+
             case R.id.play_website:
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
                 startActivity(browserIntent);

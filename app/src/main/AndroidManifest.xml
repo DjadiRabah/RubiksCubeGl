@@ -30,7 +30,6 @@
         <activity android:name=".NavActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".OpenGLES20Activity" />
         <activity
             android:name=".CameraScan"
             android:label="@string/title_activity_camera_scan"
@@ -41,7 +40,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="fr.max_91490.rubikscubemenu.NavActivity" />
         </activity>
-        <activity android:name=".TestDrawer" />
     </application>
 
 </manifest>

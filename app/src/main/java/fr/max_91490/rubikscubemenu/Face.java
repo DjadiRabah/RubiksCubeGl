@@ -15,15 +15,9 @@ public class Face
             for(int j = 0; j < this.squares.length; j++)
             {
                 squares[i][j] = new Square(x1 + j * (width + offset),y1 - i * (width + offset),z,x1 + (j+1) * width + j * offset ,y1 - (i+1) * width - i * offset,z,
-                r, g,  b);
+                        r, g,  b);
             }
         }
-    }
-
-    public void rotate(GL10 gl)
-    {
-        /*gl.glRotatef(180,0.0f,1.0f,0.0f);
-        gl.glTranslatef(0.0f, 0.0f, 1.0f);*/
     }
 
     public void draw(GL10 gl)

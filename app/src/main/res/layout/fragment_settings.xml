@@ -5,16 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".SettingsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/backgroundColor"
         android:orientation="vertical"
+
         android:weightSum="3">
 
         <TextView
@@ -29,6 +25,30 @@
             android:background="@color/colorPrimary"
             />
 
+        <Switch
+            android:text="Sound effects"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Switch
+            android:text="Background music"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
     </LinearLayout>
+
+
+
+
+
+
+
+
+
+
 
 </FrameLayout>
