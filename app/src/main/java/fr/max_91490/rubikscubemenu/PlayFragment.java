@@ -23,12 +23,8 @@ import android.widget.Toast;
  */
 public class PlayFragment extends Fragment implements NavigationView.OnNavigationItemSelectedListener {
 
-    //FOR DESIGN
-    private Toolbar toolbar;
     private DrawerLayout drawerLayout;
-    private NavigationView navigationView;
-    private View view;
-    private GLSurfaceView glSurfaceView;
+    private boolean isLocked = false;
 
     public PlayFragment() {
         // Required empty public constructor
@@ -38,9 +34,9 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_play, container, false);
+        View view = inflater.inflate(R.layout.fragment_play, container, false);
 
-        FloatingActionButton fab = (FloatingActionButton)view.findViewById(R.id.undo_fab);
+        FloatingActionButton fab = view.findViewById(R.id.undo_fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,23 +46,23 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
         });
 
         // 1 - Configure Toolbar
-        this.toolbar = (Toolbar) view.findViewById(R.id.play_toolbar);
-       ((NavActivity)getActivity()).setSupportActionBar(this.toolbar);
+        //FOR DESIGN
+        Toolbar toolbar = view.findViewById(R.id.play_toolbar);
+       ((NavActivity)getActivity()).setSupportActionBar(toolbar);
        ((NavActivity)getActivity()).getSupportActionBar().setTitle(null);
 
         // 2 - Configure Drawer Layout
-        this.drawerLayout = (DrawerLayout) view.findViewById(R.id.drawerLayout);
+        this.drawerLayout = view.findViewById(R.id.drawerLayout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
         // 3 - Configure NavigationView
-        this.navigationView = (NavigationView) view.findViewById(R.id.navigation_view);
+        NavigationView navigationView = view.findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
 
 
-
-        glSurfaceView = (GLSurfaceView) view.findViewById(R.id.glsurfaceview);
+        GLSurfaceView glSurfaceView = view.findViewById(R.id.glsurfaceview);
         glSurfaceView.setRenderer(new OpenGLRenderer());
 
         return view;
@@ -90,10 +86,23 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
 
             case R.id.nav_lockrotation:
 
-                Toast.makeText(getActivity(), "Locked", Toast.LENGTH_SHORT).show();
+                if(this.isLocked) {
 
-                item.setIcon(getResources().getDrawable(R.drawable.outline_lock_open_black_24dp));
-                item.setTitle("Unlock");
+                    Toast.makeText(getActivity(), "The cube rotation is now locked.", Toast.LENGTH_SHORT).show();
+                    //Lock method
+                    item.setIcon(getResources().getDrawable(R.drawable.outline_lock_open_black_24dp));
+                    item.setTitle("Unlock Rotation");
+
+                }else{
+
+                    Toast.makeText(getActivity(), "The cube rotation is now unlocked.", Toast.LENGTH_SHORT).show();
+                    //Unlock method
+                    item.setIcon(getResources().getDrawable(R.drawable.outline_lock_black_24dp));
+                    item.setTitle("Lock Rotation");
+
+                }
+
+                this.isLocked = !this.isLocked;
 
                 break;
 

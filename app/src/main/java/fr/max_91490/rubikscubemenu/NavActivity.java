@@ -29,8 +29,8 @@ public class NavActivity extends AppCompatActivity {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        mainFrame = (FrameLayout) findViewById(R.id.main_frame);
-        mainNav = (BottomNavigationView) findViewById(R.id.main_nav);
+        mainFrame = findViewById(R.id.main_frame);
+        mainNav = findViewById(R.id.main_nav);
 
         playFragment = new PlayFragment();
         solveFragment = new SolveFragment();

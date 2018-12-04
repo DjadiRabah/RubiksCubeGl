@@ -31,10 +31,8 @@ public class SolveFragment extends Fragment {
 
         final AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
 
-        final PlayFragment playFragment = new PlayFragment();
-
-        final Button button1 = (Button)view.findViewById(R.id.button3);
-        final Button button2 = (Button)view.findViewById(R.id.button4);
+        final Button button1 = view.findViewById(R.id.button3);
+        final Button button2 = view.findViewById(R.id.button4);
 
 
         button1.setOnClickListener(new View.OnClickListener(){
