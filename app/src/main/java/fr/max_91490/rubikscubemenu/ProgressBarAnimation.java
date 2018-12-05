@@ -31,7 +31,7 @@ public class ProgressBarAnimation extends Animation {
         super.applyTransformation(interpolatedTime, t);
         float value = from + (to - from) * interpolatedTime;
         progressBar.setProgress((int)value);
-        percent_loaded.setText((int)value + "%");
+        percent_loaded.setText((int)value + " %");
 
         if(value == to){
             context.startActivity(new Intent(context, NavActivity.class));

@@ -1,6 +1,7 @@
 package fr.max_91490.rubikscubemenu;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
 
     private DrawerLayout drawerLayout;
     private boolean isLocked = false;
+    private MediaPlayer touchsound;
 
     public PlayFragment() {
         // Required empty public constructor
@@ -35,6 +37,8 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_play, container, false);
+
+        touchsound = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.lock);
 
         FloatingActionButton fab = view.findViewById(R.id.undo_fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +89,8 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
                 break;
 
             case R.id.nav_lockrotation:
+
+             touchsound.start();
 
                 if(this.isLocked) {
 

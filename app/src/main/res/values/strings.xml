@@ -39,4 +39,8 @@
     <string name="choose_step">Start Step</string>
     <string name="camera_input">Camera Input</string>
     <string name="manual_input">Manual Input</string>
+    <string name="main_title">RubX Cube</string>
+    <string name="sounds_effects_switch">Sound effects</string>
+    <string name="background_music_switch">Background Music</string>
+    <string name="init_loading">0 %</string>
 </resources>

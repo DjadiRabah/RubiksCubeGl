@@ -1,6 +1,7 @@
 package fr.max_91490.rubikscubemenu;
 
 import android.content.DialogInterface;
+import android.media.MediaPlayer;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -10,12 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.WindowManager;
-import android.widget.FrameLayout;
 
 public class NavActivity extends AppCompatActivity {
-
-    private BottomNavigationView mainNav;
-    private FrameLayout mainFrame;
 
     private PlayFragment playFragment;
     private SolveFragment solveFragment;
@@ -27,10 +24,11 @@ public class NavActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav);
 
+        final MediaPlayer touchsound = MediaPlayer.create(this, R.raw.touch_sound);
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        mainFrame = findViewById(R.id.main_frame);
-        mainNav = findViewById(R.id.main_nav);
+        BottomNavigationView mainNav = findViewById(R.id.main_nav);
 
         playFragment = new PlayFragment();
         solveFragment = new SolveFragment();
@@ -47,18 +45,22 @@ public class NavActivity extends AppCompatActivity {
                 switch(menuItem.getItemId()){
 
                     case R.id.nav_play :
+                        touchsound.start();
                         setFragment(playFragment);
                         return true;
 
                     case R.id.nav_solve :
+                        touchsound.start();
                         setFragment(solveFragment);
                         return true;
 
                     case R.id.nav_achievements :
+                        touchsound.start();
                         setFragment(achievementsFragment);
                         return true;
 
                     case R.id.nav_settings :
+                        touchsound.start();
                         setFragment(settingsFragment);
                         return true;
 

@@ -26,14 +26,16 @@
             />
 
         <Switch
-            android:text="Sound effects"
+            android:id="@+id/soundeffects"
+            android:text="@string/sounds_effects_switch"
             android:textColor="@color/colorWhite"
             android:textSize="15sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <Switch
-            android:text="Background music"
+            android:id="@+id/backgroundmusic"
+            android:text="@string/background_music_switch"
             android:textColor="@color/colorWhite"
             android:textSize="15sp"
             android:layout_width="wrap_content"
