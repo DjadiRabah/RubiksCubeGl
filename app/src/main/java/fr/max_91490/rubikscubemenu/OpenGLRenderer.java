@@ -1,21 +1,25 @@
 package fr.max_91490.rubikscubemenu;
 
+import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLU;
+import android.util.AttributeSet;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-public class OpenGLRenderer implements GLSurfaceView.Renderer
-{
+import static android.opengl.GLSurfaceView.RENDERMODE_CONTINUOUSLY;
+
+public class OpenGLRenderer extends GLSurfaceView implements GLSurfaceView.Renderer {
     private Cube mCube;
     private float mCubeRotation;
 
-    OpenGLRenderer(int cubeSize){
-
+    public OpenGLRenderer(Context context, int cubeSize) {
+        super(context);
         this.mCube = new Cube(cubeSize);
 
     }
+
 
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config)
@@ -36,15 +40,13 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer
     public void onDrawFrame(GL10 gl) {
         gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
         gl.glLoadIdentity();
-
         gl.glTranslatef(0.0f, 0.0f, -10.0f);
-        gl.glRotatef(mCubeRotation,1.0f,1.0f,1.0f);
 
         mCube.draw(gl);
 
         gl.glLoadIdentity();
 
-        mCubeRotation -= 0.15f;
+        this.mCube.rotateY(Math.toRadians(1.0));
     }
 
     @Override

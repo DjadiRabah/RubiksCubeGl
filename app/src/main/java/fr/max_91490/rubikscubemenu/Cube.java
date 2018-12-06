@@ -5,51 +5,58 @@ import javax.microedition.khronos.opengles.GL10;
 class Cube
 {
     protected float offset;
-    private  Face top;
-    private  Face front;
-    private  Face left;
-    private  Face right;
-    private  Face back;
-    private  Face bot;
-
+    protected Face[] faces;
 
     public Cube(int n)
     {
-        this.top = new Face(n,-1.0f,1.0f,1.0f,1.0f,0.05f, 1.0f,1.0f,1.0f);
-        this.top.rotateX(Math.toRadians(-90.0));
+        this.faces = new Face[6];
+        this.faces[0] = new Face(n,-1.0f,1.0f,1.0f,1.0f,0.05f, 1.0f,1.0f,1.0f);
+        this.faces[0].rotateX(Math.toRadians(-90.0));
 
-        this.left = new Face(n,-1.0f,1.0f,1.0f,1.0f,0.05f, 0.0f,1.0f,0.0f);
-        this.left.rotateY(Math.toRadians(-90.0));
+        this.faces[1] = new Face(n,-1.0f,1.0f,1.0f,1.0f,0.05f, 0.0f,1.0f,0.0f);
+        this.faces[1].rotateY(Math.toRadians(-90.0));
 
-        this.front = new Face(n,-1.0f,1.0f,1.0f,1.0f,0.05f, 1.0f,0.0f,0.0f);
+        this.faces[2] = new Face(n,-1.0f,1.0f,1.0f,1.0f,0.05f, 1.0f,0.0f,0.0f);
 
-        this.right = new Face(n,-1.0f,1.0f,1.0f,1.0f,0.05f, 0.0f,0.0f,1.0f);
-        this.right.rotateY(Math.toRadians(90.0));
+        this.faces[3] = new Face(n,-1.0f,1.0f,1.0f,1.0f,0.05f, 0.0f,0.0f,1.0f);
+        this.faces[3].rotateY(Math.toRadians(90.0));
 
-        this.back = new Face(n,-1.0f,1.0f,1.0f,1.0f,0.05f, 1.0f,127.0f/255.0f,39.0f/255.0f);
-        this.back.rotateY(Math.toRadians(180.0));
+        this.faces[4] = new Face(n,-1.0f,1.0f,1.0f,1.0f,0.05f, 1.0f,127.0f/255.0f,39.0f/255.0f);
+        this.faces[4].rotateY(Math.toRadians(180.0));
 
-        this.bot = new Face(n,-1.0f,1.0f,1.0f,1.0f,0.05f, 1.0f,242.0f/255.0f,0);
-        this.bot.rotateX(Math.toRadians(90.0));
+        this.faces[5] = new Face(n,-1.0f,1.0f,1.0f,1.0f,0.05f, 1.0f,242.0f/255.0f,0);
+        this.faces[5].rotateX(Math.toRadians(90.0));
     }
 
-    public void RotateX(int direction, int index)
+    public void rotateX(double teta)
     {
-        if(direction == 0)
+        for(int i = 0; i < this.faces.length; i++)
         {
-
-
+            this.faces[i].rotateX(teta);
         }
+    }
 
+    public void rotateY(double teta)
+    {
+        for(int i = 0; i < this.faces.length; i++)
+        {
+            this.faces[i].rotateY(teta);
+        }
+    }
+
+    public void rotateZ(double teta)
+    {
+        for(int i = 0; i < this.faces.length; i++)
+        {
+            this.faces[i].rotateZ(teta);
+        }
     }
 
     public void draw(GL10 gl)
     {
-        top.draw(gl);
-        left.draw(gl);
-        front.draw(gl);
-        right.draw(gl);
-        back.draw(gl);
-        bot.draw(gl);
+        for(int i = 0; i < this.faces.length; i++)
+        {
+            this.faces[i].draw(gl);
+        }
     }
 }
