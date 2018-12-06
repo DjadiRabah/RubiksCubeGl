@@ -38,7 +38,7 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
     private int size;
     private View view;
     public Dialog dialog;
-    private GLSurfaceView glSurfaceView;
+    private MediaPlayerManager mediaPlayerManager;
 
     public PlayFragment() {
         // Required empty public constructor
@@ -50,7 +50,7 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_play, container, false);
 
-        touchsound = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.lock);
+        mediaPlayerManager = new MediaPlayerManager(getActivity().getApplicationContext(), R.raw.lock);
 
         FloatingActionButton fab = view.findViewById(R.id.undo_fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +78,7 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        glSurfaceView = view.findViewById(R.id.glsurfaceview);
+        GLSurfaceView glSurfaceView = view.findViewById(R.id.glsurfaceview);
         glSurfaceView.setRenderer(new OpenGLRenderer(getContext(), 3));
 
         return view;
@@ -102,7 +102,9 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
 
             case R.id.nav_lockrotation:
 
-             touchsound.start();
+                if(mediaPlayerManager.isFxOn()) {
+                    mediaPlayerManager.getMediaPlayer().start();
+                }
 
                 if(this.isLocked) {
 

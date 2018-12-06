@@ -24,7 +24,7 @@ public class NavActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav);
 
-        final MediaPlayer touchsound = MediaPlayer.create(this, R.raw.touch_sound);
+        final MediaPlayerManager mediaPlayerManager = new MediaPlayerManager(this, R.raw.touch_sound);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -42,7 +42,9 @@ public class NavActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-                touchsound.start();
+                    if(mediaPlayerManager.isFxOn()) {
+                        mediaPlayerManager.getMediaPlayer().start();
+                    }
 
                 switch(menuItem.getItemId()){
 

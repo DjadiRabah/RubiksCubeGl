@@ -16,8 +16,7 @@ import android.widget.Toast;
  */
 public class SettingsFragment extends Fragment {
 
-    boolean isBackgroundmusicOn = true, isSoundEffectsOn = true;
-
+    private MediaPlayerManager mediaPlayerManager;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -37,12 +36,10 @@ public class SettingsFragment extends Fragment {
                 
                 if(isChecked){ //the switch is in the On position
 
-                    isSoundEffectsOn = true;
                     Toast.makeText(getActivity(), "Sounds effects are now On.", Toast.LENGTH_SHORT).show();
                     
                 }else{ // the switch is in the Off position
 
-                    isSoundEffectsOn = false;
                     Toast.makeText(getActivity(), "Sounds effects are now Off.", Toast.LENGTH_SHORT).show();
                     
                 }
@@ -55,20 +52,15 @@ public class SettingsFragment extends Fragment {
                 
                 if(isChecked){ //the switch is in the On position
 
-                    isBackgroundmusicOn = true;
                     Toast.makeText(getActivity(), "Background music is now On.", Toast.LENGTH_SHORT).show();
 
                 }else{ // the switch is in the Off position
 
                     Toast.makeText(getActivity(), "Background music is now Off.", Toast.LENGTH_SHORT).show();
-                    isBackgroundmusicOn = false;
                     
                 }
             }
         });
-
-
-
 
         return view;
     }
