@@ -8,8 +8,14 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class OpenGLRenderer implements GLSurfaceView.Renderer
 {
-    private Cube mCube = new Cube();
+    private Cube mCube;
     private float mCubeRotation;
+
+    OpenGLRenderer(int cubeSize){
+
+        this.mCube = new Cube(cubeSize);
+
+    }
 
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config)

@@ -22,9 +22,9 @@ public class Face
 
     public void draw(GL10 gl)
     {
-        for(int i = 0; i < 3; i++)
+        for(int i = 0; i < this.squares.length; i++)
         {
-            for(int j = 0; j < 3; j++)
+            for(int j = 0; j < this.squares.length; j++)
             {
                 squares[i][j].draw(gl);
             }

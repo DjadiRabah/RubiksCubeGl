@@ -13,14 +13,14 @@ class Cube
     private  Face bot;
 
 
-    public Cube()
+    public Cube(int n)
     {
-        this.top = new Face(3,-1.0f,1.0f,1.0f,1.0f,0.05f, 1.0f,1.0f,1.0f);
-        this.front = new Face(3,-1.0f,1.0f,1.0f,1.0f,0.05f, 1.0f,0.0f,0.0f);
-        this.left = new Face(3,-1.0f,1.0f,1.0f,1.0f,0.05f, 0.0f,1.0f,0.0f);
-        this.right = new Face(3,-1.0f,1.0f,1.0f,1.0f,0.05f, 0.0f,0.0f,1.0f);
-        this.back = new Face(3,-1.0f,1.0f,1.0f,1.0f,0.05f, 1.0f,127.0f/255.0f,39.0f/255.0f);
-        this.bot = new Face(3,-1.0f,1.0f,1.0f,1.0f,0.05f, 1.0f,242.0f/255.0f,0);
+        this.top = new Face(n,-1.0f,1.0f,1.0f,1.0f,0.05f, 1.0f,1.0f,1.0f);
+        this.front = new Face(n,-1.0f,1.0f,1.0f,1.0f,0.05f, 1.0f,0.0f,0.0f);
+        this.left = new Face(n,-1.0f,1.0f,1.0f,1.0f,0.05f, 0.0f,1.0f,0.0f);
+        this.right = new Face(n,-1.0f,1.0f,1.0f,1.0f,0.05f, 0.0f,0.0f,1.0f);
+        this.back = new Face(n,-1.0f,1.0f,1.0f,1.0f,0.05f, 1.0f,127.0f/255.0f,39.0f/255.0f);
+        this.bot = new Face(n,-1.0f,1.0f,1.0f,1.0f,0.05f, 1.0f,242.0f/255.0f,0);
     }
 
     public void draw(GL10 gl)

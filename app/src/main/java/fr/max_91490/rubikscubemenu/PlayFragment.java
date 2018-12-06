@@ -1,5 +1,6 @@
 package fr.max_91490.rubikscubemenu;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -13,11 +14,18 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +35,7 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
     private DrawerLayout drawerLayout;
     private boolean isLocked = false;
     private MediaPlayer touchsound;
+    private int size;
 
     public PlayFragment() {
         // Required empty public constructor
@@ -67,7 +76,7 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
 
 
         GLSurfaceView glSurfaceView = view.findViewById(R.id.glsurfaceview);
-        glSurfaceView.setRenderer(new OpenGLRenderer());
+        glSurfaceView.setRenderer(new OpenGLRenderer(3));
 
         return view;
     }
@@ -85,7 +94,9 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
                 Toast.makeText(getActivity(), "Mélanger le Rubik's Cube !", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_rbsize:
-                Toast.makeText(getActivity(), "Choisir taille", Toast.LENGTH_SHORT).show();
+
+                showRadioButtonDialog();
+
                 break;
 
             case R.id.nav_lockrotation:
@@ -127,5 +138,48 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
         this.drawerLayout.closeDrawer(GravityCompat.START);
 
         return true;
+    }
+
+    private void showRadioButtonDialog() {
+
+        int min = 2;
+        int max = 17;
+
+        // custom dialog
+        final Dialog dialog = new Dialog(getActivity());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.radiobutton_dialog);
+        List<String> stringList=new ArrayList<>();  // here is list
+
+        for(int i=min;i<max;i++) {
+
+            stringList.add("Rubik's Cube " + (i + 1)+" x "+(i + 1));
+
+        }
+        RadioGroup rg = (RadioGroup) dialog.findViewById(R.id.radio_group);
+
+        for(int i=0;i<stringList.size();i++){
+            RadioButton rb=new RadioButton(getActivity()); // dynamically creating RadioButton and adding to RadioGroup.
+            rb.setText(stringList.get(i));
+            rg.addView(rb);
+        }
+
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                int childCount = group.getChildCount();
+                for (int x = 0; x < childCount; x++) {
+                    RadioButton btn = (RadioButton) group.getChildAt(x);
+                    if (btn.getId() == checkedId) {
+                        Log.e("selected RadioButton->",btn.getText().toString());
+
+                    }
+                }
+            }
+        });
+
+        dialog.show();
+        
     }
 }

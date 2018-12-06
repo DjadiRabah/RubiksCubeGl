@@ -42,25 +42,23 @@ public class NavActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
+                touchsound.start();
+
                 switch(menuItem.getItemId()){
 
                     case R.id.nav_play :
-                        touchsound.start();
                         setFragment(playFragment);
                         return true;
 
                     case R.id.nav_solve :
-                        touchsound.start();
                         setFragment(solveFragment);
                         return true;
 
                     case R.id.nav_achievements :
-                        touchsound.start();
                         setFragment(achievementsFragment);
                         return true;
 
                     case R.id.nav_settings :
-                        touchsound.start();
                         setFragment(settingsFragment);
                         return true;
 
