@@ -17,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -35,10 +36,11 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
     private DrawerLayout drawerLayout;
     private boolean isLocked = false;
     private MediaPlayer touchsound;
+    private OpenGLRenderer openglRenderer;
     private int size;
 
     public PlayFragment() {
-        // Required empty public constructor
+        this.openglRenderer = new OpenGLRenderer(2);
     }
 
     @Override
@@ -46,6 +48,7 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_play, container, false);
+        view.setOnTouchListener(new OnSwipeTouchListener(this.getContext(),this.openglRenderer.getCube()));
 
         touchsound = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.lock);
 
@@ -76,7 +79,7 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
 
 
         GLSurfaceView glSurfaceView = view.findViewById(R.id.glsurfaceview);
-        glSurfaceView.setRenderer(new OpenGLRenderer(3));
+        glSurfaceView.setRenderer(this.openglRenderer);
 
         return view;
     }
@@ -164,15 +167,22 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
             rg.addView(rb);
         }
 
-        rg.setOnCheckedChangeListener(new RadioGroupListener(this));
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                int childCount = group.getChildCount();
+                for (int x = 0; x < childCount; x++) {
+                    RadioButton btn = (RadioButton) group.getChildAt(x);
+                    if (btn.getId() == checkedId) {
+                        Log.e("selected RadioButton->",btn.getText().toString());
+
+                    }
+                }
+            }
+        });
 
         dialog.show();
 
     }
-
-    public void updateSurfaceView(int cubeSize){
-
-        Log.e("selected RadioButton->", String.valueOf(cubeSize));
-        //    glSurfaceView.setRenderer(new OpenGLRenderer(cubeSize));
-        }
 }

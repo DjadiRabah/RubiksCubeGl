@@ -8,15 +8,11 @@ import android.util.AttributeSet;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-import static android.opengl.GLSurfaceView.RENDERMODE_CONTINUOUSLY;
-
 public class OpenGLRenderer implements GLSurfaceView.Renderer {
-    private Cube mCube;
-    private float mCubeRotation;
+    private Cube cube;
 
     public OpenGLRenderer(int cubeSize) {
-        this.mCube = new Cube(cubeSize);
-
+        this.cube = new Cube(cubeSize);
     }
 
 
@@ -41,11 +37,13 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer {
         gl.glLoadIdentity();
         gl.glTranslatef(0.0f, 0.0f, -10.0f);
 
-        mCube.draw(gl);
+        cube.draw(gl);
 
         gl.glLoadIdentity();
 
-        this.mCube.rotateY(Math.toRadians(1.0));
+        /*this.cube.rotateX(Math.toRadians(1.0));
+        this.cube.rotateY(Math.toRadians(1.0));
+        this.cube.rotateZ(Math.toRadians(1.0));*/
     }
 
     @Override
@@ -58,5 +56,10 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer {
 
         gl.glMatrixMode(GL10.GL_MODELVIEW);
         gl.glLoadIdentity();
+    }
+
+    public Cube getCube()
+    {
+        return this.cube;
     }
 }
