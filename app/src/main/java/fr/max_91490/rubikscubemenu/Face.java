@@ -30,4 +30,37 @@ public class Face
             }
         }
     }
+
+    public void rotateX(double teta)
+    {
+        for(int i = 0; i < this.squares.length; i++)
+        {
+            for(int j = 0; j < this.squares.length; j++)
+            {
+                this.squares[i][j].rotateX(teta);
+            }
+        }
+    }
+
+    public void rotateY(double teta)
+    {
+        for(int i = 0; i < this.squares.length; i++)
+        {
+            for(int j = 0; j < this.squares.length; j++)
+            {
+                this.squares[i][j].rotateY(teta);
+            }
+        }
+    }
+
+    public void rotateZ(double teta)
+    {
+        for(int i = 0; i < this.squares.length; i++)
+        {
+            for(int j = 0; j < this.squares.length; j++)
+            {
+                this.squares[i][j].rotateZ(teta);
+            }
+        }
+    }
 }

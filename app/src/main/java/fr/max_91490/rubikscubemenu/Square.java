@@ -6,9 +6,11 @@ import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
+import javax.microedition.khronos.opengles.GL11;
 
 public class Square
 {
+    protected  float width;
     protected float r;
     protected float g;
     protected float b;
@@ -21,6 +23,8 @@ public class Square
     // Our index buffer.
     protected ShortBuffer indexBuffer;
 
+    protected boolean update;
+
     /* x1 y1 z1 : Coordonnées du point haut gauche
        x2 y2 z2 : Coordonnées du point bas droit
      */
@@ -29,13 +33,14 @@ public class Square
         this.r = r;
         this.g = g;
         this.b = b;
-        float d = (float)Math.sqrt((x2 - x1)*(x2 - x1) + (y2 - y1)*(y2 - y1) + (z2 - z1)*(z2 - z1)) / (float)Math.sqrt(2.0f);
-        float vertices[] = {
+        this.width = (float)Math.sqrt((x2 - x1)*(x2 - x1) + (y2 - y1)*(y2 - y1) + (z2 - z1)*(z2 - z1)) / (float)Math.sqrt(2.0f);
+        float[] vertices = new float[]{
                 x1,  y1, z1,  // 0, Top Left
-                x1, y1 - d, z1,  // 1, Bottom Left
+                x1, y1 - this.width, z1,  // 1, Bottom Left
                 x2, y2, z2,  // 2, Bottom Right
-                x2,  y2 + d, z2,  // 3, Top Right
+                x2,  y2 + this.width, z2,  // 3, Top Right
         };
+
         // a float is 4 bytes, therefore we multiply the number if
         // vertices with 4.
         ByteBuffer vbb = ByteBuffer.allocateDirect(vertices.length * 4);
@@ -57,7 +62,8 @@ public class Square
      * This function draws our square on screen.
      * @param gl
      */
-    public void draw(GL10 gl) {
+    public void draw(GL10 gl)
+    {
         // Sélectionner couleur du carré
         gl.glColor4f(this.r, this.g, this.b, 0.0f);
         // Counter-clockwise winding.
@@ -82,5 +88,43 @@ public class Square
         gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
         // Disable face culling.
         gl.glDisable(GL10.GL_CULL_FACE);
+    }
+
+    public void rotateX(double teta)
+    {
+        for(int i = 0; i < 4; i++)
+        {
+            float newY = this.vertexBuffer.get(i*3 + 1) * (float)Math.cos(teta) - this.vertexBuffer.get(i*3 + 2) * (float)Math.sin(teta);
+            float newZ = this.vertexBuffer.get(i*3 + 1) * (float)Math.sin(teta) + this.vertexBuffer.get(i*3 + 2) * (float)Math.cos(teta);
+            this.vertexBuffer.put(i*3 + 1, newY);
+            this.vertexBuffer.put(i*3 + 2, newZ);
+        }
+    }
+
+    public void rotateY(double teta)
+    {
+        for(int i = 0; i < 4; i++)
+        {
+            float newX = this.vertexBuffer.get(i*3) * (float)Math.cos(teta) + this.vertexBuffer.get(i*3 + 2) * (float)Math.sin(teta);
+            float newZ = (-1)*this.vertexBuffer.get(i*3) * (float)Math.sin(teta) + this.vertexBuffer.get(i*3 + 2) * (float)Math.cos(teta);
+            this.vertexBuffer.put(i*3, newX);
+            this.vertexBuffer.put(i*3 + 2, newZ);
+        }
+    }
+
+    public void rotateZ(double teta)
+    {
+        for(int i = 0; i < 4; i++)
+        {
+            float newX = this.vertexBuffer.get(i*3) * (float)Math.cos(teta) - this.vertexBuffer.get(i*3 + 1) * (float)Math.sin(teta);
+            float newY = this.vertexBuffer.get(i*3) * (float)Math.sin(teta) + this.vertexBuffer.get(i*3 + 1) * (float)Math.cos(teta);
+            this.vertexBuffer.put(i*3, newX);
+            this.vertexBuffer.put(i*3 + 1, newY);
+        }
+    }
+
+    public float getWidth()
+    {
+        return this.width;
     }
 }

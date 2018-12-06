@@ -16,35 +16,40 @@ class Cube
     public Cube(int n)
     {
         this.top = new Face(n,-1.0f,1.0f,1.0f,1.0f,0.05f, 1.0f,1.0f,1.0f);
-        this.front = new Face(n,-1.0f,1.0f,1.0f,1.0f,0.05f, 1.0f,0.0f,0.0f);
+        this.top.rotateX(Math.toRadians(-90.0));
+
         this.left = new Face(n,-1.0f,1.0f,1.0f,1.0f,0.05f, 0.0f,1.0f,0.0f);
+        this.left.rotateY(Math.toRadians(-90.0));
+
+        this.front = new Face(n,-1.0f,1.0f,1.0f,1.0f,0.05f, 1.0f,0.0f,0.0f);
+
         this.right = new Face(n,-1.0f,1.0f,1.0f,1.0f,0.05f, 0.0f,0.0f,1.0f);
+        this.right.rotateY(Math.toRadians(90.0));
+
         this.back = new Face(n,-1.0f,1.0f,1.0f,1.0f,0.05f, 1.0f,127.0f/255.0f,39.0f/255.0f);
+        this.back.rotateY(Math.toRadians(180.0));
+
         this.bot = new Face(n,-1.0f,1.0f,1.0f,1.0f,0.05f, 1.0f,242.0f/255.0f,0);
+        this.bot.rotateX(Math.toRadians(90.0));
+    }
+
+    public void RotateX(int direction, int index)
+    {
+        if(direction == 0)
+        {
+
+
+        }
+
     }
 
     public void draw(GL10 gl)
     {
-        gl.glRotatef(-90,1.0f,0.0f,0.0f);
         top.draw(gl);
-        gl.glRotatef(90,1.0f,0.0f,0.0f);
-
-        gl.glRotatef(-90,0.0f,1.0f,0.0f);
         left.draw(gl);
-        gl.glRotatef(90,0.0f,1.0f,0.0f);
-
         front.draw(gl);
-
-        gl.glRotatef(90,0.0f,1.0f,0.0f);
         right.draw(gl);
-        gl.glRotatef(-90,0.0f,1.0f,0.0f);
-
-        gl.glRotatef(180,0.0f,1.0f,0.0f);
         back.draw(gl);
-        gl.glRotatef(180,0.0f,1.0f,0.0f);
-
-        gl.glRotatef(90,1.0f,0.0f,0.0f);
         bot.draw(gl);
-        gl.glRotatef(-90,1.0f,0.0f,0.0f);
     }
 }
