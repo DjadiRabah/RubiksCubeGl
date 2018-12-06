@@ -164,22 +164,15 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
             rg.addView(rb);
         }
 
-        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                int childCount = group.getChildCount();
-                for (int x = 0; x < childCount; x++) {
-                    RadioButton btn = (RadioButton) group.getChildAt(x);
-                    if (btn.getId() == checkedId) {
-                        Log.e("selected RadioButton->",btn.getText().toString());
-
-                    }
-                }
-            }
-        });
+        rg.setOnCheckedChangeListener(new RadioGroupListener(this));
 
         dialog.show();
 
     }
+
+    public void updateSurfaceView(int cubeSize){
+
+        Log.e("selected RadioButton->", String.valueOf(cubeSize));
+        //    glSurfaceView.setRenderer(new OpenGLRenderer(cubeSize));
+        }
 }
