@@ -10,12 +10,11 @@ import javax.microedition.khronos.opengles.GL10;
 
 import static android.opengl.GLSurfaceView.RENDERMODE_CONTINUOUSLY;
 
-public class OpenGLRenderer extends GLSurfaceView implements GLSurfaceView.Renderer {
+public class OpenGLRenderer implements GLSurfaceView.Renderer {
     private Cube mCube;
     private float mCubeRotation;
 
-    public OpenGLRenderer(Context context, int cubeSize) {
-        super(context);
+    public OpenGLRenderer(int cubeSize) {
         this.mCube = new Cube(cubeSize);
 
     }

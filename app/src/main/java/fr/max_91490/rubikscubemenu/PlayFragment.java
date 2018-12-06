@@ -36,9 +36,6 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
     private boolean isLocked = false;
     private MediaPlayer touchsound;
     private int size;
-    private View view;
-    public Dialog dialog;
-    private GLSurfaceView glSurfaceView;
 
     public PlayFragment() {
         // Required empty public constructor
@@ -78,8 +75,8 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        glSurfaceView = view.findViewById(R.id.glsurfaceview);
-        glSurfaceView.setRenderer(new OpenGLRenderer(getContext(), 3));
+        GLSurfaceView glSurfaceView = view.findViewById(R.id.glsurfaceview);
+        glSurfaceView.setRenderer(new OpenGLRenderer(3));
 
         return view;
     }
@@ -97,7 +94,9 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
                 Toast.makeText(getActivity(), "Mélanger le Rubik's Cube !", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_rbsize:
-                showRadioButtonDialog(); //popup to choose size
+
+                showRadioButtonDialog();
+
                 break;
 
             case R.id.nav_lockrotation:
@@ -147,37 +146,40 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
         int max = 17;
 
         // custom dialog
-        dialog = new Dialog(getActivity());
+        final Dialog dialog = new Dialog(getActivity());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.radiobutton_dialog);
+        List<String> stringList=new ArrayList<>();  // here is list
 
-        List<String> stringList = new ArrayList<>();  // here is list
-
-        for(int i = min; i < max; i++) {
+        for(int i=min;i<max;i++) {
 
             stringList.add("Rubik's Cube " + (i + 1)+" x "+(i + 1));
 
         }
+        RadioGroup rg = (RadioGroup) dialog.findViewById(R.id.radio_group);
 
-        RadioGroup rg = dialog.findViewById(R.id.radio_group);
-
-        for(int i = 0; i < stringList.size(); i++){
-
-            RadioButton rb = new RadioButton(getActivity()); // dynamically creating RadioButton and adding to RadioGroup.
+        for(int i=0;i<stringList.size();i++){
+            RadioButton rb=new RadioButton(getActivity()); // dynamically creating RadioButton and adding to RadioGroup.
             rb.setText(stringList.get(i));
             rg.addView(rb);
-
         }
 
-        rg.setOnCheckedChangeListener(new RadioGroupListener(this));
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                int childCount = group.getChildCount();
+                for (int x = 0; x < childCount; x++) {
+                    RadioButton btn = (RadioButton) group.getChildAt(x);
+                    if (btn.getId() == checkedId) {
+                        Log.e("selected RadioButton->",btn.getText().toString());
+
+                    }
+                }
+            }
+        });
 
         dialog.show();
-
-    }
-
-    public void updateSurfaceView(int cubeSize){
-
-        Log.e("selected RadioButton->", String.valueOf(cubeSize));
-    //    glSurfaceView.setRenderer(new OpenGLRenderer(cubeSize));
 
     }
 }
