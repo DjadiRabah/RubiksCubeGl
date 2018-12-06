@@ -8,7 +8,7 @@ public class Face
 
     public Face(int n, float x1, float x2, float y1, float z, float offset, float r, float g, float b)
     {
-        float width = (x2-x1 - 2.0f * offset)/3.0f;
+        float width = (x2-x1 - (n-1) * offset)/n;
         this.squares = new Square[n][n];
         for(int i = 0; i < this.squares.length; i++)
         {
