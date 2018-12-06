@@ -159,7 +159,7 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
             stringList.add("Rubik's Cube " + (i + 1)+" x "+(i + 1));
 
         }
-        RadioGroup rg = (RadioGroup) dialog.findViewById(R.id.radio_group);
+        RadioGroup rg = dialog.findViewById(R.id.radio_group);
 
         for(int i=0;i<stringList.size();i++){
             RadioButton rb=new RadioButton(getActivity()); // dynamically creating RadioButton and adding to RadioGroup.
@@ -167,22 +167,19 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
             rg.addView(rb);
         }
 
-        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        rg.setOnCheckedChangeListener(new RadioGroupListener(this));
 
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                int childCount = group.getChildCount();
-                for (int x = 0; x < childCount; x++) {
-                    RadioButton btn = (RadioButton) group.getChildAt(x);
-                    if (btn.getId() == checkedId) {
-                        Log.e("selected RadioButton->",btn.getText().toString());
-
-                    }
-                }
-            }
-        });
 
         dialog.show();
+
+    }
+
+    public void updateSurfaceView(int nFaces){
+
+
+        Log.e("Size", String.valueOf(nFaces));
+
+
 
     }
 }
