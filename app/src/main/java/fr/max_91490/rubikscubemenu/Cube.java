@@ -2,6 +2,8 @@ package fr.max_91490.rubikscubemenu;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import fr.max_91490.rubikscubemenu.shuffle.ShuffleRandom;
+
 class Cube
 {
     protected float offset;
@@ -9,11 +11,16 @@ class Cube
 
     public Cube(int n)
     {
+        fr.max_91490.rubikscubemenu.cube.Cube c = new fr.max_91490.rubikscubemenu.cube.Cube(n);
+        c.shuffle(new ShuffleRandom());
+        int[][] colors = c.getSquare(fr.max_91490.rubikscubemenu.cube.Cube.TOP).getColors();
+
         this.faces = new Face[6];
-        this.faces[0] = new Face(n,-1.0f,1.0f,1.0f,1.0f,0.05f, 1.0f,1.0f,1.0f);
+        this.faces[0] = new Face(n,-1.0f,1.0f,1.0f,1.0f,0.05f, colors);
         this.faces[0].rotateX(Math.toRadians(-90.0));
 
-        this.faces[1] = new Face(n,-1.0f,1.0f,1.0f,1.0f,0.05f, 0.0f,1.0f,0.0f);
+        colors = c.getSquare(fr.max_91490.rubikscubemenu.cube.Cube.LEFT).getColors();
+        this.faces[1] = new Face(n,-1.0f,1.0f,1.0f,1.0f,0.05f, colors);
         this.faces[1].rotateY(Math.toRadians(-90.0));
 
         this.faces[2] = new Face(n,-1.0f,1.0f,1.0f,1.0f,0.05f, 1.0f,0.0f,0.0f);

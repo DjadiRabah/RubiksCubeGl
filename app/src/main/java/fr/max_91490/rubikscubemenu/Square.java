@@ -8,14 +8,15 @@ import java.nio.ShortBuffer;
 import javax.microedition.khronos.opengles.GL10;
 import javax.microedition.khronos.opengles.GL11;
 
-public class Square
-{
-    protected  float width;
+import fr.max_91490.rubikscubemenu.cube.Piece;
+
+public class Square {
+    protected float width;
     protected float r;
     protected float g;
     protected float b;
     // The order we like to connect them.
-    protected short[] indices = { 0, 1, 2, 0, 2, 3 };
+    protected short[] indices = {0, 1, 2, 0, 2, 3};
 
     // Our vertex buffer.
     protected FloatBuffer vertexBuffer;
@@ -25,6 +26,32 @@ public class Square
 
     protected boolean update;
 
+    public Square(float x1, float y1, float z1, float x2, float y2, float z2, int color)
+    {
+        this.setColor(color);
+        this.width =(float)Math.sqrt((x2 -x1)*(x2 -x1)+(y2 -y1)*(y2 -y1)+(z2 -z1)*(z2 -z1))/(float)Math.sqrt(2.0f);
+        float[] vertices = new float[]{
+                x1, y1, z1,  // 0, Top Left
+                x1, y1 - this.width, z1,  // 1, Bottom Left
+                x2, y2, z2,  // 2, Bottom Right
+                x2, y2 + this.width, z2,  // 3, Top Right
+        };
+        // a float is 4 bytes, therefore we multiply the number if
+        // vertices with 4.
+        ByteBuffer vbb = ByteBuffer.allocateDirect(vertices.length * 4);
+        vbb.order(ByteOrder.nativeOrder());
+        vertexBuffer = vbb.asFloatBuffer();
+        vertexBuffer.put(vertices);
+        vertexBuffer.position(0);
+
+        // short is 2 bytes, therefore we multiply the number if
+        // vertices with 2.
+        ByteBuffer ibb = ByteBuffer.allocateDirect(indices.length * 2);
+        ibb.order(ByteOrder.nativeOrder());
+        indexBuffer = ibb.asShortBuffer();
+        indexBuffer.put(indices);
+        indexBuffer.position(0);
+    }
     /* x1 y1 z1 : Coordonnées du point haut gauche
        x2 y2 z2 : Coordonnées du point bas droit
      */
@@ -56,6 +83,20 @@ public class Square
         indexBuffer = ibb.asShortBuffer();
         indexBuffer.put(indices);
         indexBuffer.position(0);
+    }
+
+    public void setColor(int color)
+    {
+        switch(color)
+        {
+            case Piece.WHITE : this.r = 1.0f; this.g = 1.0f; this.b = 1.0f; break;
+            case Piece.GREEN : this.r = 0.0f; this.g = 1.0f; this.b = 0.0f; break;
+            case Piece.RED : this.r = 1.0f; this.g = 0.0f; this.b = 0.0f; break;
+            case Piece.BLUE : this.r = 0.0f; this.g = 0.0f; this.b = 1.0f; break;
+            case Piece.ORANGE : this.r = 1.0f; this.g = 127.0f/255.0f; this.b = 39.0f/255.0f; break;
+            case Piece.YELLOW: this.r = 1.0f; this.g = 242.0f/255.0f; this.b = 0.0f; break;
+            default: this.r = 1.0f; this.g = 242.0f/255.0f; this.b = 0.0f; break;
+        }
     }
 
     /**

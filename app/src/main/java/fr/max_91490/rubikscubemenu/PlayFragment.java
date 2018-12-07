@@ -48,7 +48,7 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_play, container, false);
-        view.setOnTouchListener(new OnSwipeTouchListener(this.getContext(),this.openglRenderer.getCube()));
+        view.setOnTouchListener(new OnSwipeTouchListener(this.getContext(), this.openglRenderer.getCube()));
 
         touchsound = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.lock);
 
@@ -64,8 +64,8 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
         // 1 - Configure Toolbar
         //FOR DESIGN
         Toolbar toolbar = view.findViewById(R.id.play_toolbar);
-       ((NavActivity)getActivity()).setSupportActionBar(toolbar);
-       ((NavActivity)getActivity()).getSupportActionBar().setTitle(null);
+        ((NavActivity)getActivity()).setSupportActionBar(toolbar);
+        ((NavActivity)getActivity()).getSupportActionBar().setTitle(null);
 
         // 2 - Configure Drawer Layout
         this.drawerLayout = view.findViewById(R.id.drawerLayout);
@@ -104,7 +104,7 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
 
             case R.id.nav_lockrotation:
 
-             touchsound.start();
+                touchsound.start();
 
                 if(this.isLocked) {
 
