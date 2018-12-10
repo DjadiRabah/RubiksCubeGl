@@ -14,17 +14,20 @@ import android.view.WindowManager;
 
 public class NavActivity extends AppCompatActivity {
 
-    private PlayFragment playFragment;
-    private SolveFragment solveFragment;
-    private AchievementsFragment achievementsFragment;
-    private SettingsFragment settingsFragment;
+    public PlayFragment playFragment;
+    public SolveFragment solveFragment;
+    public AchievementsFragment achievementsFragment;
+    public SettingsFragment settingsFragment;
+
+    public boolean fxSound;
+    public boolean backgroundMusic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.fxSound = true;
+        this.backgroundMusic = true;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav);
-
-        final MediaPlayerManager mediaPlayerManager = new MediaPlayerManager(this, R.raw.touch_sound);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -37,43 +40,22 @@ public class NavActivity extends AppCompatActivity {
 
         setFragment(playFragment);
 
-        mainNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
-                    if(mediaPlayerManager.isFxOn()) {
-                        mediaPlayerManager.getMediaPlayer().start();
-                    }
-
-                switch(menuItem.getItemId()){
-
-                    case R.id.nav_play :
-                        setFragment(playFragment);
-                        return true;
-
-                    case R.id.nav_solve :
-                        setFragment(solveFragment);
-                        return true;
-
-                    case R.id.nav_achievements :
-                        setFragment(achievementsFragment);
-                        return true;
-
-                    case R.id.nav_settings :
-                        setFragment(settingsFragment);
-                        return true;
-
-                     default:
-                         return false;
-                }
-
-            }
-        });
+        mainNav.setOnNavigationItemSelectedListener(new DrawerManager(this));
 
     }
 
-    private void setFragment(Fragment fragment) {
+
+    public void setFxSound(boolean state)
+    {
+        this.fxSound = state;
+    }
+
+    public void setBackgroundMusic(boolean state)
+    {
+        this.backgroundMusic = state;
+    }
+
+    public void setFragment(Fragment fragment) {
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_frame, fragment);

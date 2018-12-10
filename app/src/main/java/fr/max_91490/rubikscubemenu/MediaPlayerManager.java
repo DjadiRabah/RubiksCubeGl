@@ -20,6 +20,22 @@ public class MediaPlayerManager{
 
     }
 
+    public void playBackground(){
+
+        if(isBackgroundOn()){
+            this.mediaPlayer.start();
+        }
+
+    }
+
+    public void playFx(){
+
+        if(isFxOn()){
+            this.mediaPlayer.start();
+        }
+
+    }
+
     public boolean isFxOn(){ return this.fxstate; }
 
     public boolean isBackgroundOn() {
@@ -39,12 +55,5 @@ public class MediaPlayerManager{
         this.fxstate = state;
 
     }
-
-    public MediaPlayer getMediaPlayer(){
-
-        return this.mediaPlayer;
-
-    }
-
 
 }

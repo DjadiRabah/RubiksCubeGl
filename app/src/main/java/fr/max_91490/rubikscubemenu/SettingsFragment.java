@@ -18,7 +18,8 @@ public class SettingsFragment extends Fragment {
 
     private MediaPlayerManager mediaPlayerManager;
 
-    public SettingsFragment() {
+    public SettingsFragment()
+    {
         // Required empty public constructor
     }
 
@@ -33,17 +34,15 @@ public class SettingsFragment extends Fragment {
 
         soundeffects.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                
                 if(isChecked){ //the switch is in the On position
 
                     Toast.makeText(getActivity(), "Sounds effects are now On.", Toast.LENGTH_SHORT).show();
                     
                 }else{ // the switch is in the Off position
-
                     Toast.makeText(getActivity(), "Sounds effects are now Off.", Toast.LENGTH_SHORT).show();
-                    
                 }
-                
+                NavActivity activity = (NavActivity)getActivity();
+                activity.setFxSound(isChecked);
             }
         });
 
@@ -57,8 +56,9 @@ public class SettingsFragment extends Fragment {
                 }else{ // the switch is in the Off position
 
                     Toast.makeText(getActivity(), "Background music is now Off.", Toast.LENGTH_SHORT).show();
-                    
                 }
+                NavActivity activity = (NavActivity)getActivity();
+                activity.setBackgroundMusic(isChecked);
             }
         });
 
