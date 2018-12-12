@@ -104,7 +104,11 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
 
             case R.id.nav_lockrotation:
 
-                touchsound.start();
+                NavActivity navActivity = ((NavActivity)getActivity());
+
+                if(navActivity.fxSound) {
+                    touchsound.start();
+                }
 
                 if(this.isLocked) {
 

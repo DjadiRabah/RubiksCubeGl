@@ -24,8 +24,17 @@ public class NavActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         this.fxSound = true;
         this.backgroundMusic = true;
+
+      /*  MediaPlayer touchsound = MediaPlayer.create(this, R.raw.background_sound);
+
+        https://stackoverflow.com/questions/21043059/play-background-sound-in-android-applications
+
+        touchsound.start();
+        touchsound.setLooping(true); */
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav);
 

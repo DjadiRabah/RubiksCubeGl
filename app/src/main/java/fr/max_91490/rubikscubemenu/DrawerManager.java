@@ -7,13 +7,13 @@ import android.view.MenuItem;
 
 public class DrawerManager implements BottomNavigationView.OnNavigationItemSelectedListener{
 
-    NavActivity navActivity;
-    MediaPlayer mediaPlayerFx;
+    private NavActivity navActivity;
+    private MediaPlayer mediaPlayerFx;
 
-    public DrawerManager(NavActivity navActivity){
+    DrawerManager(NavActivity navActivity){
 
         this.navActivity = navActivity;
-        mediaPlayerFx = MediaPlayer.create(navActivity, R.raw.touch_sound);
+        mediaPlayerFx = MediaPlayer.create(navActivity, R.raw.touch_sound2);
 
     }
 
