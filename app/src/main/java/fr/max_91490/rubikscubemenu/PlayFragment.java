@@ -31,16 +31,20 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PlayFragment extends Fragment implements NavigationView.OnNavigationItemSelectedListener {
-
+public class PlayFragment extends Fragment implements NavigationView.OnNavigationItemSelectedListener
+{
     private DrawerLayout drawerLayout;
     private boolean isLocked = false;
     private MediaPlayer touchsound;
     private OpenGLRenderer openglRenderer;
+    public GLSurfaceView glSurfaceView;
+    private Cube cube;
     private int size;
 
-    public PlayFragment() {
-        this.openglRenderer = new OpenGLRenderer(2);
+    public PlayFragment()
+    {
+        this.cube = new Cube(3);
+        this.openglRenderer = new OpenGLRenderer(cube);
     }
 
     @Override
@@ -68,7 +72,7 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
         ((NavActivity)getActivity()).getSupportActionBar().setTitle(null);
 
         // 2 - Configure Drawer Layout
-        this.drawerLayout = view.findViewById(R.id.drawerLayout);
+        drawerLayout = view.findViewById(R.id.drawerLayout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
@@ -78,8 +82,8 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        GLSurfaceView glSurfaceView = view.findViewById(R.id.glsurfaceview);
-        glSurfaceView.setRenderer(this.openglRenderer);
+        glSurfaceView = view.findViewById(R.id.glsurfaceview);
+        glSurfaceView.setRenderer(openglRenderer);
 
         return view;
     }
@@ -150,7 +154,7 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
     private void showRadioButtonDialog() {
 
         int min = 2;
-        int max = 17;
+        int max = 8;
 
         // custom dialog
         final Dialog dialog = new Dialog(getActivity());
@@ -184,6 +188,10 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
         Log.e("Size", String.valueOf(nFaces));
 
 
+    }
 
+    public void setCube(int size)
+    {
+        this.cube = null;
     }
 }

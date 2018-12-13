@@ -13,14 +13,14 @@ public class DrawerManager implements BottomNavigationView.OnNavigationItemSelec
     DrawerManager(NavActivity navActivity){
 
         this.navActivity = navActivity;
-        mediaPlayerFx = MediaPlayer.create(navActivity, R.raw.touch_sound2);
+        mediaPlayerFx = MediaPlayer.create(navActivity, R.raw.touch_sound);
 
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+    public boolean onNavigationItemSelected(MenuItem menuItem) {
 
-        if(navActivity.fxSound){
+        if (navActivity.fxSound){
             mediaPlayerFx.start();
         }
 

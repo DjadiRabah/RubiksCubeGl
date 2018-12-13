@@ -1,6 +1,7 @@
 package fr.max_91490.rubikscubemenu;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -35,6 +36,8 @@ public class NavActivity extends AppCompatActivity {
         touchsound.start();
         touchsound.setLooping(true); */
 
+        startService(new Intent(getApplicationContext(), SoundService.class));
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav);
 
@@ -51,6 +54,12 @@ public class NavActivity extends AppCompatActivity {
 
         mainNav.setOnNavigationItemSelectedListener(new DrawerManager(this));
 
+    }
+
+    protected void onDestroy() {
+        //stop service and stop music
+        stopService(new Intent(getApplicationContext(), SoundService.class));
+        super.onDestroy();
     }
 
 

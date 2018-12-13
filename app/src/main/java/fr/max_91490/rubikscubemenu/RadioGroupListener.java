@@ -1,5 +1,6 @@
 package fr.max_91490.rubikscubemenu;
 
+import android.util.Log;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -17,7 +18,7 @@ public class RadioGroupListener implements RadioGroup.OnCheckedChangeListener  {
     public void onCheckedChanged(RadioGroup group, int checkedId) {
 
         int childCount = group.getChildCount(), x;
-
+        Log.e("LOL", "test");
         for (x = 0; x < childCount; x++) {
 
             RadioButton btn = (RadioButton) group.getChildAt(x);
@@ -25,6 +26,8 @@ public class RadioGroupListener implements RadioGroup.OnCheckedChangeListener  {
             if (btn.getId() == checkedId) {
 
                 this.fragment.updateSurfaceView(x+3);
+                this.fragment.setCube(x+3);
+               // this.fragment.getOpenglRenderer().setCube(new Cube(x+3));
 
             }
         }

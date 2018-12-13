@@ -4,6 +4,7 @@ import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLU;
 import android.util.AttributeSet;
+import android.util.Log;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -11,8 +12,13 @@ import javax.microedition.khronos.opengles.GL10;
 public class OpenGLRenderer implements GLSurfaceView.Renderer {
     private Cube cube;
 
-    public OpenGLRenderer(int cubeSize) {
-        this.cube = new Cube(cubeSize);
+    public OpenGLRenderer(Cube cube) {
+        this.cube = cube;
+    }
+
+    public void setCube(Cube cube)
+    {
+        this.cube = cube;
     }
 
 
@@ -37,13 +43,14 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer {
         gl.glLoadIdentity();
         gl.glTranslatef(0.0f, 0.0f, -10.0f);
 
-        cube.draw(gl);
+        this.cube.draw(gl);
 
         gl.glLoadIdentity();
 
         /*this.cube.rotateX(Math.toRadians(1.0));
         this.cube.rotateY(Math.toRadians(1.0));
         this.cube.rotateZ(Math.toRadians(1.0));*/
+
     }
 
     @Override
