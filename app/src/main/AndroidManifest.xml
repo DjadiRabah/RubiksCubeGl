@@ -43,7 +43,7 @@
                 android:value="fr.max_91490.rubikscubemenu.NavActivity" />
         </activity>
 
-        <service android:name=".SoundService"  android:enabled="true"></service>
+
     </application>
 
 </manifest>
