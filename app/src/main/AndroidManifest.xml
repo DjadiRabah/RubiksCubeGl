@@ -13,25 +13,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
-            android:name=".view.MainActivity"
+            android:name="rubikscube.view.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".view.NavActivity"
+            android:name="rubikscube.view.NavActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".view.CameraScan"
+            android:name="rubikscube.view.CameraScan"
             android:label="@string/title_activity_camera_scan"
-            android:parentActivityName=".view.NavActivity"
+            android:parentActivityName="rubikscube.view.NavActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".view.NavActivity" />
+                android:value="rubikscube.view.NavActivity" />
         </activity>
-        <activity android:name=".view.GoogleSignInActivity" >
+
+        <activity android:name="rubikscube.view.GoogleSignInActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
