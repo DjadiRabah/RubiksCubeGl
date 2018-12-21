@@ -10,7 +10,7 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import fr.max_91490.rubikscubemenu.R;
+import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.audio.MediaPlayerManager;
 
 /**

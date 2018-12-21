@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import fr.max_91490.rubikscubemenu.R;
+import iutfbleau.rubikscube.R;
 
 
 /**

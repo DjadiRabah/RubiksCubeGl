@@ -27,7 +27,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.max_91490.rubikscubemenu.R;
+import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.controler.RadioGroupListener;
 
 /**

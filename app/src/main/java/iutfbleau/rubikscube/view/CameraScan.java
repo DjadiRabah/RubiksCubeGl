@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import fr.max_91490.rubikscubemenu.R;
+import iutfbleau.rubikscube.R;
 
 public class CameraScan extends AppCompatActivity {
 

@@ -10,7 +10,8 @@ import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 
-import fr.max_91490.rubikscubemenu.R;
+import iutfbleau.rubikscube.R;
+
 
 /**
  * A simple {@link Fragment} subclass.

@@ -1,6 +1,5 @@
 package iutfbleau.rubikscube.audio;
 
-import android.app.Activity;
 import android.content.Context;
 import android.media.MediaPlayer;
 

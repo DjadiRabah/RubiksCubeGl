@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "fr.max_91490.rubikscubemenu"
+        applicationId "iutfbleau.rubikscube"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1

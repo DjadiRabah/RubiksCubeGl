@@ -69,7 +69,7 @@ public class Cube implements Observable, Observer
 	{
 		for(int i = 0; i < this.size; i++)
 		{
-			if(this.squares[i].isSolved() == false)
+			if(!this.squares[i].isSolved())
 			{
 				return false;
 			}

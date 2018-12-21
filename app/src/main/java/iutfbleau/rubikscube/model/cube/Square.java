@@ -3,7 +3,6 @@ package iutfbleau.rubikscube.model.cube;
 import iutfbleau.rubikscube.model.cube.piece.Piece;
 import iutfbleau.rubikscube.model.rotation.Rotation;
 import iutfbleau.rubikscube.model.rotation.RotationSquare;
-import rubikscube.model.cube.piece.*;
 
 /**
  * Represente une des faces du Rubik's Cube
@@ -250,8 +249,7 @@ public class Square
 
 	 /**
      * Renvoie une chaine de caracteres sous forme de matrice representant la couleur des pieces de la face du cube
-     * 
-     * @param row indice de la ligne de la face du cube
+     *
      * @return  Renvoie une chaine de caracteres sous forme de matrice representant la couleur des pieces de la face du cube
      */
 	public String toString()

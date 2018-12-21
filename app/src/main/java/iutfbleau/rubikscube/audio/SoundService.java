@@ -5,7 +5,8 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.IBinder;
 
-import fr.max_91490.rubikscubemenu.R;
+import iutfbleau.rubikscube.R;
+
 
 public class SoundService extends Service {
     MediaPlayer player;

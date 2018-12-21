@@ -5,7 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import fr.max_91490.rubikscubemenu.R;
+
+import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.model.ProgressBarAnimation;
 
 public class MainActivity extends AppCompatActivity {

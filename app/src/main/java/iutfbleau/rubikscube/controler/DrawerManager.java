@@ -4,7 +4,7 @@ import android.media.MediaPlayer;
 import android.support.design.widget.BottomNavigationView;
 import android.view.MenuItem;
 
-import fr.max_91490.rubikscubemenu.R;
+import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.view.NavActivity;
 
 public class DrawerManager implements BottomNavigationView.OnNavigationItemSelectedListener{

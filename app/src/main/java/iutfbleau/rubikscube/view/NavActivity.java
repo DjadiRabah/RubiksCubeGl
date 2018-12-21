@@ -9,7 +9,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
-import fr.max_91490.rubikscubemenu.R;
+
+import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.audio.SoundService;
 import iutfbleau.rubikscube.controler.DrawerManager;
 

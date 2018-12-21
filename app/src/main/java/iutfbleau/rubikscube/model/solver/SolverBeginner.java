@@ -3,7 +3,6 @@ package iutfbleau.rubikscube.model.solver;
 import iutfbleau.rubikscube.model.cube.Cube;
 import iutfbleau.rubikscube.model.cube.Square;
 import iutfbleau.rubikscube.model.cube.piece.Piece;
-import rubikscube.model.cube.piece.*;
 import iutfbleau.rubikscube.model.rotation.Rotation;
 
 public class SolverBeginner implements Solver
@@ -164,11 +163,9 @@ public class SolverBeginner implements Solver
 	private int getEdgeColor(int square, int row, int col)
 	{
 		int color = 0;
-		for(int i = 0; i < this.edges.length; i++)
-		{
-			if((this.edges[i][2] == square) && (this.edges[i][3] == row) && (this.edges[i][4] == col))
-			{
-				return this.edges[i][0];
+		for (int[] edge : this.edges) {
+			if ((edge[2] == square) && (edge[3] == row) && (edge[4] == col)) {
+				return edge[0];
 			}
 		}
 		return color;
@@ -176,15 +173,12 @@ public class SolverBeginner implements Solver
 	private int[] getEdgePosition(int colorA, int colorB)
 	{
 		int[] position = new int[2];
-		for(int i = 0; i < this.edges.length; i++)
-		{
-			if((this.edges[i][0] == colorA) && (this.edges[i][1] == colorB))
-			{
-				position[0] = this.edges[i][2];
+		for (int[] edge : this.edges) {
+			if ((edge[0] == colorA) && (edge[1] == colorB)) {
+				position[0] = edge[2];
 			}
-			if((this.edges[i][0] == colorB) && (this.edges[i][1] == colorA))
-			{
-				position[1] = this.edges[i][2];
+			if ((edge[0] == colorB) && (edge[1] == colorA)) {
+				position[1] = edge[2];
 			}
 		}
 		return position;

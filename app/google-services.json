@@ -8,18 +8,18 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:331069963227:android:c013a2785823d4ce",
+        "mobilesdk_app_id": "1:331069963227:android:cf3cbc5fd54f4ebd",
         "android_client_info": {
-          "package_name": "fr.max_91490.rubikscubemenu"
+          "package_name": "iutfbleau.rubikscube"
         }
       },
       "oauth_client": [
         {
-          "client_id": "331069963227-go7eb95jmhp7fodq61c78j3p6q641gr5.apps.googleusercontent.com",
+          "client_id": "331069963227-kh7f9djv6ongvu192mhh68rqmr7ve0ue.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "fr.max_91490.rubikscubemenu",
-            "certificate_hash": "da93c8bd322837aab836078e96f2ed5f822273b9"
+            "package_name": "iutfbleau.rubikscube",
+            "certificate_hash": "1b7e497a1d5136f5ee52dce4864f8303caa1daf6"
           }
         },
         {
