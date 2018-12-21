@@ -21,7 +21,13 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="rubikscube.view.NavActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="rubikscube.view.CameraScan"
             android:label="@string/title_activity_camera_scan"
@@ -33,13 +39,7 @@
                 android:value="rubikscube.view.NavActivity" />
         </activity>
 
-        <activity android:name="rubikscube.view.GoogleSignInActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name="rubikscube.view.GoogleSignInActivity" />
     </application>
 
 </manifest>

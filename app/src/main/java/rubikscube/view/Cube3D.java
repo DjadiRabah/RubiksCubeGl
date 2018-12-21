@@ -1,12 +1,14 @@
-package view.cube3d;
+package rubikscube.view;
 
-import model.cube.*;
-import model.cube.piece.*;
-
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
+
+import javax.microedition.khronos.opengles.GL10;
+
+import rubikscube.model.cube.Cube;
+import rubikscube.model.cube.Square;
+import rubikscube.model.cube.piece.Piece;
+import rubikscube.model.cube.piece.Piece3D;
 
 public class Cube3D
 {
@@ -19,19 +21,19 @@ public class Cube3D
 
 	private float[] setColor(int color)
 	{
-		float[] color;
+		float[] colors;
 
 		switch(color)
 		{
-			case Piece.WHITE  : color = new float[]{1.0f,1.0f,1.0f};                     break;
-			case Piece.GREEN  : color = new float[]{0.0f,1.0f,0.0f};                     break;
-			case Piece.RED    : color = new float[]{1.0f,0.0f,0.0f};                     break;
-			case Piece.BLUE   : color = new float[]{0.0f,0.0f,1.0f};                     break;
-			case Piece.ORANGE : color = new float[]{1.0f,127.0f/255.0f,39.0f/255.0f};    break;
-			case Piece.YELLOW : color = new float[]{1.0f,242.0f/255.0f,0.0f};            break;
-			default           : color = new float[]{0.0f,0.0f,0.0f};			 		 break;
+			case Piece.WHITE  : colors = new float[]{1.0f,1.0f,1.0f};                     break;
+			case Piece.GREEN  : colors = new float[]{0.0f,1.0f,0.0f};                     break;
+			case Piece.RED    : colors = new float[]{1.0f,0.0f,0.0f};                     break;
+			case Piece.BLUE   : colors = new float[]{0.0f,0.0f,1.0f};                     break;
+			case Piece.ORANGE : colors = new float[]{1.0f,127.0f/255.0f,39.0f/255.0f};    break;
+			case Piece.YELLOW : colors = new float[]{1.0f,242.0f/255.0f,0.0f};            break;
+			default           : colors = new float[]{0.0f,0.0f,0.0f};			 		 break;
 		}
-		return color;
+		return colors;
 	}
 
 	/**
@@ -87,7 +89,7 @@ public class Cube3D
     {
         for(int i = 0; i < 6; i++)
         {
-            this.drawPiece(gl, this.cube.getSquare(i));
+            this.drawSquare(gl, this.cube.getSquare(i));
         }
     }
 }
