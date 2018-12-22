@@ -1,4 +1,4 @@
-package iutfbleau.rubikscube.model.cube;
+package iutfbleau.rubikscube.model.cube.cube;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -5,16 +5,16 @@ import java.nio.ShortBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import iutfbleau.rubikscube.model.cube.Cube;
+import iutfbleau.rubikscube.model.cube.cube.Cube3D;
 import iutfbleau.rubikscube.model.cube.face.Face;
 import iutfbleau.rubikscube.model.cube.piece.Piece;
 import iutfbleau.rubikscube.model.cube.piece.Piece3D;
 
-public class Cube3D
+public class CubeGl
 {
-	protected Cube cube;
+	protected Cube3D cube;
 
-	public Cube3D(Cube cube)
+	public CubeGl(Cube3D cube)
 	{
 		this.cube = cube;
 	}

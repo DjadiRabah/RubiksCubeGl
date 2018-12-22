@@ -1,6 +1,6 @@
 package iutfbleau.rubikscube.model.rotation;
 
-import iutfbleau.rubikscube.model.cube.Cube;
+import iutfbleau.rubikscube.model.cube.cube.Cube;
 
 public class RotationCube implements Rotation
 {	

@@ -29,7 +29,7 @@ import java.util.List;
 
 import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.controler.RadioGroupListener;
-import iutfbleau.rubikscube.model.cube.Cube;
+import iutfbleau.rubikscube.model.cube.cube.Cube;
 
 /**
  * A simple {@link Fragment} subclass.

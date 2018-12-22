@@ -1,6 +1,6 @@
 package iutfbleau.rubikscube.model.solver;
 
-import iutfbleau.rubikscube.model.cube.Cube;
+import iutfbleau.rubikscube.model.cube.cube.Cube;
 import iutfbleau.rubikscube.model.cube.face.Face;
 import iutfbleau.rubikscube.model.cube.piece.Piece;
 import iutfbleau.rubikscube.model.rotation.Rotation;

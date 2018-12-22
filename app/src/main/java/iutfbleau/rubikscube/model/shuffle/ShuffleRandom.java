@@ -4,7 +4,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Random;
 
-import iutfbleau.rubikscube.model.cube.Cube;
+import iutfbleau.rubikscube.model.cube.cube.Cube;
 
 public class ShuffleRandom implements Shuffle
 {

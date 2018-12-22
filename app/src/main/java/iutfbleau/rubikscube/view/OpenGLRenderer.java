@@ -6,18 +6,18 @@ import android.opengl.GLU;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-import iutfbleau.rubikscube.model.cube.Cube;
+import iutfbleau.rubikscube.model.cube.cube.Cube;
 
 
 public class OpenGLRenderer implements GLSurfaceView.Renderer {
-    private Cube3D cube;
+    private CubeGl cube;
     private float angleX;
     private float angleY;
     private float angleZ;
 
     public OpenGLRenderer(Cube cube)
     {
-        this.cube = new Cube3D(cube);
+        this.cube = new CubeGl(cube);
         this.angleX = 0.0f;
         this.angleY = 0.0f;
         this.angleZ = 0.0f;
