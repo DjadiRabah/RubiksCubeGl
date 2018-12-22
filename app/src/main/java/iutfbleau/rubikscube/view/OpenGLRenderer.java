@@ -6,7 +6,6 @@ import android.opengl.GLU;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-import iutfbleau.rubikscube.model.cube.cube.Cube;
 import iutfbleau.rubikscube.model.cube.cube.Cube3D;
 
 

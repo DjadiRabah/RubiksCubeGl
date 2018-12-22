@@ -21,7 +21,6 @@ public class Face3D extends Face
     public void setPosition(float x1, float x2, float y1, float z, float offset)
     {
         float width = (x2-x1 - (this.size-1) * offset)/this.size;
-        this.pieces = new Piece3D[this.size][this.size];
         for(int i = 0; i < this.size; i++)
         {
             for(int j = 0; j < this.size; j++)
