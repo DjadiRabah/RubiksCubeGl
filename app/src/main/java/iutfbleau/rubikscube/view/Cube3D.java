@@ -6,7 +6,7 @@ import java.nio.ShortBuffer;
 import javax.microedition.khronos.opengles.GL10;
 
 import iutfbleau.rubikscube.model.cube.Cube;
-import iutfbleau.rubikscube.model.cube.Square;
+import iutfbleau.rubikscube.model.cube.face.Face;
 import iutfbleau.rubikscube.model.cube.piece.Piece;
 import iutfbleau.rubikscube.model.cube.piece.Piece3D;
 
@@ -73,12 +73,12 @@ public class Cube3D
         gl.glDisable(GL10.GL_CULL_FACE);
 	}
 
-	private void drawSquare(GL10 gl, Square square)
+	private void drawSquare(GL10 gl, Face face)
     {
-        Piece[][] pieces = square.getPieces();
-        for(int i = 0; i < square.getSize(); i++)
+        Piece[][] pieces = face.getPieces();
+        for(int i = 0; i < face.getSize(); i++)
         {
-            for(int j = 0; j < square.getSize(); j++)
+            for(int j = 0; j < face.getSize(); j++)
             {
             	this.drawPiece(gl, (Piece3D)pieces[i][j]);
             }

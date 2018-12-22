@@ -1,4 +1,4 @@
-package iutfbleau.rubikscube.model.cube;
+package iutfbleau.rubikscube.model.cube.face;
 
 import iutfbleau.rubikscube.model.cube.piece.Piece;
 import iutfbleau.rubikscube.model.rotation.Rotation;
@@ -9,7 +9,7 @@ import iutfbleau.rubikscube.model.rotation.RotationSquare;
  *  
  * @author Rabah DJADI.
  */
-public class Square
+public class Face
 {
 	/**
      * le nombre de piece sur une ligne/colonne de la face
@@ -26,7 +26,7 @@ public class Square
      * 
      * @param size le nombre de pieces en ligne et en colonne de la face du cube
      */
-	public Square(int size)
+	public Face(int size)
 	{
 		this.size = size;
 		this.pieces = new Piece[this.size][this.size];
@@ -45,7 +45,7 @@ public class Square
      * @param size le nombre de pieces en ligne et en colonne de la face du cube
      * @param color la couleur de toutes les pieces de la face du cube
      */
-	public Square(int size, int color)
+	public Face(int size, int color)
 	{
 		this.size = size;
 		this.pieces = new Piece[this.size][this.size];
@@ -68,17 +68,17 @@ public class Square
 	/**
      * Construit une face du cube a partir d'une face deja existante
      * 
-     * @param square une face du cube a copier
+     * @param face une face du cube a copier
      */
-	public Square(Square square)
+	public Face(Face face)
 	{
-		this.size = square.getSize();
+		this.size = face.getSize();
 		this.pieces = new Piece[this.size][this.size];
 		for(int i = 0; i < this.pieces.length; i++)
 		{
 			for(int j = 0; j < this.pieces[i].length; j++)
 			{
-				this.pieces[i][j] = square.pieces[i][j];
+				this.pieces[i][j] = face.pieces[i][j];
 			}
 		}
 	}

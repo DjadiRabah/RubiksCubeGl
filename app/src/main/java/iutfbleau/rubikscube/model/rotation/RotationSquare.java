@@ -1,6 +1,6 @@
 package iutfbleau.rubikscube.model.rotation;
 
-import iutfbleau.rubikscube.model.cube.Square;
+import iutfbleau.rubikscube.model.cube.face.Face;
 import iutfbleau.rubikscube.model.cube.piece.Piece;
 
 public class RotationSquare implements Rotation
@@ -19,40 +19,40 @@ public class RotationSquare implements Rotation
         return temp;
     }
 	
-	protected void reverseRows(Square square)
+	protected void reverseRows(Face face)
     {
-		int size = square.getSize();
+		int size = face.getSize();
     	for(int i = 0; i < size - 2; i++)
     	{
-    		Piece[] temp = square.getRow(i);
-    		square.setRow(i, square.getRow(size - i - 1));
-    		square.setRow(size-i-1, temp);
+    		Piece[] temp = face.getRow(i);
+    		face.setRow(i, face.getRow(size - i - 1));
+    		face.setRow(size-i-1, temp);
     	}
     }
 	
-	protected void reverseCols(Square square)
+	protected void reverseCols(Face face)
     {
-		int size = square.getSize();
+		int size = face.getSize();
     	for(int i = 0; i < size - 2; i++)
     	{
-    		Piece[] temp = square.getCol(i);
-    		square.setCol(i, square.getCol(size - i - 1));
-    		square.setCol(size-i-1, temp);
+    		Piece[] temp = face.getCol(i);
+    		face.setCol(i, face.getCol(size - i - 1));
+    		face.setCol(size-i-1, temp);
     	}
     }
 	
 	
-	public void rotate(Square square, int direction)
+	public void rotate(Face face, int direction)
 	{
 		if(direction == CLOCKWISE)
 		{
-			square.setSquare(this.transposeMatrix(square.getPieces()));
-			this.reverseCols(square);
+			face.setSquare(this.transposeMatrix(face.getPieces()));
+			this.reverseCols(face);
 		}
 		else if(direction == COUNTERCLOCKWISE)
 		{
-			square.setSquare(this.transposeMatrix(square.getPieces()));
-			this.reverseRows(square);
+			face.setSquare(this.transposeMatrix(face.getPieces()));
+			this.reverseRows(face);
 		} 
 	}
 }

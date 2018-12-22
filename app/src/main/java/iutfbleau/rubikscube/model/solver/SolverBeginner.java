@@ -1,7 +1,7 @@
 package iutfbleau.rubikscube.model.solver;
 
 import iutfbleau.rubikscube.model.cube.Cube;
-import iutfbleau.rubikscube.model.cube.Square;
+import iutfbleau.rubikscube.model.cube.face.Face;
 import iutfbleau.rubikscube.model.cube.piece.Piece;
 import iutfbleau.rubikscube.model.rotation.Rotation;
 
@@ -15,14 +15,14 @@ public class SolverBeginner implements Solver
 		this.edges = new int[24][5];
 		this.corners = new int[8][12];
 	}
-	private int getSquareColor(Square square)
+	private int getSquareColor(Face face)
 	{
-		int[][] colors = square.getColors();
+		int[][] colors = face.getColors();
 		return colors[(colors.length - 1) / 2][(colors.length - 1) / 2];
 	}
-	protected int getSquareColor(Square square, int row, int col)
+	protected int getSquareColor(Face face, int row, int col)
 	{
-		int[][] colors = square.getColors();
+		int[][] colors = face.getColors();
 		return colors[row][col];
 	}
 	protected int[] setEdgeTop(Cube cube, int square)

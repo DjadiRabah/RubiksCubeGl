@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
+import iutfbleau.rubikscube.model.cube.face.Face;
 import iutfbleau.rubikscube.model.rotation.Rotation;
 import iutfbleau.rubikscube.model.rotation.RotationCube;
 import iutfbleau.rubikscube.model.rotation.RotationX;
@@ -23,18 +24,18 @@ public class Cube implements Observable, Observer
 	public static final int BACK  = 4;
 	public static final int DOWN  = 5;
 	
-	protected Square[] squares;
+	protected Face[] faces;
 	protected int size;
 	protected List<Observer> observers;
 	
 	public Cube(int size)
 	{
 		this.size = size;
-		this.squares = new Square[6];
+		this.faces = new Face[6];
 		
 		for(int color = 0; color < 6; color++)
 		{
-			this.squares[color] = new Square(this.size,color);
+			this.faces[color] = new Face(this.size,color);
 		}
 		this.observers = new ArrayList<>();
 	}
@@ -42,10 +43,10 @@ public class Cube implements Observable, Observer
 	public Cube(Cube copy)
 	{
 		this.size = copy.size;
-		this.squares = new Square[6];
+		this.faces = new Face[6];
 		for(int i = 0; i < 6; i++)
 		{
-			this.squares[i] = new Square(copy.getSquare(i));
+			this.faces[i] = new Face(copy.getSquare(i));
 		}
 		this.observers = new ArrayList<>();
 	}
@@ -55,9 +56,9 @@ public class Cube implements Observable, Observer
 		s.shuffle(this);
 	}
 	
-	public Square getSquare(int position)
+	public Face getSquare(int position)
 	{
-		return this.squares[position];
+		return this.faces[position];
 	}
 	
 	public int getSize()
@@ -69,7 +70,7 @@ public class Cube implements Observable, Observer
 	{
 		for(int i = 0; i < this.size; i++)
 		{
-			if(!this.squares[i].isSolved())
+			if(!this.faces[i].isSolved())
 			{
 				return false;
 			}
@@ -112,7 +113,7 @@ public class Cube implements Observable, Observer
 	{
 		for(int i = Cube.TOP; i < Cube.DOWN; i++)
 		{
-			if(!Arrays.deepEquals(this.squares[i].getColors(), cube.squares[i].getColors()))
+			if(!Arrays.deepEquals(this.faces[i].getColors(), cube.faces[i].getColors()))
 			{
 				return false;
 			}
@@ -133,12 +134,12 @@ public class Cube implements Observable, Observer
 			{
 				str = str + " ";
 			}
-			str = str + this.squares[TOP].toStringRow(i) + '\n';
+			str = str + this.faces[TOP].toStringRow(i) + '\n';
 		}
 		str = str + '\n';
 		for(int i = 0; i < this.size; i++)
 		{
-			str = str + this.squares[LEFT].toStringRow(i) +  " " + this.squares[FRONT].toStringRow(i) + " " + this.squares[RIGHT].toStringRow(i) + " " + this.squares[BACK].toStringRow(i) + '\n';
+			str = str + this.faces[LEFT].toStringRow(i) +  " " + this.faces[FRONT].toStringRow(i) + " " + this.faces[RIGHT].toStringRow(i) + " " + this.faces[BACK].toStringRow(i) + '\n';
 		}
 		str = str + '\n';
 		for(int i = 0; i < this.size; i++)
@@ -147,7 +148,7 @@ public class Cube implements Observable, Observer
 			{
 				str = str + " ";
 			}
-			str = str + this.squares[DOWN].toStringRow(i) + '\n';
+			str = str + this.faces[DOWN].toStringRow(i) + '\n';
 		}
 
 		return str;
