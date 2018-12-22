@@ -29,6 +29,7 @@ import java.util.List;
 
 import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.controler.RadioGroupListener;
+import iutfbleau.rubikscube.model.cube.Cube;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,15 +39,15 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
     private DrawerLayout drawerLayout;
     private boolean isLocked = false;
     private MediaPlayer touchsound;
-   // private OpenGLRenderer openglRenderer;
+    private OpenGLRenderer openglRenderer;
     public GLSurfaceView glSurfaceView;
-  //  private Cube cube;
+    private Cube cube;
     private int size;
 
     public PlayFragment()
     {
-      //  this.cube = new Cube(3);
-     //   this.openglRenderer = new OpenGLRenderer(cube);
+      this.cube = new Cube(3);
+      this.openglRenderer = new OpenGLRenderer(cube);
     }
 
     @Override
@@ -84,8 +85,8 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
         navigationView.setNavigationItemSelectedListener(this);
 
 
-    //    glSurfaceView = view.findViewById(R.id.glsurfaceview);
-     //   glSurfaceView.setRenderer(openglRenderer);
+        glSurfaceView = view.findViewById(R.id.glsurfaceview);
+        glSurfaceView.setRenderer(openglRenderer);
 
         return view;
     }
@@ -191,9 +192,4 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
 
 
     }
-
-   /* public void setCube(int size)
-    {
-        this.cube = null;
-    } */
 }
