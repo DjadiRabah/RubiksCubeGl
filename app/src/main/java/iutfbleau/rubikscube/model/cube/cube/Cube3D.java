@@ -5,7 +5,8 @@ import iutfbleau.rubikscube.model.cube.piece.Piece;
 
 public class Cube3D extends Cube
 {
-    public Cube3D(int size) {
+    public Cube3D(int size)
+    {
         super(size);
 
         this.faces[0] = new Face3D(size, Piece.WHITE);
@@ -30,5 +31,29 @@ public class Cube3D extends Cube
         this.faces[5] = new Face3D(size, Piece.YELLOW);
         ((Face3D)this.faces[5]).setPosition(-1.0f,1.0f,1.0f,1.0f,0.05f);
         ((Face3D)this.faces[5]).rotateX(Math.toRadians(90.0));
+    }
+
+    public void rotateX(double teta)
+    {
+        for(int i = 0; i < this.faces.length; i++)
+        {
+            ((Face3D)this.faces[i]).rotateX(teta);
+        }
+    }
+
+    public void rotateY(double teta)
+    {
+        for(int i = 0; i < this.faces.length; i++)
+        {
+            ((Face3D)this.faces[i]).rotateY(teta);
+        }
+    }
+
+    public void rotateZ(double teta)
+    {
+        for(int i = 0; i < this.faces.length; i++)
+        {
+            ((Face3D)this.faces[i]).rotateZ(teta);
+        }
     }
 }

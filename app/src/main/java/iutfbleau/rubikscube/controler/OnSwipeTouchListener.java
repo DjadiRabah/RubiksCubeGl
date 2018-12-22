@@ -1,10 +1,17 @@
 package iutfbleau.rubikscube.controler;
 
-public class OnSwipeTouchListener //implements OnTouchListener
+import android.content.Context;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.View;
+
+import iutfbleau.rubikscube.view.CubeGl;
+
+public class OnSwipeTouchListener implements View.OnTouchListener
 {
-   /* private Cube cube;
+    private CubeGl cube;
     private final GestureDetector gestureDetector;
-    public OnSwipeTouchListener (Context ctx, Cube cube)
+    public OnSwipeTouchListener (Context ctx, CubeGl cube)
     {
         gestureDetector = new GestureDetector(ctx, new GestureListener());
         this.cube = cube;
@@ -16,7 +23,7 @@ public class OnSwipeTouchListener //implements OnTouchListener
 
     }
 
-    private final class GestureListener extends SimpleOnGestureListener {
+    private final class GestureListener extends GestureDetector.SimpleOnGestureListener {
 
         private static final int SWIPE_THRESHOLD = 100;
         private static final int SWIPE_VELOCITY_THRESHOLD = 100;
@@ -60,18 +67,18 @@ public class OnSwipeTouchListener //implements OnTouchListener
 
     public void onSwipeRight()
     {
-        this.cube.rotateY(0.5);
+        this.cube.rotateY(45.0);
     }
 
     public void onSwipeLeft() {
-        this.cube.rotateY(-0.5);
+        this.cube.rotateY(-45.0);
     }
 
     public void onSwipeTop() {
-        this.cube.rotateX(-0.5);
+        this.cube.rotateX(-45.0);
     }
 
     public void onSwipeBottom() {
-        this.cube.rotateX(0.5);
-    } */
+        this.cube.rotateX(45.0);
+    }
 }

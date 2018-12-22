@@ -7,6 +7,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 import iutfbleau.rubikscube.model.cube.cube.Cube3D;
 import iutfbleau.rubikscube.model.cube.face.Face;
+import iutfbleau.rubikscube.model.cube.face.Face3D;
 import iutfbleau.rubikscube.model.cube.piece.Piece;
 import iutfbleau.rubikscube.model.cube.piece.Piece3D;
 
@@ -92,4 +93,19 @@ public class CubeGl
             this.drawSquare(gl, this.cube.getSquare(i));
         }
     }
+
+	public void rotateX(double teta)
+	{
+		this.cube.rotateX(Math.toRadians(teta));
+	}
+
+	public void rotateY(double teta)
+	{
+		this.cube.rotateY(Math.toRadians(teta));
+	}
+
+	public void rotateZ(double teta)
+	{
+		this.cube.rotateZ(Math.toRadians(teta));
+	}
 }

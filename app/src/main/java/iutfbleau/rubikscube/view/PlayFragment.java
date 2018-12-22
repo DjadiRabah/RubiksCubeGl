@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import iutfbleau.rubikscube.R;
+import iutfbleau.rubikscube.controler.OnSwipeTouchListener;
 import iutfbleau.rubikscube.controler.RadioGroupListener;
 import iutfbleau.rubikscube.model.cube.cube.Cube;
 import iutfbleau.rubikscube.model.cube.cube.Cube3D;
@@ -56,7 +57,7 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_play, container, false);
-       // view.setOnTouchListener(new OnSwipeTouchListener(this.getContext(), this.openglRenderer.getCube()));
+        view.setOnTouchListener(new OnSwipeTouchListener(this.getContext(), this.openglRenderer.getCube()));
 
         touchsound = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.lock);
 
