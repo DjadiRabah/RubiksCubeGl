@@ -5,7 +5,7 @@ import iutfbleau.rubikscube.model.cube.piece.Piece3D;
 
 public class Face3D extends Face
 {
-    public Face3D(int size)
+    public Face3D(int size, int color)
     {
         super(size);
         this.pieces = new Piece3D[this.size][this.size];
@@ -13,7 +13,7 @@ public class Face3D extends Face
         {
             for(int j = 0; j < this.pieces[i].length; j++)
             {
-                this.pieces[i][j] = new Piece3D(Piece.NONE);
+                this.pieces[i][j] = new Piece3D(color);
             }
         }
     }
@@ -26,6 +26,39 @@ public class Face3D extends Face
             for(int j = 0; j < this.size; j++)
             {
                 ((Piece3D)this.pieces[i][j]).setPosition(x1 + j * (width + offset),y1 - i * (width + offset),z,x1 + (j+1) * width + j * offset ,y1 - (i+1) * width - i * offset,z);
+            }
+        }
+    }
+
+    public void rotateX(double teta)
+    {
+        for(int i = 0; i < this.pieces.length; i++)
+        {
+            for(int j = 0; j < this.pieces.length; j++)
+            {
+                ((Piece3D)this.pieces[i][j]).rotateX(teta);
+            }
+        }
+    }
+
+    public void rotateY(double teta)
+    {
+        for(int i = 0; i < this.pieces.length; i++)
+        {
+            for(int j = 0; j < this.pieces.length; j++)
+            {
+                ((Piece3D)this.pieces[i][j]).rotateY(teta);
+            }
+        }
+    }
+
+    public void rotateZ(double teta)
+    {
+        for(int i = 0; i < this.pieces.length; i++)
+        {
+            for(int j = 0; j < this.pieces.length; j++)
+            {
+                ((Piece3D)this.pieces[i][j]).rotateZ(teta);
             }
         }
     }

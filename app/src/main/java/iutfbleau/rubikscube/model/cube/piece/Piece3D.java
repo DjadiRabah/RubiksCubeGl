@@ -79,4 +79,37 @@ public class Piece3D extends Piece
     {
         return this.width;
     }
+
+    public void rotateX(double teta)
+    {
+        for(int i = 0; i < 4; i++)
+        {
+            float newY = this.vertexBuffer.get(i*3 + 1) * (float)Math.cos(teta) - this.vertexBuffer.get(i*3 + 2) * (float)Math.sin(teta);
+            float newZ = this.vertexBuffer.get(i*3 + 1) * (float)Math.sin(teta) + this.vertexBuffer.get(i*3 + 2) * (float)Math.cos(teta);
+            this.vertexBuffer.put(i*3 + 1, newY);
+            this.vertexBuffer.put(i*3 + 2, newZ);
+        }
+    }
+
+    public void rotateY(double teta)
+    {
+        for(int i = 0; i < 4; i++)
+        {
+            float newX = this.vertexBuffer.get(i*3) * (float)Math.cos(teta) + this.vertexBuffer.get(i*3 + 2) * (float)Math.sin(teta);
+            float newZ = (-1)*this.vertexBuffer.get(i*3) * (float)Math.sin(teta) + this.vertexBuffer.get(i*3 + 2) * (float)Math.cos(teta);
+            this.vertexBuffer.put(i*3, newX);
+            this.vertexBuffer.put(i*3 + 2, newZ);
+        }
+    }
+
+    public void rotateZ(double teta)
+    {
+        for(int i = 0; i < 4; i++)
+        {
+            float newX = this.vertexBuffer.get(i*3) * (float)Math.cos(teta) - this.vertexBuffer.get(i*3 + 1) * (float)Math.sin(teta);
+            float newY = this.vertexBuffer.get(i*3) * (float)Math.sin(teta) + this.vertexBuffer.get(i*3 + 1) * (float)Math.cos(teta);
+            this.vertexBuffer.put(i*3, newX);
+            this.vertexBuffer.put(i*3 + 1, newY);
+        }
+    }
 }
