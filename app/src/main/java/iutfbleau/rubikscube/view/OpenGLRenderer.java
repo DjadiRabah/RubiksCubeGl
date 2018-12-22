@@ -7,6 +7,7 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 import iutfbleau.rubikscube.model.cube.cube.Cube;
+import iutfbleau.rubikscube.model.cube.cube.Cube3D;
 
 
 public class OpenGLRenderer implements GLSurfaceView.Renderer {
@@ -15,7 +16,7 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer {
     private float angleY;
     private float angleZ;
 
-    public OpenGLRenderer(Cube cube)
+    public OpenGLRenderer(Cube3D cube)
     {
         this.cube = new CubeGl(cube);
         this.angleX = 0.0f;

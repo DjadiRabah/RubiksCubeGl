@@ -30,6 +30,7 @@ import java.util.List;
 import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.controler.RadioGroupListener;
 import iutfbleau.rubikscube.model.cube.cube.Cube;
+import iutfbleau.rubikscube.model.cube.cube.Cube3D;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,12 +42,12 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
     private MediaPlayer touchsound;
     private OpenGLRenderer openglRenderer;
     public GLSurfaceView glSurfaceView;
-    private Cube cube;
+    private Cube3D cube;
     private int size;
 
     public PlayFragment()
     {
-      this.cube = new Cube(3);
+      this.cube = new Cube3D(3);
       this.openglRenderer = new OpenGLRenderer(cube);
     }
 
