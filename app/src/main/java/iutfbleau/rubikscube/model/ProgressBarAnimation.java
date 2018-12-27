@@ -7,6 +7,7 @@ import android.view.animation.Transformation;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import iutfbleau.rubikscube.view.GoogleSignInActivity;
 import iutfbleau.rubikscube.view.NavActivity;
 
 public class ProgressBarAnimation extends Animation {
@@ -36,7 +37,7 @@ public class ProgressBarAnimation extends Animation {
         percent_loaded.setText((int)value + " %");
 
         if(value == to){
-            context.startActivity(new Intent(context, NavActivity.class));
+            context.startActivity(new Intent(context, GoogleSignInActivity.class));
         }
 
     }

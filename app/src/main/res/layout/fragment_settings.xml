@@ -18,7 +18,9 @@
             android:layout_weight="1"
             android:textColor="@color/colorWhite"
             android:background="@color/colorPrimary"
+
             />
+
 
         <Switch
             android:id="@+id/soundeffects"
@@ -40,4 +42,26 @@
             android:checked="true"
             />
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:text="@string/login"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/button_border"
+            style="?android:attr/borderlessButtonStyle"
+            />
+
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:text="@string/logout"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/button_border"
+            style="?android:attr/borderlessButtonStyle"
+            />
+
+ </LinearLayout>
