@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.audio.MediaPlayerManager;
+import iutfbleau.rubikscube.model.Connection;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
@@ -46,8 +47,6 @@ public class SettingsFragment extends Fragment {
         Switch soundeffects = view.findViewById(R.id.soundeffects);
         Switch backgroundmusic = view.findViewById(R.id.backgroundmusic);
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
 
         soundeffects.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -97,6 +96,8 @@ public class SettingsFragment extends Fragment {
                 v.startAnimation(buttonClick);
 
                 Toast.makeText(getActivity(), "logout", Toast.LENGTH_SHORT).show();
+                Connection connection = Connection.getInstance();
+                connection.signOut();
 
             }
         });

@@ -76,7 +76,8 @@ public class GoogleSignInActivity extends BaseActivity implements
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         // [END initialize_auth]
-        this.connection = new Connection(this.mGoogleSignInClient, this.mAuth);
+        this.connection = Connection.getInstance();
+        this.connection.setConnection(this.mGoogleSignInClient, this.mAuth);
     }
 
     // [START on_start_check_user]
@@ -188,7 +189,6 @@ public class GoogleSignInActivity extends BaseActivity implements
             Log.e(TAG, "ookokrezgfjkerkoihgjhrtliughrsqzhbyrthyt");
 
             startActivity(i);
-            signOut();
 
         } else {
 

@@ -10,21 +10,36 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Connection
 {
-    private FirebaseAuth firebaseAuth;
-    private GoogleSignInClient googleClient;
+    private static Connection connection = null;
+    private static FirebaseAuth firebaseAuth;
+    private static GoogleSignInClient googleClient;
 
-    public Connection(GoogleSignInClient googleClient, FirebaseAuth firebaseAuth)
+    private Connection()
     {
-        this.googleClient = googleClient;
-        this.firebaseAuth = firebaseAuth;
     }
 
-    private void signOut()
+    public static void setConnection(GoogleSignInClient googleClient, FirebaseAuth firebaseAuth)
+    {
+        Connection.googleClient = googleClient;
+        Connection.firebaseAuth = firebaseAuth;
+    }
+
+    public void signOut()
     {
         // Firebase sign out
        this.firebaseAuth.signOut();
 
         // Google sign out
         this.googleClient.signOut();
+    }
+
+    public static Connection getInstance()
+    {
+        if(Connection.connection == null)
+        {
+            Connection.connection = new Connection();
+        }
+
+        return Connection.connection;
     }
 }
