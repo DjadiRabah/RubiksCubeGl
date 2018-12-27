@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import iutfbleau.rubikscube.R;
+import iutfbleau.rubikscube.model.Connection;
 
 /**
  * Demonstrate Firebase Authentication using a Google ID Token.
@@ -42,6 +43,8 @@ public class GoogleSignInActivity extends BaseActivity implements
     private GoogleSignInClient mGoogleSignInClient;
     private TextView mStatusTextView;
     private TextView mDetailTextView;
+
+    private Connection connection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +76,7 @@ public class GoogleSignInActivity extends BaseActivity implements
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         // [END initialize_auth]
+        this.connection = new Connection(this.mGoogleSignInClient, this.mAuth);
     }
 
     // [START on_start_check_user]
