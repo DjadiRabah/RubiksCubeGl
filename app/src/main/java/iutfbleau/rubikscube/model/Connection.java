@@ -42,4 +42,13 @@ public class Connection
 
         return Connection.connection;
     }
+
+    public boolean hasSignedIn() {
+        if(Connection.firebaseAuth.getCurrentUser() == null)
+        {
+            return false;
+        }
+
+        return true;
+    }
 }

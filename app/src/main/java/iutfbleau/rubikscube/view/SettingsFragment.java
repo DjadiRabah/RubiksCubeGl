@@ -78,14 +78,27 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-        loginButton.setVisibility(View.GONE);
+        Connection connection = Connection.getInstance();
+
+        if(connection.hasSignedIn()){
+            loginButton.setVisibility(View.GONE);
+            logoutButton.setVisibility(View.VISIBLE);
+        }else{
+            logoutButton.setVisibility(View.GONE);
+            loginButton.setVisibility(View.VISIBLE);
+        }
+
+
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 v.startAnimation(buttonClick);
 
-                Toast.makeText(getActivity(), "login", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "You are now logged in !", Toast.LENGTH_SHORT).show();
+
+                logoutButton.setVisibility(View.VISIBLE);
+                loginButton.setVisibility(View.GONE);
             }
         });
 
@@ -95,9 +108,13 @@ public class SettingsFragment extends Fragment {
             public void onClick(View v) {
                 v.startAnimation(buttonClick);
 
-                Toast.makeText(getActivity(), "logout", Toast.LENGTH_SHORT).show();
                 Connection connection = Connection.getInstance();
                 connection.signOut();
+
+                Toast.makeText(getActivity(), "You are now logged out.", Toast.LENGTH_SHORT).show();
+
+                loginButton.setVisibility(View.VISIBLE);
+                logoutButton.setVisibility(View.GONE);
 
             }
         });
