@@ -110,7 +110,8 @@ public class GoogleSignInActivity extends BaseActivity implements
 
     // [START auth_with_google]
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-        Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
+        Log.e(TAG, "firebaseAuthWithGoogle:" + acct.getId());
+
         // [START_EXCLUDE silent]
         showProgressDialog();
         // [END_EXCLUDE]
@@ -180,7 +181,10 @@ public class GoogleSignInActivity extends BaseActivity implements
         hideProgressDialog();
         if (user != null) {
 
+            Log.e(TAG, "ookokrezgfjkerkoihgjhrtliughrsqzhbyrthyt");
+
             startActivity(i);
+            signOut();
 
         } else {
 
