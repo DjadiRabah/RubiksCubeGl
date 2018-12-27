@@ -33,6 +33,15 @@ public class Connection
         this.googleClient.signOut();
     }
 
+    public boolean hasSignedIn() {
+        if(Connection.firebaseAuth.getCurrentUser() == null)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     public static Connection getInstance()
     {
         if(Connection.connection == null)
