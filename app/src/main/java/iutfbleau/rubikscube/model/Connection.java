@@ -1,12 +1,9 @@
 package iutfbleau.rubikscube.model;
 
-import android.support.annotation.NonNull;
+import android.content.Intent;
 
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class Connection
 {
@@ -27,19 +24,25 @@ public class Connection
     public void signOut()
     {
         // Firebase sign out
-       this.firebaseAuth.signOut();
+       firebaseAuth.signOut();
 
         // Google sign out
-        this.googleClient.signOut();
+        googleClient.signOut();
+    }
+
+    public void revokeAccess()
+    {
+
+        // Firebase sign out
+        firebaseAuth.signOut();
+
+        // Google revoke access
+        googleClient.revokeAccess();
+
     }
 
     public boolean isSignedIn() {
-        if(Connection.firebaseAuth.getCurrentUser() == null)
-        {
-            return false;
-        }
-
-        return true;
+        return Connection.firebaseAuth.getCurrentUser() != null;
     }
 
     public static Connection getInstance()

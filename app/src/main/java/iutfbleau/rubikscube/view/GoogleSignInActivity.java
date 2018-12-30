@@ -7,6 +7,9 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -23,26 +26,28 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import iutfbleau.rubikscube.R;
+import iutfbleau.rubikscube.controler.GoogleSignInListener;
 import iutfbleau.rubikscube.model.Connection;
 
 /**
  * Demonstrate Firebase Authentication using a Google ID Token.
  */
-public class GoogleSignInActivity extends BaseActivity implements
-        View.OnClickListener {
+public class GoogleSignInActivity extends BaseActivity {
 
     private static final String TAG = "GoogleActivity";
     private static final int RC_SIGN_IN = 9001;
 
-    private Intent i;
+    private boolean userAuthentified;
+    private boolean correctUsername;
 
     // [START declare_auth]
     private FirebaseAuth mAuth;
     // [END declare_auth]
 
     private GoogleSignInClient mGoogleSignInClient;
-    private TextView mStatusTextView;
-    private TextView mDetailTextView;
+
+    private TextView authInfoText, usernameInfoText;
+    private EditText usernameEditText;
 
     private Connection connection;
 
@@ -51,16 +56,8 @@ public class GoogleSignInActivity extends BaseActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_google_sign_in);
 
-        i = new Intent(getApplicationContext(), NavActivity.class);
-
-        // Views
-        mStatusTextView = findViewById(R.id.status);
-        mDetailTextView = findViewById(R.id.detail);
-
         // Button listeners
-        findViewById(R.id.signInButton).setOnClickListener(this);
-        findViewById(R.id.signOutButton).setOnClickListener(this);
-        findViewById(R.id.disconnectButton).setOnClickListener(this);
+        findViewById(R.id.signInButton).setOnClickListener(new GoogleSignInListener(this));
 
         // [START config_signin]
         // Configure Google Sign In
@@ -78,6 +75,20 @@ public class GoogleSignInActivity extends BaseActivity implements
         // [END initialize_auth]
         this.connection = Connection.getInstance();
         this.connection.setConnection(this.mGoogleSignInClient, this.mAuth);
+
+        final CheckBox checkBox = findViewById(R.id.dontaskme);
+        checkBox.setOnClickListener(new GoogleSignInListener(this));
+
+        final Button authenticate = findViewById(R.id.authenticate);
+        authenticate.setOnClickListener(new GoogleSignInListener(this));
+
+        final Button nothanks = findViewById(R.id.nothanks);
+        nothanks.setOnClickListener(new GoogleSignInListener(this));
+
+        authInfoText = findViewById(R.id.infoAuth);
+        usernameInfoText = findViewById(R.id.infoUsername);
+        usernameEditText = findViewById(R.id.usernameEditText);
+
     }
 
     // [START on_start_check_user]
@@ -86,7 +97,7 @@ public class GoogleSignInActivity extends BaseActivity implements
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
+        //    updateUI(currentUser);
     }
     // [END on_start_check_user]
 
@@ -106,7 +117,8 @@ public class GoogleSignInActivity extends BaseActivity implements
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e);
                 // [START_EXCLUDE]
-                updateUI(null);
+                updateGoogleAuthInfoText(null);
+                userAuthentified = false;
                 // [END_EXCLUDE]
             }
         }
@@ -130,13 +142,14 @@ public class GoogleSignInActivity extends BaseActivity implements
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+                            updateGoogleAuthInfoText(user);
+                            userAuthentified = true;
 
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Snackbar.make(findViewById(R.id.main_layout), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
-                            updateUI(null);
+                            updateGoogleAuthInfoText(null);
+                            userAuthentified = false;
                         }
 
                         // [START_EXCLUDE]
@@ -148,71 +161,70 @@ public class GoogleSignInActivity extends BaseActivity implements
     // [END auth_with_google]
 
     // [START signin]
-    private void signIn() {
+    public void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
     // [END signin]
 
-    private void signOut() {
-        // Firebase sign out
-        mAuth.signOut();
+    public void updateUsernameInfoText(boolean validUsername) {
+        hideProgressDialog();
+        if (validUsername) {
 
-        // Google sign out
-        mGoogleSignInClient.signOut().addOnCompleteListener(this,
-                new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        updateUI(null);
-                    }
-                });
+            usernameInfoText.setTextColor(getResources().getColor(R.color.red));
+            usernameInfoText.setText("An error occurred during authentication");
+            usernameInfoText.setVisibility(View.VISIBLE);
+
+        }
     }
 
-    private void revokeAccess() {
-        // Firebase sign out
-        mAuth.signOut();
-
-        // Google revoke access
-        mGoogleSignInClient.revokeAccess().addOnCompleteListener(this,
-                new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        updateUI(null);
-                    }
-                });
-    }
-
-    private void updateUI(FirebaseUser user) {
+    public void updateGoogleAuthInfoText(FirebaseUser user) {
         hideProgressDialog();
         if (user != null) {
 
-            Log.e(TAG, "ookokrezgfjkerkoihgjhrtliughrsqzhbyrthyt");
-
-            startActivity(i);
+            authInfoText.setTextColor(getResources().getColor(R.color.green));
+            authInfoText.setText("Google authentication has been successful");
+            authInfoText.setVisibility(View.VISIBLE);
 
         } else {
 
-            mStatusTextView.setText(R.string.signed_out);
-            mDetailTextView.setText(null);
+            authInfoText.setTextColor(getResources().getColor(R.color.red));
+            authInfoText.setText("An error occurred during authentication");
+            authInfoText.setVisibility(View.VISIBLE);
 
-            findViewById(R.id.signInButton).setVisibility(View.VISIBLE);
-            findViewById(R.id.signOutAndDisconnect).setVisibility(View.GONE);
         }
     }
 
     @Override
-    public void onClick(View v) {
-        int i = v.getId();
-        if (i == R.id.signInButton) {
-            signIn();
-        } else if (i == R.id.signOutButton) {
-            signOut();
-        } else if (i == R.id.disconnectButton) {
-            revokeAccess();
-        }
+    public void onBackPressed() {
     }
 
-    @Override
-    public void onBackPressed(){}
+    public FirebaseUser getCurrentFirebaseUser() {
+        return this.mAuth.getCurrentUser();
+    }
+
+    public String getEnteredUsername() {
+
+        return this.usernameEditText.getText().toString();
+
+    }
+
+    public boolean isUserAuthentified() {
+
+        return this.userAuthentified;
+    }
+
+    public boolean isUserNameCorrect() {
+
+        return this.correctUsername;
+
+    }
+
+    public void launchGameView() {
+
+        Intent i = new Intent(getApplicationContext(), NavActivity.class);
+        startActivity(i);
+
+    }
 
 }
