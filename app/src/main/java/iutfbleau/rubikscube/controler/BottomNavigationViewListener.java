@@ -7,12 +7,12 @@ import android.view.MenuItem;
 import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.view.NavActivity;
 
-public class DrawerManager implements BottomNavigationView.OnNavigationItemSelectedListener{
+public class BottomNavigationViewListener implements BottomNavigationView.OnNavigationItemSelectedListener{
 
     private NavActivity navActivity;
     private MediaPlayer mediaPlayerFx;
 
-    public DrawerManager(NavActivity navActivity){
+    public BottomNavigationViewListener(NavActivity navActivity){
 
         this.navActivity = navActivity;
         mediaPlayerFx = MediaPlayer.create(navActivity, R.raw.touch_sound);

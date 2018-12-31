@@ -1,7 +1,5 @@
 package iutfbleau.rubikscube.model;
 
-import android.content.Intent;
-
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.firebase.auth.FirebaseAuth;
 

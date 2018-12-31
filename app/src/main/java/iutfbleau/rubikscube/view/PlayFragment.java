@@ -28,16 +28,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import iutfbleau.rubikscube.R;
+import iutfbleau.rubikscube.controler.DrawerListener;
 import iutfbleau.rubikscube.controler.OnSwipeTouchListener;
 import iutfbleau.rubikscube.controler.RadioGroupListener;
-import iutfbleau.rubikscube.model.cube.cube.Cube;
 import iutfbleau.rubikscube.model.cube.cube.Cube3D;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PlayFragment extends Fragment implements NavigationView.OnNavigationItemSelectedListener
-{
+public class PlayFragment extends Fragment {
     private DrawerLayout drawerLayout;
     private boolean isLocked = false;
     private MediaPlayer touchsound;
@@ -71,7 +70,6 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
         });
 
         // 1 - Configure Toolbar
-        //FOR DESIGN
         Toolbar toolbar = view.findViewById(R.id.play_toolbar);
         ((NavActivity)getActivity()).setSupportActionBar(toolbar);
         ((NavActivity)getActivity()).getSupportActionBar().setTitle(null);
@@ -84,8 +82,7 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
 
         // 3 - Configure NavigationView
         NavigationView navigationView = view.findViewById(R.id.navigation_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
+        navigationView.setNavigationItemSelectedListener(new DrawerListener(this,  (NavActivity) getActivity()));
 
         glSurfaceView = view.findViewById(R.id.glsurfaceview);
         glSurfaceView.setRenderer(openglRenderer);
@@ -93,70 +90,7 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
         return view;
     }
 
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // 4 - Handle Navigation Item Click
-        int id = item.getItemId();
-
-        switch (id){
-            case R.id.nav_restart :
-                Toast.makeText(getActivity(), "Recommencer le Rubik's Cube !", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_mix:
-                Toast.makeText(getActivity(), "Mélanger le Rubik's Cube !", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_rbsize:
-
-                showRadioButtonDialog();
-
-                break;
-
-            case R.id.nav_lockrotation:
-
-                NavActivity navActivity = ((NavActivity)getActivity());
-
-                if(navActivity.fxSound) {
-                    touchsound.start();
-                }
-
-                if(this.isLocked) {
-
-                    Toast.makeText(getActivity(), "The cube rotation is now locked.", Toast.LENGTH_SHORT).show();
-                    //Lock method
-                    item.setIcon(getResources().getDrawable(R.drawable.outline_lock_open_black_24dp));
-                    item.setTitle("Unlock Rotation");
-
-                }else{
-
-                    Toast.makeText(getActivity(), "The cube rotation is now unlocked.", Toast.LENGTH_SHORT).show();
-                    //Unlock method
-                    item.setIcon(getResources().getDrawable(R.drawable.outline_lock_black_24dp));
-                    item.setTitle("Lock Rotation");
-
-                }
-
-                this.isLocked = !this.isLocked;
-
-                break;
-
-            case R.id.play_website:
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
-                startActivity(browserIntent);
-                break;
-            case R.id.play_credits:
-                Toast.makeText(getActivity(), "À propos", Toast.LENGTH_SHORT).show();
-                break;
-
-            default:
-                break;
-        }
-
-        this.drawerLayout.closeDrawer(GravityCompat.START);
-
-        return true;
-    }
-
-    private void showRadioButtonDialog() {
+    public void showRadioButtonDialog() {
 
         int min = 2;
         int max = 8;
@@ -189,9 +123,19 @@ public class PlayFragment extends Fragment implements NavigationView.OnNavigatio
 
     public void updateSurfaceView(int nFaces){
 
-
         Log.e("Size", String.valueOf(nFaces));
 
-
     }
+
+    public void launchWebsiteIntent(){
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
+        startActivity(browserIntent);
+    }
+
+    public MediaPlayer getTouchsound(){ return this.touchsound; }
+
+    public boolean getLockState(){ return this.isLocked; }
+    public void setLockState(boolean state){ this.isLocked = state; }
+
+    public DrawerLayout getDrawerLayout(){ return this.drawerLayout; }
 }
