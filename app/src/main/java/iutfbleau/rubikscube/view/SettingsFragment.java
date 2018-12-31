@@ -1,87 +1,52 @@
 package iutfbleau.rubikscube.view;
 
-
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
-import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.Switch;
-import android.widget.Toast;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import android.support.v7.preference.Preference;
+import android.support.v7.preference.PreferenceFragmentCompat;
 
 import iutfbleau.rubikscube.R;
-import iutfbleau.rubikscube.audio.MediaPlayerManager;
-import iutfbleau.rubikscube.controler.BackgroundSwitchListener;
-import iutfbleau.rubikscube.controler.ConnectionListener;
-import iutfbleau.rubikscube.controler.FxSwitchListener;
+import iutfbleau.rubikscube.controler.PreferenceListener;
+import iutfbleau.rubikscube.controler.SwitchPreferenceListener;
 import iutfbleau.rubikscube.model.Connection;
-
-import static android.widget.Toast.LENGTH_SHORT;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SettingsFragment extends Fragment {
-
-    private MediaPlayerManager mediaPlayerManager;
-    private Button loginButton;
-    private Button logoutButton;
+public class SettingsFragment extends PreferenceFragmentCompat {
 
     public SettingsFragment() {
         // Required empty public constructor
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public void onCreatePreferences(Bundle bundle, String s) {
 
-        // Inflate the layout for this fragment
+        addPreferencesFromResource(R.xml.preferences);
 
-        View view = inflater.inflate(R.layout.fragment_settings, container, false);
+        Preference login = findPreference("preference_login");
+        Preference logout = findPreference("preference_logout");
+        Preference revoke = findPreference("preference_revoke");
 
+        Preference soundEffetcs = findPreference("switch_preference_fx");
+        Preference background = findPreference("switch_preference_background");
 
-        loginButton = view.findViewById(R.id.login);
-        logoutButton = view.findViewById(R.id.logout);
+        login.setOnPreferenceClickListener(new PreferenceListener(this));
+        logout.setOnPreferenceClickListener(new PreferenceListener(this));
+        revoke.setOnPreferenceClickListener(new PreferenceListener(this));
 
-        Switch soundeffects = view.findViewById(R.id.soundeffects);
-        Switch backgroundmusic = view.findViewById(R.id.backgroundmusic);
+        soundEffetcs.setOnPreferenceChangeListener(new SwitchPreferenceListener(this, (NavActivity) getActivity()));
+        background.setOnPreferenceChangeListener(new SwitchPreferenceListener(this, (NavActivity) getActivity()));
 
-        soundeffects.setOnCheckedChangeListener(new FxSwitchListener((NavActivity) getActivity()));
-        backgroundmusic.setOnCheckedChangeListener(new BackgroundSwitchListener((NavActivity) getActivity()));
+        if (Connection.isSignedIn()) {
 
-        Connection connection = Connection.getInstance();
+            getPreferenceScreen().findPreference("preference_login").setEnabled(false);
 
-        if(connection.isSignedIn()){
-            loginButton.setVisibility(View.GONE);
-            logoutButton.setVisibility(View.VISIBLE);
-        }else{
-            logoutButton.setVisibility(View.GONE);
-            loginButton.setVisibility(View.VISIBLE);
+        } else {
+
+            getPreferenceScreen().findPreference("preference_logout").setEnabled(false);
+            getPreferenceScreen().findPreference("preference_revoke").setEnabled(false);
         }
-
-        loginButton.setOnClickListener(new ConnectionListener(this));
-        logoutButton.setOnClickListener(new ConnectionListener(this));
-
-        return view;
-    }
-
-    public Button getLoginButton(){
-
-        return this.loginButton;
-
-    }
-
-    public Button getLogoutButton(){
-
-        return this.logoutButton;
 
     }
 }

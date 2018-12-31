@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="switch_preference_fx"
+        android:summary="Enable/disable app sound effects."
+        app:iconSpaceReserved="false"
+        android:title="Sound effects" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="switch_preference_background"
+        android:summary="Enable/disable app background music."
+        app:iconSpaceReserved="false"
+        android:title="Background music" />
+
+    <Preference android:title="Log In"
+        android:key="preference_login"
+        app:iconSpaceReserved="false"
+        android:summary="Connect your Google account with our app."/>
+
+    <Preference android:title="Log Out"
+        android:key="preference_logout"
+        app:iconSpaceReserved="false"
+        android:summary="Disconnect your Google account with your app."/>
+
+    <Preference android:title="Revoke access"
+        android:key="preference_revoke"
+        app:iconSpaceReserved="false"
+        android:summary="Revoke our access to your Google account."/>
+
+</PreferenceScreen>

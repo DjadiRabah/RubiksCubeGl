@@ -8,11 +8,14 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.preference.PreferenceManager;
+import android.util.Log;
 import android.view.WindowManager;
 
 import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.audio.SoundService;
 import iutfbleau.rubikscube.controler.DrawerManager;
+import iutfbleau.rubikscube.model.Connection;
 
 public class NavActivity extends AppCompatActivity {
 
@@ -48,6 +51,7 @@ public class NavActivity extends AppCompatActivity {
 
         mainNav.setOnNavigationItemSelectedListener(new DrawerManager(this));
 
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, true);
     }
 
     protected void onDestroy() {

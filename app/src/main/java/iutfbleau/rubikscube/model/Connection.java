@@ -21,7 +21,7 @@ public class Connection
         Connection.firebaseAuth = firebaseAuth;
     }
 
-    public void signOut()
+    public static void signOut()
     {
         // Firebase sign out
        firebaseAuth.signOut();
@@ -30,7 +30,7 @@ public class Connection
         googleClient.signOut();
     }
 
-    public void revokeAccess()
+    public static void revokeAccess()
     {
 
         // Firebase sign out
@@ -41,7 +41,7 @@ public class Connection
 
     }
 
-    public boolean isSignedIn() {
+    public static boolean isSignedIn() {
         return Connection.firebaseAuth.getCurrentUser() != null;
     }
 
