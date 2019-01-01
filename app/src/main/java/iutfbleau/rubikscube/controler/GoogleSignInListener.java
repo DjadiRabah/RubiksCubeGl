@@ -49,25 +49,6 @@ public class GoogleSignInListener implements View.OnClickListener {
 
                 break;
 
-
-            case R.id.nothanks:
-                gsa.launchGameView();
-                break;
-
-
-            case R.id.dontaskme:
-
-                /*
-                    if(checkBox.isChecked()){
-
-                    }else{
-
-                    }
-                    */
-
-                Log.e("dontaskme", "click");
-
-                break;
         }
     }
 

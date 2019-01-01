@@ -19,12 +19,12 @@
     <Preference android:title="Log In"
         android:key="preference_login"
         app:iconSpaceReserved="false"
-        android:summary="Connect your Google account with our app."/>
+        android:summary="Connect your Google account to our app."/>
 
     <Preference android:title="Log Out"
         android:key="preference_logout"
         app:iconSpaceReserved="false"
-        android:summary="Disconnect your Google account with your app."/>
+        android:summary="Disconnect your Google account from our app."/>
 
     <Preference android:title="Revoke access"
         android:key="preference_revoke"

@@ -30,8 +30,8 @@
     </style>
 
     <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="android:background">@color/backgroundColor</item>
-        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:background">@color/colorWhite</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <!-- Dark Buttons -->

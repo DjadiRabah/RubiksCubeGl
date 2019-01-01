@@ -17,7 +17,7 @@ import iutfbleau.rubikscube.R;
  */
 public class SolveFragment extends Fragment {
 
-    View view;
+    private View view;
 
     public SolveFragment() {
         // Required empty public constructor

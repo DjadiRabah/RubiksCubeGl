@@ -1,14 +1,11 @@
 package iutfbleau.rubikscube.view;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -76,14 +73,8 @@ public class GoogleSignInActivity extends BaseActivity {
         this.connection = Connection.getInstance();
         this.connection.setConnection(this.mGoogleSignInClient, this.mAuth);
 
-        final CheckBox checkBox = findViewById(R.id.dontaskme);
-        checkBox.setOnClickListener(new GoogleSignInListener(this));
-
         final Button authenticate = findViewById(R.id.authenticate);
         authenticate.setOnClickListener(new GoogleSignInListener(this));
-
-        final Button nothanks = findViewById(R.id.nothanks);
-        nothanks.setOnClickListener(new GoogleSignInListener(this));
 
         authInfoText = findViewById(R.id.infoAuth);
         usernameInfoText = findViewById(R.id.infoUsername);
@@ -193,10 +184,6 @@ public class GoogleSignInActivity extends BaseActivity {
             authInfoText.setVisibility(View.VISIBLE);
 
         }
-    }
-
-    @Override
-    public void onBackPressed() {
     }
 
     public FirebaseUser getCurrentFirebaseUser() {

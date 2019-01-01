@@ -35,13 +35,12 @@
 
         <TextView
             android:id="@+id/infoUsername"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:gravity="center"
             android:textColor="@color/red"
-            android:layout_marginTop="10dp"
-            />
+            android:visibility="gone" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -57,14 +56,13 @@
 
         <TextView
             android:id="@+id/infoAuth"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textColor="@color/red"
-            android:text="error"
             android:layout_marginTop="10dp"
-            />
+            android:gravity="center"
+            android:text="error"
+            android:textColor="@color/red"
+            android:visibility="gone" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -82,42 +80,21 @@
 
     </LinearLayout>
 
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dip"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center|bottom"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
 
-
-        <CheckBox
-            android:id="@+id/dontaskme"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/authenticate"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/dontaskme" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
-
-            <Button
-                android:id="@+id/authenticate"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Authenticate"
-                android:layout_width="match_parent" />
-
-            <Button
-                android:id="@+id/nothanks"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="No, thanks"
-                android:layout_width="match_parent" />
-        </LinearLayout>
+            android:layout_weight="1"
+            android:text="Authenticate" />
 
     </LinearLayout>
 

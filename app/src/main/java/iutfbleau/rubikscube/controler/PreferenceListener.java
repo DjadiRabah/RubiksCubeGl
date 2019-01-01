@@ -1,6 +1,7 @@
 package iutfbleau.rubikscube.controler;
 
 import android.content.Intent;
+import android.widget.Toast;
 
 import iutfbleau.rubikscube.model.Connection;
 import iutfbleau.rubikscube.view.GoogleSignInActivity;
@@ -26,9 +27,11 @@ public class PreferenceListener implements android.support.v7.preference.Prefere
             case "preference_login":
 
                 settingsFragment.startActivity(googleSignInIntent);
-                settingsFragment.getPreferenceScreen().findPreference("preference_login").setEnabled(false);
-                settingsFragment.getPreferenceScreen().findPreference("preference_logout").setEnabled(true);
-                settingsFragment.getPreferenceScreen().findPreference("preference_revoke").setEnabled(true);
+                if(Connection.isSignedIn()) {
+                    settingsFragment.getPreferenceScreen().findPreference("preference_login").setEnabled(false);
+                    settingsFragment.getPreferenceScreen().findPreference("preference_logout").setEnabled(true);
+                    settingsFragment.getPreferenceScreen().findPreference("preference_revoke").setEnabled(true);
+                }
 
                 break;
 
@@ -38,6 +41,7 @@ public class PreferenceListener implements android.support.v7.preference.Prefere
                 settingsFragment.getPreferenceScreen().findPreference("preference_login").setEnabled(true);
                 settingsFragment.getPreferenceScreen().findPreference("preference_logout").setEnabled(false);
                 settingsFragment.getPreferenceScreen().findPreference("preference_revoke").setEnabled(false);
+                Toast.makeText(settingsFragment.getContext(), "You are now logged out.", Toast.LENGTH_SHORT).show();
 
                 break;
 
@@ -47,6 +51,7 @@ public class PreferenceListener implements android.support.v7.preference.Prefere
                 settingsFragment.getPreferenceScreen().findPreference("preference_login").setEnabled(true);
                 settingsFragment.getPreferenceScreen().findPreference("preference_logout").setEnabled(false);
                 settingsFragment.getPreferenceScreen().findPreference("preference_revoke").setEnabled(false);
+                Toast.makeText(settingsFragment.getContext(), "You have revoked our access to your Google account.", Toast.LENGTH_SHORT).show();
 
                 break;
         }
