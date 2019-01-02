@@ -2,33 +2,54 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <SwitchPreference
-        android:defaultValue="true"
-        android:key="switch_preference_fx"
-        android:summary="Enable/disable app sound effects."
-        app:iconSpaceReserved="false"
-        android:title="Sound effects" />
+    <PreferenceCategory
+        android:title="Audio settings"
+        app:iconSpaceReserved="false">
 
-    <SwitchPreference
-        android:defaultValue="true"
-        android:key="switch_preference_background"
-        android:summary="Enable/disable app background music."
-        app:iconSpaceReserved="false"
-        android:title="Background music" />
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="switch_preference_fx"
+            android:summary="Enable/disable app sound effects."
+            android:title="Sound effects"
+            app:iconSpaceReserved="false" />
 
-    <Preference android:title="Log In"
-        android:key="preference_login"
-        app:iconSpaceReserved="false"
-        android:summary="Connect your Google account to our app."/>
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="switch_preference_background"
+            android:summary="Enable/disable app background music."
+            android:title="Background music"
+            app:iconSpaceReserved="false" />
 
-    <Preference android:title="Log Out"
-        android:key="preference_logout"
-        app:iconSpaceReserved="false"
-        android:summary="Disconnect your Google account from our app."/>
+    </PreferenceCategory>
 
-    <Preference android:title="Revoke access"
-        android:key="preference_revoke"
-        app:iconSpaceReserved="false"
-        android:summary="Revoke our access to your Google account."/>
+    <PreferenceCategory android:title="Account settings"
+        app:iconSpaceReserved="false">
+
+        <Preference
+            android:key="user"
+            android:summary="Email"
+            android:title="User"
+            app:iconSpaceReserved="false" />
+
+        <Preference
+            android:key="preference_login"
+            android:summary="Connect your Google account to our app."
+            android:title="Log In"
+            app:iconSpaceReserved="false" />
+
+        <Preference
+            android:key="preference_logout"
+            android:summary="Disconnect your Google account from our app."
+            android:title="Log Out"
+            app:iconSpaceReserved="false" />
+
+        <Preference
+            android:key="preference_revoke"
+            android:summary="Revoke our access to your Google account."
+            android:title="Revoke access"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
 
 </PreferenceScreen>

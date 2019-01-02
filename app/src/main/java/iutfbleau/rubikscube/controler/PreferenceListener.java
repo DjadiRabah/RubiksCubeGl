@@ -11,11 +11,18 @@ public class PreferenceListener implements android.support.v7.preference.Prefere
 
     private SettingsFragment settingsFragment;
     private Intent googleSignInIntent;
+    private android.support.v7.preference.Preference login, logout, revoke, user;
 
     public PreferenceListener(SettingsFragment settingsFragment) {
 
         this.settingsFragment = settingsFragment;
-        googleSignInIntent = new Intent(settingsFragment.getActivity().getApplicationContext(), GoogleSignInActivity.class);
+
+        this.login = settingsFragment.getPreferenceScreen().findPreference("preference_login");
+        this.logout = settingsFragment.getPreferenceScreen().findPreference("preference_logout");
+        this.revoke = settingsFragment.getPreferenceScreen().findPreference("preference_revoke");
+        this.user = settingsFragment.getPreferenceScreen().findPreference("user");
+
+        googleSignInIntent = new Intent(settingsFragment.getContext(), GoogleSignInActivity.class);
 
     }
 
@@ -27,10 +34,11 @@ public class PreferenceListener implements android.support.v7.preference.Prefere
             case "preference_login":
 
                 settingsFragment.startActivity(googleSignInIntent);
-                if(Connection.isSignedIn()) {
-                    settingsFragment.getPreferenceScreen().findPreference("preference_login").setEnabled(false);
-                    settingsFragment.getPreferenceScreen().findPreference("preference_logout").setEnabled(true);
-                    settingsFragment.getPreferenceScreen().findPreference("preference_revoke").setEnabled(true);
+
+                if (Connection.isSignedIn()) {
+                    preference.setEnabled(false);
+                    logout.setEnabled(true);
+                    revoke.setEnabled(true);
                 }
 
                 break;
@@ -38,9 +46,12 @@ public class PreferenceListener implements android.support.v7.preference.Prefere
             case "preference_logout":
 
                 Connection.signOut();
-                settingsFragment.getPreferenceScreen().findPreference("preference_login").setEnabled(true);
-                settingsFragment.getPreferenceScreen().findPreference("preference_logout").setEnabled(false);
-                settingsFragment.getPreferenceScreen().findPreference("preference_revoke").setEnabled(false);
+                preference.setEnabled(false);
+                login.setEnabled(true);
+                revoke.setEnabled(false);
+                user.setEnabled(false);
+                user.setTitle("Actual user : none");
+                user.setSummary("Email : none");
                 Toast.makeText(settingsFragment.getContext(), "You are now logged out.", Toast.LENGTH_SHORT).show();
 
                 break;
@@ -48,9 +59,12 @@ public class PreferenceListener implements android.support.v7.preference.Prefere
             case "preference_revoke":
 
                 Connection.revokeAccess();
-                settingsFragment.getPreferenceScreen().findPreference("preference_login").setEnabled(true);
-                settingsFragment.getPreferenceScreen().findPreference("preference_logout").setEnabled(false);
-                settingsFragment.getPreferenceScreen().findPreference("preference_revoke").setEnabled(false);
+                preference.setEnabled(false);
+                login.setEnabled(true);
+                logout.setEnabled(false);
+                user.setTitle("Actual user : none");
+                user.setSummary("Email : none");
+
                 Toast.makeText(settingsFragment.getContext(), "You have revoked our access to your Google account.", Toast.LENGTH_SHORT).show();
 
                 break;

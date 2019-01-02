@@ -64,7 +64,7 @@ public class PlayFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Clic sur retour !", Snackbar.LENGTH_SHORT)
+                Snackbar.make(view, "Undo", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
             }
         });

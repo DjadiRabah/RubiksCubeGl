@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -55,6 +56,9 @@ public class GoogleSignInActivity extends BaseActivity {
 
         // Button listeners
         findViewById(R.id.signInButton).setOnClickListener(new GoogleSignInListener(this));
+
+        //Fullscreen
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         // [START config_signin]
         // Configure Google Sign In
