@@ -6,10 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 
 import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 
 import iutfbleau.rubikscube.R;
+import iutfbleau.rubikscube.controler.DontAskMeCheckboxListener;
 import iutfbleau.rubikscube.controler.WelcomeActivityListener;
 
 public class WelcomeActivity extends AppCompatActivity {
@@ -25,8 +27,11 @@ public class WelcomeActivity extends AppCompatActivity {
         Button yes = findViewById(R.id.yes);
         Button no = findViewById(R.id.no);
 
+        CheckBox dontaskme = findViewById(R.id.dontaskme);
+
         yes.setOnClickListener(new WelcomeActivityListener(this));
         no.setOnClickListener(new WelcomeActivityListener(this));
+        dontaskme.setOnCheckedChangeListener(new DontAskMeCheckboxListener(this));
 
     }
 

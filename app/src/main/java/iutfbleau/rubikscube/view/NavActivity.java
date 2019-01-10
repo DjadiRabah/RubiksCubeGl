@@ -10,10 +10,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.preference.PreferenceManager;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.audio.SoundService;
 import iutfbleau.rubikscube.controler.BottomNavigationViewListener;
+import iutfbleau.rubikscube.model.FileManager;
 
 public class NavActivity extends AppCompatActivity {
 
@@ -50,6 +52,9 @@ public class NavActivity extends AppCompatActivity {
         mainNav.setOnNavigationItemSelectedListener(new BottomNavigationViewListener(this));
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, true);
+
+        FileManager fm = new FileManager(getBaseContext());
+        Toast.makeText(this, ""+fm.read(), Toast.LENGTH_LONG).show();
     }
 
     protected void onDestroy() {

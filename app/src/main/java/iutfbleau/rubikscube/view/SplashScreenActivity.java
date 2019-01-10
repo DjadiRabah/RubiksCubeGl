@@ -10,24 +10,42 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import iutfbleau.rubikscube.R;
+import iutfbleau.rubikscube.model.FileManager;
 
 public class SplashScreenActivity extends Activity {
+
+    private FileManager fm;
+
+    public SplashScreenActivity(){
+
+        this.fm = new FileManager(this);
+
+    }
+
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
         Window window = getWindow();
         window.setFormat(PixelFormat.RGBA_8888);
     }
-    /** Called when the activity is first created. */
+
+    /**
+     * Called when the activity is first created.
+     */
     Thread splashTread;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splashscreen);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         StartAnimations();
+
     }
+
     private void StartAnimations() {
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.alpha);
         anim.reset();
@@ -51,8 +69,14 @@ public class SplashScreenActivity extends Activity {
                         sleep(100);
                         waited += 100;
                     }
-                    Intent intent = new Intent(SplashScreenActivity.this,
-                            WelcomeActivity.class);
+
+                    Intent intent;
+                    if (fm.read() == FileManager.SHOW) {
+                        intent = new Intent(SplashScreenActivity.this, WelcomeActivity.class);
+                    } else {
+                        intent = new Intent(SplashScreenActivity.this, NavActivity.class);
+                    }
+
                     intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     startActivity(intent);
                     SplashScreenActivity.this.finish();

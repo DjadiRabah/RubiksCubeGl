@@ -7,12 +7,12 @@ import android.view.MenuItem;
 import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.view.NavActivity;
 
-public class BottomNavigationViewListener implements BottomNavigationView.OnNavigationItemSelectedListener{
+public class BottomNavigationViewListener implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     private NavActivity navActivity;
     private MediaPlayer mediaPlayerFx;
 
-    public BottomNavigationViewListener(NavActivity navActivity){
+    public BottomNavigationViewListener(NavActivity navActivity) {
 
         this.navActivity = navActivity;
         mediaPlayerFx = MediaPlayer.create(navActivity, R.raw.touch_sound);
@@ -22,25 +22,25 @@ public class BottomNavigationViewListener implements BottomNavigationView.OnNavi
     @Override
     public boolean onNavigationItemSelected(MenuItem menuItem) {
 
-        if (navActivity.fxSound){
+        if (navActivity.fxSound) {
             mediaPlayerFx.start();
         }
 
-        switch(menuItem.getItemId()){
+        switch (menuItem.getItemId()) {
 
-            case R.id.nav_play :
+            case R.id.nav_play:
                 navActivity.setFragment(navActivity.playFragment);
                 return true;
 
-            case R.id.nav_solve :
+            case R.id.nav_solve:
                 navActivity.setFragment(navActivity.solveFragment);
                 return true;
 
-            case R.id.nav_achievements :
+            case R.id.nav_achievements:
                 navActivity.setFragment(navActivity.achievementsFragment);
                 return true;
 
-            case R.id.nav_settings :
+            case R.id.nav_settings:
                 navActivity.setFragment(navActivity.settingsFragment);
                 return true;
 
