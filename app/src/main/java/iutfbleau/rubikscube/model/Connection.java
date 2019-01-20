@@ -5,52 +5,35 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Connection
 {
-    private static Connection connection = null;
-    private static FirebaseAuth firebaseAuth;
-    private static GoogleSignInClient googleClient;
+    private static GoogleSignInClient googleClient; //memory leak ???
 
-    private Connection()
-    {
+    private Connection(){
     }
 
-    public static void setConnection(GoogleSignInClient googleClient, FirebaseAuth firebaseAuth)
+    public static void setConnection(GoogleSignInClient googleClient)
     {
         Connection.googleClient = googleClient;
-        Connection.firebaseAuth = firebaseAuth;
     }
 
     public static void signOut()
     {
         // Firebase sign out
-       firebaseAuth.signOut();
-
+        FirebaseAuth.getInstance().signOut();
         // Google sign out
-        googleClient.signOut();
+        FirebaseAuth.getInstance().signOut();
     }
 
     public static void revokeAccess()
     {
-
         // Firebase sign out
-        firebaseAuth.signOut();
-
+        FirebaseAuth.getInstance().signOut();
         // Google revoke access
         googleClient.revokeAccess();
-
     }
 
-    public static boolean isSignedIn() {
-        return Connection.firebaseAuth.getCurrentUser() != null;
+    public static boolean userConnected(){
+
+        return FirebaseAuth.getInstance().getCurrentUser() != null;
+
     }
-
-    public static Connection getInstance()
-    {
-        if(Connection.connection == null)
-        {
-            Connection.connection = new Connection();
-        }
-
-        return Connection.connection;
-    }
-
 }

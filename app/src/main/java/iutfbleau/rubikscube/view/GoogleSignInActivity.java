@@ -74,8 +74,8 @@ public class GoogleSignInActivity extends BaseActivity {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         // [END initialize_auth]
-        this.connection = Connection.getInstance();
-        this.connection.setConnection(this.mGoogleSignInClient, this.mAuth);
+
+        Connection.setConnection(this.mGoogleSignInClient);
 
         final Button authenticate = findViewById(R.id.authenticate);
         authenticate.setOnClickListener(new GoogleSignInListener(this));
@@ -191,7 +191,9 @@ public class GoogleSignInActivity extends BaseActivity {
     }
 
     public FirebaseUser getCurrentFirebaseUser() {
+
         return this.mAuth.getCurrentUser();
+
     }
 
     public String getEnteredUsername() {

@@ -39,6 +39,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
         Intent intent = new Intent(getApplicationContext(), activityToOpen);
         startActivity(intent);
+        finish();
 
     }
 

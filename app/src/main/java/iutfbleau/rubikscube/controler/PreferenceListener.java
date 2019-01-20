@@ -3,6 +3,8 @@ package iutfbleau.rubikscube.controler;
 import android.content.Intent;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import iutfbleau.rubikscube.model.Connection;
 import iutfbleau.rubikscube.view.GoogleSignInActivity;
 import iutfbleau.rubikscube.view.SettingsFragment;
@@ -35,7 +37,7 @@ public class PreferenceListener implements android.support.v7.preference.Prefere
 
                 settingsFragment.startActivity(googleSignInIntent);
 
-                if (Connection.isSignedIn()) {
+                if (Connection.userConnected()){
                     preference.setEnabled(false);
                     logout.setEnabled(true);
                     revoke.setEnabled(true);

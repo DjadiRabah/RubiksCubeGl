@@ -15,7 +15,6 @@ public class DontAskMeCheckboxListener implements CompoundButton.OnCheckedChange
 
     }
 
-
     @Override
     public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
 

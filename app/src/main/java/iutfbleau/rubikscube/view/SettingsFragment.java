@@ -3,10 +3,7 @@ package iutfbleau.rubikscube.view;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.preference.Preference;
-import android.support.v7.preference.PreferenceCategory;
 import android.support.v7.preference.PreferenceFragmentCompat;
-import android.support.v7.widget.RecyclerView;
-import android.widget.ListView;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -46,10 +43,11 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         background.setOnPreferenceChangeListener(new SwitchPreferenceListener(this, (NavActivity) getActivity()));
 
 
-        if (Connection.isSignedIn()) {
+        if (Connection.userConnected()) {
 
             login.setEnabled(false);
             GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getActivity());
+
             if (acct != null) {
 
                 user.setEnabled(true);
@@ -57,7 +55,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 user.setSummary(acct.getEmail());
 
             }
-
 
         } else {
 
