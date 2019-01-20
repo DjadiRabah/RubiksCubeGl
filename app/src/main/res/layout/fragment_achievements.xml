@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.AchievementsFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -25,6 +20,14 @@
             android:background="@color/colorPrimary"
             />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/connected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textColor="@color/colorWhite"
+            android:layout_gravity="center_horizontal"
+            android:text=""
+            />
 
-</FrameLayout>
+    </LinearLayout>

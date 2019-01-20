@@ -35,7 +35,7 @@ public class SwitchPreferenceListener implements android.support.v7.preference.P
 
                 }else{
 
-                    Toast.makeText(settingsFragment.getActivity(),"Sounds effects are now off.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(settingsFragment.getActivity(),"Sounds effects are now on.",Toast.LENGTH_SHORT).show();
                     ((SwitchPreference) preference).setChecked(true);
                 }
 

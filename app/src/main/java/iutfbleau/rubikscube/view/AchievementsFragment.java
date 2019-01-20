@@ -1,15 +1,14 @@
 package iutfbleau.rubikscube.view;
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.google.android.gms.common.GoogleApiAvailability;
+import android.widget.TextView;
 
 import iutfbleau.rubikscube.R;
+import iutfbleau.rubikscube.model.Connection;
 
 
 /**
@@ -29,6 +28,18 @@ public class AchievementsFragment extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_achievements, container, false);
 
+        TextView notconnected = view.findViewById(R.id.connected);
+
+        if(Connection.userConnected()){
+
+            //si l'utilisateur est connecté ==> affichage des classements/trophées...
+
+        }else{
+
+            notconnected.setVisibility(View.VISIBLE);
+            notconnected.setText("You are not connected !");
+
+        }
 
         return view;
 

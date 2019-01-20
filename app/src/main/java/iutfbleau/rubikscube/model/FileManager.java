@@ -43,10 +43,12 @@ public class FileManager {
             BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
             StringBuilder total = new StringBuilder();
             String line;
+
             while ((line = r.readLine()) != null) {
                 total.append(line);
                 res = Integer.parseInt(line);
             }
+
             r.close();
             inputStream.close();
             Log.e("File", "File contents: " + total);

@@ -35,8 +35,10 @@ public class GoogleSignInActivity extends BaseActivity {
     private static final String TAG = "GoogleActivity";
     private static final int RC_SIGN_IN = 9001;
 
-    private boolean userAuthentified;
-    private boolean correctUsername;
+    public static boolean UNAMEINCORRECT = false;
+    public static boolean UNAMECORRECT = true;
+    public static boolean AUTHFAIL = false;
+    public static boolean AUTHSUCCESS = true;
 
     // [START declare_auth]
     private FirebaseAuth mAuth;
@@ -112,8 +114,7 @@ public class GoogleSignInActivity extends BaseActivity {
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e);
                 // [START_EXCLUDE]
-                updateGoogleAuthInfoText(null);
-                userAuthentified = false;
+                updateGoogleAuthInfoText(AUTHFAIL);
                 // [END_EXCLUDE]
             }
         }
@@ -137,14 +138,13 @@ public class GoogleSignInActivity extends BaseActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            updateGoogleAuthInfoText(user);
-                            userAuthentified = true;
+                            updateGoogleAuthInfoText(AUTHSUCCESS);
 
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            updateGoogleAuthInfoText(null);
-                            userAuthentified = false;
+                            updateGoogleAuthInfoText(AUTHFAIL);
+
                         }
 
                         // [START_EXCLUDE]
@@ -162,54 +162,47 @@ public class GoogleSignInActivity extends BaseActivity {
     }
     // [END signin]
 
-    public void updateUsernameInfoText(boolean validUsername) {
+    public void updateUsernameInfoText(boolean validUname) {
+
         hideProgressDialog();
-        if (validUsername) {
+
+        if (validUname) {
+
+            usernameInfoText.setTextColor(getResources().getColor(R.color.green));
+            usernameInfoText.setText("Username valid !");
+            usernameInfoText.setVisibility(View.VISIBLE);
+
+        }else{
 
             usernameInfoText.setTextColor(getResources().getColor(R.color.red));
-            usernameInfoText.setText("An error occurred during authentication");
+            usernameInfoText.setText("Username invalid (it must be at least 4 characters long) !");
             usernameInfoText.setVisibility(View.VISIBLE);
 
         }
     }
 
-    public void updateGoogleAuthInfoText(FirebaseUser user) {
+    public void updateGoogleAuthInfoText(boolean connectedU) {
+
         hideProgressDialog();
-        if (user != null) {
+
+        if (connectedU) {
 
             authInfoText.setTextColor(getResources().getColor(R.color.green));
-            authInfoText.setText("Google authentication has been successful");
+            authInfoText.setText("Google authentication has been successful !");
             authInfoText.setVisibility(View.VISIBLE);
 
         } else {
 
             authInfoText.setTextColor(getResources().getColor(R.color.red));
-            authInfoText.setText("An error occurred during authentication");
+            authInfoText.setText("An error occurred during authentication (if the problem persists, check your internet connection) !");
             authInfoText.setVisibility(View.VISIBLE);
 
         }
     }
 
-    public FirebaseUser getCurrentFirebaseUser() {
-
-        return this.mAuth.getCurrentUser();
-
-    }
-
     public String getEnteredUsername() {
 
         return this.usernameEditText.getText().toString();
-
-    }
-
-    public boolean isUserAuthentified() {
-
-        return this.userAuthentified;
-    }
-
-    public boolean isUserNameCorrect() {
-
-        return this.correctUsername;
 
     }
 
@@ -219,5 +212,4 @@ public class GoogleSignInActivity extends BaseActivity {
         startActivity(i);
 
     }
-
 }
