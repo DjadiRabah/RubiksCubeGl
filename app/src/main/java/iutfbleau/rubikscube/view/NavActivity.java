@@ -54,7 +54,7 @@ public class NavActivity extends AppCompatActivity {
         PreferenceManager.setDefaultValues(this, R.xml.preferences, true);
 
         FileManager fm = new FileManager(getBaseContext());
-        Toast.makeText(this, ""+fm.read(), Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, ""+fm.read(), Toast.LENGTH_LONG).show();
     }
 
     protected void onDestroy() {
@@ -62,7 +62,6 @@ public class NavActivity extends AppCompatActivity {
         stopService(new Intent(getApplicationContext(), SoundService.class));
         super.onDestroy();
     }
-
 
     public void setFxSound(boolean state)
     {

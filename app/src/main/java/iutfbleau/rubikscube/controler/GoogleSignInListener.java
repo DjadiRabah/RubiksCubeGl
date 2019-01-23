@@ -32,7 +32,6 @@ public class GoogleSignInListener implements View.OnClickListener {
 
                     //Correct username
                     gsa.updateUsernameInfoText(GoogleSignInActivity.UNAMECORRECT);
-                    GoogleSignInActivity.setEnteredUsernameState(true);
 
                     if (GoogleAuthManager.userConnected()) {
 
@@ -51,7 +50,6 @@ public class GoogleSignInListener implements View.OnClickListener {
 
                     //Empty username
                     gsa.updateUsernameInfoText(GoogleSignInActivity.UNAMEINCORRECT);
-                    GoogleSignInActivity.setEnteredUsernameState(false);
 
                 }
 

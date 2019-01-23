@@ -36,7 +36,7 @@ public class PreferenceListener implements android.support.v7.preference.Prefere
                 settingsFragment.startActivity(googleSignInIntent);
 
                 //La vue est
-                if (GoogleAuthManager.userConnected() && GoogleSignInActivity.getEnteredUsernameState()){
+                if (GoogleAuthManager.userConnected()){
                     preference.setEnabled(false);
                     logout.setEnabled(true);
                     revoke.setEnabled(true);

@@ -31,7 +31,6 @@ public class GoogleSignInActivity extends BaseActivity {
 
     private static final String TAG = "GoogleActivity";
     private static final int RC_SIGN_IN = 9001;
-    private static boolean usernameEntered = false;
 
     public static boolean UNAMEINCORRECT = false;
     public static boolean UNAMECORRECT = true;
@@ -59,7 +58,7 @@ public class GoogleSignInActivity extends BaseActivity {
         usernameInfoText = findViewById(R.id.infoUsername);
         usernameEditText = findViewById(R.id.usernameEditText);
 
-        GoogleAuthManager connection = new GoogleAuthManager(this);
+        GoogleAuthManager googleAuthManager = new GoogleAuthManager(this);
 
     }
 
@@ -175,18 +174,7 @@ public class GoogleSignInActivity extends BaseActivity {
 
         Intent i = new Intent(getApplicationContext(), NavActivity.class);
         startActivity(i);
-
-    }
-
-    public static boolean getEnteredUsernameState(){
-
-        return GoogleSignInActivity.usernameEntered;
-
-    }
-
-    public static void setEnteredUsernameState(boolean state){
-
-        GoogleSignInActivity.usernameEntered = state;
+        finish();
 
     }
 

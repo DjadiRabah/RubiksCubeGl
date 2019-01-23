@@ -17,7 +17,7 @@ public class FileManager {
     private Context context;
     private String filename = "user_pref";
 
-    public FileManager(Context context){
+    public FileManager(Context context) {
 
         this.context = context;
 
@@ -34,7 +34,7 @@ public class FileManager {
         }
     }
 
-    public int read(){
+    public int read() {
 
         int res = FileManager.SHOW;
 
