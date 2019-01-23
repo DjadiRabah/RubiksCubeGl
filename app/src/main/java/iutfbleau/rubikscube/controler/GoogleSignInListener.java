@@ -1,11 +1,9 @@
 package iutfbleau.rubikscube.controler;
 
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 
 import iutfbleau.rubikscube.R;
-import iutfbleau.rubikscube.model.Connection;
+import iutfbleau.rubikscube.model.GoogleAuthManager;
 import iutfbleau.rubikscube.model.FileManager;
 import iutfbleau.rubikscube.view.GoogleSignInActivity;
 
@@ -34,8 +32,9 @@ public class GoogleSignInListener implements View.OnClickListener {
 
                     //Correct username
                     gsa.updateUsernameInfoText(GoogleSignInActivity.UNAMECORRECT);
+                    GoogleSignInActivity.setEnteredUsernameState(true);
 
-                    if (Connection.userConnected()) {
+                    if (GoogleAuthManager.userConnected()) {
 
                         //User authenticated
                         gsa.launchGameView();
@@ -52,6 +51,7 @@ public class GoogleSignInListener implements View.OnClickListener {
 
                     //Empty username
                     gsa.updateUsernameInfoText(GoogleSignInActivity.UNAMEINCORRECT);
+                    GoogleSignInActivity.setEnteredUsernameState(false);
 
                 }
 

@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import iutfbleau.rubikscube.R;
-import iutfbleau.rubikscube.model.Connection;
+import iutfbleau.rubikscube.model.GoogleAuthManager;
 
 
 /**
@@ -30,7 +30,7 @@ public class AchievementsFragment extends Fragment {
 
         TextView notconnected = view.findViewById(R.id.connected);
 
-        if(Connection.userConnected()){
+        if(GoogleAuthManager.userConnected()){
 
             //si l'utilisateur est connecté ==> affichage des classements/trophées...
 

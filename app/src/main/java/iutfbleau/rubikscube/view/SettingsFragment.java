@@ -11,7 +11,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.controler.PreferenceListener;
 import iutfbleau.rubikscube.controler.SwitchPreferenceListener;
-import iutfbleau.rubikscube.model.Connection;
+import iutfbleau.rubikscube.model.GoogleAuthManager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,7 +43,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         background.setOnPreferenceChangeListener(new SwitchPreferenceListener(this, (NavActivity) getActivity()));
 
 
-        if (Connection.userConnected()) {
+        if (GoogleAuthManager.userConnected()) {
 
             login.setEnabled(false);
             GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getActivity());

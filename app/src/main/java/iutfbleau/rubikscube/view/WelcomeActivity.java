@@ -8,8 +8,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 
-import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-
 import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.controler.DontAskMeCheckboxListener;
 import iutfbleau.rubikscube.controler.WelcomeActivityListener;
