@@ -37,7 +37,7 @@ public class BottomNavigationViewListener implements BottomNavigationView.OnNavi
                 return true;
 
             case R.id.nav_achievements:
-                navActivity.setFragment(navActivity.achievementsFragment);
+                navActivity.setFragment(navActivity.statsFragment);
                 return true;
 
             case R.id.nav_settings:

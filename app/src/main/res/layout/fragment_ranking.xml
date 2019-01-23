@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    tools:context=".view.AchievementsFragment">
+    tools:context=".view.RankingFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
@@ -12,6 +12,6 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:textSize="24sp"
-        android:text="achievements" />
+        android:text="rankings" />
 
 </RelativeLayout>

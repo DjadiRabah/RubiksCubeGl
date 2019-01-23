@@ -2,6 +2,7 @@ package iutfbleau.rubikscube.view;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -10,18 +11,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.preference.PreferenceManager;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.audio.SoundService;
 import iutfbleau.rubikscube.controler.BottomNavigationViewListener;
 import iutfbleau.rubikscube.model.FileManager;
 
-public class NavActivity extends AppCompatActivity {
+public class NavActivity extends AppCompatActivity implements RankingFragment.OnFragmentInteractionListener, AchievementsFragment.OnFragmentInteractionListener {
 
     public PlayFragment playFragment;
     public SolveFragment solveFragment;
-    public AchievementsFragment achievementsFragment;
+    public StatsFragment statsFragment;
     public SettingsFragment settingsFragment;
 
     public boolean fxSound;
@@ -44,7 +44,7 @@ public class NavActivity extends AppCompatActivity {
 
         playFragment = new PlayFragment();
         solveFragment = new SolveFragment();
-        achievementsFragment = new AchievementsFragment();
+        statsFragment = new StatsFragment();
         settingsFragment = new SettingsFragment();
 
         setFragment(playFragment);
@@ -103,5 +103,10 @@ public class NavActivity extends AppCompatActivity {
 
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
