@@ -11,7 +11,7 @@
     <string name="quick_desc">Une application démentielle !</string>
     <string name="nav_play">Play</string>
     <string name="nav_solve">Solver</string>
-    <string name="nav_achievements">Achievements</string>
+    <string name="nav_stats">Stats</string>
     <string name="nav_settings">Settings</string>
 
     <!-- TODO: Remove or change this placeholder text -->

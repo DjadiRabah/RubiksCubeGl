@@ -4,68 +4,40 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import iutfbleau.rubikscube.R;
-import iutfbleau.rubikscube.model.PagerAdapter;
+import iutfbleau.rubikscube.model.ViewPagerAdapter;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
-public class StatsFragment extends Fragment{
-
-    private View view;
+public class StatsFragment extends Fragment {
 
     public StatsFragment() {
         // Required empty public constructor
     }
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
+        View view = inflater.inflate(R.layout.fragment_stats, container, false);
 
-        view = inflater.inflate(R.layout.fragment_stats, container, false);
-
+        ViewPager viewPager = view.findViewById(R.id.pager);
+        setupViewPager(viewPager);
         TabLayout tabLayout = view.findViewById(R.id.tablayout);
-        tabLayout.addTab(tabLayout.newTab().setText("Achievements"));
-        tabLayout.addTab(tabLayout.newTab().setText("Ranking"));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
-        final ViewPager viewPager = view.findViewById(R.id.pager);
-        final PagerAdapter adapter = new PagerAdapter(getActivity().getSupportFragmentManager(),tabLayout.getTabCount());
-        viewPager.setAdapter(adapter);
-        viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-
-        /*
-        if(GoogleAuthManager.userConnected()){
-            //si l'utilisateur est connecté ==> affichage des classements/trophées...
-        }else{
-
-        }
-        */
+        tabLayout.setupWithViewPager(viewPager);
 
         return view;
-
     }
 
+    private void setupViewPager(ViewPager viewPager) {
+
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
+        adapter.addFragment(new AchievementsFragment(), "Achievements");
+        adapter.addFragment(new RankingFragment(), "Ranking");
+        setRetainInstance(true);
+        viewPager.setAdapter(adapter);
+
+    }
 }
