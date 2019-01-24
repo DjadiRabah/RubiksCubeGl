@@ -17,7 +17,7 @@ import iutfbleau.rubikscube.audio.SoundService;
 import iutfbleau.rubikscube.controler.BottomNavigationViewListener;
 import iutfbleau.rubikscube.model.FileManager;
 
-public class NavActivity extends AppCompatActivity implements RankingFragment.OnFragmentInteractionListener, AchievementsFragment.OnFragmentInteractionListener {
+public class NavActivity extends AppCompatActivity {
 
     public PlayFragment playFragment;
     public SolveFragment solveFragment;
@@ -105,8 +105,4 @@ public class NavActivity extends AppCompatActivity implements RankingFragment.On
         dialog.show();
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
 }
