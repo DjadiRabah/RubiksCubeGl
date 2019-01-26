@@ -6,12 +6,14 @@
     android:background="@color/colorWhite"
     tools:context=".view.AchievementsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ListView
+        android:layout_margin="10sp"
+        android:numColumns="2"
+        android:id="@+id/achievements_list_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:textSize="24sp"
-        android:text="achievements" />
+        android:layout_height="wrap_content">
+
+    </ListView>
 
 </RelativeLayout>
+
