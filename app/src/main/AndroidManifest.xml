@@ -14,29 +14,38 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
-        <activity
-            android:name=".view.NavActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".view.CameraScan"
-            android:label="@string/title_activity_camera_scan"
-            android:parentActivityName=".view.NavActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="view.NavActivity" />
-        </activity>
-        <activity android:name=".view.GoogleSignInActivity" />
-        <activity android:name=".view.SplashScreenActivity">
+        tools:ignore="GoogleAppIndexingWarning"
+        android:fullBackupContent="@xml/backup_descriptor">
+
+        <activity android:name=".controllers.activities.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.WelcomeActivity" />
+
+        <activity
+            android:name=".controllers.activities.NavActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".controllers.activities.CameraActivity"
+            android:label="@string/title_activity_camera_scan"
+            android:parentActivityName=".controllers.activities.NavActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".controllers.activities.NavActivity" />
+
+        </activity>
+
+        <activity android:name=".controllers.activities.GoogleSignInActivity" />
+
+        <activity android:name=".controllers.activities.WelcomeActivity" />
+
     </application>
 
 </manifest>

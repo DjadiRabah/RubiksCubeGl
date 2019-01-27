@@ -5,11 +5,10 @@ import java.nio.ShortBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import iutfbleau.rubikscube.model.cube.cube.Cube3D;
-import iutfbleau.rubikscube.model.cube.face.Face;
-import iutfbleau.rubikscube.model.cube.face.Face3D;
-import iutfbleau.rubikscube.model.cube.piece.Piece;
-import iutfbleau.rubikscube.model.cube.piece.Piece3D;
+import iutfbleau.rubikscube.models.cube.cube.Cube3D;
+import iutfbleau.rubikscube.models.cube.face.Face;
+import iutfbleau.rubikscube.models.cube.piece.Piece;
+import iutfbleau.rubikscube.models.cube.piece.Piece3D;
 
 public class CubeGl
 {
@@ -32,7 +31,7 @@ public class CubeGl
 			case Piece.BLUE   : colors = new float[]{0.0f,0.0f,1.0f};                     break;
 			case Piece.ORANGE : colors = new float[]{1.0f,127.0f/255.0f,39.0f/255.0f};    break;
 			case Piece.YELLOW : colors = new float[]{1.0f,242.0f/255.0f,0.0f};            break;
-			default           : colors = new float[]{0.0f,0.0f,0.0f};			 		 	break;
+			default           : colors = new float[]{0.0f,0.0f,0.0f};			 		  break;
 		}
 		return colors;
 	}

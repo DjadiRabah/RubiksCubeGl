@@ -12,7 +12,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import iutfbleau.rubikscube.R;
-import iutfbleau.rubikscube.model.AchievementItem;
+import iutfbleau.rubikscube.models.AchievementItem;
 
 public class AchievementItemAdapter extends BaseAdapter {
 
@@ -75,14 +75,12 @@ public class AchievementItemAdapter extends BaseAdapter {
             int resId = context.getResources().getIdentifier(ressourceName, "drawable", context.getPackageName());
             itemIconView.setImageResource(resId);
             itemNameView.setText(itemName);
-            itemNameView.setTextColor(convertView.getResources().getColor(R.color.green));
 
         }else{
 
             int resId = context.getResources().getIdentifier(String.valueOf(R.drawable.item_lock_icon), "drawable", context.getPackageName());
             itemIconView.setImageResource(resId);
             itemNameView.setText(itemName + " [Locked]");
-            itemNameView.setTextColor(convertView.getResources().getColor(R.color.red));
 
         }
 
