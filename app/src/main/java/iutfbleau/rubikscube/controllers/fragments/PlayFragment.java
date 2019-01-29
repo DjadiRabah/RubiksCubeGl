@@ -11,7 +11,6 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,7 +19,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +28,7 @@ import iutfbleau.rubikscube.controllers.activities.NavActivity;
 import iutfbleau.rubikscube.controllers.listeners.DrawerListener;
 import iutfbleau.rubikscube.controllers.listeners.OnSwipeTouchListener;
 import iutfbleau.rubikscube.controllers.listeners.RadioGroupListener;
+import iutfbleau.rubikscube.models.ActionBarDrawerToggler;
 import iutfbleau.rubikscube.models.cube.cube.Cube3D;
 import iutfbleau.rubikscube.view.OpenGLRenderer;
 
@@ -43,8 +42,6 @@ public class PlayFragment extends Fragment {
     private OpenGLRenderer openglRenderer;
     public GLSurfaceView glSurfaceView;
     private Cube3D cube;
-    private int size;
-    public boolean drawerLayoutClosed = true;
 
     public PlayFragment()
     {
@@ -76,30 +73,7 @@ public class PlayFragment extends Fragment {
 
         // 2 - Configure Drawer Layout
         drawerLayout = view.findViewById(R.id.drawerLayout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close){
-
-            //Close state
-            public void onDrawerClosed(View view) {
-                super.onDrawerClosed(view);
-                drawerLayoutClosed = true;
-                Toast.makeText(getContext(), ""+drawerLayoutClosed, Toast.LENGTH_SHORT).show();
-            }
-
-            //Open state
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-                drawerLayoutClosed = false;
-                Toast.makeText(getContext(), ""+drawerLayoutClosed, Toast.LENGTH_SHORT).show();
-            }
-
-            //Sliding state
-            public void onDrawerSlide(View drawerView,float slideOffset) {
-                super.onDrawerSlide(drawerView, slideOffset);
-                drawerLayoutClosed = true;
-                Toast.makeText(getContext(), "sliding"+drawerLayoutClosed, Toast.LENGTH_SHORT).show();
-            }
-
-        };
+        ActionBarDrawerToggler toggle = new ActionBarDrawerToggler(getActivity(), drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
