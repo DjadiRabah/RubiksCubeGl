@@ -36,7 +36,7 @@ public class ActionBarDrawerToggler extends ActionBarDrawerToggle{
     //Sliding state
     public void onDrawerSlide(View drawerView,float slideOffset) {
         super.onDrawerSlide(drawerView, slideOffset);
-        drawerLayoutClosed = true;
+        drawerLayoutClosed = false;
         Toast.makeText(activity.getApplicationContext(), "sliding"+drawerLayoutClosed, Toast.LENGTH_SHORT).show();
     }
 
