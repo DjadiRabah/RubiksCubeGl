@@ -2,7 +2,6 @@ package iutfbleau.rubikscube.controllers.activities;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
@@ -13,7 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import iutfbleau.rubikscube.R;
-import iutfbleau.rubikscube.models.ImageToInt;
+import iutfbleau.rubikscube.models.BitmapToInt;
 
 public class CameraActivity extends AppCompatActivity {
 
@@ -51,9 +50,8 @@ public class CameraActivity extends AppCompatActivity {
                 Bitmap bitmap = (Bitmap) data.getExtras().get("data");
                 imageView.setImageBitmap(bitmap);
 
-                ImageToInt imageToInt = new ImageToInt(bitmap);
-                int[][] colors = ImageToInt.getColors(3);
-                Log.e("TAB SIZE", ""+colors.length+" "+colors[0].length);
+                int[][] colors = BitmapToInt.convert(bitmap,3);
+
                 for(int i = 0; i < colors.length; i++)
                 {
 
