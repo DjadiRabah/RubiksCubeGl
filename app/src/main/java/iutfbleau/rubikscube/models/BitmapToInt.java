@@ -9,22 +9,19 @@ public class BitmapToInt {
 
     private static Bitmap bitmap;
 
-    public static int[][] convert(Bitmap bitmap, int size) {
+    public static int[][] convert(Bitmap bitmap, int size, int topLeftX, int topLeftY, int bottomRightX, int bottomRightY) {
 
         BitmapToInt.bitmap = bitmap;
 
-        int alpha = TAKEN_IMG_PERCENTAGE;
         int[][] colors = new int[size][size];
         int[][] allColors = getColors();
 
-        int height = allColors.length * alpha / 100;
-        int width = allColors[0].length * alpha / 100;
-        int blockHeight = 9 * height / 30;
-        int blockWidth = 9 * width / 30;
-        int offsetBlockWidth = 5 * width / 100;
-        int offsetBlockHeight = 5 * height / 100;
-        int offsetX = allColors[0].length * (100 - alpha) / 200;
-        int offsetY = allColors.length * (100 - alpha) / 200;
+        int height = topLeftY - bottomRightY;
+        int width = bottomRightX - topLeftX;
+        int blockHeight = height / size;
+        int blockWidth = width / 3;
+        int offsetX = topLeftX;
+        int offsetY = topLeftY;
 
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {

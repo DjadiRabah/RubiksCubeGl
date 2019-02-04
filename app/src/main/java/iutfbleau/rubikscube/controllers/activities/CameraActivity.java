@@ -50,7 +50,7 @@ public class CameraActivity extends AppCompatActivity {
                 Bitmap bitmap = (Bitmap) data.getExtras().get("data");
                 imageView.setImageBitmap(bitmap);
 
-                int[][] colors = BitmapToInt.convert(bitmap,3);
+                int[][] colors = BitmapToInt.convert(bitmap,3, 0, 100, 100, 0);
 
                 for(int i = 0; i < colors.length; i++)
                 {

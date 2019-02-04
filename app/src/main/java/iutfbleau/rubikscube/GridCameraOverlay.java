@@ -7,6 +7,8 @@ import android.view.View;
 
 public class GridCameraOverlay extends View {
     private Paint paint = new Paint();
+    private int[] coordTab = new int[4];
+
 
     public GridCameraOverlay(Context context) {
         super(context);
@@ -23,7 +25,17 @@ public class GridCameraOverlay extends View {
         //center
         int middle = getHeight()/2;
         int halfSquareHeight = getWidth()/2;
+        coordTab[0] = 0;
+        coordTab[1] = middle-halfSquareHeight;
+        coordTab[2] = getWidth();
+        coordTab[3] = middle+halfSquareHeight;
         //draw guide box
-        canvas.drawRect(0, middle-halfSquareHeight, getWidth(), middle+halfSquareHeight, paint);
+        canvas.drawRect(coordTab[0], coordTab[1], coordTab[2], coordTab[3], paint);
+    }
+
+    public int[] getOverlayCoordinates(){
+
+        return this.coordTab;
+
     }
 }
