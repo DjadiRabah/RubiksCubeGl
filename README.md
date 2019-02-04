@@ -15,3 +15,13 @@ https://www.youtube.com/watch?v=5vy55k542NM&list=PLk7v1Z2rk4hjQaV062aE_CW68xgXdY
 ## Détection mouvements doigts
 
 https://stackoverflow.com/questions/16650419/draw-in-canvas-by-finger-android
+
+## Problème Bitmap
+
+https://stackoverflow.com/questions/12908048/passing-bitmap-between-two-activities/12908133
+https://stackoverflow.com/questions/4352172/how-do-you-pass-images-bitmaps-between-android-activities-using-bundles/24630735#24630735
+https://stackoverflow.com/questions/920306/sending-data-back-to-the-main-activity-in-android
+
+Changer l'algo de classe ?
+Vérifier que les coordonnées renvoyées par le tableau sont non-nulles ?
+
