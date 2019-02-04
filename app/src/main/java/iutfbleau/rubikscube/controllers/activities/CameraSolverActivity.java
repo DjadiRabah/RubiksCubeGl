@@ -3,7 +3,6 @@ package iutfbleau.rubikscube.controllers.activities;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -11,10 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import iutfbleau.rubikscube.GridCameraOverlay;
 import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.models.BitmapToInt;
 
-public class CameraActivity extends AppCompatActivity {
+public class CameraSolverActivity extends AppCompatActivity {
 
     private ImageView imageView;
     static final int CAMERA_REQUEST = 1;
@@ -23,7 +23,7 @@ public class CameraActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_camera_scan);
+        setContentView(R.layout.activity_camera_solver);
 
         Button btnCamera = findViewById(R.id.btnCamera);
         imageView = findViewById(R.id.imageView);
@@ -31,7 +31,7 @@ public class CameraActivity extends AppCompatActivity {
         btnCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                Intent intent = new Intent(getApplicationContext(), CustomCameraActivity.class);
                 startActivityForResult(intent, CAMERA_REQUEST);
             }
         });
@@ -50,7 +50,10 @@ public class CameraActivity extends AppCompatActivity {
                 Bitmap bitmap = (Bitmap) data.getExtras().get("data");
                 imageView.setImageBitmap(bitmap);
 
-                int[][] colors = BitmapToInt.convert(bitmap,3, 0, 100, 100, 0);
+                GridCameraOverlay gridCameraOverlay = new GridCameraOverlay(getApplicationContext());
+                int[] coords = gridCameraOverlay.getOverlayCoordinates();
+
+                int[][] colors = BitmapToInt.convert(bitmap,3, coords[0], coords[1], coords[2], coords[3]);
 
                 for(int i = 0; i < colors.length; i++)
                 {

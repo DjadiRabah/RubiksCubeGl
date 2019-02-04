@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="10"
-    tools:context=".controllers.activities.CameraActivity">
+    android:background="@color/colorAccent"
+    tools:context=".controllers.activities.CameraSolverActivity">
 
     <ImageView
         android:id="@+id/imageView"

@@ -10,8 +10,7 @@ import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 
 import iutfbleau.rubikscube.R;
-import iutfbleau.rubikscube.controllers.activities.CameraActivity;
-import iutfbleau.rubikscube.controllers.activities.CustomCameraActivity;
+import iutfbleau.rubikscube.controllers.activities.CameraSolverActivity;
 
 
 /**
@@ -46,7 +45,7 @@ public class SolveFragment extends Fragment {
             @Override
             public void onClick(View v){
                 v.startAnimation(buttonClick);
-                Intent in = new Intent(getActivity(), CustomCameraActivity.class);
+                Intent in = new Intent(getActivity(), CameraSolverActivity.class);
                 //in.putExtra("some", "som data");
                 startActivity(in);
             }

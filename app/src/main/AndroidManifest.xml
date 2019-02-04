@@ -29,7 +29,7 @@
             android:name=".controllers.activities.NavActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".controllers.activities.CameraActivity"
+            android:name=".controllers.activities.CameraSolverActivity"
             android:label="@string/title_activity_camera_scan"
             android:parentActivityName=".controllers.activities.NavActivity"
             android:screenOrientation="portrait"
