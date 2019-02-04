@@ -11,3 +11,7 @@ https://developer.android.com/reference/android/view/MotionEvent
 ## BD php my admin
 
 https://www.youtube.com/watch?v=5vy55k542NM&list=PLk7v1Z2rk4hjQaV062aE_CW68xgXdYFpV
+
+## Détection mouvements doigts
+
+https://stackoverflow.com/questions/16650419/draw-in-canvas-by-finger-android
