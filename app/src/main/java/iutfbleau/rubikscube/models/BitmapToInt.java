@@ -19,7 +19,7 @@ public class BitmapToInt {
         int height = bottomRightY -topLeftY;
         int width = bottomRightX - topLeftX;
         int blockHeight = height / size;
-        int blockWidth = width / 3;
+        int blockWidth = width / size;
         int offsetX = topLeftX;
         int offsetY = topLeftY;
 
