@@ -16,10 +16,10 @@ public class BitmapToInt {
         int[][] colors = new int[size][size];
         int[][] allColors = getColors();
 
-        int height = topLeftY - bottomRightY;
+        int height = bottomRightY - topLeftY;
         int width = bottomRightX - topLeftX;
         int blockHeight = height / size;
-        int blockWidth = width / 3;
+        int blockWidth = width / size;
         int offsetX = topLeftX;
         int offsetY = topLeftY;
 

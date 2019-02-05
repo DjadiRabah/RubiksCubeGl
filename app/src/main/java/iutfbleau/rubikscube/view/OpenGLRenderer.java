@@ -2,6 +2,7 @@ package iutfbleau.rubikscube.view;
 
 import android.opengl.GLSurfaceView;
 import android.opengl.GLU;
+import android.view.MotionEvent;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -15,9 +16,9 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer {
     private float angleY;
     private float angleZ;
 
-    public OpenGLRenderer(Cube3D cube)
+    public OpenGLRenderer(CubeGl cube)
     {
-        this.cube = new CubeGl(cube);
+        this.cube = cube;
         this.angleX = 0.0f;
         this.angleY = 0.0f;
         this.angleZ = 0.0f;

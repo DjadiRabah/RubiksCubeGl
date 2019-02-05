@@ -36,22 +36,22 @@ public class OnSwipeTouchListener implements View.OnTouchListener {
     }
 
     public void onSwipeRight() {
-        this.cube.rotateY(45.0);
+
         Toast.makeText(context, "Right", Toast.LENGTH_SHORT).show();
     }
 
     public void onSwipeLeft() {
-        this.cube.rotateY(-45.0);
-        Toast.makeText(context, "Left", Toast.LENGTH_SHORT).show();
+
+      Toast.makeText(context, "Left", Toast.LENGTH_SHORT).show();
     }
 
     public void onSwipeTop() {
-        this.cube.rotateX(-45.0);
+
         Toast.makeText(context, "Top", Toast.LENGTH_SHORT).show();
     }
 
     public void onSwipeBottom() {
-        this.cube.rotateX(45.0);
+
         Toast.makeText(context, "Bottom", Toast.LENGTH_SHORT).show();
     }
 }

@@ -14,6 +14,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -25,11 +26,13 @@ import java.util.List;
 
 import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.controllers.activities.NavActivity;
+import iutfbleau.rubikscube.controllers.listeners.CubeMotionListener;
 import iutfbleau.rubikscube.controllers.listeners.DrawerListener;
 import iutfbleau.rubikscube.controllers.listeners.OnSwipeTouchListener;
 import iutfbleau.rubikscube.controllers.listeners.RadioGroupListener;
 import iutfbleau.rubikscube.models.ActionBarDrawerToggler;
 import iutfbleau.rubikscube.models.cube.cube.Cube3D;
+import iutfbleau.rubikscube.view.CubeGl;
 import iutfbleau.rubikscube.view.OpenGLRenderer;
 
 /**
@@ -41,11 +44,12 @@ public class PlayFragment extends Fragment {
     private MediaPlayer touchsound;
     private OpenGLRenderer openglRenderer;
     public GLSurfaceView glSurfaceView;
-    private Cube3D cube;
+    private CubeGl cube;
+
 
     public PlayFragment()
     {
-      this.cube = new Cube3D(3);
+      this.cube = new CubeGl(new Cube3D(8));
       this.openglRenderer = new OpenGLRenderer(cube);
     }
 
@@ -82,7 +86,7 @@ public class PlayFragment extends Fragment {
         NavigationView navigationView = view.findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(new DrawerListener(this,  (NavActivity) getActivity()));
 
-        view.setOnTouchListener(new OnSwipeTouchListener(this.getContext(), this.openglRenderer.getCube()));
+        view.setOnTouchListener(new CubeMotionListener(this.cube));
         glSurfaceView = view.findViewById(R.id.glsurfaceview);
         glSurfaceView.setRenderer(openglRenderer);
 
