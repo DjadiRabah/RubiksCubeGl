@@ -55,6 +55,8 @@ public class CubeMotionListener implements View.OnTouchListener
                 {
                     this.cube.rotateX(- this.speed * Math.atan(Math.sqrt(alphaY*alphaY)));
                 }
+                this.initialX = event.getX();
+                this.initialY = event.getY();
                 return true;
             case MotionEvent.ACTION_UP:
                 break;
