@@ -18,7 +18,7 @@ public class CubeMotionListener implements View.OnTouchListener
         this.cube = cube;
         this.initialX = 0.0f;
         this.initialY = 0.0f;
-        this.speed = 3.0;
+        this.speed = 3.5;
     }
 
     @Override
