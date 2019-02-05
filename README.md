@@ -25,3 +25,7 @@ https://stackoverflow.com/questions/920306/sending-data-back-to-the-main-activit
 Changer l'algo de classe ?
 Vérifier que les coordonnées renvoyées par le tableau sont non-nulles ?
 
+## OnTouchEvent Fragment
+
+https://stackoverflow.com/questions/21882251/how-to-handle-touch-events-on-a-fragment
+
