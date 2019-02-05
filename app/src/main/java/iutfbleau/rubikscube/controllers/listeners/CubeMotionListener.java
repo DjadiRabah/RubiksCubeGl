@@ -11,12 +11,14 @@ public class CubeMotionListener implements View.OnTouchListener
     private float initialX;
     private float initialY;
     private CubeGl cube;
+    private double speed;
 
     public CubeMotionListener(CubeGl cube)
     {
         this.cube = cube;
         this.initialX = 0.0f;
         this.initialY = 0.0f;
+        this.speed = 3.0;
     }
 
     @Override
@@ -35,21 +37,23 @@ public class CubeMotionListener implements View.OnTouchListener
                 float finalX = event.getX();
                 float finalY = event.getY();
 
-                if ((finalX - initialX) > 50.0)
+                double alphaX = (finalX-initialX)/(finalY-initialY);
+                double alphaY = (finalY-initialY)/(finalX-initialX);
+                if (finalX > initialX)
                 {
-                    this.cube.rotateY(4.0);
+                    this.cube.rotateY(this.speed * Math.atan(Math.sqrt(alphaX*alphaX)));
                 }
-                if ((finalX - initialX) < -50.0)
+                if (finalX  < initialX)
                 {
-                    this.cube.rotateY(-4.0);
+                    this.cube.rotateY(- this.speed * Math.atan(Math.sqrt(alphaX*alphaX)));
                 }
-                if ((finalY - initialY) > 50.0)
+                if (finalY > initialY)
                 {
-                    this.cube.rotateX(4.0);
+                    this.cube.rotateX(this.speed * Math.atan(Math.sqrt(alphaY*alphaY)));
                 }
-                if ((finalY - initialY) < -50.0)
+                if (finalY < initialY)
                 {
-                    this.cube.rotateX(-4.0);
+                    this.cube.rotateX(- this.speed * Math.atan(Math.sqrt(alphaY*alphaY)));
                 }
                 return true;
             case MotionEvent.ACTION_UP:

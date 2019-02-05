@@ -49,7 +49,7 @@ public class PlayFragment extends Fragment {
 
     public PlayFragment()
     {
-      this.cube = new CubeGl(new Cube3D(8));
+      this.cube = new CubeGl(new Cube3D(3));
       this.openglRenderer = new OpenGLRenderer(cube);
     }
 
