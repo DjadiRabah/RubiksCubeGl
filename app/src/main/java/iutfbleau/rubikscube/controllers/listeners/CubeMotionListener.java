@@ -57,7 +57,7 @@ public class CubeMotionListener implements View.OnTouchListener
                 }
                 this.initialX = event.getX();
                 this.initialY = event.getY();
-                return true;
+                break;
             case MotionEvent.ACTION_UP:
                 break;
         }
