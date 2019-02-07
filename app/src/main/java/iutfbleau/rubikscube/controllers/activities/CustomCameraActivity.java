@@ -18,6 +18,7 @@ import iutfbleau.rubikscube.ShowCamera;
 public class CustomCameraActivity extends AppCompatActivity {
 
     private Camera camera;
+    private FrameLayout frameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,15 +27,13 @@ public class CustomCameraActivity extends AppCompatActivity {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        FrameLayout frameLayout = findViewById(R.id.frameLayout);
+        frameLayout = findViewById(R.id.frameLayout);
 
         camera = Camera.open();
         ShowCamera showCamera = new ShowCamera(this, camera);
         frameLayout.addView(showCamera);
         GridCameraOverlay gridCameraOverlay = new GridCameraOverlay(this);
-
         addContentView(gridCameraOverlay, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.FILL_PARENT, FrameLayout.LayoutParams.FILL_PARENT));
-
     }
 
     Camera.PictureCallback pictureCallback = new Camera.PictureCallback() {
@@ -68,3 +67,5 @@ public class CustomCameraActivity extends AppCompatActivity {
     }
 
 }
+
+
