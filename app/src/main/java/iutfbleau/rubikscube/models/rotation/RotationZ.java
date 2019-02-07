@@ -12,8 +12,8 @@ public class RotationZ implements RotationComplex
 		{
 			switch (direction) 
 			{
-	            case CLOCKWISE :        new RotationSquare().rotate(cube.getSquare(Cube.FRONT), CLOCKWISE);        break;
-	            case COUNTERCLOCKWISE : new RotationSquare().rotate(cube.getSquare(Cube.FRONT), COUNTERCLOCKWISE); break;
+	            case CLOCKWISE :        new RotationFace().rotate(cube.getSquare(Cube.FRONT), CLOCKWISE);        break;
+	            case COUNTERCLOCKWISE : new RotationFace().rotate(cube.getSquare(Cube.FRONT), COUNTERCLOCKWISE); break;
 	            default: break;
 			}
         }
@@ -21,8 +21,8 @@ public class RotationZ implements RotationComplex
 		{
 			switch (direction) 
 			{
-	            case CLOCKWISE :       new RotationSquare().rotate(cube.getSquare(Cube.BACK), COUNTERCLOCKWISE);  break;
-	            case COUNTERCLOCKWISE: new RotationSquare().rotate(cube.getSquare(Cube.BACK), CLOCKWISE);         break;
+	            case CLOCKWISE :       new RotationFace().rotate(cube.getSquare(Cube.BACK), COUNTERCLOCKWISE);  break;
+	            case COUNTERCLOCKWISE: new RotationFace().rotate(cube.getSquare(Cube.BACK), CLOCKWISE);         break;
 	            default: break;
 			}
 		}

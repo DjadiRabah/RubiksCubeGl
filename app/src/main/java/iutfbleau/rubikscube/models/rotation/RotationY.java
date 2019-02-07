@@ -12,8 +12,8 @@ public class RotationY implements RotationComplex
 		{
 			switch (direction) 
 			{
-	            case UP :  new RotationSquare().rotate(cube.getSquare(Cube.LEFT), COUNTERCLOCKWISE); break;
-	            case DOWN: new RotationSquare().rotate(cube.getSquare(Cube.LEFT), CLOCKWISE); break;
+	            case UP :  new RotationFace().rotate(cube.getSquare(Cube.LEFT), COUNTERCLOCKWISE); break;
+	            case DOWN: new RotationFace().rotate(cube.getSquare(Cube.LEFT), CLOCKWISE); break;
 	            default: break;
 			}
         }
@@ -21,8 +21,8 @@ public class RotationY implements RotationComplex
 		{
 			switch (direction) 
 			{
-	            case UP :  new RotationSquare().rotate(cube.getSquare(Cube.RIGHT), CLOCKWISE); break;
-	            case DOWN: new RotationSquare().rotate(cube.getSquare(Cube.RIGHT), COUNTERCLOCKWISE); break;
+	            case UP :  new RotationFace().rotate(cube.getSquare(Cube.RIGHT), CLOCKWISE); break;
+	            case DOWN: new RotationFace().rotate(cube.getSquare(Cube.RIGHT), COUNTERCLOCKWISE); break;
 	            default: break;
 			}
 		}

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.view.MotionEvent;
 import android.view.View;
 
+import iutfbleau.rubikscube.models.rotation.Rotation;
 import iutfbleau.rubikscube.view.CubeGl;
 
 public class CubeMotionListener implements View.OnTouchListener
@@ -12,13 +13,14 @@ public class CubeMotionListener implements View.OnTouchListener
     private float initialY;
     private CubeGl cube;
     private double speed;
-
+    private boolean hasFaceMoved;
     public CubeMotionListener(CubeGl cube)
     {
         this.cube = cube;
         this.initialX = 0.0f;
         this.initialY = 0.0f;
         this.speed = 3.5;
+        this.hasFaceMoved = false;
     }
 
     @Override
@@ -37,11 +39,33 @@ public class CubeMotionListener implements View.OnTouchListener
                 float finalX = event.getX();
                 float finalY = event.getY();
 
-                double alphaX = (finalX-initialX)/(finalY-initialY);
-                double alphaY = (finalY-initialY)/(finalX-initialX);
+                if(this.initialY < 500)
+                {
+                    if(!this.hasFaceMoved)
+                    {
+                        this.cube.rotate(Rotation.RIGHT,0);
+                        this.hasFaceMoved = true;
+                    }
+                }
+
+                else if(this.initialY > 500)
+                {
+                    double alphaX = (finalX-initialX)/(finalY-initialY);
+                    double alphaY = (finalY-initialY)/(finalX-initialX);
+
+                    // Rotation vers la droite
+                    if (finalX > initialX)
+                    {
+                        this.cube.rotateY( this.speed * Math.atan(Math.sqrt(alphaX*alphaX)));
+                    }
+                }
+
+
+
+                /*
                 if (finalX > initialX)
                 {
-                    this.cube.rotateY(this.speed * Math.atan(Math.sqrt(alphaX*alphaX)));
+                    this.cube.rotateY( this.speed * Math.atan(Math.sqrt(alphaX*alphaX)));
                 }
                 if (finalX  < initialX)
                 {
@@ -56,9 +80,10 @@ public class CubeMotionListener implements View.OnTouchListener
                     this.cube.rotateX(- this.speed * Math.atan(Math.sqrt(alphaY*alphaY)));
                 }
                 this.initialX = event.getX();
-                this.initialY = event.getY();
+                this.initialY = event.getY();*/
                 break;
             case MotionEvent.ACTION_UP:
+                this.hasFaceMoved = false;
                 break;
         }
         return true;

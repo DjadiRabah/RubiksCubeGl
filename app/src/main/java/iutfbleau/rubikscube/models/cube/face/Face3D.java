@@ -40,6 +40,11 @@ public class Face3D extends Face
         }
     }
 
+    public void rotateX(double teta, int i, int j)
+    {
+        ((Piece3D)this.pieces[i][j]).rotateX(teta);
+    }
+
     public void rotateY(double teta)
     {
         for(int i = 0; i < this.pieces.length; i++)
@@ -51,6 +56,11 @@ public class Face3D extends Face
         }
     }
 
+    public void rotateY(double teta, int i, int j)
+    {
+        ((Piece3D)this.pieces[i][j]).rotateY(teta);
+    }
+
     public void rotateZ(double teta)
     {
         for(int i = 0; i < this.pieces.length; i++)
@@ -60,5 +70,22 @@ public class Face3D extends Face
                 ((Piece3D)this.pieces[i][j]).rotateZ(teta);
             }
         }
+    }
+
+    public void rotateZ(double teta, int i, int j)
+    {
+        ((Piece3D)this.pieces[i][j]).rotateZ(teta);
+    }
+
+    public boolean isPointIn(int row, int index)
+    {
+        float[] first = ((Piece3D)this.pieces[row][0]).getVertices();
+        float[] last = ((Piece3D)this.pieces[row][this.size-1]).getVertices();
+
+        if(true)
+        {
+            return true;
+        }
+        return false;
     }
 }

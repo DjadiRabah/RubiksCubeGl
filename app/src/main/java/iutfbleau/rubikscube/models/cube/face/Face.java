@@ -2,7 +2,7 @@ package iutfbleau.rubikscube.models.cube.face;
 
 import iutfbleau.rubikscube.models.cube.piece.Piece;
 import iutfbleau.rubikscube.models.rotation.Rotation;
-import iutfbleau.rubikscube.models.rotation.RotationSquare;
+import iutfbleau.rubikscube.models.rotation.RotationFace;
 
 /**
  * Represente une des faces du Rubik's Cube
@@ -292,7 +292,7 @@ public class Face
 	{
 		if((direction == Rotation.CLOCKWISE) || (direction == Rotation.COUNTERCLOCKWISE))
 		{
-			new RotationSquare().rotate(this,direction);
+			new RotationFace().rotate(this,direction);
 		}
 	}
 }

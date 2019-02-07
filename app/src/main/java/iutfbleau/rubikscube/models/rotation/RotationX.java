@@ -4,7 +4,7 @@ import iutfbleau.rubikscube.models.cube.cube.Cube;
 import iutfbleau.rubikscube.models.cube.piece.Piece;
 
 public class RotationX implements RotationComplex
-{	
+{
 	@Override
 	public void rotate(Cube cube, int direction, int index)
 	{
@@ -12,8 +12,8 @@ public class RotationX implements RotationComplex
 		{
 			switch (direction) 
 			{
-	            case LEFT : new RotationSquare().rotate(cube.getSquare(Cube.TOP), CLOCKWISE);         break;
-	            case RIGHT: new RotationSquare().rotate(cube.getSquare(Cube.TOP), COUNTERCLOCKWISE);  break;
+	            case LEFT : new RotationFace().rotate(cube.getSquare(Cube.TOP), CLOCKWISE);         break;
+	            case RIGHT: new RotationFace().rotate(cube.getSquare(Cube.TOP), COUNTERCLOCKWISE);  break;
 	            default: break;
 			}
         }
@@ -21,8 +21,8 @@ public class RotationX implements RotationComplex
 		{
 			switch (direction) 
 			{
-	            case LEFT :  new RotationSquare().rotate(cube.getSquare(Cube.DOWN), COUNTERCLOCKWISE);       break;
-	            case RIGHT:  new RotationSquare().rotate(cube.getSquare(Cube.DOWN), CLOCKWISE); break;
+	            case LEFT :  new RotationFace().rotate(cube.getSquare(Cube.DOWN), COUNTERCLOCKWISE);       break;
+	            case RIGHT:  new RotationFace().rotate(cube.getSquare(Cube.DOWN), CLOCKWISE); break;
 	            default: break;
 			}
 		}

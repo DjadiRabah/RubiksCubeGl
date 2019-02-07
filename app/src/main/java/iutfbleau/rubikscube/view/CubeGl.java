@@ -1,5 +1,7 @@
 package iutfbleau.rubikscube.view;
 
+import android.util.Log;
+
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
 
@@ -93,6 +95,10 @@ public class CubeGl
         }
     }
 
+	public void rotate(int direction, int index)
+	{
+        this.cube.rotate(direction,index);
+	}
 	public void rotateX(double teta)
 	{
 		this.cube.rotateX(Math.toRadians(teta));

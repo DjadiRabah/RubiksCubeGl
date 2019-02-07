@@ -112,4 +112,9 @@ public class Piece3D extends Piece
             this.vertexBuffer.put(i*3 + 1, newY);
         }
     }
+
+    public float[] getVertices()
+    {
+        return this.vertexBuffer.array();
+    }
 }

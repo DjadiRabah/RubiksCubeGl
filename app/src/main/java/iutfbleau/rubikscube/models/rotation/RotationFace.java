@@ -3,7 +3,7 @@ package iutfbleau.rubikscube.models.rotation;
 import iutfbleau.rubikscube.models.cube.face.Face;
 import iutfbleau.rubikscube.models.cube.piece.Piece;
 
-public class RotationSquare implements Rotation
+public class RotationFace implements Rotation
 {	
 	protected Piece[][] transposeMatrix(Piece[][] pieces)
 	{
