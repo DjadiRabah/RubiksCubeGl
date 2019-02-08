@@ -14,7 +14,7 @@ public class ShowCamera extends SurfaceView implements SurfaceHolder.Callback {
     private Camera camera;
     private SurfaceHolder surfaceHolder;
 
-    public ShowCamera(Context context, Camera camera) {
+    public ShowCamera(Context context, Camera camera, int mode) {
         super(context);
         this.camera = camera;
         surfaceHolder = getHolder();
@@ -35,20 +35,9 @@ public class ShowCamera extends SurfaceView implements SurfaceHolder.Callback {
 
         }
 
-        //change camera orientation
-        if (this.getResources().getConfiguration().orientation != Configuration.ORIENTATION_LANDSCAPE) {
-
-            params.set("orientation", "portrait");
-            camera.setDisplayOrientation(90);
-            params.setRotation(90);
-
-        } else {
-
-            params.set("orientation", "landscape");
-            camera.setDisplayOrientation(0);
-            params.setRotation(0);
-
-        }
+        params.set("orientation", "portrait");
+        camera.setDisplayOrientation(90);
+        params.setRotation(90);
 
         params.setPictureSize(mSize.width, mSize.height);
 

@@ -13,7 +13,6 @@ import android.widget.FrameLayout;
 import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.GridCameraOverlay;
 import iutfbleau.rubikscube.ShowCamera;
-import iutfbleau.rubikscube.controllers.listeners.CameraCaptureListener;
 
 public class CustomCameraActivity extends AppCompatActivity {
 
@@ -30,7 +29,6 @@ public class CustomCameraActivity extends AppCompatActivity {
         flash = findViewById(R.id.flash);
         capture = findViewById(R.id.capture);
         //flash.setOnClickListener(new CameraCaptureListener(this));
-        capture.setOnClickListener(new CameraCaptureListener(this));
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
