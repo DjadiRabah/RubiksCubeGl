@@ -4,9 +4,15 @@ import iutfbleau.rubikscube.models.cube.piece.Piece3D;
 
 public class Face3D extends Face
 {
+    private double tetaX;
+    private double tetaY;
+    private double tetaZ;
     public Face3D(int size, int color)
     {
         super(size);
+        this.tetaX = 0.0;
+        this.tetaY = 0.0;
+        this.tetaZ = 0.0;
         this.pieces = new Piece3D[this.size][this.size];
         for(int i = 0; i < this.pieces.length; i++)
         {
@@ -31,6 +37,7 @@ public class Face3D extends Face
 
     public void rotateX(double teta)
     {
+        this.tetaX = this.tetaX + teta;
         for(int i = 0; i < this.pieces.length; i++)
         {
             for(int j = 0; j < this.pieces.length; j++)
@@ -47,6 +54,7 @@ public class Face3D extends Face
 
     public void rotateY(double teta)
     {
+        this.tetaY = this.tetaY + teta;
         for(int i = 0; i < this.pieces.length; i++)
         {
             for(int j = 0; j < this.pieces.length; j++)
@@ -63,6 +71,7 @@ public class Face3D extends Face
 
     public void rotateZ(double teta)
     {
+        this.tetaZ = this.tetaZ + teta;
         for(int i = 0; i < this.pieces.length; i++)
         {
             for(int j = 0; j < this.pieces.length; j++)
@@ -87,5 +96,18 @@ public class Face3D extends Face
             return true;
         }
         return false;
+    }
+
+    public double getTetaX()
+    {
+        return this.tetaX;
+    }
+    public double getTetaY()
+    {
+        return this.tetaY;
+    }
+    public double getTetaZ()
+    {
+        return this.tetaZ;
     }
 }

@@ -106,7 +106,9 @@ public class CubeGl
 
 	public void rotateY(double teta)
 	{
+
 		this.cube.rotateY(Math.toRadians(teta));
+        System.out.println(this.cube.toString());
 	}
 
 	public void rotateZ(double teta)

@@ -43,8 +43,11 @@ public class CubeMotionListener implements View.OnTouchListener
                 {
                     if(!this.hasFaceMoved)
                     {
-                        this.cube.rotate(Rotation.RIGHT,0);
-                        this.hasFaceMoved = true;
+                        if (finalX > initialX)
+                        {
+                            this.cube.rotate(Rotation.RIGHT,0);
+                            this.hasFaceMoved = true;
+                        }
                     }
                 }
 
@@ -58,29 +61,20 @@ public class CubeMotionListener implements View.OnTouchListener
                     {
                         this.cube.rotateY( this.speed * Math.atan(Math.sqrt(alphaX*alphaX)));
                     }
-                }
 
-
-
-                /*
-                if (finalX > initialX)
-                {
-                    this.cube.rotateY( this.speed * Math.atan(Math.sqrt(alphaX*alphaX)));
+                    if (finalX  < initialX)
+                    {
+                        this.cube.rotateY(- this.speed * Math.atan(Math.sqrt(alphaX*alphaX)));
+                    }
+                   /* if (finalY > initialY)
+                    {
+                        this.cube.rotateX(this.speed * Math.atan(Math.sqrt(alphaY*alphaY)));
+                    }
+                    if (finalY < initialY)
+                    {
+                        this.cube.rotateX(- this.speed * Math.atan(Math.sqrt(alphaY*alphaY)));
+                    }*/
                 }
-                if (finalX  < initialX)
-                {
-                    this.cube.rotateY(- this.speed * Math.atan(Math.sqrt(alphaX*alphaX)));
-                }
-                if (finalY > initialY)
-                {
-                    this.cube.rotateX(this.speed * Math.atan(Math.sqrt(alphaY*alphaY)));
-                }
-                if (finalY < initialY)
-                {
-                    this.cube.rotateX(- this.speed * Math.atan(Math.sqrt(alphaY*alphaY)));
-                }
-                this.initialX = event.getX();
-                this.initialY = event.getY();*/
                 break;
             case MotionEvent.ACTION_UP:
                 this.hasFaceMoved = false;
