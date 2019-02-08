@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -70,14 +71,13 @@ public class CameraSolverActivity extends AppCompatActivity {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
 
-                // Bitmap bitmap = BitmapFactory.decodeResource(getApplication().getBaseContext().getResources(),R.drawable.cubeface);
-                Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                Bitmap bitmap = BitmapFactory.decodeByteArray(data.getByteArrayExtra("img"), 0, data.getByteArrayExtra("img").length);
                 imageView.setImageBitmap(bitmap);
 
-                GridCameraOverlay gridCameraOverlay = new GridCameraOverlay(getApplicationContext());
-                int[] coords = gridCameraOverlay.getOverlayCoordinates();
+                int[] coords = data.getIntArrayExtra("coords");
+                Log.e("COORDS", ""+coords[0]+" "+coords[1]+" "+coords[2]+" "+coords[3]);
 
-                int[][] colors = BitmapToInt.convert(bitmap, 3, coords[0], coords[1], coords[2], coords[3]);
+                int[][] colors = BitmapToInt.convert(bitmap, 3, 100, 100, 100, 100);
 
                 for (int i = 0; i < colors.length; i++) {
 
