@@ -1,7 +1,6 @@
 package iutfbleau.rubikscube;
 
 import android.content.Context;
-import android.content.res.Configuration;
 import android.hardware.Camera;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -37,9 +36,9 @@ public class ShowCamera extends SurfaceView implements SurfaceHolder.Callback {
 
         params.set("orientation", "portrait");
         camera.setDisplayOrientation(90);
-        params.setRotation(90);
 
         params.setPictureSize(mSize.width, mSize.height);
+       // params.setFlashMode(Camera.Parameters.FLASH_MODE_ON);
 
         camera.setParameters(params);
         try {

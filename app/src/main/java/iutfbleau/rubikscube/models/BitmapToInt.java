@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 public class BitmapToInt {
 
     private final static int[] TAB = {RBColor.WHITE, RBColor.GREEN, RBColor.RED, RBColor.BLUE, RBColor.ORANGE, RBColor.YELLOW};
-    private final static int TAKEN_IMG_PERCENTAGE = 80;
 
     private static Bitmap bitmap;
 

@@ -31,6 +31,7 @@ public class GridCameraOverlay extends View {
         coordTab[3] = middle+halfSquareHeight;
         //draw guide box
         canvas.drawRect(coordTab[0], coordTab[1], coordTab[2], coordTab[3], paint);
+        //drawRect(float left, float top, float right, float bottom, Paint paint)
     }
 
     public int[] getOverlayCoordinates(){
