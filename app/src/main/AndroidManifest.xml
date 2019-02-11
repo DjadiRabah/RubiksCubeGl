@@ -18,7 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".controllers.activities.SplashScreenActivity">
+        <activity
+            android:name=".controllers.activities.SplashScreenActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,6 +30,7 @@
         <activity
             android:name=".controllers.activities.NavActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".controllers.activities.CameraSolverActivity"
             android:label="@string/title_activity_camera_scan"
@@ -38,9 +41,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".controllers.activities.NavActivity" />
         </activity>
-        <activity android:name=".controllers.activities.GoogleSignInActivity" />
-        <activity android:name=".controllers.activities.WelcomeActivity" />
-        <activity android:name=".controllers.activities.CustomCameraActivity" />
+
+        <activity
+            android:name=".controllers.activities.GoogleSignInActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".controllers.activities.WelcomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".controllers.activities.CustomCameraActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

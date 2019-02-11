@@ -71,25 +71,21 @@ public class CameraSolverActivity extends AppCompatActivity {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
 
-                byte[] resBitmap = data.getByteArrayExtra("img");
+                byte[] resData = data.getByteArrayExtra("img");
 
-                Bitmap bitmap = BitmapFactory.decodeByteArray(resBitmap, 0, resBitmap.length);
+                Bitmap bitmap = BitmapFactory.decodeByteArray(resData, 0, resData.length);
 
-                    if (bitmap.getWidth() > bitmap.getHeight()) {
-                        bitmap = rotateImage(bitmap, 90);
-                    }
+                if (bitmap.getWidth() > bitmap.getHeight()) {
+                    bitmap = rotateImage(bitmap, 90);
+                }
 
-
-
-                int[] coords = data.getIntArrayExtra("coords");
-                Log.e("COORDS", ""+coords[0]+" "+coords[1]+" "+coords[2]+" "+coords[3]);
-
-                Log.e("COORDS", ""+bitmap.getWidth()+" "+bitmap.getHeight());
-
+                float[] coords = data.getFloatArrayExtra("coords");
+                Log.e("COORDS", "" + coords[0] + " " + coords[1] + " " + coords[2] + " " + coords[3]);
+                Log.e("COORDS", "" + bitmap.getWidth() + " " + bitmap.getHeight());
 
                 imageView.setImageBitmap(bitmap);
 
-              int[][] colors = BitmapToInt.convert(bitmap, 3, 0, 0, bitmap.getWidth(),bitmap.getHeight());
+                int[][] colors = BitmapToInt.convert(bitmap, 3, 0, 0, bitmap.getWidth(), bitmap.getHeight());
 
                 for (int i = 0; i < colors.length; i++) {
 
