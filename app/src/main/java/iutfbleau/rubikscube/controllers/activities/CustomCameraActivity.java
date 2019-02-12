@@ -100,26 +100,32 @@ public class CustomCameraActivity extends AppCompatActivity {
     Camera.PictureCallback pictureCallback = new Camera.PictureCallback() {
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
-            /*
-            File pictureFile = getOutputMediaFile(MEDIA_TYPE_IMAGE);
+
+            File pictureFile = getOutputMediaFile();
             if (pictureFile == null) {
                 Log.d("FILE", "Error creating media file, check storage permissions");
                 return;
-            }
+            }else {
 
-            try {
-                FileOutputStream fos = new FileOutputStream(pictureFile);
-                fos.write(data);
-                fos.close();
-            } catch (FileNotFoundException e) {
-                Log.d("FILE", "File not found: " + e.getMessage());
-            } catch (IOException e) {
-                Log.d("FILE", "Error accessing file: " + e.getMessage());
+                try {
+                    FileOutputStream fos = new FileOutputStream(pictureFile);
+                    fos.write(data);
+                    fos.close();
+
+                    camera.startPreview();
+
+
+                    Log.e("FILE", "IN TRY BLOCK");
+                } catch (FileNotFoundException e) {
+                    Log.d("FILE", "File not found: " + e.getMessage());
+                } catch (IOException e) {
+                    Log.d("FILE", "Error accessing file: " + e.getMessage());
+                }
+
+                resultIntent.putExtra("img", data);
+                setResult(Activity.RESULT_OK, resultIntent);
+                finish();
             }
-            */
-            resultIntent.putExtra("img", data);
-            setResult(Activity.RESULT_OK, resultIntent);
-            finish();
 
         }
     };
@@ -144,45 +150,38 @@ public class CustomCameraActivity extends AppCompatActivity {
         }
         return c; // returns null if camera is unavailable
     }
-/*
 
-    private static Uri getOutputMediaFileUri(int type) {
-        return Uri.fromFile(getOutputMediaFile(type));
-    }
-
-    private static File getOutputMediaFile(int type) {
+    private static File getOutputMediaFile() {
         // To be safe, you should check that the SDCard is mounted
         // using Environment.getExternalStorageState() before doing this.
-
-        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES), "MyCameraApp");
-        // This location works best if you want the created images to be shared
-        // between applications and persist after your app has been uninstalled.
-
-        // Create the storage directory if it does not exist
-        if (!mediaStorageDir.exists()) {
-            if (!mediaStorageDir.mkdirs()) {
-                Log.d("MyCameraApp", "failed to create directory");
-                return null;
-            }
-        }
-
-        // Create a media file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        File mediaFile;
-        if (type == MEDIA_TYPE_IMAGE) {
-            mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-                    "IMG_" + timeStamp + ".jpg");
-        } else if (type == MEDIA_TYPE_VIDEO) {
-            mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-                    "VID_" + timeStamp + ".mp4");
-        } else {
+        String state = Environment.getExternalStorageState();
+        if (!state.equals(Environment.MEDIA_MOUNTED)) {
             return null;
+        } else {
+            //https://www.youtube.com/watch?v=-W3qpuYr3lk
+
+            File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + File.separator + "rbcube_cache");
+            // This location works best if you want the created images to be shared
+            // between applications and persist after your app has been uninstalled.
+
+            // Create the storage directory if it does not exist
+            if (!mediaStorageDir.exists()) {
+                if (!mediaStorageDir.mkdirs()) {
+                    Log.d("MyCameraApp", "failed to create directory");
+                    return null;
+                }
+            }
+
+            // Create a media file name
+            Log.e("PATHNAME", ""+mediaStorageDir.getPath());
+            File mediaFile = new File(mediaStorageDir.getPath() + File.separator + "capture.jpg");
+
+            return mediaFile;
+
         }
 
-        return mediaFile;
     }
-*/
+
 }
 
 

@@ -13,6 +13,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
 
     private Camera camera;
     private SurfaceHolder surfaceHolder;
+    private Camera.Parameters params;
 
     public CameraPreview(Context context, Camera camera, int mode) {
         super(context);
@@ -24,7 +25,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
 
-        Camera.Parameters params = camera.getParameters();
+       params = camera.getParameters();
 
         List<Camera.Size> sizes = params.getSupportedPictureSizes();
         Camera.Size mSize = null;
@@ -72,6 +73,14 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
 
         // set preview size and make any resize, rotate or
         // reformatting changes here
+        List<Camera.Size> sizes = params.getSupportedPictureSizes();
+        Camera.Size size = sizes.get(0);
+        for(int i=0;i<sizes.size();i++)
+        {
+            if(sizes.get(i).width > size.width)
+                size = sizes.get(i);
+        }
+        params.setPictureSize(size.width, size.height);
 
         // start preview with new settings
         try {

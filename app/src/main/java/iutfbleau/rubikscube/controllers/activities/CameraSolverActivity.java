@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -16,6 +17,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import java.io.File;
 
 import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.models.BitmapToInt;
@@ -62,7 +65,6 @@ public class CameraSolverActivity extends AppCompatActivity {
         }
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -73,17 +75,27 @@ public class CameraSolverActivity extends AppCompatActivity {
 
                 byte[] resData = data.getByteArrayExtra("img");
 
-                Bitmap bitmap = BitmapFactory.decodeByteArray(resData, 0, resData.length);
+              //  Bitmap bitmap = BitmapFactory.decodeByteArray(resData, 0, resData.length);
+
+
+                //Try ... catch ???
+                File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + File.separator + "rbcube_cache");
+
+                File mediaFile = new File(mediaStorageDir.getPath() + File.separator + "capture.jpg");
+                Bitmap bitmap = BitmapFactory.decodeFile(mediaFile.getAbsolutePath());
+                Log.e("CAPTURED_IMG_DIM", "WIDTH = "+bitmap.getWidth()+", HEIGHT = "+bitmap.getHeight());
 
                 if (bitmap.getWidth() > bitmap.getHeight()) {
                     bitmap = rotateImage(bitmap, 90);
                 }
 
+                Bitmap resized = Bitmap.createScaledBitmap(bitmap,(int)(bitmap.getWidth()*0.7), (int)(bitmap.getHeight()*0.7), true);
+
                 float[] coords = data.getFloatArrayExtra("coords");
                 Log.e("COORDS", "" + coords[0] + " " + coords[1] + " " + coords[2] + " " + coords[3]);
                 Log.e("COORDS", "" + bitmap.getWidth() + " " + bitmap.getHeight());
 
-                imageView.setImageBitmap(bitmap);
+                imageView.setImageBitmap(resized);
 
                 int[][] colors = BitmapToInt.convert(bitmap, 3, 0, 0, bitmap.getWidth(), bitmap.getHeight());
 
