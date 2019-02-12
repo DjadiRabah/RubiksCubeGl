@@ -30,20 +30,20 @@ public class GridCameraOverlay extends View {
         float halfSquareHeight = getWidth()/2;
 
         coordTab[0] = offset;
-        coordTab[1] = middle-halfSquareHeight+offset;
-        coordTab[2] = getWidth()-offset;
-        coordTab[3] = middle+halfSquareHeight-offset;
+        coordTab[1] = middle - halfSquareHeight + offset;
+        coordTab[2] = getWidth() - offset;
+        coordTab[3] = middle + halfSquareHeight - offset;
         //draw guide box
         canvas.drawRect(coordTab[0], coordTab[1], coordTab[2], coordTab[3], paint);
         //left, top, right, bottom
 
         //Drawing vertical lines
-        canvas.drawLine(offset + (0.33f*cubeWidth), coordTab[1], offset + (0.33f*cubeWidth), middle+halfSquareHeight-offset, paint);
-        canvas.drawLine(offset + (0.66f*cubeWidth), coordTab[1], offset + (0.66f*cubeWidth), middle+halfSquareHeight-offset, paint);
+        canvas.drawLine(offset + (0.33f * cubeWidth), coordTab[1], offset + (0.33f * cubeWidth), middle + halfSquareHeight - offset, paint);
+        canvas.drawLine(offset + (0.66f * cubeWidth), coordTab[1], offset + (0.66f * cubeWidth), middle + halfSquareHeight - offset, paint);
 
         //Drawing horizontal lines
-        canvas.drawLine(offset, middle - 0.5f*cubeWidth + 0.33f*cubeWidth, getWidth()-offset, middle - 0.5f*cubeWidth + 0.33f*cubeWidth, paint);
-        canvas.drawLine(offset, middle - 0.5f*cubeWidth + 0.66f*cubeWidth, getWidth()-offset, middle - 0.5f*cubeWidth + 0.66f*cubeWidth, paint);
+        canvas.drawLine(offset, middle - 0.5f * cubeWidth + 0.33f * cubeWidth, getWidth() - offset, middle - 0.5f * cubeWidth + 0.33f * cubeWidth, paint);
+        canvas.drawLine(offset, middle - 0.5f * cubeWidth + 0.66f * cubeWidth, getWidth() - offset, middle - 0.5f * cubeWidth + 0.66f * cubeWidth, paint);
 
     }
 

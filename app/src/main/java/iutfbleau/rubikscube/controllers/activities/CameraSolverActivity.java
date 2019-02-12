@@ -117,6 +117,8 @@ public class CameraSolverActivity extends AppCompatActivity {
                     }
                 }
 
+            } else {
+                Toast.makeText(this, "An error occurred while trying to access the camera", Toast.LENGTH_LONG).show();
             }
         }
     }
