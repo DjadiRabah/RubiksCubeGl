@@ -4,15 +4,22 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.support.v4.content.ContextCompat;
+import android.util.AttributeSet;
 import android.view.View;
 
 public class GridCameraOverlay extends View {
+
     private Paint paint = new Paint();
     private float[] coordTab = new float[4];
+    private int cubeSize;
 
+    public GridCameraOverlay(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-    public GridCameraOverlay(Context context) {
+    public GridCameraOverlay(Context context, int cubeSize) {
         super(context);
+        this.cubeSize = cubeSize;
     }
 
     @Override
@@ -24,9 +31,9 @@ public class GridCameraOverlay extends View {
         paint.setStrokeWidth(3);
 
         float offset = 100.0f;
-        float cubeWidth = getWidth()-2*offset;
-        float middle = getHeight()/2;
-        float halfSquareHeight = getWidth()/2;
+        float cubeWidth = getWidth() - 2 * offset;
+        float middle = getHeight() / 2;
+        float halfSquareHeight = getWidth() / 2;
 
         coordTab[0] = offset;
         coordTab[1] = middle - halfSquareHeight + offset;
@@ -36,17 +43,19 @@ public class GridCameraOverlay extends View {
         canvas.drawRect(coordTab[0], coordTab[1], coordTab[2], coordTab[3], paint);
         //left, top, right, bottom
 
-        //Drawing vertical lines
-        canvas.drawLine(offset + (0.33f * cubeWidth), coordTab[1], offset + (0.33f * cubeWidth), middle + halfSquareHeight - offset, paint);
-        canvas.drawLine(offset + (0.66f * cubeWidth), coordTab[1], offset + (0.66f * cubeWidth), middle + halfSquareHeight - offset, paint);
+        //Dynamically generate grid overlay
+        for (int i = 0; i < cubeSize - 1; i++) {
 
-        //Drawing horizontal lines
-        canvas.drawLine(offset, middle - 0.5f * cubeWidth + 0.33f * cubeWidth, getWidth() - offset, middle - 0.5f * cubeWidth + 0.33f * cubeWidth, paint);
-        canvas.drawLine(offset, middle - 0.5f * cubeWidth + 0.66f * cubeWidth, getWidth() - offset, middle - 0.5f * cubeWidth + 0.66f * cubeWidth, paint);
+            float ratio = (1 / ((float) cubeSize)) * (i + 1);
+            //Drawing vertical lines
+            canvas.drawLine(offset + (ratio * cubeWidth), coordTab[1], offset + (ratio * cubeWidth), middle + halfSquareHeight - offset, paint);
+            //Drawing horizontal lines
+            canvas.drawLine(offset, middle - 0.5f * cubeWidth + ratio * cubeWidth, getWidth() - offset, middle - 0.5f * cubeWidth + ratio * cubeWidth, paint);
 
+        }
     }
 
-    public float[] getOverlayCoordinates(){
+    public float[] getOverlayCoordinates() {
 
         return this.coordTab;
 

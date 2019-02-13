@@ -40,7 +40,8 @@ public class CameraSolverActivity extends AppCompatActivity {
         imageView = findViewById(R.id.imageView);
 
         // Check if the Camera permission is already available
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             // Camera permissions is already available, show the camera preview
 
             btnCamera.setOnClickListener(new View.OnClickListener() {
@@ -56,12 +57,13 @@ public class CameraSolverActivity extends AppCompatActivity {
             //Provide an additional rationale to the user if the permission was not granted
             //and the user would benefit from additional context for the use of the permission
 
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
-                Toast.makeText(this, "Camera permission is needed to show the camera preview !", Toast.LENGTH_LONG).show();
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)
+                    || ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                Toast.makeText(this, "Camera and External Storage Write permissions are required to use the solver !", Toast.LENGTH_LONG).show();
             }
 
             //Request camera permission
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, GET_CAMERA_ACCESS);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, GET_CAMERA_ACCESS);
         }
     }
 
@@ -130,7 +132,7 @@ public class CameraSolverActivity extends AppCompatActivity {
                 }
 
             } else {
-                Toast.makeText(this, "An error occurred while trying to access the camera", Toast.LENGTH_LONG).show();
+                //Toast.makeText(this, "An error occurred while trying to access the camera", Toast.LENGTH_LONG).show();
             }
         }
     }

@@ -55,7 +55,7 @@ public class CustomCameraActivity extends AppCompatActivity {
                 camera = Camera.open(); // attempt to get a Camera instance
                 cameraPreview = new CameraPreview(this, camera, 0);
                 frameLayout.addView(cameraPreview);
-                GridCameraOverlay gridCameraOverlay = new GridCameraOverlay(this);
+                GridCameraOverlay gridCameraOverlay = new GridCameraOverlay(this, 6);
                 resultIntent.putExtra("coords", gridCameraOverlay.getOverlayCoordinates());
                 addContentView(gridCameraOverlay, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.FILL_PARENT, FrameLayout.LayoutParams.FILL_PARENT));
             } catch (Exception e) {
@@ -91,7 +91,7 @@ public class CustomCameraActivity extends AppCompatActivity {
             camera = getCameraInstance();
             cameraPreview = new CameraPreview(this, camera, 0);
             frameLayout.addView(cameraPreview);
-            GridCameraOverlay gridCameraOverlay = new GridCameraOverlay(this);
+            GridCameraOverlay gridCameraOverlay = new GridCameraOverlay(this, 6);
             resultIntent.putExtra("coords", gridCameraOverlay.getOverlayCoordinates());
             addContentView(gridCameraOverlay, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.FILL_PARENT, FrameLayout.LayoutParams.FILL_PARENT));
         }
@@ -105,7 +105,7 @@ public class CustomCameraActivity extends AppCompatActivity {
             if (pictureFile == null) {
                 Log.d("FILE", "Error creating media file, check storage permissions");
                 return;
-            }else {
+            } else {
 
                 try {
                     FileOutputStream fos = new FileOutputStream(pictureFile);
@@ -173,7 +173,7 @@ public class CustomCameraActivity extends AppCompatActivity {
             }
 
             // Create a media file name
-            Log.e("PATHNAME", ""+mediaStorageDir.getPath());
+            Log.e("PATHNAME", "" + mediaStorageDir.getPath());
             File mediaFile = new File(mediaStorageDir.getPath() + File.separator + "capture.jpg");
 
             return mediaFile;
