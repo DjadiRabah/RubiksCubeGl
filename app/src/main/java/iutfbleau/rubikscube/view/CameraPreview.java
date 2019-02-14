@@ -1,4 +1,4 @@
-package iutfbleau.rubikscube;
+package iutfbleau.rubikscube.view;
 
 import android.content.Context;
 import android.hardware.Camera;
@@ -40,6 +40,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         camera.setDisplayOrientation(90);
 
         params.setPictureSize(mSize.width, mSize.height);
+        params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
         // params.setFlashMode(Camera.Parameters.FLASH_MODE_ON);
 
         camera.setParameters(params);

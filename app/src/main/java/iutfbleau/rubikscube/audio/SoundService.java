@@ -8,7 +8,7 @@ import android.os.IBinder;
 import iutfbleau.rubikscube.R;
 
 
-public class SoundService extends Service {
+public abstract class SoundService extends Service {
     MediaPlayer player;
 
     @Override

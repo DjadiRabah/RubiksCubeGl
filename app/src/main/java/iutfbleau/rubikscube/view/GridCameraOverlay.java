@@ -1,4 +1,4 @@
-package iutfbleau.rubikscube;
+package iutfbleau.rubikscube.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -6,6 +6,8 @@ import android.graphics.Paint;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
+
+import iutfbleau.rubikscube.R;
 
 public class GridCameraOverlay extends View {
 
