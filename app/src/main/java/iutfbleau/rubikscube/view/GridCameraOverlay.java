@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import iutfbleau.rubikscube.R;
@@ -34,27 +35,32 @@ public class GridCameraOverlay extends View {
 
         float offset = 100.0f;
         float cubeWidth = getWidth() - 2 * offset;
-        float middle = getHeight() / 2;
-        float halfSquareHeight = getWidth() / 2;
+        float middle = getHeight() / 2.0f;
+        float halfSquareHeight = getWidth() / 2.0f;
 
-        coordTab[0] = offset;
-        coordTab[1] = middle - halfSquareHeight + offset;
-        coordTab[2] = getWidth() - offset;
-        coordTab[3] = middle + halfSquareHeight - offset;
         //draw guide box
-        canvas.drawRect(coordTab[0], coordTab[1], coordTab[2], coordTab[3], paint);
+        canvas.drawRect(offset, middle - halfSquareHeight + offset, getWidth() - offset, middle + halfSquareHeight - offset, paint);
         //left, top, right, bottom
+
+        canvas.drawLine(0.0f, getHeight()/2.0f, getWidth(), getHeight()/2.0f, paint);
 
         //Dynamically generate grid overlay
         for (int i = 0; i < cubeSize - 1; i++) {
 
             float ratio = (1 / ((float) cubeSize)) * (i + 1);
             //Drawing vertical lines
-            canvas.drawLine(offset + (ratio * cubeWidth), coordTab[1], offset + (ratio * cubeWidth), middle + halfSquareHeight - offset, paint);
+            canvas.drawLine(offset + (ratio * cubeWidth), middle - halfSquareHeight + offset, offset + (ratio * cubeWidth), middle + halfSquareHeight - offset, paint);
             //Drawing horizontal lines
             canvas.drawLine(offset, middle - 0.5f * cubeWidth + ratio * cubeWidth, getWidth() - offset, middle - 0.5f * cubeWidth + ratio * cubeWidth, paint);
 
         }
+
+        Log.e("CANVAS", "WIDTH = " + getWidth() + ", HEIGHT = " + getHeight());
+
+        coordTab[0] = offset;
+        coordTab[1] = cubeWidth/2.0f;
+        coordTab[2] = getWidth() - (2.0f*offset) - 20;
+        coordTab[3] = getWidth() - (2.0f*offset) - 20;
     }
 
     public float[] getOverlayCoordinates() {

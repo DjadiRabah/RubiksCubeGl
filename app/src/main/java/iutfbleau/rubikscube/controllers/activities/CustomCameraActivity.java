@@ -4,10 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
-import android.net.Uri;
 import android.os.Environment;
-import android.provider.MediaStore;
-import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,8 +17,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.view.GridCameraOverlay;
@@ -29,16 +24,12 @@ import iutfbleau.rubikscube.view.CameraPreview;
 
 public class CustomCameraActivity extends AppCompatActivity {
 
-    public static final int MEDIA_TYPE_IMAGE = 1;
-    public static final int MEDIA_TYPE_VIDEO = 2;
-
-
-
     private Camera camera;
     private FrameLayout frameLayout;
     private Intent resultIntent = new Intent();
     private Button flash, capture;
     private CameraPreview cameraPreview;
+    private GridCameraOverlay gridCameraOverlay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,17 +83,68 @@ public class CustomCameraActivity extends AppCompatActivity {
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
 
+            File pictureFile = getOutputMediaFile();
+            FileOutputStream fos;
+            if (pictureFile != null) {
+                try {
+                    fos = new FileOutputStream(pictureFile);
+                    try {
+                        fos.write(data);
+                        fos.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                setResult(Activity.RESULT_CANCELED);
+                finish();
+            }
+
+            Intent resultIntent = new Intent();
+            resultIntent.putExtra("img_path", pictureFile.getPath());
+            resultIntent.putExtra("coordinates", gridCameraOverlay.getOverlayCoordinates());
+            Log.e("PATH", "" + pictureFile.getPath());
+            setResult(Activity.RESULT_OK, resultIntent);
+            finish();
         }
     };
 
+    private File getOutputMediaFile() {
 
+        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
+
+            File mediaStorageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+
+            if (!mediaStorageDir.exists()) {
+                if (!mediaStorageDir.mkdirs()) {
+                    Log.e("MyCameraApp", "failed to create directory");
+                    return null;
+                }
+            }
+
+            String imageFileName = "capture";
+            File image = null;
+            try {
+                image = File.createTempFile(imageFileName, ".jpg", mediaStorageDir);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return image;
+
+        } else {
+            return null;
+        }
+    }
 
 
     public void startPreview() {
         camera = getCameraInstance(); // attempt to get a Camera instance
         cameraPreview = new CameraPreview(this, camera, 0);
         frameLayout.addView(cameraPreview);
-        GridCameraOverlay gridCameraOverlay = new GridCameraOverlay(this, 6);
+        gridCameraOverlay = new GridCameraOverlay(this, 3);
         resultIntent.putExtra("coords", gridCameraOverlay.getOverlayCoordinates());
         addContentView(gridCameraOverlay, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.FILL_PARENT, FrameLayout.LayoutParams.FILL_PARENT));
     }

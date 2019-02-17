@@ -14,6 +14,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
     private Camera camera;
     private SurfaceHolder surfaceHolder;
     private Camera.Parameters params;
+    private Camera.Size bestSize;
 
     public CameraPreview(Context context, Camera camera, int mode) {
         super(context);
@@ -27,19 +28,25 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
 
        params = camera.getParameters();
 
-        List<Camera.Size> sizes = params.getSupportedPictureSizes();
-        Camera.Size mSize = null;
+        // set preview size and make any resize, rotate or
+        // reformatting changes here
 
-        for (Camera.Size size : sizes) {
+        List<Camera.Size> sizeList = params.getSupportedPreviewSizes();
 
-            mSize = size;
-
+        bestSize = sizeList.get(0);
+        for(int i = 1; i < sizeList.size(); i++){
+            if((sizeList.get(i).width * sizeList.get(i).height) > (bestSize.width * bestSize.height)){
+                bestSize = sizeList.get(i);
+            }
         }
+
+        params.setPictureSize(bestSize.width, bestSize.height);
+        params.setPreviewSize(bestSize.width, bestSize.height);
 
         params.set("orientation", "portrait");
         camera.setDisplayOrientation(90);
 
-        params.setPictureSize(mSize.width, mSize.height);
+
         params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
         // params.setFlashMode(Camera.Parameters.FLASH_MODE_ON);
 
@@ -51,8 +58,6 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
             e.printStackTrace();
             Log.d("CAMERA", "Error starting camera preview: " + e.getMessage());
         }
-
-
     }
 
     @Override
@@ -72,16 +77,8 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
             // ignore: tried to stop a non-existent preview
         }
 
-        // set preview size and make any resize, rotate or
-        // reformatting changes here
-        List<Camera.Size> sizes = params.getSupportedPictureSizes();
-        Camera.Size size = sizes.get(0);
-        for(int i=0;i<sizes.size();i++)
-        {
-            if(sizes.get(i).width > size.width)
-                size = sizes.get(i);
-        }
-        params.setPictureSize(size.width, size.height);
+        params.setPictureSize(bestSize.width, bestSize.height);
+        params.setPreviewSize(bestSize.width, bestSize.height);
 
         // start preview with new settings
         try {
@@ -92,7 +89,6 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
             e.printStackTrace();
             Log.d("CAMERA", "Error starting camera preview: " + e.getMessage());
         }
-
     }
 
     @Override
