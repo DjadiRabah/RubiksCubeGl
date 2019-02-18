@@ -19,7 +19,7 @@ public class GoogleAuthManager {
 
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(activity.getString(R.string.default_web_client_id))
+                .requestIdToken("331069963227-0idlujo0hg9b6f5vnrhbdn7j0ijvr7mb.apps.googleusercontent.com")
                 .requestEmail()
                 .build();
 

@@ -29,6 +29,8 @@ public class CameraSolverActivity extends Activity {
 
     static final int REQUEST_TAKE_PHOTO = 1;
 
+    //CAMERA 2 API : https://github.com/googlesamples/android-Camera2Basic
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -76,16 +78,13 @@ public class CameraSolverActivity extends Activity {
                     bitmap = rotateImage(bitmap, 90);
                 }
 
-                Log.e("IMG VIEW", "WIDTH = " + imageView.getWidth() + ", HEIGHT = " + imageView.getHeight());
-
-
-                Log.e("BITMAP SIZE", "WIDTH = " + bitmap.getWidth() + ", HEIGHT = " + bitmap.getHeight());
-
                 float[] coordinates = data.getFloatArrayExtra("coordinates");
-                Log.e("COORDS", "" + coordinates[0] + " " + coordinates[1] + " " + coordinates[2] + " " + coordinates[3]);
+                Log.e("COORDS", "" + coordinates[0] + " " + coordinates[1] + " " + coordinates[2]);
 
-                bitmap = Bitmap.createBitmap(bitmap, 100, 1280/2 - 520/2 + 134/2, 720 - 200, 720 - 200);
+                bitmap = Bitmap.createBitmap(bitmap, (int)coordinates[0], (int)coordinates[1], (int)coordinates[2], (int)coordinates[2]);
 
+                Log.e("IMG VIEW", "WIDTH = " + imageView.getWidth() + ", HEIGHT = " + imageView.getHeight());
+                Log.e("BITMAP SIZE", "WIDTH = " + bitmap.getWidth() + ", HEIGHT = " + bitmap.getHeight());
                 Log.e("BITMAP RESIZED", "WIDTH = " + bitmap.getWidth() + ", HEIGHT = " + bitmap.getHeight());
 
                 //BitmapDrawable drawable = new BitmapDrawable(getResources(), bitmap);

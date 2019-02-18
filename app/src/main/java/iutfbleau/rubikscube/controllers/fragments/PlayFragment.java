@@ -47,7 +47,6 @@ public class PlayFragment extends Fragment {
     public GLSurfaceView glSurfaceView;
     private CubeGl cube;
 
-
     public PlayFragment()
     {
       this.cube = new CubeGl(new Cube3D(3));
