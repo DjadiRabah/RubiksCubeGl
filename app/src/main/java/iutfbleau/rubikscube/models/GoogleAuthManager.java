@@ -1,5 +1,6 @@
 package iutfbleau.rubikscube.models;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -14,7 +15,7 @@ public class GoogleAuthManager {
 
     private static GoogleSignInClient googleClient; //memory leak ???
 
-    public GoogleAuthManager(AppCompatActivity activity) {
+    public GoogleAuthManager(Activity activity) {
 
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

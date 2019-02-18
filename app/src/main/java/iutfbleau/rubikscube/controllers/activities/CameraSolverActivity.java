@@ -1,16 +1,15 @@
 package iutfbleau.rubikscube.controllers.activities;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +19,7 @@ import android.widget.Toast;
 import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.models.BitmapToInt;
 
-public class CameraSolverActivity extends AppCompatActivity {
+public class CameraSolverActivity extends Activity {
 
     private static final int CAMERA_REQUEST = 1;
     private static final int ALL_PERMISSIONS = 2;

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.os.Environment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,7 +21,7 @@ import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.view.GridCameraOverlay;
 import iutfbleau.rubikscube.view.CameraPreview;
 
-public class CustomCameraActivity extends AppCompatActivity {
+public class CustomCameraActivity extends Activity {
 
     private Camera camera;
     private FrameLayout frameLayout;
