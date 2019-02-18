@@ -2,10 +2,14 @@ package iutfbleau.rubikscube.models.cube.cube;
 
 import android.util.Log;
 
+import iutfbleau.rubikscube.models.cube.face.Face;
 import iutfbleau.rubikscube.models.cube.face.Face3D;
 import iutfbleau.rubikscube.models.cube.piece.Piece;
 import iutfbleau.rubikscube.models.rotation.Rotation;
+import iutfbleau.rubikscube.models.rotation.RotationX;
 import iutfbleau.rubikscube.models.rotation.RotationX3D;
+import iutfbleau.rubikscube.models.rotation.RotationY;
+import iutfbleau.rubikscube.models.rotation.RotationZ;
 
 public class Cube3D extends Cube
 {
@@ -66,7 +70,6 @@ public class Cube3D extends Cube
 
     public void rotateY(double teta)
     {
-
         this.tetaY = this.tetaY + teta;
         if(this.tetaY >= Math.PI / 2.0)
         {
@@ -84,10 +87,20 @@ public class Cube3D extends Cube
         }
     }
 
+    @Override
+    public Face3D getSquare(int position)
+    {
+        return (Face3D)this.faces[position];
+    }
+
     public void rotate(int direction, int index)
     {
         super.rotate(direction,index);
-        new RotationX3D().rotate(this,direction,index);
+        this.notifyObservers() ;
+        if ((direction == Rotation.RIGHT) || (direction == Rotation.LEFT))
+        {
+            new RotationX3D().rotate(this, direction, index);
+        }
     }
 
     public void rotateZ(double teta)

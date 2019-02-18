@@ -1,6 +1,9 @@
 package iutfbleau.rubikscube.models.rotation;
 
+import android.util.Log;
+
 import iutfbleau.rubikscube.models.cube.cube.Cube;
+import iutfbleau.rubikscube.models.cube.cube.Cube3D;
 import iutfbleau.rubikscube.models.cube.piece.Piece;
 
 public class RotationX implements RotationComplex

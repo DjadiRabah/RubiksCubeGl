@@ -1,5 +1,6 @@
 package iutfbleau.rubikscube.models.cube.face;
 
+import iutfbleau.rubikscube.models.cube.piece.Piece;
 import iutfbleau.rubikscube.models.cube.piece.Piece3D;
 
 public class Face3D extends Face
@@ -96,6 +97,48 @@ public class Face3D extends Face
             return true;
         }
         return false;
+    }
+
+    public float[][] getRowVertices(int row)
+    {
+        float[][] vertices = new float[this.size][12];
+        for(int currentPiece = 0; currentPiece < this.size; currentPiece++)
+        {
+            vertices[currentPiece] = ((Piece3D)this.pieces[row][currentPiece]).getVertices();
+        }
+        return vertices;
+    }
+
+    public Piece3D[][] getPieces()
+    {
+        Piece3D[][] square = new Piece3D[this.size][this.size];
+        for(int i = 0; i < this.size; i++)
+        {
+            for(int j = 0; j < this.size; j++)
+            {
+                square[i][j] = (Piece3D)this.pieces[i][j];
+            }
+        }
+        return square;
+    }
+
+    @Override
+    public Piece3D[] getRow(int row)
+    {
+        Piece3D[] pieces = new Piece3D[this.size];
+        for(int currentPiece = 0; currentPiece < this.size; currentPiece++)
+        {
+            pieces[currentPiece] = (Piece3D)this.pieces[row][currentPiece];
+        }
+        return pieces;
+    }
+
+    public void setRowVertices(int row, float[][] vertices)
+    {
+        for(int i = 0; i < this.size; i++)
+        {
+            ((Piece3D)this.pieces[row][i]).setVertices(vertices[i]);
+        }
     }
 
     public double getTetaX()

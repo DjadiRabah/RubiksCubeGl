@@ -113,8 +113,21 @@ public class Piece3D extends Piece
         }
     }
 
+    public void setVertices(float[] vertices)
+    {
+        for(int i = 0; i < vertices.length; i++)
+        {
+            this.vertexBuffer.put(i,vertices[i]);
+        }
+    }
+
     public float[] getVertices()
     {
-        return this.vertexBuffer.array();
+        float[] vertices = new float[12];
+        for(int i = 0; i < vertices.length; i++)
+        {
+            vertices[i] = this.vertexBuffer.get(i);
+        }
+        return vertices;
     }
 }

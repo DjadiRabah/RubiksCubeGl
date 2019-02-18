@@ -1,22 +1,23 @@
 package iutfbleau.rubikscube.models.rotation;
 
+import android.util.Log;
+
 import iutfbleau.rubikscube.models.cube.cube.Cube;
 import iutfbleau.rubikscube.models.cube.cube.Cube3D;
-import iutfbleau.rubikscube.models.cube.face.Face3D;
 import iutfbleau.rubikscube.models.cube.piece.Piece;
+import iutfbleau.rubikscube.models.cube.piece.Piece3D;
 
 public class RotationX3D extends RotationX
 {
-    @Override
-    public void rotate(Cube cube, int direction, int index)
+    public void rotate(Cube3D cube, int direction, int index)
     {
-        Cube3D cube3D = (Cube3D)cube;
+        /*
         if(index == 0)
         {
             switch (direction)
             {
-                case LEFT : new RotationFace3D().rotate(cube.getSquare(Cube.TOP), CLOCKWISE);         break;
-                case RIGHT: new RotationFace3D().rotate(cube.getSquare(Cube.TOP), COUNTERCLOCKWISE);  break;
+                case LEFT : new RotationFace().rotate(cube.getSquare(Cube.TOP), CLOCKWISE);         break;
+                case RIGHT: new RotationFace().rotate(cube.getSquare(Cube.TOP), COUNTERCLOCKWISE);  break;
                 default: break;
             }
         }
@@ -24,32 +25,30 @@ public class RotationX3D extends RotationX
         {
             switch (direction)
             {
-                case LEFT :  new RotationFace3D().rotate(cube.getSquare(Cube.DOWN), COUNTERCLOCKWISE);       break;
-                case RIGHT:  new RotationFace3D().rotate(cube.getSquare(Cube.DOWN), CLOCKWISE); break;
+                case LEFT :  new RotationFace().rotate(cube.getSquare(Cube.DOWN), COUNTERCLOCKWISE);       break;
+                case RIGHT:  new RotationFace().rotate(cube.getSquare(Cube.DOWN), CLOCKWISE); break;
                 default: break;
             }
-        }
+        }*/
         switch (direction)
         {
             case LEFT :
-                for(int i = Cube.LEFT; i <= Cube.BACK; i++)
+                float[][] vertices = cube.getSquare(Cube.LEFT).getRowVertices(index);
+                for(int i = 1; i < 4; i++)
                 {
-                    Face3D face3D =  ((Face3D)cube3D.getSquare(i));
-                    for(int j = 0; j < face3D.getSize(); j++) {
-                        face3D.rotateY(-Math.PI / 2.0, index, j);
-                    }
+                    cube.getSquare(i).setRowVertices(index, cube.getSquare(i+1).getRowVertices(index));
                 }
+                cube.getSquare(4).setRowVertices(index, vertices);
                 break;
             case RIGHT:
-                for(int i = Cube.LEFT; i <= Cube.BACK; i++)
+                vertices = cube.getSquare(Cube.BACK).getRowVertices(index);
+                for(int i = 4; i > 1; i--)
                 {
-                    Face3D face3D =  ((Face3D)cube3D.getSquare(i));
-                    for(int j = 0; j < face3D.getSize(); j++) {
-                        face3D.rotateY(Math.PI / 2.0, index, j);
-                    }
+                    cube.getSquare(i).setRowVertices(index, cube.getSquare(i-1).getRowVertices(index));
                 }
+                cube.getSquare(Cube.LEFT).setRowVertices(index, vertices);
+                break;
             default: break;
         }
     }
 }
-
