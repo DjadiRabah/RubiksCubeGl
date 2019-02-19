@@ -35,7 +35,7 @@ public class CustomCameraActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_camera);
 
-        flash = findViewById(R.id.flash);
+       // flash = findViewById(R.id.flash);
         capture = findViewById(R.id.capture);
         frameLayout = findViewById(R.id.frameLayout);
         //flash.setOnClickListener(new CameraCaptureListener(this));
@@ -145,6 +145,7 @@ public class CustomCameraActivity extends Activity {
         frameLayout.addView(cameraPreview);
         gridCameraOverlay = new GridCameraOverlay(this, 3);
         resultIntent.putExtra("coords", gridCameraOverlay.getOverlayCoordinates());
+        Log.e("BUTTON HEIGHT", ""+ capture.getHeight());
         addContentView(gridCameraOverlay, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.FILL_PARENT, FrameLayout.LayoutParams.FILL_PARENT));
     }
 

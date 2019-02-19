@@ -81,10 +81,11 @@ public class CameraSolverActivity extends Activity {
                 float[] coordinates = data.getFloatArrayExtra("coordinates");
                 Log.e("COORDS", "" + coordinates[0] + " " + coordinates[1] + " " + coordinates[2]);
 
-                bitmap = Bitmap.createBitmap(bitmap, (int)coordinates[0], (int)coordinates[1], (int)coordinates[2], (int)coordinates[2]);
+                Log.e("BITMAP SIZE", "WIDTH = " + bitmap.getWidth() + ", HEIGHT = " + bitmap.getHeight());
+
+                bitmap = Bitmap.createBitmap(bitmap, (int)coordinates[0], (int)coordinates[1]+60, (int)coordinates[2], (int)coordinates[2]);
 
                 Log.e("IMG VIEW", "WIDTH = " + imageView.getWidth() + ", HEIGHT = " + imageView.getHeight());
-                Log.e("BITMAP SIZE", "WIDTH = " + bitmap.getWidth() + ", HEIGHT = " + bitmap.getHeight());
                 Log.e("BITMAP RESIZED", "WIDTH = " + bitmap.getWidth() + ", HEIGHT = " + bitmap.getHeight());
 
                 //BitmapDrawable drawable = new BitmapDrawable(getResources(), bitmap);

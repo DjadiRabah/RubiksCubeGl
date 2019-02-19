@@ -42,8 +42,6 @@ public class GridCameraOverlay extends View {
         canvas.drawRect(offset, middle - halfSquareHeight + offset, getWidth() - offset, middle + halfSquareHeight - offset, paint);
         //left, top, right, bottom
 
-        canvas.drawLine(0.0f, getHeight()/2.0f, getWidth(), getHeight()/2.0f, paint);
-
         //Dynamically generate grid overlay
         for (int i = 0; i < cubeSize - 1; i++) {
 
@@ -59,7 +57,7 @@ public class GridCameraOverlay extends View {
 
         coordTab[0] = offset;
         coordTab[1] = getHeight()/2.0f - cubeWidth/2.0f;
-        coordTab[2] = getWidth() - (2.0f*offset);
+        coordTab[2] = cubeWidth;
     }
 
     public float[] getOverlayCoordinates() {
