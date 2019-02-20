@@ -1,16 +1,15 @@
 package iutfbleau.rubikscube.controllers.activities;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +19,7 @@ import android.widget.Toast;
 import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.models.BitmapToInt;
 
-public class CameraSolverActivity extends AppCompatActivity {
+public class CameraSolverActivity extends Activity {
 
     private static final int CAMERA_REQUEST = 1;
     private static final int ALL_PERMISSIONS = 2;
@@ -29,6 +28,8 @@ public class CameraSolverActivity extends AppCompatActivity {
     private Button btnCamera;
 
     static final int REQUEST_TAKE_PHOTO = 1;
+
+    //CAMERA 2 API : https://github.com/googlesamples/android-Camera2Basic
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,16 +78,14 @@ public class CameraSolverActivity extends AppCompatActivity {
                     bitmap = rotateImage(bitmap, 90);
                 }
 
-                Log.e("IMG VIEW", "WIDTH = " + imageView.getWidth() + ", HEIGHT = " + imageView.getHeight());
-
+                float[] coordinates = data.getFloatArrayExtra("coordinates");
+                Log.e("COORDS", "" + coordinates[0] + " " + coordinates[1] + " " + coordinates[2]);
 
                 Log.e("BITMAP SIZE", "WIDTH = " + bitmap.getWidth() + ", HEIGHT = " + bitmap.getHeight());
 
-                float[] coordinates = data.getFloatArrayExtra("coordinates");
-                Log.e("COORDS", "" + coordinates[0] + " " + coordinates[1] + " " + coordinates[2] + " " + coordinates[3]);
+                bitmap = Bitmap.createBitmap(bitmap, (int)coordinates[0], (int)coordinates[1]+60, (int)coordinates[2], (int)coordinates[2]);
 
-                bitmap = Bitmap.createBitmap(bitmap, 100, 1280/2 - 520/2 + 134/2, 720 - 200, 720 - 200);
-
+                Log.e("IMG VIEW", "WIDTH = " + imageView.getWidth() + ", HEIGHT = " + imageView.getHeight());
                 Log.e("BITMAP RESIZED", "WIDTH = " + bitmap.getWidth() + ", HEIGHT = " + bitmap.getHeight());
 
                 //BitmapDrawable drawable = new BitmapDrawable(getResources(), bitmap);

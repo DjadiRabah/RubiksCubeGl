@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.os.Environment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,7 +21,7 @@ import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.view.GridCameraOverlay;
 import iutfbleau.rubikscube.view.CameraPreview;
 
-public class CustomCameraActivity extends AppCompatActivity {
+public class CustomCameraActivity extends Activity {
 
     private Camera camera;
     private FrameLayout frameLayout;
@@ -36,7 +35,7 @@ public class CustomCameraActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_camera);
 
-        flash = findViewById(R.id.flash);
+       // flash = findViewById(R.id.flash);
         capture = findViewById(R.id.capture);
         frameLayout = findViewById(R.id.frameLayout);
         //flash.setOnClickListener(new CameraCaptureListener(this));
@@ -146,6 +145,7 @@ public class CustomCameraActivity extends AppCompatActivity {
         frameLayout.addView(cameraPreview);
         gridCameraOverlay = new GridCameraOverlay(this, 3);
         resultIntent.putExtra("coords", gridCameraOverlay.getOverlayCoordinates());
+        Log.e("BUTTON HEIGHT", ""+ capture.getHeight());
         addContentView(gridCameraOverlay, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.FILL_PARENT, FrameLayout.LayoutParams.FILL_PARENT));
     }
 

@@ -1,5 +1,6 @@
 package iutfbleau.rubikscube.models;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -14,11 +15,11 @@ public class GoogleAuthManager {
 
     private static GoogleSignInClient googleClient; //memory leak ???
 
-    public GoogleAuthManager(AppCompatActivity activity) {
+    public GoogleAuthManager(Activity activity) {
 
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(activity.getString(R.string.default_web_client_id))
+                .requestIdToken("331069963227-0idlujo0hg9b6f5vnrhbdn7j0ijvr7mb.apps.googleusercontent.com")
                 .requestEmail()
                 .build();
 

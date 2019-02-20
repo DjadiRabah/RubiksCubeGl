@@ -6,13 +6,13 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.PreferenceManager;
 import android.view.WindowManager;
 
 import iutfbleau.rubikscube.R;
-import iutfbleau.rubikscube.audio.SoundService;
+//import iutfbleau.rubikscube.audio.SoundService;
 import iutfbleau.rubikscube.controllers.fragments.PlayFragment;
 import iutfbleau.rubikscube.controllers.fragments.SettingsFragment;
 import iutfbleau.rubikscube.controllers.fragments.SolveFragment;
@@ -36,7 +36,7 @@ public class NavActivity extends AppCompatActivity {
         this.fxSound = true;
         this.backgroundMusic = true;
 
-        startService(new Intent(getApplicationContext(), SoundService.class));
+        //startService(new Intent(getApplicationContext(), SoundService.class));
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav);
@@ -62,7 +62,7 @@ public class NavActivity extends AppCompatActivity {
 
     protected void onDestroy() {
         //stop service and stop music
-        stopService(new Intent(getApplicationContext(), SoundService.class));
+        //stopService(new Intent(getApplicationContext(), SoundService.class));
         super.onDestroy();
     }
 

@@ -12,7 +12,7 @@ import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.controllers.listeners.DontAskMeCheckboxListener;
 import iutfbleau.rubikscube.controllers.listeners.WelcomeActivityListener;
 
-public class WelcomeActivity extends AppCompatActivity {
+public class WelcomeActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

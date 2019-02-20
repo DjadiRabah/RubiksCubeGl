@@ -13,7 +13,7 @@ import iutfbleau.rubikscube.R;
 public class GridCameraOverlay extends View {
 
     private Paint paint = new Paint();
-    private float[] coordTab = new float[4];
+    private float[] coordTab = new float[3];
     private int cubeSize;
 
     public GridCameraOverlay(Context context, AttributeSet attrs) {
@@ -42,8 +42,6 @@ public class GridCameraOverlay extends View {
         canvas.drawRect(offset, middle - halfSquareHeight + offset, getWidth() - offset, middle + halfSquareHeight - offset, paint);
         //left, top, right, bottom
 
-        canvas.drawLine(0.0f, getHeight()/2.0f, getWidth(), getHeight()/2.0f, paint);
-
         //Dynamically generate grid overlay
         for (int i = 0; i < cubeSize - 1; i++) {
 
@@ -58,9 +56,8 @@ public class GridCameraOverlay extends View {
         Log.e("CANVAS", "WIDTH = " + getWidth() + ", HEIGHT = " + getHeight());
 
         coordTab[0] = offset;
-        coordTab[1] = cubeWidth/2.0f;
-        coordTab[2] = getWidth() - (2.0f*offset) - 20;
-        coordTab[3] = getWidth() - (2.0f*offset) - 20;
+        coordTab[1] = getHeight()/2.0f - cubeWidth/2.0f;
+        coordTab[2] = cubeWidth;
     }
 
     public float[] getOverlayCoordinates() {
