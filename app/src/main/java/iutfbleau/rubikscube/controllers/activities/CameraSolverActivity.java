@@ -14,18 +14,21 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import iutfbleau.rubikscube.R;
+import iutfbleau.rubikscube.controllers.listeners.CameraSolverOnClickListener;
 import iutfbleau.rubikscube.models.BitmapToInt;
 
 public class CameraSolverActivity extends Activity {
 
-    private static final int CAMERA_REQUEST = 1;
+    public static final int CAMERA_REQUEST = 1;
     private static final int ALL_PERMISSIONS = 2;
 
     private ImageView imageView;
-    private Button btnCamera;
+    private Button btnCamera, btnNext, btnPrev;
+    private TextView textView;
 
     static final int REQUEST_TAKE_PHOTO = 1;
 
@@ -37,20 +40,24 @@ public class CameraSolverActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera_solver);
 
+        CameraSolverOnClickListener cameraSolverOnClickListener = new CameraSolverOnClickListener((this));
+
         btnCamera = findViewById(R.id.btnCamera);
+        btnNext = findViewById(R.id.next);
+        btnPrev = findViewById(R.id.prev);
+
         imageView = findViewById(R.id.imageView);
+        textView = findViewById(R.id.textView);
+
+        btnNext.setOnClickListener(cameraSolverOnClickListener);
+        btnPrev.setOnClickListener(cameraSolverOnClickListener);
 
         // Check if the Camera permission is already available
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
             // Camera permissions is already available, show the camera preview
-            btnCamera.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(getApplicationContext(), CustomCameraActivity.class);
-                    startActivityForResult(intent, CAMERA_REQUEST);
-                }
-            });
+            btnCamera.setOnClickListener(cameraSolverOnClickListener);
+
         } else {
             //Camera permission has not been granted
             //Provide an additional rationale to the user if the permission was not granted
@@ -94,35 +101,37 @@ public class CameraSolverActivity extends Activity {
 
                 int[][] colors = BitmapToInt.convert(bitmap, 3, 0, 0, bitmap.getWidth(), bitmap.getHeight());
 
+                String res = "";
+
                 for (int i = 0; i < colors.length; i++) {
 
                     for (int j = 0; j < colors[0].length; j++) {
-                        Log.e("YES", i + " " + j);
 
                         switch (colors[i][j]) {
                             case 0:
-                                Log.e("COLOR", "blanc");
+                                res += "blanc ";
                                 break;
                             case 1:
-                                Log.e("COLOR", "vert");
+                                res += "vert ";
                                 break;
                             case 2:
-                                Log.e("COLOR", "rouge ");
+                                res += "rouge ";
                                 break;
                             case 3:
-                                Log.e("COLOR", "bleu ");
+                                res += "bleu ";
                                 break;
                             case 4:
-                                Log.e("COLOR", "orange ");
+                                res += "orange ";
                                 break;
                             case 5:
-                                Log.e("COLOR", "jaune ");
+                                res += "jaune ";
                                 break;
                             default:
                                 break;
                         }
                     }
                 }
+                textView.setText(res);
             }
         }
     }
@@ -202,6 +211,18 @@ public class CameraSolverActivity extends Activity {
         Matrix matrix = new Matrix();
         matrix.postRotate(angle);
         return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
+    }
+
+    public Button getNextButton(){
+        return btnNext;
+    }
+
+    public Button getPrevButton(){
+        return btnPrev;
+    }
+
+    public Button getShootButton(){
+        return btnCamera;
     }
 }
 
