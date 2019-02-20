@@ -32,7 +32,7 @@ public class RotationX3D extends RotationX
         }*/
         switch (direction)
         {
-            case LEFT :
+            case RIGHT:
                 float[][] vertices = cube.getSquare(Cube.LEFT).getRowVertices(index);
                 for(int i = 1; i < 4; i++)
                 {
@@ -40,7 +40,7 @@ public class RotationX3D extends RotationX
                 }
                 cube.getSquare(4).setRowVertices(index, vertices);
                 break;
-            case RIGHT:
+            case LEFT:
                 vertices = cube.getSquare(Cube.BACK).getRowVertices(index);
                 for(int i = 4; i > 1; i--)
                 {
