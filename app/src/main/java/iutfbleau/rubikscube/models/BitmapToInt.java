@@ -1,6 +1,7 @@
 package iutfbleau.rubikscube.models;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 
 public class BitmapToInt {
 
@@ -8,25 +9,26 @@ public class BitmapToInt {
 
     private static Bitmap bitmap;
 
-    public static int[][] convert(Bitmap bitmap, int size, int topLeftX, int topLeftY, int bottomRightX, int bottomRightY) {
+    public static int[][] convert(Bitmap bitmap, int size) {
 
         BitmapToInt.bitmap = bitmap;
+
 
         int[][] colors = new int[size][size];
         int[][] allColors = getColors();
 
-        int height = bottomRightY - topLeftY;
-        int width = bottomRightX - topLeftX;
+        int height = bitmap.getHeight();
+        int width = bitmap.getWidth();
         int blockHeight = height / size;
         int blockWidth = width / size;
-        int offsetX = topLeftX;
-        int offsetY = topLeftY;
+        int offsetX = 0;
+        int offsetY = 0;
 
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 int max = getNumberColor(allColors, offsetY, blockHeight, offsetX, blockWidth, 0);
                 int color = 0;
-                for (int k = 1; k < 6; k++) {
+                for (int k = 0; k < 6; k++) {
                     int newNumber = getNumberColor(allColors, offsetY + i * blockHeight, offsetY + (i + 1) * blockHeight,
                             offsetX + j * blockWidth, offsetX + (j + 1) * blockWidth, k);
                     if (max < newNumber) {

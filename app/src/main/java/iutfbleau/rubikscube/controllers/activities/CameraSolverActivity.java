@@ -99,7 +99,7 @@ public class CameraSolverActivity extends Activity {
                 //imageView.setBackground(drawable);
                 imageView.setImageBitmap(bitmap);
 
-                int[][] colors = BitmapToInt.convert(bitmap, 3, 0, 0, bitmap.getWidth(), bitmap.getHeight());
+                int[][] colors = BitmapToInt.convert(bitmap, 3);
 
                 String res = "";
 
