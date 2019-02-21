@@ -1,15 +1,12 @@
 package iutfbleau.rubikscube.models;
 
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import iutfbleau.rubikscube.R;
 
 public class GoogleAuthManager {
 

@@ -101,7 +101,6 @@ public class GoogleSignInActivity extends BaseActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = GoogleAuthManager.getFirebaseUser();
                             updateGoogleAuthInfoText(AUTHSUCCESS);
 
                         } else {

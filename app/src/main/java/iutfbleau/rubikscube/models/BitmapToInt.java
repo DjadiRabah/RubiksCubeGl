@@ -1,7 +1,6 @@
 package iutfbleau.rubikscube.models;
 
 import android.graphics.Bitmap;
-import android.util.Log;
 
 public class BitmapToInt {
 
@@ -62,12 +61,11 @@ public class BitmapToInt {
     }
 
     private static int[][] getColors() {
-        int[][] colors = null;
 
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
 
-        colors = new int[height][width];
+        int[][] colors = new int[height][width];
 
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
@@ -94,9 +92,4 @@ public class BitmapToInt {
         }
         return cpt;
     }
-
-    private static int abs(int val) {
-        return val < 0 ? val * -1 : val;
-    }
-
 }

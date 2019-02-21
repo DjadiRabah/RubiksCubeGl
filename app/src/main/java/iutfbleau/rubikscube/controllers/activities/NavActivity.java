@@ -1,7 +1,6 @@
 package iutfbleau.rubikscube.controllers.activities;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -15,7 +14,7 @@ import iutfbleau.rubikscube.R;
 //import iutfbleau.rubikscube.audio.SoundService;
 import iutfbleau.rubikscube.controllers.fragments.PlayFragment;
 import iutfbleau.rubikscube.controllers.fragments.SettingsFragment;
-import iutfbleau.rubikscube.controllers.fragments.SolveFragment;
+import iutfbleau.rubikscube.controllers.fragments.SolverFragment;
 import iutfbleau.rubikscube.controllers.fragments.StatsFragment;
 import iutfbleau.rubikscube.controllers.listeners.BottomNavigationViewListener;
 import iutfbleau.rubikscube.models.FileManager;
@@ -23,7 +22,7 @@ import iutfbleau.rubikscube.models.FileManager;
 public class NavActivity extends AppCompatActivity {
 
     public PlayFragment playFragment;
-    public SolveFragment solveFragment;
+    public SolverFragment solverFragment;
     public StatsFragment statsFragment;
     public SettingsFragment settingsFragment;
 
@@ -46,7 +45,7 @@ public class NavActivity extends AppCompatActivity {
         BottomNavigationView mainNav = findViewById(R.id.main_nav);
 
         playFragment = new PlayFragment();
-        solveFragment = new SolveFragment();
+        solverFragment = new SolverFragment();
         statsFragment = new StatsFragment();
         settingsFragment = new SettingsFragment();
 

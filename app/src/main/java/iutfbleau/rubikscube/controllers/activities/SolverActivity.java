@@ -7,32 +7,37 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import iutfbleau.rubikscube.R;
-import iutfbleau.rubikscube.controllers.listeners.CameraSolverOnClickListener;
+import iutfbleau.rubikscube.controllers.listeners.SolverOnClickListener;
 import iutfbleau.rubikscube.models.BitmapToInt;
+import iutfbleau.rubikscube.models.cube.cube.Cube3D;
+import iutfbleau.rubikscube.view.CubeGl;
+import iutfbleau.rubikscube.view.OpenGLRenderer;
 
-public class CameraSolverActivity extends Activity {
+public class SolverActivity extends Activity {
 
     public static final int CAMERA_REQUEST = 1;
     private static final int ALL_PERMISSIONS = 2;
 
-    private ImageView imageView;
+    public GLSurfaceView glSurfaceView;
     private Button btnCamera, btnNext, btnPrev;
     private TextView textView;
+    private OpenGLRenderer openglRenderer;
+    private CubeGl cube;
+    private int cubeSize;
 
     static final int REQUEST_TAKE_PHOTO = 1;
-
-    //CAMERA 2 API : https://github.com/googlesamples/android-Camera2Basic
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,23 +45,33 @@ public class CameraSolverActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera_solver);
 
-        CameraSolverOnClickListener cameraSolverOnClickListener = new CameraSolverOnClickListener((this));
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        cubeSize = getIntent().getIntExtra("cube_size", 3);
+        Log.e("CUBE SIZE", ""+cubeSize);
+
+        SolverOnClickListener solverOnClickListener = new SolverOnClickListener((this));
 
         btnCamera = findViewById(R.id.btnCamera);
         btnNext = findViewById(R.id.next);
         btnPrev = findViewById(R.id.prev);
 
-        imageView = findViewById(R.id.imageView);
+        glSurfaceView = findViewById(R.id.glsurfaceview);
         textView = findViewById(R.id.textView);
 
-        btnNext.setOnClickListener(cameraSolverOnClickListener);
-        btnPrev.setOnClickListener(cameraSolverOnClickListener);
+        btnNext.setOnClickListener(solverOnClickListener);
+        btnPrev.setOnClickListener(solverOnClickListener);
+
+        cube = new CubeGl(new Cube3D(cubeSize));
+        openglRenderer = new OpenGLRenderer(cube);
+
+        glSurfaceView.setRenderer(openglRenderer);
 
         // Check if the Camera permission is already available
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
             // Camera permissions is already available, show the camera preview
-            btnCamera.setOnClickListener(cameraSolverOnClickListener);
+            btnCamera.setOnClickListener(solverOnClickListener);
 
         } else {
             //Camera permission has not been granted
@@ -80,92 +95,54 @@ public class CameraSolverActivity extends Activity {
             if (resultCode == RESULT_OK) {
 
                 Bitmap bitmap = BitmapFactory.decodeFile(data.getStringExtra("img_path"));
+                float[] coordinates = data.getFloatArrayExtra("coordinates");
 
                 if (bitmap.getWidth() > bitmap.getHeight()) {
                     bitmap = rotateImage(bitmap, 90);
                 }
 
-                float[] coordinates = data.getFloatArrayExtra("coordinates");
                 Log.e("COORDS", "" + coordinates[0] + " " + coordinates[1] + " " + coordinates[2]);
-
                 Log.e("BITMAP SIZE", "WIDTH = " + bitmap.getWidth() + ", HEIGHT = " + bitmap.getHeight());
 
                 bitmap = Bitmap.createBitmap(bitmap, (int)coordinates[0], (int)coordinates[1]+60, (int)coordinates[2], (int)coordinates[2]);
 
-                Log.e("IMG VIEW", "WIDTH = " + imageView.getWidth() + ", HEIGHT = " + imageView.getHeight());
                 Log.e("BITMAP RESIZED", "WIDTH = " + bitmap.getWidth() + ", HEIGHT = " + bitmap.getHeight());
 
-                //BitmapDrawable drawable = new BitmapDrawable(getResources(), bitmap);
-                //imageView.setBackground(drawable);
-                imageView.setImageBitmap(bitmap);
+                int[][] colors = BitmapToInt.convert(bitmap, cubeSize);
 
-                int[][] colors = BitmapToInt.convert(bitmap, 3);
+                StringBuilder res = new StringBuilder();
 
-                String res = "";
-
-                for (int i = 0; i < colors.length; i++) {
+                for (int[] color : colors) {
 
                     for (int j = 0; j < colors[0].length; j++) {
 
-                        switch (colors[i][j]) {
+                        switch (color[j]) {
                             case 0:
-                                res += "blanc ";
+                                res.append("blanc ");
                                 break;
                             case 1:
-                                res += "vert ";
+                                res.append("vert ");
                                 break;
                             case 2:
-                                res += "rouge ";
+                                res.append("rouge ");
                                 break;
                             case 3:
-                                res += "bleu ";
+                                res.append("bleu ");
                                 break;
                             case 4:
-                                res += "orange ";
+                                res.append("orange ");
                                 break;
                             case 5:
-                                res += "jaune ";
+                                res.append("jaune ");
                                 break;
                             default:
                                 break;
                         }
                     }
                 }
-                textView.setText(res);
+                textView.setText(res.toString());
             }
         }
-    }
-
-    private Bitmap bmpResize(ImageView target, String src_path) {
-        // Get the dimensions of the View
-        int targetW = target.getWidth();
-        int targetH = target.getHeight();
-        Log.e("IMG VIEW SIZE", "WIDTH = " + targetW + ", HEIGHT = " + targetH);
-
-        // Get the dimensions of the bitmap
-        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-        bmOptions.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile(src_path, bmOptions);
-        int photoW = bmOptions.outWidth;
-        int photoH = bmOptions.outHeight;
-
-        // Determine how much to scale down the image
-        int scaleFactor = Math.min(photoW / targetW, photoH / targetH);
-        Log.e("SCALE FACTOR", ""+scaleFactor);
-
-        // Decode the image file into a Bitmap sized to fill the View
-        bmOptions.inJustDecodeBounds = false;
-        bmOptions.inSampleSize = scaleFactor;
-        bmOptions.inPurgeable = true;
-
-        Bitmap bitmap = BitmapFactory.decodeFile(src_path, bmOptions);
-
-        if (bitmap.getWidth() > bitmap.getHeight()) {
-            bitmap = rotateImage(bitmap, 90);
-        }
-        Log.e("BITMAP SIZE", "WIDTH = " + bitmap.getWidth() + ", HEIGHT = " + bitmap.getHeight());
-
-        return bitmap;
     }
 
     @Override
@@ -224,5 +201,7 @@ public class CameraSolverActivity extends Activity {
     public Button getShootButton(){
         return btnCamera;
     }
+
+    public int getCubeSize(){ return cubeSize; }
 }
 

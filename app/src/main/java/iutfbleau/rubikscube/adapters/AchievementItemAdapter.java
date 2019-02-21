@@ -45,53 +45,56 @@ public class AchievementItemAdapter extends BaseAdapter {
     }
 
     @Override
-    public long getItemId(int position)
-    {
+    public long getItemId(int position) {
         return 0;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        convertView = inflater.inflate(R.layout.adapter_item, null);
 
-        //get informations about item
-        AchievementItem currentItem = (AchievementItem) getItem(position);
-        final String itemName = currentItem.getName();
-        String mnemonic = currentItem.getMnemonic();
-        final String itemDesc = currentItem.getDesc();
 
-        //get image icon view
-        ImageView itemIconView = convertView.findViewById(R.id.item_icon);
+        if (convertView == null) { // if convertView is null
+            convertView = inflater.inflate(R.layout.adapter_item, parent, false);
 
-        //get item desc view
-        TextView itemPriceView = convertView.findViewById(R.id.item_desc);
-        itemPriceView.setText(itemDesc);
+            //get informations about item
+            AchievementItem currentItem = (AchievementItem) getItem(position);
+            final String itemName = currentItem.getName();
+            String mnemonic = currentItem.getMnemonic();
+            final String itemDesc = currentItem.getDesc();
 
-        //get item name view
-        TextView itemNameView = convertView.findViewById(R.id.item_name);
+            //get image icon view
+            ImageView itemIconView = convertView.findViewById(R.id.item_icon);
 
-        if(currentItem.getState()){
-            String ressourceName = "item_" + mnemonic + "_icon";
-            int resId = context.getResources().getIdentifier(ressourceName, "drawable", context.getPackageName());
-            itemIconView.setImageResource(resId);
-            itemNameView.setText(itemName);
+            //get item desc view
+            TextView itemPriceView = convertView.findViewById(R.id.item_desc);
+            itemPriceView.setText(itemDesc);
 
-        }else{
+            //get item name view
+            TextView itemNameView = convertView.findViewById(R.id.item_name);
 
-            int resId = context.getResources().getIdentifier(String.valueOf(R.drawable.item_lock_icon), "drawable", context.getPackageName());
-            itemIconView.setImageResource(resId);
-            itemNameView.setText(itemName + " [Locked]");
+            if (currentItem.getState()) {
+                String ressourceName = "item_" + mnemonic + "_icon";
+                int resId = context.getResources().getIdentifier(ressourceName, "drawable", context.getPackageName());
+                itemIconView.setImageResource(resId);
+                itemNameView.setText(itemName);
+
+            } else {
+
+                int resId = context.getResources().getIdentifier(String.valueOf(R.drawable.item_lock_icon), "drawable", context.getPackageName());
+                itemIconView.setImageResource(resId);
+                itemNameView.setText(itemName + " [Locked]");
+
+            }
+
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context, "Achievement : " + itemName, Toast.LENGTH_SHORT).show();
+                }
+            });
 
         }
-
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "Achievement : "+itemName, Toast.LENGTH_SHORT).show();
-            }
-        });
 
         return convertView;
     }
 }
-

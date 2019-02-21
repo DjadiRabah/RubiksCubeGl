@@ -29,13 +29,16 @@ public class CustomCameraActivity extends Activity {
     private Button flash, capture;
     private CameraPreview cameraPreview;
     private GridCameraOverlay gridCameraOverlay;
+    private int cubeSize;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_camera);
 
-       // flash = findViewById(R.id.flash);
+        cubeSize = getIntent().getIntExtra("cube_size", 3);
+
+        flash = findViewById(R.id.flash);
         capture = findViewById(R.id.capture);
         frameLayout = findViewById(R.id.frameLayout);
         //flash.setOnClickListener(new CameraCaptureListener(this));
@@ -141,9 +144,9 @@ public class CustomCameraActivity extends Activity {
 
     public void startPreview() {
         camera = getCameraInstance(); // attempt to get a Camera instance
-        cameraPreview = new CameraPreview(this, camera, 0);
+        cameraPreview = new CameraPreview(this, camera);
         frameLayout.addView(cameraPreview);
-        gridCameraOverlay = new GridCameraOverlay(this, 3);
+        gridCameraOverlay = new GridCameraOverlay(this, cubeSize);
         resultIntent.putExtra("coords", gridCameraOverlay.getOverlayCoordinates());
         Log.e("BUTTON HEIGHT", ""+ capture.getHeight());
         addContentView(gridCameraOverlay, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.FILL_PARENT, FrameLayout.LayoutParams.FILL_PARENT));

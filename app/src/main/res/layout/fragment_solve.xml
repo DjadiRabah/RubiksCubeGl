@@ -1,41 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/solver_text"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/solver_fragment"
+        android:textColor="@color/colorWhite"
+        android:background="@color/colorPrimaryDark"
+        android:textSize="30sp" />
+
+    <TextView
+        android:textSize="15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:text="@string/seekbar_info" />
+
+    <TextView
+        android:paddingStart="10sp"
+        android:paddingEnd="10sp"
+        android:id="@+id/cubeSizeDisp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:text="@string/cube_size_param"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="6"
+        android:gravity="center"
         android:orientation="vertical"
-        android:weightSum="3">
+        android:padding="20dp">
 
-        <TextView
-            android:id="@+id/solver_text"
-            android:text="@string/solver_fragment"
-            android:gravity="center"
-            android:textSize="23sp"
+        <SeekBar
+            android:id="@+id/size_seekBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/colorWhite"
-            android:background="@color/colorPrimary"
-            />
+            android:thumb="@drawable/seek_thumb" />
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:text="@string/manual_input"
-            android:layout_height="wrap_content"
-            style="?android:attr/borderlessButtonStyle"
-            android:textColor="@color/colorWhite"
-            android:background="@drawable/button_border"
-            />
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:text="@string/camera_input"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorWhite"
-            android:background="@drawable/button_border"
-            style="?android:attr/borderlessButtonStyle"
-            />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:gravity="center|bottom"
+        android:orientation="vertical">
+
+        <Button
+            style="?attr/buttonBarButtonStyle"
+            android:id="@+id/start_solver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:text="@string/start_solver_activity"
+            android:textColor="@color/colorWhite" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -33,7 +33,7 @@ public class BottomNavigationViewListener implements BottomNavigationView.OnNavi
                 return true;
 
             case R.id.nav_solve:
-                navActivity.setFragment(navActivity.solveFragment);
+                navActivity.setFragment(navActivity.solverFragment);
                 return true;
 
             case R.id.nav_stats:
