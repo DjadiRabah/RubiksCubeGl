@@ -7,20 +7,25 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.Point;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import iutfbleau.rubikscube.R;
+import iutfbleau.rubikscube.controllers.listeners.RBColorPickerOnClickListener;
 import iutfbleau.rubikscube.controllers.listeners.SolverOnClickListener;
 import iutfbleau.rubikscube.models.BitmapToInt;
+import iutfbleau.rubikscube.models.RBColor;
 import iutfbleau.rubikscube.models.cube.cube.Cube3D;
 import iutfbleau.rubikscube.view.CubeGl;
 import iutfbleau.rubikscube.view.OpenGLRenderer;
@@ -37,6 +42,10 @@ public class SolverActivity extends Activity {
     private CubeGl cube;
     private int cubeSize;
 
+    private int[] rbColor = {RBColor.GREEN, RBColor.ORANGE, RBColor.BLUE, RBColor.RED, RBColor.YELLOW, RBColor.WHITE};
+    private String[] rbColorNames = {"green", "orange", "blue", "red", "yellow", "white"};
+    private Button[] buttons = new Button[6];
+
     static final int REQUEST_TAKE_PHOTO = 1;
 
     @Override
@@ -48,7 +57,9 @@ public class SolverActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         cubeSize = getIntent().getIntExtra("cube_size", 3);
-        Log.e("CUBE SIZE", ""+cubeSize);
+        Log.e("CUBE SIZE", "" + cubeSize);
+
+        cube = new CubeGl(new Cube3D(cubeSize));
 
         SolverOnClickListener solverOnClickListener = new SolverOnClickListener((this));
 
@@ -56,15 +67,35 @@ public class SolverActivity extends Activity {
         btnNext = findViewById(R.id.next);
         btnPrev = findViewById(R.id.prev);
 
+        LinearLayout colorPickerLayout = findViewById(R.id.colorPickerLayout);
+
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int buttonWidth = size.x / 6;
+
+        Log.e("SCRENN WIDTH", "" + buttonWidth);
+
+        RBColorPickerOnClickListener rbColorPickerOnClickListener = new RBColorPickerOnClickListener();
+
+        for (int i = 0; i < 6; i++) {
+
+            buttons[i] = new Button(this);
+            buttons[i].setLayoutParams(new LinearLayout.LayoutParams(buttonWidth, LinearLayout.LayoutParams.WRAP_CONTENT));
+            buttons[i].setTag(rbColorNames[i]);
+            buttons[i].setBackgroundColor(rbColor[i]);
+            buttons[i].setPadding(20, 20, 20, 20);
+            colorPickerLayout.addView(buttons[i]);
+            buttons[i].setOnClickListener(rbColorPickerOnClickListener);
+        }
+
         glSurfaceView = findViewById(R.id.glsurfaceview);
-        textView = findViewById(R.id.textView);
+        //textView = findViewById(R.id.textView);
 
         btnNext.setOnClickListener(solverOnClickListener);
         btnPrev.setOnClickListener(solverOnClickListener);
 
-        cube = new CubeGl(new Cube3D(cubeSize));
         openglRenderer = new OpenGLRenderer(cube);
-
         glSurfaceView.setRenderer(openglRenderer);
 
         // Check if the Camera permission is already available
@@ -104,7 +135,7 @@ public class SolverActivity extends Activity {
                 Log.e("COORDS", "" + coordinates[0] + " " + coordinates[1] + " " + coordinates[2]);
                 Log.e("BITMAP SIZE", "WIDTH = " + bitmap.getWidth() + ", HEIGHT = " + bitmap.getHeight());
 
-                bitmap = Bitmap.createBitmap(bitmap, (int)coordinates[0], (int)coordinates[1]+60, (int)coordinates[2], (int)coordinates[2]);
+                bitmap = Bitmap.createBitmap(bitmap, (int) coordinates[0], (int) coordinates[1] + 60, (int) coordinates[2], (int) coordinates[2]);
 
                 Log.e("BITMAP RESIZED", "WIDTH = " + bitmap.getWidth() + ", HEIGHT = " + bitmap.getHeight());
 
@@ -190,18 +221,24 @@ public class SolverActivity extends Activity {
         return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
     }
 
-    public Button getNextButton(){
+    public Button getNextButton() {
         return btnNext;
     }
 
-    public Button getPrevButton(){
+    public Button getPrevButton() {
         return btnPrev;
     }
 
-    public Button getShootButton(){
+    public Button getShootButton() {
         return btnCamera;
     }
 
-    public int getCubeSize(){ return cubeSize; }
+    public int getCubeSize() {
+        return cubeSize;
+    }
+
+    public CubeGl get3DCube() {
+        return cube;
+    }
 }
 

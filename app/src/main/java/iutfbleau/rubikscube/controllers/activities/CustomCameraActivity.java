@@ -141,14 +141,12 @@ public class CustomCameraActivity extends Activity {
         }
     }
 
-
     public void startPreview() {
         camera = getCameraInstance(); // attempt to get a Camera instance
         cameraPreview = new CameraPreview(this, camera);
         frameLayout.addView(cameraPreview);
         gridCameraOverlay = new GridCameraOverlay(this, cubeSize);
         resultIntent.putExtra("coords", gridCameraOverlay.getOverlayCoordinates());
-        Log.e("BUTTON HEIGHT", ""+ capture.getHeight());
         addContentView(gridCameraOverlay, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.FILL_PARENT, FrameLayout.LayoutParams.FILL_PARENT));
     }
 

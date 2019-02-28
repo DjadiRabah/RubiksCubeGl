@@ -60,8 +60,8 @@
     <string name="item_default_desc">Success\' description</string>
     <string name="take_pictue_button">Shoot face 1</string>
 
-    <string name="prev_button_text">◀ Prev</string>
-    <string name="next_button_text">Next ▶</string>
+    <string name="prev_button_text">❰</string>
+    <string name="next_button_text">❱</string>
     <string name="start_solver_activity">Start</string>
     <string name="cube_size_param">Size : 2</string>
     <string name="seekbar_info">Select the size of the cube you want to resolve :</string>
