@@ -41,7 +41,7 @@ public class BottomNavigationViewListener implements BottomNavigationView.OnNavi
                 return true;
 
             case R.id.nav_settings:
-                navActivity.setFragment(navActivity.settingsFragment);
+                navActivity.setFragment(navActivity.preferenceFragment);
                 return true;
 
             default:

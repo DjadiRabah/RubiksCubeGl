@@ -4,17 +4,17 @@ import android.support.v14.preference.SwitchPreference;
 import android.widget.Toast;
 
 import iutfbleau.rubikscube.controllers.activities.NavActivity;
-import iutfbleau.rubikscube.controllers.fragments.SettingsFragment;
+import iutfbleau.rubikscube.controllers.fragments.PreferenceFragment;
 
 public class SwitchPreferenceListener implements android.support.v7.preference.Preference.OnPreferenceChangeListener {
 
-    private SettingsFragment settingsFragment;
+    private PreferenceFragment preferenceFragment;
     private NavActivity navActivity;
 
 
-    public SwitchPreferenceListener(SettingsFragment settingsFragment, NavActivity navActivity) {
+    public SwitchPreferenceListener(PreferenceFragment preferenceFragment, NavActivity navActivity) {
 
-        this.settingsFragment = settingsFragment;
+        this.preferenceFragment = preferenceFragment;
         this.navActivity = navActivity;
 
     }
@@ -30,12 +30,12 @@ public class SwitchPreferenceListener implements android.support.v7.preference.P
 
                 if(switchState1) {
 
-                    Toast.makeText(settingsFragment.getActivity(),"Sounds effects are now off.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(preferenceFragment.getActivity(),"Sounds effects are now off.",Toast.LENGTH_SHORT).show();
                     ((SwitchPreference) preference).setChecked(false);
 
                 }else{
 
-                    Toast.makeText(settingsFragment.getActivity(),"Sounds effects are now on.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(preferenceFragment.getActivity(),"Sounds effects are now on.",Toast.LENGTH_SHORT).show();
                     ((SwitchPreference) preference).setChecked(true);
                 }
 
@@ -48,12 +48,12 @@ public class SwitchPreferenceListener implements android.support.v7.preference.P
 
                 if(switchState2){
 
-                    Toast.makeText(settingsFragment.getActivity(),"Background music is now off.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(preferenceFragment.getActivity(),"Background music is now off.",Toast.LENGTH_SHORT).show();
                     ((SwitchPreference) preference).setChecked(false);
 
                 }else {
 
-                    Toast.makeText(settingsFragment.getActivity(),"Background music is now on.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(preferenceFragment.getActivity(),"Background music is now on.",Toast.LENGTH_SHORT).show();
                     ((SwitchPreference) preference).setChecked(true);
 
                 }

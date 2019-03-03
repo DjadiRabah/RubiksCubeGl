@@ -5,14 +5,15 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import iutfbleau.rubikscube.controllers.fragments.PlayFragment;
+import iutfbleau.rubikscube.controllers.fragments.PlayMenuFragment;
 
 public class RadioGroupListener implements RadioGroup.OnCheckedChangeListener  {
 
-    private PlayFragment fragment;
+    private PlayMenuFragment playMenuFragment;
 
-    public RadioGroupListener(PlayFragment fragment){
+    public RadioGroupListener(PlayMenuFragment playMenuFragment){
 
-        this.fragment = fragment;
+        this.playMenuFragment = playMenuFragment;
 
     }
 
@@ -27,7 +28,9 @@ public class RadioGroupListener implements RadioGroup.OnCheckedChangeListener  {
 
             if (btn.getId() == checkedId) {
 
-                this.fragment.updateSurfaceView(x+3);
+                playMenuFragment.updateSurfaceView(x+3);
+                playMenuFragment.getDialogFrame().dismiss();
+                playMenuFragment.closeFragment();
               //  this.fragment.setCube(x+3);
                // this.fragment.getOpenglRenderer().setCube(new Cube(x+3));
 

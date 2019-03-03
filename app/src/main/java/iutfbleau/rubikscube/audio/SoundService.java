@@ -4,11 +4,12 @@ import android.app.Service;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.IBinder;
+import android.util.Log;
 
 import iutfbleau.rubikscube.R;
 
 
-public abstract class SoundService extends Service {
+public class SoundService extends Service {
     MediaPlayer player;
 
     @Override

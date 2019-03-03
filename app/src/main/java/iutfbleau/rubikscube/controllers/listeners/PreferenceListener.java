@@ -4,25 +4,25 @@ import android.content.Intent;
 import android.widget.Toast;
 
 import iutfbleau.rubikscube.controllers.activities.GoogleSignInActivity;
-import iutfbleau.rubikscube.controllers.fragments.SettingsFragment;
+import iutfbleau.rubikscube.controllers.fragments.PreferenceFragment;
 import iutfbleau.rubikscube.models.GoogleAuthManager;
 
 public class PreferenceListener implements android.support.v7.preference.Preference.OnPreferenceClickListener {
 
-    private SettingsFragment settingsFragment;
+    private PreferenceFragment preferenceFragment;
     private Intent googleSignInIntent;
     private android.support.v7.preference.Preference login, logout, revoke, user;
 
-    public PreferenceListener(SettingsFragment settingsFragment) {
+    public PreferenceListener(PreferenceFragment preferenceFragment) {
 
-        this.settingsFragment = settingsFragment;
+        this.preferenceFragment = preferenceFragment;
 
-        this.login = settingsFragment.getPreferenceScreen().findPreference("preference_login");
-        this.logout = settingsFragment.getPreferenceScreen().findPreference("preference_logout");
-        this.revoke = settingsFragment.getPreferenceScreen().findPreference("preference_revoke");
-        this.user = settingsFragment.getPreferenceScreen().findPreference("user");
+        this.login = preferenceFragment.getPreferenceScreen().findPreference("preference_login");
+        this.logout = preferenceFragment.getPreferenceScreen().findPreference("preference_logout");
+        this.revoke = preferenceFragment.getPreferenceScreen().findPreference("preference_revoke");
+        this.user = preferenceFragment.getPreferenceScreen().findPreference("user");
 
-        googleSignInIntent = new Intent(settingsFragment.getContext(), GoogleSignInActivity.class);
+        googleSignInIntent = new Intent(preferenceFragment.getContext(), GoogleSignInActivity.class);
 
     }
 
@@ -33,7 +33,7 @@ public class PreferenceListener implements android.support.v7.preference.Prefere
 
             case "preference_login":
 
-                settingsFragment.startActivity(googleSignInIntent);
+                preferenceFragment.startActivity(googleSignInIntent);
 
                 //La vue est
                 if (GoogleAuthManager.userConnected()){
@@ -53,7 +53,7 @@ public class PreferenceListener implements android.support.v7.preference.Prefere
                 user.setEnabled(false);
                 user.setTitle("Actual user : none");
                 user.setSummary("Email : none");
-                Toast.makeText(settingsFragment.getContext(), "You are now logged out.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(preferenceFragment.getContext(), "You are now logged out.", Toast.LENGTH_SHORT).show();
 
                 break;
 
@@ -66,7 +66,7 @@ public class PreferenceListener implements android.support.v7.preference.Prefere
                 user.setTitle("Actual user : none");
                 user.setSummary("Email : none");
 
-                Toast.makeText(settingsFragment.getContext(), "You have revoked our access to your Google account.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(preferenceFragment.getContext(), "You have revoked our access to your Google account.", Toast.LENGTH_SHORT).show();
 
                 break;
         }

@@ -171,7 +171,7 @@ public class SolverActivity extends Activity {
                         }
                     }
                 }
-                textView.setText(res.toString());
+               // textView.setText(res.toString());
             }
         }
     }

@@ -1,4 +1,4 @@
-package iutfbleau.rubikscube.models;
+package iutfbleau.rubikscube.controllers.listeners;
 
 import android.app.Activity;
 import android.support.v4.widget.DrawerLayout;

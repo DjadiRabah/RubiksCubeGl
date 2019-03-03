@@ -21,7 +21,7 @@
     <string name="solver_fragment">Solver</string>
     <string name="title_activity_camera_scan">CameraScan</string>
     <string name="title_activity_main2">Main2Activity</string>
-    
+
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="nav_restart">Retry</string>

@@ -1,6 +1,5 @@
 package iutfbleau.rubikscube.controllers.listeners;
 
-import android.annotation.SuppressLint;
 import android.view.MotionEvent;
 import android.view.View;
 
