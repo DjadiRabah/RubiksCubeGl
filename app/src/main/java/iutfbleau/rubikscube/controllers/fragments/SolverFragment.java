@@ -2,6 +2,7 @@ package iutfbleau.rubikscube.controllers.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import iutfbleau.rubikscube.R;
+import iutfbleau.rubikscube.controllers.activities.NavActivity;
 import iutfbleau.rubikscube.controllers.listeners.CubeSizeOnSeekBarChangeListener;
 import iutfbleau.rubikscube.controllers.listeners.SolverFragmentOnClickListener;
 
@@ -34,8 +36,11 @@ public class SolverFragment extends Fragment {
         seekBar.setProgress(current-min);
         sizeDisp.setText("Size : "+current);
 
-        seekBar.setOnSeekBarChangeListener(new CubeSizeOnSeekBarChangeListener(this));
+        Toolbar toolbar = view.findViewById(R.id.solver_toolbar);
+        ((NavActivity) getActivity()).setSupportActionBar(toolbar);
+        ((NavActivity) getActivity()).getSupportActionBar().setTitle(null);
 
+        seekBar.setOnSeekBarChangeListener(new CubeSizeOnSeekBarChangeListener(this));
         startSolver.setOnClickListener(new SolverFragmentOnClickListener(this));
 
         return view;

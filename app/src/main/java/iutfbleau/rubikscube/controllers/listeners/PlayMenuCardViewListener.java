@@ -1,6 +1,5 @@
 package iutfbleau.rubikscube.controllers.listeners;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -41,17 +40,17 @@ public class PlayMenuCardViewListener implements View.OnClickListener {
 
             case R.id.lock_rotation:
 
-                //playMenuFragment.closeFragment();
+                playMenuFragment.closeFragment();
 
                 PlayFragment playFragment = ((NavActivity) playMenuFragment.getActivity()).getPlayFragment();
                 TextView textView = v.findViewById(R.id.lock_textView);
                 ImageView imageView = v.findViewById(R.id.lock_imageView);
 
-                if (playFragment.getLockState()) {
+                if (!playFragment.isCubeLocked()) {
 
                     Toast.makeText(playMenuFragment.getActivity(), "Cube rotation locked.", Toast.LENGTH_SHORT).show();
                     //Lock method
-                    imageView.setBackground((playMenuFragment.getActivity()).getResources().getDrawable(R.drawable.baseline_lock_open_black_24dp));
+                    imageView.setBackground(playMenuFragment.getActivity().getResources().getDrawable(R.drawable.baseline_lock_open_black_24dp));
                     textView.setText("Unlock Cube Rotation");
 
                 } else {
@@ -63,8 +62,7 @@ public class PlayMenuCardViewListener implements View.OnClickListener {
 
                 }
 
-                playFragment.setLockState(!playFragment.getLockState());
-
+                playFragment.setCubeLockState(!playFragment.isCubeLocked());
 
                 break;
 

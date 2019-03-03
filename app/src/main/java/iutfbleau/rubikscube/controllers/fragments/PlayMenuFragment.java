@@ -2,9 +2,12 @@ package iutfbleau.rubikscube.controllers.fragments;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -13,8 +16,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.GridLayout;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,11 +52,36 @@ public class PlayMenuFragment extends Fragment {
             cardView.setOnClickListener(new PlayMenuCardViewListener(this));
         }
 
+        ImageView settingsView = view.findViewById(R.id.settings);
+        settingsView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.main_frame, new PreferenceFragment());
+                fragmentTransaction.commit();
+            }
+        });
+
         Toolbar toolbar = view.findViewById(R.id.playmenu_toolbar);
+        toolbar.setTitle("");
         ((NavActivity) getActivity()).setSupportActionBar(toolbar);
         ((NavActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ((NavActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
-        ((NavActivity) getActivity()).getSupportActionBar().setTitle("Game Menu");
+
+        Drawable drawable = ContextCompat.getDrawable(getActivity(), R.drawable.baseline_settings_black_24dp);
+        toolbar.setOverflowIcon(drawable);
+
+        PlayFragment playFragment = ((NavActivity) getActivity()).getPlayFragment();
+        TextView textView = view.findViewById(R.id.lock_textView);
+        ImageView imageView = view.findViewById(R.id.lock_imageView);
+
+        if (playFragment.isCubeLocked()) {
+            imageView.setBackground(getActivity().getResources().getDrawable(R.drawable.baseline_lock_open_black_24dp));
+            textView.setText("Unlock Cube Rotation");
+        } else {
+            imageView.setBackground(getActivity().getResources().getDrawable(R.drawable.baseline_lock_black_24dp));
+            textView.setText("Lock Cube Rotation");
+        }
 
         toolbar.setNavigationOnClickListener(new ToolbarBackButtonListener(this));
         return view;
@@ -88,13 +118,14 @@ public class PlayMenuFragment extends Fragment {
         Log.e("Size", String.valueOf(nFaces));
     }
 
-    public void closeFragment(){
+    public void closeFragment() {
         getActivity().getSupportFragmentManager().popBackStack();
     }
 
-    public Dialog getDialogFrame(){
+    public Dialog getDialogFrame() {
         return dialog;
     }
+
     public void launchWebsiteIntent() {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
         startActivity(browserIntent);
