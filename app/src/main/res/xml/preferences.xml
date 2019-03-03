@@ -2,15 +2,12 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <Preference
-        android:selectable="false"
-        android:title="SETTINGS" >
+    <PreferenceCategory>
 
-    </Preference>
-
-    <PreferenceCategory
-        android:title="Audio settings"
-        app:iconSpaceReserved="false">
+        <Preference
+            android:layout="@layout/preferences_category"
+            android:title="Audio Settings"
+            app:iconSpaceReserved="false" />
 
         <SwitchPreference
             android:defaultValue="true"
@@ -28,8 +25,12 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="Account settings"
-        app:iconSpaceReserved="false">
+    <PreferenceCategory>
+
+        <Preference
+            android:layout="@layout/preferences_category"
+            android:title="Account Settings"
+            app:iconSpaceReserved="false" />
 
         <Preference
             android:key="user"

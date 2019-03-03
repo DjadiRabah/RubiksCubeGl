@@ -57,7 +57,7 @@ public class PlayMenuFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.main_frame, new PreferenceFragment());
+                fragmentTransaction.replace(R.id.main_frame, new SettingsFragment());
                 fragmentTransaction.commit();
             }
         });

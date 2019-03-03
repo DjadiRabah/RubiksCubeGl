@@ -6,6 +6,7 @@ import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceManager;
 import android.support.v14.preference.SwitchPreference;
+import android.support.v7.widget.Toolbar;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -16,9 +17,9 @@ import iutfbleau.rubikscube.controllers.listeners.PreferenceListener;
 import iutfbleau.rubikscube.controllers.listeners.SwitchPreferenceListener;
 import iutfbleau.rubikscube.models.GoogleAuthManager;
 
-public class PreferenceFragment extends PreferenceFragmentCompat {
+public class SettingsFragment extends PreferenceFragmentCompat {
 
-    public PreferenceFragment() {
+    public SettingsFragment() {
         // Required empty public constructor
     }
 
@@ -52,19 +53,14 @@ public class PreferenceFragment extends PreferenceFragmentCompat {
             GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getActivity());
 
             if (acct != null) {
-
                 user.setEnabled(true);
                 user.setTitle("Actual user : " + acct.getDisplayName());
                 user.setSummary(acct.getEmail());
-
             }
-
         } else {
-
             user.setEnabled(false);
             logout.setEnabled(false);
             revoke.setEnabled(false);
         }
-
     }
 }
