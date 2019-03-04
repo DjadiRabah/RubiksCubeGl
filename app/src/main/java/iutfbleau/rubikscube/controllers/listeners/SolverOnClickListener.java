@@ -16,6 +16,11 @@ public class SolverOnClickListener implements View.OnClickListener {
         this.solverActivity = solverActivity;
     }
 
+    public int getCurrentFace()
+    {
+        return this.compteur - 1;
+    }
+
     @Override
     public void onClick(View v) {
 
@@ -24,6 +29,7 @@ public class SolverOnClickListener implements View.OnClickListener {
             case R.id.next:
                 compteur++;
                 //Interface changes
+
                 if (compteur == 2) {
                     solverActivity.getPrevButton().setVisibility(View.VISIBLE);
                 } else if (compteur == 6) {
@@ -32,12 +38,22 @@ public class SolverOnClickListener implements View.OnClickListener {
                 solverActivity.getShootButton().setText("Shoot Face " + compteur);
 
                 //Cube rotations
-                if (compteur == 5) {
+                if (compteur == 2) {
+                    solverActivity.get3DCube().rotateX(-90.0f);
                     solverActivity.get3DCube().rotateY(90.0f);
-                } else if (compteur == 6) {
-                    solverActivity.get3DCube().rotateX(180.0f);
-                } else {
-                    solverActivity.get3DCube().rotateX(90.0f);
+                }
+                else if (compteur == 3) {
+                    solverActivity.get3DCube().rotateY(-90.0f);
+                }
+                else if (compteur == 4) {
+                    solverActivity.get3DCube().rotateY(-90.0f);
+                }
+                else if (compteur == 5) {
+                    solverActivity.get3DCube().rotateY(-90.0f);
+                }
+                else if (compteur == 6) {
+                    solverActivity.get3DCube().rotateY(-180.0f);
+                    solverActivity.get3DCube().rotateX(-90.0f);
                 }
                 break;
 
@@ -52,12 +68,22 @@ public class SolverOnClickListener implements View.OnClickListener {
                 solverActivity.getShootButton().setText("Shoot Face " + compteur);
 
                 //Cube rotations
-                if (compteur == 5) {
-                    solverActivity.get3DCube().rotateX(180.0f);
-                } else if (compteur == 4) {
-                    solverActivity.get3DCube().rotateY(270.0f);
-                } else {
-                    solverActivity.get3DCube().rotateX(270.0f);
+                if (compteur == 1) {
+                    solverActivity.get3DCube().rotateY(-90.0f);
+                    solverActivity.get3DCube().rotateX(90.0f);
+                }
+                else if (compteur == 2) {
+                    solverActivity.get3DCube().rotateY(90.0f);
+                }
+                else if (compteur == 3) {
+                    solverActivity.get3DCube().rotateY(90.0f);
+                }
+                else if (compteur == 4) {
+                    solverActivity.get3DCube().rotateY(90.0f);
+                }
+                else if (compteur == 5) {
+                    solverActivity.get3DCube().rotateX(90.0f);
+                    solverActivity.get3DCube().rotateY(180.0f);
                 }
                 break;
 

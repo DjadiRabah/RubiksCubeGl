@@ -82,6 +82,17 @@ public class Face
 			}
 		}
 	}
+
+	public void setFace(int[][] colors)
+	{
+		for(int i = 0; i < colors.length; i++)
+		{
+			for(int j = 0; j < colors[0].length; j++)
+			{
+				this.pieces[i][j].setColor(colors[i][j]);
+			}
+		}
+	}
 	
 	
 	/**

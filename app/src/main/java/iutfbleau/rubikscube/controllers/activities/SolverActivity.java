@@ -39,6 +39,7 @@ public class SolverActivity extends Activity {
     private Button btnCamera, btnNext, btnPrev;
     private TextView textView;
     private OpenGLRenderer openglRenderer;
+    private Cube3D cube3D;
     private CubeGl cube;
     private int cubeSize;
 
@@ -47,7 +48,7 @@ public class SolverActivity extends Activity {
     private Button[] buttons = new Button[6];
 
     static final int REQUEST_TAKE_PHOTO = 1;
-
+    private SolverOnClickListener solverOnClickListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -59,9 +60,11 @@ public class SolverActivity extends Activity {
         cubeSize = getIntent().getIntExtra("cube_size", 3);
         Log.e("CUBE SIZE", "" + cubeSize);
 
-        cube = new CubeGl(new Cube3D(cubeSize));
+        this.cube3D = new Cube3D(cubeSize);
+        this.cube3D.rotateX(Math.toRadians(90.0));
+        cube = new CubeGl(this.cube3D);
 
-        SolverOnClickListener solverOnClickListener = new SolverOnClickListener((this));
+        this.solverOnClickListener = new SolverOnClickListener((this));
 
         btnCamera = findViewById(R.id.btnCamera);
         btnNext = findViewById(R.id.next);
@@ -140,6 +143,7 @@ public class SolverActivity extends Activity {
                 Log.e("BITMAP RESIZED", "WIDTH = " + bitmap.getWidth() + ", HEIGHT = " + bitmap.getHeight());
 
                 int[][] colors = BitmapToInt.convert(bitmap, cubeSize);
+                this.cube3D.setFace(this.solverOnClickListener.getCurrentFace(),colors);
 
                 StringBuilder res = new StringBuilder();
 

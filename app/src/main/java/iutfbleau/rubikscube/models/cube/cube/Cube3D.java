@@ -41,6 +41,11 @@ public class Cube3D extends Cube
         ((Face3D)this.faces[5]).rotateX(Math.toRadians(90.0));
     }
 
+    public void setFace(int face, int[][] colors)
+    {
+        this.faces[face].setFace(colors);
+    }
+
     public void rotateX(double teta)
     {
         for(int i = 0; i < this.faces.length; i++)

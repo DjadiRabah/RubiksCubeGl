@@ -49,8 +49,7 @@
         <SeekBar
             android:id="@+id/size_seekBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:thumb="@drawable/seek_thumb" />
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
