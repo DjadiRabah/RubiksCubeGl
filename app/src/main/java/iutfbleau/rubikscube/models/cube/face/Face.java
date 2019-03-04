@@ -93,6 +93,18 @@ public class Face
 			}
 		}
 	}
+
+	public void disableColors()
+	{
+		for(int i = 0; i < this.pieces.length; i++)
+		{
+			for(int j = 0; j < this.pieces[0].length; j++)
+			{
+				if ((i != 1) || (j != 1))
+					this.pieces[i][j].setColor(Piece.NONE);
+			}
+		}
+	}
 	
 	
 	/**

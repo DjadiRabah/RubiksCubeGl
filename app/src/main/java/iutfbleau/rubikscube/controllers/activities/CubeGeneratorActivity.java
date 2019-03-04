@@ -64,6 +64,7 @@ public class CubeGeneratorActivity extends Activity {
         cubeSize = getIntent().getIntExtra("cube_size", 3);
 
         this.cube3D = new Cube3D(cubeSize);
+        this.cube3D.disableColors();
         this.cube3D.rotateX(Math.toRadians(90.0));
         cube = new CubeGl(this.cube3D);
 
