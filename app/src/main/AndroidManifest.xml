@@ -6,7 +6,6 @@
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
-
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
@@ -24,7 +23,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <service android:enabled="true" android:name=".audio.SoundService" />
+        <service
+            android:name=".audio.SoundService"
+            android:enabled="true" />
 
         <activity
             android:name=".controllers.activities.SplashScreenActivity"
@@ -42,14 +43,16 @@
 
         <activity
             android:name=".controllers.activities.SolverActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".controllers.activities.GoogleSignInActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".controllers.activities.WelcomeActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".controllers.activities.CustomCameraActivity"
             android:screenOrientation="portrait" />

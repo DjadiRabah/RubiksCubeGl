@@ -14,7 +14,6 @@ import android.view.WindowManager;
 
 import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.controllers.fragments.PlayFragment;
-import iutfbleau.rubikscube.controllers.fragments.PreferenceFragment;
 import iutfbleau.rubikscube.controllers.fragments.SolverFragment;
 import iutfbleau.rubikscube.controllers.fragments.StatsFragment;
 import iutfbleau.rubikscube.controllers.listeners.BottomNavigationViewListener;
@@ -25,7 +24,6 @@ public class NavActivity extends AppCompatActivity {
     public PlayFragment playFragment;
     public SolverFragment solverFragment;
     public StatsFragment statsFragment;
-    public PreferenceFragment preferenceFragment;
 
     public boolean fxSound;
     public boolean backgroundMusic;
@@ -48,7 +46,6 @@ public class NavActivity extends AppCompatActivity {
         playFragment = new PlayFragment();
         solverFragment = new SolverFragment();
         statsFragment = new StatsFragment();
-        preferenceFragment = new PreferenceFragment();
 
         setFragment(playFragment);
 

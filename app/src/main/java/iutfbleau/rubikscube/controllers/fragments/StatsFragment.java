@@ -5,11 +5,13 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import iutfbleau.rubikscube.R;
+import iutfbleau.rubikscube.controllers.activities.NavActivity;
 import iutfbleau.rubikscube.models.ViewPagerAdapter;
 
 public class StatsFragment extends Fragment {
@@ -27,6 +29,10 @@ public class StatsFragment extends Fragment {
         setupViewPager(viewPager);
         TabLayout tabLayout = view.findViewById(R.id.tablayout);
         tabLayout.setupWithViewPager(viewPager);
+
+        Toolbar toolbar = view.findViewById(R.id.stats_toolbar);
+        ((NavActivity) getActivity()).setSupportActionBar(toolbar);
+        ((NavActivity) getActivity()).getSupportActionBar().setTitle(null);
 
         return view;
     }

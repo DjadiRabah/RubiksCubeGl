@@ -3,19 +3,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="10dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/solver_text"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/solver_toolbar"
         android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
+
+        <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="@string/solver_fragment"
-        android:textColor="@color/colorWhite"
-        android:background="@color/colorPrimaryDark"
-        android:textSize="30sp" />
+        android:text="SOLVER"
+        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+        android:layout_gravity="center"
+        android:id="@+id/toolbar_title" />
+
+    </android.support.v7.widget.Toolbar>
 
     <TextView
         android:textSize="15sp"
@@ -57,6 +64,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_weight="1"
+        android:paddingLeft="10sp"
+        android:paddingRight="10sp"
+        android:paddingBottom="10sp"
         android:gravity="center|bottom"
         android:orientation="vertical">
 
