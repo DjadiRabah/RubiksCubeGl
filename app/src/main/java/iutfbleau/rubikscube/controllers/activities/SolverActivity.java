@@ -10,18 +10,18 @@ import android.graphics.Matrix;
 import android.graphics.Point;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import iutfbleau.rubikscube.R;
+import iutfbleau.rubikscube.handlers.ProgressHandler;
 import iutfbleau.rubikscube.controllers.listeners.RBColorPickerOnClickListener;
 import iutfbleau.rubikscube.controllers.listeners.SolverOnClickListener;
 import iutfbleau.rubikscube.models.BitmapToInt;
@@ -37,18 +37,22 @@ public class SolverActivity extends Activity {
 
     public GLSurfaceView glSurfaceView;
     private Button btnCamera, btnNext, btnPrev;
-    private TextView textView;
-    private OpenGLRenderer openglRenderer;
     private Cube3D cube3D;
     private CubeGl cube;
     private int cubeSize;
+    private int[][] colors;
 
     private int[] rbColor = {RBColor.GREEN, RBColor.ORANGE, RBColor.BLUE, RBColor.RED, RBColor.YELLOW, RBColor.WHITE};
     private String[] rbColorNames = {"green", "orange", "blue", "red", "yellow", "white"};
     private Button[] buttons = new Button[6];
 
-    static final int REQUEST_TAKE_PHOTO = 1;
+    private static final int REQUEST_TAKE_PHOTO = 1;
+    private final static int HANDLER_TASK_ID = 0;
     private SolverOnClickListener solverOnClickListener;
+    private ProgressHandler progressHandler;
+
+    private LinearLayout loadingLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -58,7 +62,6 @@ public class SolverActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         cubeSize = getIntent().getIntExtra("cube_size", 3);
-        Log.e("CUBE SIZE", "" + cubeSize);
 
         this.cube3D = new Cube3D(cubeSize);
         this.cube3D.rotateX(Math.toRadians(90.0));
@@ -69,6 +72,8 @@ public class SolverActivity extends Activity {
         btnCamera = findViewById(R.id.btnCamera);
         btnNext = findViewById(R.id.next);
         btnPrev = findViewById(R.id.prev);
+        loadingLayout = findViewById(R.id.loadingLayout);
+        loadingLayout.setVisibility(View.GONE);
 
         LinearLayout colorPickerLayout = findViewById(R.id.colorPickerLayout);
 
@@ -76,8 +81,6 @@ public class SolverActivity extends Activity {
         Point size = new Point();
         display.getSize(size);
         int buttonWidth = size.x / 6;
-
-        Log.e("SCRENN WIDTH", "" + buttonWidth);
 
         RBColorPickerOnClickListener rbColorPickerOnClickListener = new RBColorPickerOnClickListener();
 
@@ -98,7 +101,7 @@ public class SolverActivity extends Activity {
         btnNext.setOnClickListener(solverOnClickListener);
         btnPrev.setOnClickListener(solverOnClickListener);
 
-        openglRenderer = new OpenGLRenderer(cube);
+        OpenGLRenderer openglRenderer = new OpenGLRenderer(cube);
         glSurfaceView.setRenderer(openglRenderer);
 
         // Check if the Camera permission is already available
@@ -128,6 +131,8 @@ public class SolverActivity extends Activity {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
 
+                getLoadingLayout().setVisibility(View.VISIBLE);
+
                 Bitmap bitmap = BitmapFactory.decodeFile(data.getStringExtra("img_path"));
                 float[] coordinates = data.getFloatArrayExtra("coordinates");
 
@@ -135,47 +140,19 @@ public class SolverActivity extends Activity {
                     bitmap = rotateImage(bitmap, 90);
                 }
 
-                Log.e("COORDS", "" + coordinates[0] + " " + coordinates[1] + " " + coordinates[2]);
-                Log.e("BITMAP SIZE", "WIDTH = " + bitmap.getWidth() + ", HEIGHT = " + bitmap.getHeight());
-
                 bitmap = Bitmap.createBitmap(bitmap, (int) coordinates[0], (int) coordinates[1] + 60, (int) coordinates[2], (int) coordinates[2]);
+                final Bitmap finalBitmap = bitmap;
 
-                Log.e("BITMAP RESIZED", "WIDTH = " + bitmap.getWidth() + ", HEIGHT = " + bitmap.getHeight());
+                progressHandler = new ProgressHandler(this);
 
-                int[][] colors = BitmapToInt.convert(bitmap, cubeSize);
-                this.cube3D.setFace(this.solverOnClickListener.getCurrentFace(),colors);
-
-                StringBuilder res = new StringBuilder();
-
-                for (int[] color : colors) {
-
-                    for (int j = 0; j < colors[0].length; j++) {
-
-                        switch (color[j]) {
-                            case 0:
-                                res.append("blanc ");
-                                break;
-                            case 1:
-                                res.append("vert ");
-                                break;
-                            case 2:
-                                res.append("rouge ");
-                                break;
-                            case 3:
-                                res.append("bleu ");
-                                break;
-                            case 4:
-                                res.append("orange ");
-                                break;
-                            case 5:
-                                res.append("jaune ");
-                                break;
-                            default:
-                                break;
-                        }
+                new Thread(new Runnable() {
+                    public void run() {
+                        colors = BitmapToInt.convert(finalBitmap, cubeSize);
+                        Message msg = progressHandler.obtainMessage(HANDLER_TASK_ID, cube3D);
+                        progressHandler.sendMessage(msg);
                     }
-                }
-               // textView.setText(res.toString());
+
+                }).start();
             }
         }
     }
@@ -225,6 +202,10 @@ public class SolverActivity extends Activity {
         return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
     }
 
+    public int[][] getColorsTab() {
+        return colors;
+    }
+
     public Button getNextButton() {
         return btnNext;
     }
@@ -243,6 +224,14 @@ public class SolverActivity extends Activity {
 
     public CubeGl get3DCube() {
         return cube;
+    }
+
+    public LinearLayout getLoadingLayout() {
+        return loadingLayout;
+    }
+
+    public SolverOnClickListener getSolverOnClickListener() {
+        return solverOnClickListener;
     }
 }
 

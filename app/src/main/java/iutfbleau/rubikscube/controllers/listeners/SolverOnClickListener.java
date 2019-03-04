@@ -35,7 +35,7 @@ public class SolverOnClickListener implements View.OnClickListener {
                 } else if (compteur == 6) {
                     solverActivity.getNextButton().setVisibility(View.INVISIBLE);
                 }
-                solverActivity.getShootButton().setText("Shoot Face " + compteur);
+                solverActivity.getShootButton().setText("Analyze Face " + compteur);
 
                 //Cube rotations
                 if (compteur == 2) {
@@ -65,7 +65,7 @@ public class SolverOnClickListener implements View.OnClickListener {
                 } else if (compteur == 5) {
                     solverActivity.getNextButton().setVisibility(View.VISIBLE);
                 }
-                solverActivity.getShootButton().setText("Shoot Face " + compteur);
+                solverActivity.getShootButton().setText("Analyze Face " + compteur);
 
                 //Cube rotations
                 if (compteur == 1) {

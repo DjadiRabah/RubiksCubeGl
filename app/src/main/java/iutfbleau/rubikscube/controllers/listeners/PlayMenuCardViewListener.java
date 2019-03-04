@@ -66,20 +66,16 @@ public class PlayMenuCardViewListener implements View.OnClickListener {
 
                 break;
 
-            case R.id.website:
-                playMenuFragment.launchWebsiteIntent();
+            case R.id.launch_solver:
+                Toast.makeText(playMenuFragment.getActivity(), "Solver", Toast.LENGTH_SHORT).show();
                 break;
 
-            case R.id.credits:
-                Toast.makeText(playMenuFragment.getActivity(), "Credits", Toast.LENGTH_SHORT).show();
+            case R.id.website:
+                playMenuFragment.launchWebsiteIntent();
                 break;
 
             default:
                 break;
         }
-
-
     }
-
-
 }
