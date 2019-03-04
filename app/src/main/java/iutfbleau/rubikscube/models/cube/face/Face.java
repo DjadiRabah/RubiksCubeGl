@@ -154,6 +154,16 @@ public class Face
 			 this.pieces[row][i] = pieces[i];
 		}
 	}
+
+	public int getColor()
+	{
+		return this.pieces[(this.size-1)/2][(this.size-1)/2].getColor();
+	}
+
+	public int getColor(int i, int j)
+	{
+		return this.pieces[i][j].getColor();
+	}
 	
 	/**
      * Fixe la ligne line de pieces a partir d'un vecteur de Piece pieces en partant de la fin
