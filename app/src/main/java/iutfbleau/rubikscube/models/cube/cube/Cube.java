@@ -50,7 +50,7 @@ public class Cube implements Observable, Observer
 		}
 		this.observers = new ArrayList<>();
 	}
-	
+
 	public void shuffle(Shuffle s)
 	{
 		s.shuffle(this);

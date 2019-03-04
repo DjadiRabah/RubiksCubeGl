@@ -23,14 +23,14 @@ import android.widget.Toast;
 import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.handlers.ProgressHandler;
 import iutfbleau.rubikscube.controllers.listeners.RBColorPickerOnClickListener;
-import iutfbleau.rubikscube.controllers.listeners.SolverOnClickListener;
+import iutfbleau.rubikscube.controllers.listeners.CubeGeneratorOnClickListener;
 import iutfbleau.rubikscube.models.BitmapToInt;
 import iutfbleau.rubikscube.models.RBColor;
 import iutfbleau.rubikscube.models.cube.cube.Cube3D;
 import iutfbleau.rubikscube.view.CubeGl;
 import iutfbleau.rubikscube.view.OpenGLRenderer;
 
-public class SolverActivity extends Activity {
+public class CubeGeneratorActivity extends Activity {
 
     public static final int CAMERA_REQUEST = 1;
     private static final int ALL_PERMISSIONS = 2;
@@ -48,7 +48,7 @@ public class SolverActivity extends Activity {
 
     private static final int REQUEST_TAKE_PHOTO = 1;
     private final static int HANDLER_TASK_ID = 0;
-    private SolverOnClickListener solverOnClickListener;
+    private CubeGeneratorOnClickListener cubeGeneratorOnClickListener;
     private ProgressHandler progressHandler;
 
     private LinearLayout loadingLayout;
@@ -57,7 +57,7 @@ public class SolverActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_camera_solver);
+        setContentView(R.layout.activity_cube_generator);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -67,7 +67,7 @@ public class SolverActivity extends Activity {
         this.cube3D.rotateX(Math.toRadians(90.0));
         cube = new CubeGl(this.cube3D);
 
-        this.solverOnClickListener = new SolverOnClickListener((this));
+        this.cubeGeneratorOnClickListener = new CubeGeneratorOnClickListener((this));
 
         btnCamera = findViewById(R.id.btnCamera);
         btnNext = findViewById(R.id.next);
@@ -98,8 +98,8 @@ public class SolverActivity extends Activity {
         glSurfaceView = findViewById(R.id.glsurfaceview);
         //textView = findViewById(R.id.textView);
 
-        btnNext.setOnClickListener(solverOnClickListener);
-        btnPrev.setOnClickListener(solverOnClickListener);
+        btnNext.setOnClickListener(cubeGeneratorOnClickListener);
+        btnPrev.setOnClickListener(cubeGeneratorOnClickListener);
 
         OpenGLRenderer openglRenderer = new OpenGLRenderer(cube);
         glSurfaceView.setRenderer(openglRenderer);
@@ -108,7 +108,7 @@ public class SolverActivity extends Activity {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
             // Camera permissions is already available, show the camera preview
-            btnCamera.setOnClickListener(solverOnClickListener);
+            btnCamera.setOnClickListener(cubeGeneratorOnClickListener);
 
         } else {
             //Camera permission has not been granted
@@ -230,8 +230,8 @@ public class SolverActivity extends Activity {
         return loadingLayout;
     }
 
-    public SolverOnClickListener getSolverOnClickListener() {
-        return solverOnClickListener;
+    public CubeGeneratorOnClickListener getCubeGeneratorOnClickListener() {
+        return cubeGeneratorOnClickListener;
     }
 }
 

@@ -1,6 +1,7 @@
 package iutfbleau.rubikscube.controllers.listeners;
 
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 
 import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.controllers.activities.GoogleSignInActivity;
@@ -20,6 +21,7 @@ public class GoogleSignInListener implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
+        v.startAnimation( new AlphaAnimation(1F, 0.8F));
         FileManager fileManager = new FileManager(gsa.getBaseContext());
 
         switch (v.getId()) {
