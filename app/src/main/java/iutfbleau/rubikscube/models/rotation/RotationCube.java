@@ -8,15 +8,15 @@ public class RotationCube implements Rotation
 	{
 		for(int i = 0; i < cube.getSize(); i++)
 		{
-			if ((direction == RIGHT) || (direction == LEFT))
+			if ((direction == Rotation.RIGHT) || (direction == Rotation.LEFT))
 			{
 				new RotationX().rotate(cube, direction, i);
 			}
-			else if ((direction == UP) || (direction == DOWN))
+			else if ((direction == Rotation.UP) || (direction == Rotation.DOWN))
 			{
 				new RotationY().rotate(cube, direction, i);
 			}
-			else if ((direction == CLOCKWISE) || (direction == COUNTERCLOCKWISE))
+			else if ((direction == Rotation.CLOCKWISE) || (direction == Rotation.COUNTERCLOCKWISE))
 			{
 				new RotationZ().rotate(cube, direction, i);
 			}

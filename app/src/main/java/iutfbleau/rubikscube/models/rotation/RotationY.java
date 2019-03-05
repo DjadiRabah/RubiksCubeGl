@@ -1,7 +1,6 @@
 package iutfbleau.rubikscube.models.rotation;
 
 import iutfbleau.rubikscube.models.cube.cube.Cube;
-import iutfbleau.rubikscube.models.cube.piece.Piece;
 
 public class RotationY implements RotationComplex
 {	
@@ -12,8 +11,8 @@ public class RotationY implements RotationComplex
 		{
 			switch (direction) 
 			{
-	            case UP :  new RotationFace().rotate(cube.getSquare(Cube.LEFT), COUNTERCLOCKWISE); break;
-	            case DOWN: new RotationFace().rotate(cube.getSquare(Cube.LEFT), CLOCKWISE); break;
+	            case UP :  new RotationFace().rotate(cube.getSquare(Cube.LEFT), Rotation.COUNTERCLOCKWISE); break;
+	            case DOWN: new RotationFace().rotate(cube.getSquare(Cube.LEFT), Rotation.CLOCKWISE); break;
 	            default: break;
 			}
         }
@@ -21,22 +20,22 @@ public class RotationY implements RotationComplex
 		{
 			switch (direction) 
 			{
-	            case UP :  new RotationFace().rotate(cube.getSquare(Cube.RIGHT), CLOCKWISE); break;
-	            case DOWN: new RotationFace().rotate(cube.getSquare(Cube.RIGHT), COUNTERCLOCKWISE); break;
+	            case UP :  new RotationFace().rotate(cube.getSquare(Cube.RIGHT), Rotation.CLOCKWISE); break;
+	            case DOWN: new RotationFace().rotate(cube.getSquare(Cube.RIGHT), Rotation.COUNTERCLOCKWISE); break;
 	            default: break;
 			}
 		}
 		switch (direction) 
 		{
             case UP :
-            	Piece[] top = cube.getSquare(Cube.TOP).getCol(index);
+            	int[] top = cube.getSquare(Cube.TOP).getCol(index);
             	cube.getSquare(Cube.TOP).setCol(index, cube.getSquare(Cube.FRONT).getCol(index));
             	cube.getSquare(Cube.FRONT).setCol(index, cube.getSquare(Cube.DOWN).getCol(index));
             	cube.getSquare(Cube.DOWN).setColReverse(index, cube.getSquare(Cube.BACK).getCol(cube.getSize() - index - 1));
             	cube.getSquare(Cube.BACK).setColReverse(cube.getSize() - index - 1, top);
             break;
             case DOWN:  
-            	Piece[] front = cube.getSquare(Cube.FRONT).getCol(index);
+            	int[] front = cube.getSquare(Cube.FRONT).getCol(index);
             	cube.getSquare(Cube.FRONT).setCol(index, cube.getSquare(Cube.TOP).getCol(index));
             	cube.getSquare(Cube.TOP).setColReverse(index, cube.getSquare(Cube.BACK).getCol(cube.getSize() - index - 1));
             	cube.getSquare(Cube.BACK).setColReverse(cube.getSize() - index - 1, cube.getSquare(Cube.DOWN).getCol(index));

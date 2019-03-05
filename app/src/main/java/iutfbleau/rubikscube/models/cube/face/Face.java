@@ -157,13 +157,13 @@ public class Face
      * Fixe la ligne d'indice row a partir d'un vecteur de Piece pieces
      * 
      * @param row l'indice de la ligne fixee
-     * @param pieces les nouvelles pieces de la ligne d'indice row
+     * @param colors les nouvelles pieces de la ligne d'indice row
      */
-	public void setRow(int row, Piece[] pieces)
+	public void setRow(int row, int[] colors)
 	{
 		for(int i = 0; i < this.size; i++)
 		{
-			 this.pieces[row][i] = pieces[i];
+			this.pieces[row][i].setColor(colors[i]);
 		}
 	}
 
@@ -181,13 +181,13 @@ public class Face
      * Fixe la ligne line de pieces a partir d'un vecteur de Piece pieces en partant de la fin
      * 
      * @param row l'indice de la ligne fixee
-     * @param pieces les nouvelles pieces de la ligne d'indice row
+     * @param colors les nouvelles pieces de la ligne d'indice row
      */
-	public void setRowReverse(int row, Piece[] pieces)
+	public void setRowReverse(int row, int[] colors)
 	{
 		for(int i = 0; i < this.size; i++)
 		{
-			 this.pieces[row][i] = pieces[this.size - 1 - i];
+			this.pieces[row][i].setColor(colors[this.size - 1 - i]);
 		}
 	}
 	
@@ -210,27 +210,27 @@ public class Face
 	/**
      * Renvoie la ligne d'indice row sous forme de vecteur de Piece
      */
-	public Piece[] getRow(int row)
+	public int[] getRow(int row)
 	{
-		Piece[] pieces = new Piece[this.size];
+		int[] colors = new int[this.size];
 		for(int currentPiece = 0; currentPiece < this.size; currentPiece++)
 		{
-			pieces[currentPiece] = this.pieces[row][currentPiece];
+			colors[currentPiece] = this.pieces[row][currentPiece].getColor();
 		}
-		return pieces;
+		return colors;
 	}
 
 	/**
      * Fixe la colonne d'indice col a partir d'un vecteur de Piece pieces
      * 
      * @param col l'indice de la colonne fixee
-     * @param pieces les nouvelles pieces de la colonne d'indice col
+     * @param colors les nouvelles pieces de la colonne d'indice col
      */
-    public void setCol(int col,Piece[] pieces)
+	public void setCol(int col,int[] colors)
 	{
 		for(int i = 0; i < this.size; i++)
 		{
-			 this.pieces[i][col] = pieces[i];
+			this.pieces[i][col].setColor(colors[i]);
 		}
 	}
     
@@ -238,13 +238,13 @@ public class Face
      * Fixe la colonne d'indice col a partir d'un vecteur de Piece pieces en partant de la fin
      * 
      * @param col l'indice de la colonne fixee
-     * @param pieces les nouvelles pieces de la colonne d'indice col
+     * @param colors les nouvelles pieces de la colonne d'indice col
      */
-    public void setColReverse(int col,Piece[] pieces)
+	public void setColReverse(int col,int[] colors)
 	{
 		for(int i = 0; i < this.size; i++)
 		{
-			 this.pieces[i][col] = pieces[this.size - 1 - i];
+			this.pieces[i][col].setColor(colors[this.size - 1 - i]);
 		}
 	}
     
@@ -254,14 +254,14 @@ public class Face
      * @param col indice de la colonne de la face du cube
      * @return un vecteur de Piece correspondant a la colonne d'indice col de la face du cube 
      */
-	public Piece[] getCol(int col)
+	public int[] getCol(int col)
 	{
-		Piece[] pieces = new Piece[this.size];
+		int[] colors = new int[this.size];
 		for(int i = 0; i < this.size; i++)
 		{
-			pieces[i] = this.pieces[i][col];
+			colors[i] = this.pieces[i][col].getColor();
 		}
-		return pieces;
+		return colors;
 	}
 	
 	 /**

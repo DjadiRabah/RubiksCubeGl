@@ -122,17 +122,6 @@ public class Face3D extends Face
         return square;
     }
 
-    @Override
-    public Piece3D[] getRow(int row)
-    {
-        Piece3D[] pieces = new Piece3D[this.size];
-        for(int currentPiece = 0; currentPiece < this.size; currentPiece++)
-        {
-            pieces[currentPiece] = (Piece3D)this.pieces[row][currentPiece];
-        }
-        return pieces;
-    }
-
     public void setRowVertices(int row, float[][] vertices)
     {
         for(int i = 0; i < this.size; i++)
