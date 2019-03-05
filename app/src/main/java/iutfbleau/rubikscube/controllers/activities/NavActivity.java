@@ -9,12 +9,11 @@ import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.PreferenceManager;
-import android.util.Log;
 import android.view.WindowManager;
 
 import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.controllers.fragments.PlayFragment;
-import iutfbleau.rubikscube.controllers.fragments.SolverFragment;
+import iutfbleau.rubikscube.controllers.fragments.CubeGeneratorFragment;
 import iutfbleau.rubikscube.controllers.fragments.StatsFragment;
 import iutfbleau.rubikscube.controllers.listeners.BottomNavigationViewListener;
 import iutfbleau.rubikscube.models.FileManager;
@@ -22,7 +21,7 @@ import iutfbleau.rubikscube.models.FileManager;
 public class NavActivity extends AppCompatActivity {
 
     public PlayFragment playFragment;
-    public SolverFragment solverFragment;
+    public CubeGeneratorFragment cubeGeneratorFragment;
     public StatsFragment statsFragment;
 
     public boolean fxSound;
@@ -44,10 +43,10 @@ public class NavActivity extends AppCompatActivity {
         BottomNavigationView mainNav = findViewById(R.id.main_nav);
 
         playFragment = new PlayFragment();
-        solverFragment = new SolverFragment();
+        cubeGeneratorFragment = new CubeGeneratorFragment();
         statsFragment = new StatsFragment();
 
-        setFragment(playFragment);
+        setFragment(playFragment, "playfragment");
 
         mainNav.setOnNavigationItemSelectedListener(new BottomNavigationViewListener(this));
 
@@ -55,12 +54,6 @@ public class NavActivity extends AppCompatActivity {
 
         FileManager fm = new FileManager(this);
         //Toast.makeText(this, ""+fm.read(), Toast.LENGTH_LONG).show();
-    }
-
-    protected void onDestroy() {
-        super.onDestroy();
-        //stop service and stop music
-        //stopService(new Intent(getApplicationContext(), SoundService.class));
     }
 
     public void setFxSound(boolean state) {
@@ -71,10 +64,9 @@ public class NavActivity extends AppCompatActivity {
         this.backgroundMusic = state;
     }
 
-    public void setFragment(Fragment fragment) {
-
+    public void setFragment(Fragment fragment, String tag) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.main_frame, fragment);
+        fragmentTransaction.replace(R.id.main_frame, fragment, tag);
         fragmentTransaction.commit();
 
     }
@@ -85,8 +77,6 @@ public class NavActivity extends AppCompatActivity {
         int count = getSupportFragmentManager().getBackStackEntryCount();
 
         if (count < 1) {
-
-            Log.e("CUBE", "CUBE");
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MyDialogTheme);
 
@@ -109,13 +99,12 @@ public class NavActivity extends AppCompatActivity {
             dialog.show();
 
         } else {
-            Log.e("FRAG", "FRAG");
             getSupportFragmentManager().popBackStack();
         }
 
     }
 
-    public PlayFragment getPlayFragment(){
+    public PlayFragment getPlayFragment() {
         return playFragment;
     }
 }

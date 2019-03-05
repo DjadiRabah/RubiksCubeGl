@@ -3,19 +3,19 @@ package iutfbleau.rubikscube.controllers.listeners;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
 
-import iutfbleau.rubikscube.controllers.fragments.PlayMenuFragment;
+import iutfbleau.rubikscube.controllers.fragments.GameMenuFragment;
 
 public class ToolbarBackButtonListener implements View.OnClickListener {
 
-    private PlayMenuFragment playMenuFragment;
+    private GameMenuFragment gameMenuFragment;
 
-    public ToolbarBackButtonListener(PlayMenuFragment playMenuFragment) {
-        this.playMenuFragment = playMenuFragment;
+    public ToolbarBackButtonListener(GameMenuFragment gameMenuFragment) {
+        this.gameMenuFragment = gameMenuFragment;
     }
 
     @Override
     public void onClick(View v) {
-        FragmentManager fm = playMenuFragment.getActivity().getSupportFragmentManager();
+        FragmentManager fm = gameMenuFragment.getActivity().getSupportFragmentManager();
         if (fm.getBackStackEntryCount() > 0) {
             fm.popBackStack();
         }

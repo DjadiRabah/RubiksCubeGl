@@ -29,15 +29,15 @@ public class BottomNavigationViewListener implements BottomNavigationView.OnNavi
         switch (menuItem.getItemId()) {
 
             case R.id.nav_play:
-                navActivity.setFragment(navActivity.playFragment);
+                navActivity.setFragment(navActivity.playFragment, "playfragment");
                 return true;
 
-            case R.id.nav_solve:
-                navActivity.setFragment(navActivity.solverFragment);
+            case R.id.nav_generator:
+                navActivity.setFragment(navActivity.cubeGeneratorFragment, "solverfragment");
                 return true;
 
             case R.id.nav_stats:
-                navActivity.setFragment(navActivity.statsFragment);
+                navActivity.setFragment(navActivity.statsFragment, "statsfragment");
                 return true;
 
             default:

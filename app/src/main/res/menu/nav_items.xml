@@ -6,9 +6,9 @@
         android:icon="@drawable/baseline_play_arrow_black_24dp"
         android:title="@string/nav_play" />
     <item
-        android:id="@+id/nav_solve"
-        android:icon="@drawable/baseline_highlight_black_24dp"
-        android:title="@string/nav_solve" />
+        android:id="@+id/nav_generator"
+        android:icon="@drawable/baseline_build_black_24dp"
+        android:title="@string/nav_generator" />
     <item
         android:id="@+id/nav_stats"
         android:icon="@drawable/baseline_stars_black_24dp"

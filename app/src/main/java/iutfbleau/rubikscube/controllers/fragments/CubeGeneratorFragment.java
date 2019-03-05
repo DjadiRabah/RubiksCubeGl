@@ -13,20 +13,20 @@ import android.widget.TextView;
 import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.controllers.activities.NavActivity;
 import iutfbleau.rubikscube.controllers.listeners.CubeSizeOnSeekBarChangeListener;
-import iutfbleau.rubikscube.controllers.listeners.SolverFragmentOnClickListener;
+import iutfbleau.rubikscube.controllers.listeners.CubeGeneratorFragmentOnClickListener;
 
-public class SolverFragment extends Fragment {
+public class CubeGeneratorFragment extends Fragment {
 
     private int min = 2, max = 8, current = 2;
     private TextView sizeDisp;
 
-    public SolverFragment() {
+    public CubeGeneratorFragment() {
         // Required empty public constructor
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_solve, container, false);
+        View view = inflater.inflate(R.layout.fragment_generate, container, false);
 
         Button startSolver = view.findViewById(R.id.start_solver);
         SeekBar seekBar = view.findViewById(R.id.size_seekBar);
@@ -41,7 +41,7 @@ public class SolverFragment extends Fragment {
         ((NavActivity) getActivity()).getSupportActionBar().setTitle(null);
 
         seekBar.setOnSeekBarChangeListener(new CubeSizeOnSeekBarChangeListener(this));
-        startSolver.setOnClickListener(new SolverFragmentOnClickListener(this));
+        startSolver.setOnClickListener(new CubeGeneratorFragmentOnClickListener(this));
 
         return view;
     }

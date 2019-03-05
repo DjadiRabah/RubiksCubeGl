@@ -30,12 +30,12 @@ import iutfbleau.rubikscube.controllers.listeners.PlayMenuCardViewListener;
 import iutfbleau.rubikscube.controllers.listeners.RadioGroupListener;
 import iutfbleau.rubikscube.controllers.listeners.ToolbarBackButtonListener;
 
-public class PlayMenuFragment extends Fragment {
+public class GameMenuFragment extends Fragment {
 
     private GridLayout mainGrid;
     private Dialog dialog;
 
-    public PlayMenuFragment() {
+    public GameMenuFragment() {
         // Required empty public constructor
     }
 

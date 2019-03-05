@@ -22,7 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".controllers.activities.CubeSolverActivity"></activity>
+        <activity android:name=".controllers.activities.CubeSolverActivity" />
 
         <service
             android:name=".audio.SoundService"
@@ -52,6 +52,7 @@
         <activity
             android:name=".controllers.activities.CustomCameraActivity"
             android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

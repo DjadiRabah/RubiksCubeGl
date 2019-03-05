@@ -8,14 +8,14 @@ import android.widget.Toast;
 import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.controllers.activities.NavActivity;
 import iutfbleau.rubikscube.controllers.fragments.PlayFragment;
-import iutfbleau.rubikscube.controllers.fragments.PlayMenuFragment;
+import iutfbleau.rubikscube.controllers.fragments.GameMenuFragment;
 
 public class PlayMenuCardViewListener implements View.OnClickListener {
 
-    private PlayMenuFragment playMenuFragment;
+    private GameMenuFragment gameMenuFragment;
 
-    public PlayMenuCardViewListener(PlayMenuFragment playMenuFragment) {
-        this.playMenuFragment = playMenuFragment;
+    public PlayMenuCardViewListener(GameMenuFragment gameMenuFragment) {
+        this.gameMenuFragment = gameMenuFragment;
     }
 
 
@@ -25,39 +25,39 @@ public class PlayMenuCardViewListener implements View.OnClickListener {
         switch (v.getId()) {
 
             case R.id.retry:
-                playMenuFragment.closeFragment();
-                Toast.makeText(playMenuFragment.getActivity(), "Retry", Toast.LENGTH_SHORT).show();
+                gameMenuFragment.closeFragment();
+                Toast.makeText(gameMenuFragment.getActivity(), "Retry", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.randomize:
-                playMenuFragment.closeFragment();
-                Toast.makeText(playMenuFragment.getActivity(), "Randomize", Toast.LENGTH_SHORT).show();
+                gameMenuFragment.closeFragment();
+                Toast.makeText(gameMenuFragment.getActivity(), "Randomize", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.size_selection:
-                playMenuFragment.showRadioButtonDialog();
+                gameMenuFragment.showRadioButtonDialog();
                 break;
 
             case R.id.lock_rotation:
 
-                playMenuFragment.closeFragment();
+                gameMenuFragment.closeFragment();
 
-                PlayFragment playFragment = ((NavActivity) playMenuFragment.getActivity()).getPlayFragment();
+                PlayFragment playFragment = ((NavActivity) gameMenuFragment.getActivity()).getPlayFragment();
                 TextView textView = v.findViewById(R.id.lock_textView);
                 ImageView imageView = v.findViewById(R.id.lock_imageView);
 
                 if (!playFragment.isCubeLocked()) {
 
-                    Toast.makeText(playMenuFragment.getActivity(), "Cube rotation locked.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(gameMenuFragment.getActivity(), "Cube rotation locked.", Toast.LENGTH_SHORT).show();
                     //Lock method
-                    imageView.setBackground(playMenuFragment.getActivity().getResources().getDrawable(R.drawable.baseline_lock_open_black_24dp));
+                    imageView.setBackground(gameMenuFragment.getActivity().getResources().getDrawable(R.drawable.baseline_lock_open_black_24dp));
                     textView.setText("Unlock Cube Rotation");
 
                 } else {
 
-                    Toast.makeText(playMenuFragment.getActivity(), "Cube rotation unlocked.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(gameMenuFragment.getActivity(), "Cube rotation unlocked.", Toast.LENGTH_SHORT).show();
                     //Unlock method
-                    imageView.setBackground(playMenuFragment.getActivity().getResources().getDrawable(R.drawable.baseline_lock_black_24dp));
+                    imageView.setBackground(gameMenuFragment.getActivity().getResources().getDrawable(R.drawable.baseline_lock_black_24dp));
                     textView.setText("Lock Cube Rotation");
 
                 }
@@ -67,11 +67,11 @@ public class PlayMenuCardViewListener implements View.OnClickListener {
                 break;
 
             case R.id.launch_solver:
-                Toast.makeText(playMenuFragment.getActivity(), "Solver", Toast.LENGTH_SHORT).show();
+                Toast.makeText(gameMenuFragment.getActivity(), "Solver", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.website:
-                playMenuFragment.launchWebsiteIntent();
+                gameMenuFragment.launchWebsiteIntent();
                 break;
 
             default:

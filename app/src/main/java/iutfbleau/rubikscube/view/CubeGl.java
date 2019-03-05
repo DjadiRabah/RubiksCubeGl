@@ -27,13 +27,13 @@ public class CubeGl
 
 		switch(color)
 		{
-			case Piece.WHITE  : colors = new float[]{1.0f,1.0f,1.0f};                     break;
-			case Piece.GREEN  : colors = new float[]{0.0f,1.0f,0.0f};                     break;
-			case Piece.RED    : colors = new float[]{1.0f,0.0f,0.0f};                     break;
-			case Piece.BLUE   : colors = new float[]{0.0f,0.0f,1.0f};                     break;
-			case Piece.ORANGE : colors = new float[]{1.0f,127.0f/255.0f,39.0f/255.0f};    break;
-			case Piece.YELLOW : colors = new float[]{1.0f,242.0f/255.0f,0.0f};            break;
-			default           : colors = new float[]{0.0f,0.0f,0.0f};			 		  break;
+			case Piece.WHITE  : colors = new float[]{1.0f,1.0f,1.0f};                     			break;
+			case Piece.GREEN  : colors = new float[]{0.0f,1.0f,0.0f};                    	 		break;
+			case Piece.RED    : colors = new float[]{1.0f,0.0f,0.0f};                     			break;
+			case Piece.BLUE   : colors = new float[]{0.0f,0.0f,1.0f};                     			break;
+			case Piece.ORANGE : colors = new float[]{1.0f,127.0f/255.0f,39.0f/255.0f};    			break;
+			case Piece.YELLOW : colors = new float[]{1.0f,242.0f/255.0f,0.0f};            			break;
+			default           : colors = new float[]{150.0f/255.0f,150.0f/255.0f,150.0f/255.0f};	break;
 		}
 		return colors;
 	}

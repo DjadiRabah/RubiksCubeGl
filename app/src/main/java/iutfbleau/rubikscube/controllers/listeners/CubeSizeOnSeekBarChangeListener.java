@@ -2,20 +2,20 @@ package iutfbleau.rubikscube.controllers.listeners;
 
 import android.widget.SeekBar;
 
-import iutfbleau.rubikscube.controllers.fragments.SolverFragment;
+import iutfbleau.rubikscube.controllers.fragments.CubeGeneratorFragment;
 
 public class CubeSizeOnSeekBarChangeListener implements SeekBar.OnSeekBarChangeListener{
 
-    private SolverFragment solverFragment;
+    private CubeGeneratorFragment cubeGeneratorFragment;
 
-    public CubeSizeOnSeekBarChangeListener(SolverFragment solverFragment){
-        this.solverFragment = solverFragment;
+    public CubeSizeOnSeekBarChangeListener(CubeGeneratorFragment cubeGeneratorFragment){
+        this.cubeGeneratorFragment = cubeGeneratorFragment;
     }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        solverFragment.setSeekBarCurrentValue(progress + solverFragment.getSeekBarMinValue());
-        solverFragment.getDisplayTextView().setText("Size : "+ solverFragment.getSeekBarCurrentValue());
+        cubeGeneratorFragment.setSeekBarCurrentValue(progress + cubeGeneratorFragment.getSeekBarMinValue());
+        cubeGeneratorFragment.getDisplayTextView().setText("Size : "+ cubeGeneratorFragment.getSeekBarCurrentValue());
     }
 
     @Override

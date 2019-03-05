@@ -20,8 +20,16 @@ public class ProgressHandler extends Handler {
     public void handleMessage(Message msg) {
         super.handleMessage(msg);
         Cube3D cube3D = (Cube3D)msg.obj;
+        int face = msg.arg1;
         cube3D.setFace(cubeGeneratorActivity.getCubeGeneratorOnClickListener().getCurrentFace(), cubeGeneratorActivity.getColorsTab());
         cubeGeneratorActivity.getLoadingLayout().setVisibility(View.GONE);
-        Toast.makeText(cubeGeneratorActivity, "Done !", Toast.LENGTH_SHORT).show();
+        cubeGeneratorActivity.getFullCubeColorsTab()[face] = cubeGeneratorActivity.getColorsTab();
+        Toast.makeText(cubeGeneratorActivity, "Face "+(face+1)+" done !", Toast.LENGTH_SHORT).show();
+
+        //Vérif que toutes les faces ont étés scannées
+        if (face == 5){
+            cubeGeneratorActivity.getShootButton().setText("Generate !");
+            cubeGeneratorActivity.setChangeActionState(true);
+        }
     }
 }

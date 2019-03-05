@@ -2,13 +2,16 @@ package iutfbleau.rubikscube.controllers.listeners;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
+import android.widget.Toast;
 
 import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.controllers.activities.CubeGeneratorActivity;
 import iutfbleau.rubikscube.controllers.activities.CubeSolverActivity;
 import iutfbleau.rubikscube.controllers.activities.CustomCameraActivity;
+import iutfbleau.rubikscube.models.CubeFaceColorDescriptor;
 
 public class CubeGeneratorOnClickListener implements View.OnClickListener {
 
@@ -84,9 +87,23 @@ public class CubeGeneratorOnClickListener implements View.OnClickListener {
 
             case R.id.btnCamera:
 
-                Intent intent = new Intent(cubeGeneratorActivity, CustomCameraActivity.class);
-                intent.putExtra("cube_size", cubeGeneratorActivity.getCubeSize());
-                cubeGeneratorActivity.startActivityForResult(intent, CubeGeneratorActivity.CAMERA_REQUEST);
+                if (cubeGeneratorActivity.getChangeActionState()) {
+
+                    Toast.makeText(cubeGeneratorActivity, "Changed", Toast.LENGTH_SHORT).show();
+                    cubeGeneratorActivity.setChangeActionState(false);
+                    int[][][] temp = cubeGeneratorActivity.getFullCubeColorsTab();
+
+                    Intent intent = new Intent(cubeGeneratorActivity, CubeSolverActivity.class);
+                    intent.putExtra("cubeDescriptor", new CubeFaceColorDescriptor(cubeGeneratorActivity.getFullCubeColorsTab()));
+                    cubeGeneratorActivity.startActivity(intent);
+
+                } else {
+
+                    Intent intent = new Intent(cubeGeneratorActivity, CustomCameraActivity.class);
+                    intent.putExtra("cube_size", cubeGeneratorActivity.getCubeSize());
+                    cubeGeneratorActivity.startActivityForResult(intent, CubeGeneratorActivity.CAMERA_REQUEST);
+
+                }
 
 
                 break;

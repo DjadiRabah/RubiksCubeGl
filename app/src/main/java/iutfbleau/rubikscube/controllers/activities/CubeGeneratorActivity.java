@@ -38,7 +38,7 @@ public class CubeGeneratorActivity extends Activity {
     public GLSurfaceView glSurfaceView;
     private Button btnCamera, btnNext, btnPrev;
     private Cube3D cube3D;
-    private CubeGl cube;
+    public static CubeGl cube;
     private int cubeSize;
     private int[][] colors;
 
@@ -51,7 +51,11 @@ public class CubeGeneratorActivity extends Activity {
     private CubeGeneratorOnClickListener cubeGeneratorOnClickListener;
     private ProgressHandler progressHandler;
 
+    private int[][][] fullCubeColorsTab = new int[6][3][3];
+
     private LinearLayout loadingLayout;
+
+    private boolean changeAction = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,11 +153,12 @@ public class CubeGeneratorActivity extends Activity {
                 new Thread(new Runnable() {
                     public void run() {
                         colors = BitmapToInt.convert(finalBitmap, cubeSize);
-                        Message msg = progressHandler.obtainMessage(HANDLER_TASK_ID, cube3D);
+                        Message msg = progressHandler.obtainMessage(HANDLER_TASK_ID, cubeGeneratorOnClickListener.getCurrentFace(), 0, cube3D);
                         progressHandler.sendMessage(msg);
                     }
 
                 }).start();
+
             }
         }
     }
@@ -234,5 +239,17 @@ public class CubeGeneratorActivity extends Activity {
     public CubeGeneratorOnClickListener getCubeGeneratorOnClickListener() {
         return cubeGeneratorOnClickListener;
     }
-}
+
+    public boolean getChangeActionState(){
+        return changeAction;
+    }
+
+    public void setChangeActionState(boolean state){
+        changeAction = state;
+    }
+
+    public int[][][] getFullCubeColorsTab(){
+        return fullCubeColorsTab;
+    }
+ }
 
