@@ -3,10 +3,12 @@ package iutfbleau.rubikscube.controllers.fragments;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -19,6 +21,7 @@ public class CubeGeneratorFragment extends Fragment {
 
     private int min = 2, max = 8, current = 2;
     private TextView sizeDisp;
+    private LinearLayout fragmentGeneratorLoading;
 
     public CubeGeneratorFragment() {
         // Required empty public constructor
@@ -31,6 +34,8 @@ public class CubeGeneratorFragment extends Fragment {
         Button randomize = view.findViewById(R.id.randomize);
         Button cameraCapture = view.findViewById(R.id.cameraCapture);
         SeekBar seekBar = view.findViewById(R.id.size_seekBar);
+        fragmentGeneratorLoading = view.findViewById(R.id.fragmentGeneratorLoading);
+        fragmentGeneratorLoading.setVisibility(View.GONE);
         sizeDisp = view.findViewById(R.id.cubeSizeDisp);
 
         seekBar.setMax(max - min);
@@ -49,6 +54,12 @@ public class CubeGeneratorFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        fragmentGeneratorLoading.setVisibility(View.GONE);
+    }
+
     public int getSeekBarMinValue() {
         return min;
     }
@@ -63,5 +74,9 @@ public class CubeGeneratorFragment extends Fragment {
 
     public TextView getDisplayTextView() {
         return sizeDisp;
+    }
+
+    public LinearLayout getfragmentGeneratorLoadingLayout() {
+        return fragmentGeneratorLoading;
     }
 }

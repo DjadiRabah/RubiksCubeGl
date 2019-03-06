@@ -27,6 +27,7 @@ public class CubeGeneratorFragmentOnClickListener implements View.OnClickListene
 
             case R.id.randomize:
 
+                cubeGeneratorFragment.getfragmentGeneratorLoadingLayout().setVisibility(View.VISIBLE);
                 in = new Intent(cubeGeneratorFragment.getActivity(), GeneratedCubeDemoActivity.class);
                 in.putExtra("task", GeneratedCubeDemoActivity.RANDOMIZE_CUBE);
                 in.putExtra("cube_size", cubeGeneratorFragment.getSeekBarCurrentValue());

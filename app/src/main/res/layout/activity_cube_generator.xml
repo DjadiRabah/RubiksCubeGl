@@ -17,7 +17,7 @@
             android:orientation="horizontal"></LinearLayout>
 
         <LinearLayout
-            android:id="@+id/loadingLayout"
+            android:id="@+id/activityGeneratorLoading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/colorPickerLayout"
@@ -39,11 +39,35 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/generateLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/colorPickerLayout"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/generate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="Generate !"
+                android:textColor="@color/colorWhite"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
     </RelativeLayout>
 
 
     <Button
-        android:id="@+id/btnCamera"
+        android:id="@+id/analyze"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -57,7 +81,7 @@
         style="?attr/buttonBarButtonStyle"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_above="@id/btnCamera"
+        android:layout_above="@id/analyze"
         android:layout_below="@id/topLayout"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
@@ -73,7 +97,7 @@
         style="?attr/buttonBarButtonStyle"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_above="@id/btnCamera"
+        android:layout_above="@id/analyze"
         android:layout_below="@id/topLayout"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
@@ -87,7 +111,7 @@
         android:id="@+id/glsurfaceview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/btnCamera"
+        android:layout_above="@id/analyze"
         android:layout_below="@id/topLayout"
         android:layout_toStartOf="@id/next"
         android:layout_toLeftOf="@id/next"
