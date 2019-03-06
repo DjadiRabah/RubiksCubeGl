@@ -114,4 +114,9 @@ public class CubeGl
 	{
 		this.cube.rotateZ(Math.toRadians(teta));
 	}
+
+	public Cube3D getCube()
+	{
+		return this.cube;
+	}
 }

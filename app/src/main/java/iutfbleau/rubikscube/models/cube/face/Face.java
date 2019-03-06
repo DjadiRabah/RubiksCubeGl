@@ -124,6 +124,11 @@ public class Face
 		}
 		return square;
 	}
+
+	public Piece getPiece(int i, int j)
+	{
+		return this.pieces[i][j];
+	}
 	
 	/**
      * Renvoie une matrice des couleurs des pieces de la face du cube

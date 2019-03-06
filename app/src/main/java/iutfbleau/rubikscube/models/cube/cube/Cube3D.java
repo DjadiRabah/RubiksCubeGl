@@ -10,27 +10,30 @@ public class Cube3D extends Cube
     {
         super(size);
 
+        float alpha = 1.0f;
+        float offset = 0.05f;
+
         this.faces[0] = new Face3D(size, Piece.WHITE);
-        ((Face3D)this.faces[0]).setPosition(-1.5f,1.5f,1.5f,1.5f,0.05f);
+        ((Face3D)this.faces[0]).setPosition(-alpha,alpha,alpha,alpha,offset);
         ((Face3D)this.faces[0]).rotateX(Math.toRadians(-90.0));
 
         this.faces[1] = new Face3D(size, Piece.GREEN);
-        ((Face3D)this.faces[1]).setPosition(-1.5f,1.5f,1.5f,1.5f,0.05f);
+        ((Face3D)this.faces[1]).setPosition(-alpha,alpha,alpha,alpha,offset);
         ((Face3D)this.faces[1]).rotateY(Math.toRadians(-90.0));
 
         this.faces[2] = new Face3D(size, Piece.RED);
-        ((Face3D)this.faces[2]).setPosition(-1.5f,1.5f,1.5f,1.5f,0.05f);
+        ((Face3D)this.faces[2]).setPosition(-alpha,alpha,alpha,alpha,offset);
 
         this.faces[3] = new Face3D(size, Piece.BLUE);
-        ((Face3D)this.faces[3]).setPosition(-1.5f,1.5f,1.5f,1.5f,0.05f);
+        ((Face3D)this.faces[3]).setPosition(-alpha,alpha,alpha,alpha,offset);
         ((Face3D)this.faces[3]).rotateY(Math.toRadians(90.0));
 
         this.faces[4] = new Face3D(size, Piece.ORANGE);
-        ((Face3D)this.faces[4]).setPosition(-1.5f,1.5f,1.5f,1.5f,0.05f);
+        ((Face3D)this.faces[4]).setPosition(-alpha,alpha,alpha,alpha,offset);
         ((Face3D)this.faces[4]).rotateY(Math.toRadians(180.0));
 
         this.faces[5] = new Face3D(size, Piece.YELLOW);
-        ((Face3D)this.faces[5]).setPosition(-1.5f,1.5f,1.5f,1.5f,0.05f);
+        ((Face3D)this.faces[5]).setPosition(-alpha,alpha,alpha,alpha,offset);
         ((Face3D)this.faces[5]).rotateX(Math.toRadians(90.0));
     }
 
