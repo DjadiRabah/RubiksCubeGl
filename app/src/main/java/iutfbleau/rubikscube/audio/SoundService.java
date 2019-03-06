@@ -4,13 +4,12 @@ import android.app.Service;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.IBinder;
-import android.util.Log;
 
 import iutfbleau.rubikscube.R;
 
 
 public class SoundService extends Service {
-    MediaPlayer player;
+    private MediaPlayer player;
 
     @Override
     public IBinder onBind(Intent intent) {
