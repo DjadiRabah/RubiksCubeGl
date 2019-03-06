@@ -33,7 +33,7 @@ public class SplashScreenActivity extends Activity {
     /**
      * Called when the activity is first created.
      */
-    Thread splashTread;
+    private Thread splashTread;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

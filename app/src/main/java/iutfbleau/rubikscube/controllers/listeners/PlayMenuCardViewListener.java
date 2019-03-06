@@ -1,7 +1,6 @@
 package iutfbleau.rubikscube.controllers.listeners;
 
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,20 +43,19 @@ public class PlayMenuCardViewListener implements View.OnClickListener {
 
                 PlayFragment playFragment = ((NavActivity) gameMenuFragment.getActivity()).getPlayFragment();
                 TextView textView = v.findViewById(R.id.lock_textView);
-                ImageView imageView = v.findViewById(R.id.lock_imageView);
 
                 if (!playFragment.isCubeLocked()) {
 
                     Toast.makeText(gameMenuFragment.getActivity(), "Cube rotation locked.", Toast.LENGTH_SHORT).show();
                     //Lock method
-                    imageView.setBackground(gameMenuFragment.getActivity().getResources().getDrawable(R.drawable.baseline_lock_open_black_24dp));
+                    textView.setCompoundDrawablesWithIntrinsicBounds(null, gameMenuFragment.getActivity().getResources().getDrawable(R.drawable.baseline_lock_open_black_24dp), null, null);
                     textView.setText("Unlock Cube Rotation");
 
                 } else {
 
                     Toast.makeText(gameMenuFragment.getActivity(), "Cube rotation unlocked.", Toast.LENGTH_SHORT).show();
                     //Unlock method
-                    imageView.setBackground(gameMenuFragment.getActivity().getResources().getDrawable(R.drawable.baseline_lock_black_24dp));
+                    textView.setCompoundDrawablesWithIntrinsicBounds(null, gameMenuFragment.getActivity().getResources().getDrawable(R.drawable.baseline_lock_black_24dp), null, null);
                     textView.setText("Lock Cube Rotation");
 
                 }

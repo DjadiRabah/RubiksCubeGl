@@ -28,6 +28,7 @@ public class CubeGeneratorOnClickListener implements View.OnClickListener {
     public void onClick(View v) {
 
         v.startAnimation(new AlphaAnimation(1F, 0.8F));
+        Intent intent;
         switch (v.getId()) {
 
             case R.id.next:
@@ -83,24 +84,20 @@ public class CubeGeneratorOnClickListener implements View.OnClickListener {
                 }
                 break;
 
-            case R.id.btnCamera:
+            case R.id.analyze:
 
-                if (cubeGeneratorActivity.getChangeActionState()) {
+                intent = new Intent(cubeGeneratorActivity, CustomCameraActivity.class);
+                intent.putExtra("cube_size", cubeGeneratorActivity.getCubeSize());
+                cubeGeneratorActivity.startActivityForResult(intent, CubeGeneratorActivity.CAMERA_REQUEST);
 
-                    cubeGeneratorActivity.setChangeActionState(false);
+                break;
 
-                    Intent intent = new Intent(cubeGeneratorActivity, GeneratedCubeDemoActivity.class);
-                    intent.putExtra("cubeDescriptor", new CubeFaceColorDescriptor(cubeGeneratorActivity.getFullCubeColorsTab()));
-                    intent.putExtra("task", GeneratedCubeDemoActivity.CAPTURE_CUBE);
-                    cubeGeneratorActivity.startActivity(intent);
+            case R.id.generate:
 
-                } else {
-
-                    Intent intent = new Intent(cubeGeneratorActivity, CustomCameraActivity.class);
-                    intent.putExtra("cube_size", cubeGeneratorActivity.getCubeSize());
-                    cubeGeneratorActivity.startActivityForResult(intent, CubeGeneratorActivity.CAMERA_REQUEST);
-
-                }
+                intent = new Intent(cubeGeneratorActivity, GeneratedCubeDemoActivity.class);
+                intent.putExtra("cubeDescriptor", new CubeFaceColorDescriptor(cubeGeneratorActivity.getFullCubeColorsTab()));
+                intent.putExtra("task", GeneratedCubeDemoActivity.CAPTURE_CUBE);
+                cubeGeneratorActivity.startActivity(intent);
 
                 break;
         }

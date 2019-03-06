@@ -73,13 +73,12 @@ public class GameMenuFragment extends Fragment {
 
         PlayFragment playFragment = ((NavActivity) getActivity()).getPlayFragment();
         TextView textView = view.findViewById(R.id.lock_textView);
-        ImageView imageView = view.findViewById(R.id.lock_imageView);
 
         if (playFragment.isCubeLocked()) {
-            imageView.setBackground(getActivity().getResources().getDrawable(R.drawable.baseline_lock_open_black_24dp));
+            textView.setCompoundDrawablesWithIntrinsicBounds(null, getActivity().getResources().getDrawable(R.drawable.baseline_lock_open_black_24dp), null, null);
             textView.setText("Unlock Cube Rotation");
         } else {
-            imageView.setBackground(getActivity().getResources().getDrawable(R.drawable.baseline_lock_black_24dp));
+            textView.setCompoundDrawablesWithIntrinsicBounds(null, getActivity().getResources().getDrawable(R.drawable.baseline_lock_black_24dp), null, null);
             textView.setText("Lock Cube Rotation");
         }
 

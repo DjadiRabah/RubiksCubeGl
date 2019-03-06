@@ -147,7 +147,7 @@ public class CustomCameraActivity extends Activity {
         frameLayout.addView(cameraPreview);
         gridCameraOverlay = new GridCameraOverlay(this, cubeSize);
         resultIntent.putExtra("coords", gridCameraOverlay.getOverlayCoordinates());
-        addContentView(gridCameraOverlay, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.FILL_PARENT, FrameLayout.LayoutParams.FILL_PARENT));
+        addContentView(gridCameraOverlay, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
     }
 
     public void captureImage(View v) {

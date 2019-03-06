@@ -2,12 +2,9 @@ package iutfbleau.rubikscube.view;
 
 import android.opengl.GLSurfaceView;
 import android.opengl.GLU;
-import android.view.MotionEvent;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
-
-import iutfbleau.rubikscube.models.cube.cube.Cube3D;
 
 
 public class OpenGLRenderer implements GLSurfaceView.Renderer {

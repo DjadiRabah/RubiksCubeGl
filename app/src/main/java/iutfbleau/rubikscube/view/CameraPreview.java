@@ -2,6 +2,7 @@ package iutfbleau.rubikscube.view;
 
 import android.content.Context;
 import android.hardware.Camera;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -21,6 +22,10 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         this.camera = camera;
         surfaceHolder = getHolder();
         surfaceHolder.addCallback(this);
+    }
+
+    public CameraPreview(Context context, AttributeSet attributeSet){
+        super(context, attributeSet);
     }
 
     @Override

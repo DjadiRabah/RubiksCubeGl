@@ -36,7 +36,7 @@ public class CubeGeneratorActivity extends Activity {
     private static final int ALL_PERMISSIONS = 2;
 
     public GLSurfaceView glSurfaceView;
-    private Button btnCamera, btnNext, btnPrev;
+    private Button btnCamera, btnNext, btnPrev, generate;
     private Cube3D cube3D;
     public static CubeGl cube;
     private int cubeSize;
@@ -53,9 +53,9 @@ public class CubeGeneratorActivity extends Activity {
 
     private int[][][] fullCubeColorsTab = new int[6][3][3];
 
-    private LinearLayout loadingLayout;
+    private boolean[] facesScanned = new boolean[6];
 
-    private boolean changeAction = false;
+    private LinearLayout loadingLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,18 +67,20 @@ public class CubeGeneratorActivity extends Activity {
 
         cubeSize = getIntent().getIntExtra("cube_size", 3);
 
-        this.cube3D = new Cube3D(cubeSize);
-        this.cube3D.disableColors();
-        this.cube3D.rotateX(Math.toRadians(90.0));
-        cube = new CubeGl(this.cube3D);
+        cube3D = new Cube3D(cubeSize);
+        cube3D.disableColors();
+        cube3D.rotateX(Math.toRadians(90.0));
+        cube = new CubeGl(cube3D);
 
-        this.cubeGeneratorOnClickListener = new CubeGeneratorOnClickListener((this));
+        cubeGeneratorOnClickListener = new CubeGeneratorOnClickListener((this));
 
-        btnCamera = findViewById(R.id.btnCamera);
+        btnCamera = findViewById(R.id.analyze);
         btnNext = findViewById(R.id.next);
         btnPrev = findViewById(R.id.prev);
-        loadingLayout = findViewById(R.id.loadingLayout);
+        loadingLayout = findViewById(R.id.activityGeneratorLoading);
         loadingLayout.setVisibility(View.GONE);
+        generate = findViewById(R.id.generate);
+        generate.setVisibility(View.GONE);
 
         LinearLayout colorPickerLayout = findViewById(R.id.colorPickerLayout);
 
@@ -101,10 +103,10 @@ public class CubeGeneratorActivity extends Activity {
         }
 
         glSurfaceView = findViewById(R.id.glsurfaceview);
-        //textView = findViewById(R.id.textView);
 
         btnNext.setOnClickListener(cubeGeneratorOnClickListener);
         btnPrev.setOnClickListener(cubeGeneratorOnClickListener);
+        generate.setOnClickListener(cubeGeneratorOnClickListener);
 
         OpenGLRenderer openglRenderer = new OpenGLRenderer(cube);
         glSurfaceView.setRenderer(openglRenderer);
@@ -136,6 +138,7 @@ public class CubeGeneratorActivity extends Activity {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
 
+                getGenerateButton().setVisibility(View.GONE);
                 getLoadingLayout().setVisibility(View.VISIBLE);
 
                 Bitmap bitmap = BitmapFactory.decodeFile(data.getStringExtra("img_path"));
@@ -240,16 +243,25 @@ public class CubeGeneratorActivity extends Activity {
         return cubeGeneratorOnClickListener;
     }
 
-    public boolean getChangeActionState(){
-        return changeAction;
-    }
-
-    public void setChangeActionState(boolean state){
-        changeAction = state;
-    }
-
-    public int[][][] getFullCubeColorsTab(){
+    public int[][][] getFullCubeColorsTab() {
         return fullCubeColorsTab;
     }
- }
+
+    public boolean[] getFacesScannedArray() {
+        return facesScanned;
+    }
+
+    public boolean isAllFacesScanned() {
+        for (int i = 0; i < facesScanned.length; i++) {
+            if (!facesScanned[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public Button getGenerateButton(){
+        return generate;
+    }
+}
 
