@@ -22,7 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".controllers.activities.CubeSolverActivity" />
+        <activity android:name=".controllers.activities.GeneratedCubeDemoActivity" />
 
         <service
             android:name=".audio.SoundService"

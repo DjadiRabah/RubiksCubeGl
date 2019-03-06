@@ -28,29 +28,40 @@ public class CubeGeneratorFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_generate, container, false);
 
-        Button startSolver = view.findViewById(R.id.start_solver);
+        Button randomize = view.findViewById(R.id.randomize);
+        Button cameraCapture = view.findViewById(R.id.cameraCapture);
         SeekBar seekBar = view.findViewById(R.id.size_seekBar);
         sizeDisp = view.findViewById(R.id.cubeSizeDisp);
 
-        seekBar.setMax(max-min);
-        seekBar.setProgress(current-min);
-        sizeDisp.setText("Size : "+current);
+        seekBar.setMax(max - min);
+        seekBar.setProgress(current - min);
+        sizeDisp.setText("Size : " + current);
 
         Toolbar toolbar = view.findViewById(R.id.solver_toolbar);
         ((NavActivity) getActivity()).setSupportActionBar(toolbar);
         ((NavActivity) getActivity()).getSupportActionBar().setTitle(null);
 
         seekBar.setOnSeekBarChangeListener(new CubeSizeOnSeekBarChangeListener(this));
-        startSolver.setOnClickListener(new CubeGeneratorFragmentOnClickListener(this));
+
+        randomize.setOnClickListener(new CubeGeneratorFragmentOnClickListener(this));
+        cameraCapture.setOnClickListener(new CubeGeneratorFragmentOnClickListener(this));
 
         return view;
     }
 
-    public int getSeekBarMinValue() { return min; }
+    public int getSeekBarMinValue() {
+        return min;
+    }
 
-    public int getSeekBarCurrentValue() { return current; }
+    public int getSeekBarCurrentValue() {
+        return current;
+    }
 
-    public void setSeekBarCurrentValue(int value) { current = value ; }
+    public void setSeekBarCurrentValue(int value) {
+        current = value;
+    }
 
-    public TextView getDisplayTextView () { return sizeDisp; }
+    public TextView getDisplayTextView() {
+        return sizeDisp;
+    }
 }

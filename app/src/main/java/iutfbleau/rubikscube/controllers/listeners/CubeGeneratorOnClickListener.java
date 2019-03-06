@@ -1,15 +1,13 @@
 package iutfbleau.rubikscube.controllers.listeners;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.Toast;
 
 import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.controllers.activities.CubeGeneratorActivity;
-import iutfbleau.rubikscube.controllers.activities.CubeSolverActivity;
+import iutfbleau.rubikscube.controllers.activities.GeneratedCubeDemoActivity;
 import iutfbleau.rubikscube.controllers.activities.CustomCameraActivity;
 import iutfbleau.rubikscube.models.CubeFaceColorDescriptor;
 
@@ -89,12 +87,11 @@ public class CubeGeneratorOnClickListener implements View.OnClickListener {
 
                 if (cubeGeneratorActivity.getChangeActionState()) {
 
-                    Toast.makeText(cubeGeneratorActivity, "Changed", Toast.LENGTH_SHORT).show();
                     cubeGeneratorActivity.setChangeActionState(false);
-                    int[][][] temp = cubeGeneratorActivity.getFullCubeColorsTab();
 
-                    Intent intent = new Intent(cubeGeneratorActivity, CubeSolverActivity.class);
+                    Intent intent = new Intent(cubeGeneratorActivity, GeneratedCubeDemoActivity.class);
                     intent.putExtra("cubeDescriptor", new CubeFaceColorDescriptor(cubeGeneratorActivity.getFullCubeColorsTab()));
+                    intent.putExtra("task", GeneratedCubeDemoActivity.CAPTURE_CUBE);
                     cubeGeneratorActivity.startActivity(intent);
 
                 } else {
@@ -104,7 +101,6 @@ public class CubeGeneratorOnClickListener implements View.OnClickListener {
                     cubeGeneratorActivity.startActivityForResult(intent, CubeGeneratorActivity.CAMERA_REQUEST);
 
                 }
-
 
                 break;
         }
