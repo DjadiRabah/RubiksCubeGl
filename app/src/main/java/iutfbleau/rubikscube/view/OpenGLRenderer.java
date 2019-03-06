@@ -57,7 +57,7 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer {
     public void onSurfaceChanged(GL10 gl, int width, int height) {
         gl.glViewport(0, 0, width, height);
         gl.glMatrixMode(GL10.GL_PROJECTION);
-        gl.
+
         gl.glLoadIdentity();
         GLU.gluPerspective(gl, 45.0f, (float)width / (float)height, 0.1f, 100.0f);
         gl.glViewport(0, 0, width, height);

@@ -10,7 +10,7 @@ public class Cube3D extends Cube
     {
         super(size);
 
-        float alpha = 1.0f;
+        float alpha = 1.5f;
         float offset = 0.05f;
 
         this.faces[0] = new Face3D(size, Piece.WHITE);
