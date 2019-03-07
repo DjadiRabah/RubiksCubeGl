@@ -3,13 +3,12 @@ package iutfbleau.rubikscube.controllers.listeners;
 import android.content.Intent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
-import android.widget.Toast;
 
 import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.controllers.activities.CubeGeneratorActivity;
 import iutfbleau.rubikscube.controllers.activities.GeneratedCubeDemoActivity;
 import iutfbleau.rubikscube.controllers.activities.CustomCameraActivity;
-import iutfbleau.rubikscube.models.CubeFaceColorDescriptor;
+import iutfbleau.rubikscube.models.Array3DTransmitter;
 
 public class CubeGeneratorOnClickListener implements View.OnClickListener {
 
@@ -108,9 +107,10 @@ public class CubeGeneratorOnClickListener implements View.OnClickListener {
             case R.id.generate:
 
                 intent = new Intent(cubeGeneratorActivity, GeneratedCubeDemoActivity.class);
-                intent.putExtra("cubeDescriptor", new CubeFaceColorDescriptor(cubeGeneratorActivity.getFullCubeColorsTab()));
-                intent.putExtra("task", GeneratedCubeDemoActivity.CAPTURE_CUBE);
+                intent.putExtra("cubeDescriptor", new Array3DTransmitter(cubeGeneratorActivity.getFullCubeColorsTab()));
+                intent.putExtra("task", GeneratedCubeDemoActivity.BUILD_FROM_ARRAY);
                 cubeGeneratorActivity.startActivity(intent);
+                cubeGeneratorActivity.finish();
 
                 break;
         }
