@@ -5,7 +5,7 @@ import iutfbleau.rubikscube.models.rotation.Rotation;
 public class RotationEvent implements Event
 {
 	private int direction;
-	private int reverseDirection;
+	private int oppositeDirection;
 	private int index;
 	public RotationEvent(int direction, int index) 
 	{
@@ -17,26 +17,26 @@ public class RotationEvent implements Event
 	private void setReverseDirection(int direction)
 	{
 		if(direction == Rotation.LEFT)
-			this.reverseDirection = Rotation.RIGHT;
+			this.oppositeDirection = Rotation.RIGHT;
 		else if(direction == Rotation.RIGHT)
-			this.reverseDirection = Rotation.LEFT;
+			this.oppositeDirection = Rotation.LEFT;
 		else if(direction == Rotation.UP)
-			this.reverseDirection = Rotation.DOWN;
+			this.oppositeDirection = Rotation.DOWN;
 		else if(direction == Rotation.DOWN)
-			this.reverseDirection = Rotation.UP;
+			this.oppositeDirection = Rotation.UP;
 		else if(direction == Rotation.CLOCKWISE)
-			this.reverseDirection = Rotation.COUNTERCLOCKWISE;
+			this.oppositeDirection = Rotation.COUNTERCLOCKWISE;
 		else if(direction == Rotation.COUNTERCLOCKWISE)
-			this.reverseDirection = Rotation.CLOCKWISE;
+			this.oppositeDirection = Rotation.CLOCKWISE;
 	}
 
 	public int getDirection()
 	{
 		return this.direction;
 	}
-	public int getReverseDirection()
+	public int getOppositeDirection()
 	{
-		return this.reverseDirection;
+		return this.oppositeDirection;
 	}
 	public int getIndex()
 	{
