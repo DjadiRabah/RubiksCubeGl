@@ -24,6 +24,16 @@ public class CubeGeneratorOnClickListener implements View.OnClickListener {
         return this.compteur - 1;
     }
 
+    private void rotate()
+    {
+        cubeGeneratorActivity.get3DCube().rotateY(-15.0);
+        cubeGeneratorActivity.get3DCube().rotateX(15.0);
+    }
+    private void rotate2()
+    {
+        cubeGeneratorActivity.get3DCube().rotateX(-15.0);
+        cubeGeneratorActivity.get3DCube().rotateY(15.0);
+    }
     @Override
     public void onClick(View v) {
 
@@ -42,6 +52,7 @@ public class CubeGeneratorOnClickListener implements View.OnClickListener {
                 }
                 cubeGeneratorActivity.getShootButton().setText("Analyze Face " + compteur);
 
+                this.rotate2();
                 //Cube rotations
                 if (compteur == 2) {
                     cubeGeneratorActivity.get3DCube().rotateX(-90.0f);
@@ -56,6 +67,7 @@ public class CubeGeneratorOnClickListener implements View.OnClickListener {
                     cubeGeneratorActivity.get3DCube().rotateY(-180.0f);
                     cubeGeneratorActivity.get3DCube().rotateX(-90.0f);
                 }
+                this.rotate();
                 break;
 
             case R.id.prev:
@@ -67,7 +79,7 @@ public class CubeGeneratorOnClickListener implements View.OnClickListener {
                     cubeGeneratorActivity.getNextButton().setVisibility(View.VISIBLE);
                 }
                 cubeGeneratorActivity.getShootButton().setText("Analyze Face " + compteur);
-
+                this.rotate2();
                 //Cube rotations
                 if (compteur == 1) {
                     cubeGeneratorActivity.get3DCube().rotateY(-90.0f);
@@ -82,6 +94,7 @@ public class CubeGeneratorOnClickListener implements View.OnClickListener {
                     cubeGeneratorActivity.get3DCube().rotateX(90.0f);
                     cubeGeneratorActivity.get3DCube().rotateY(180.0f);
                 }
+                this.rotate();
                 break;
 
             case R.id.analyze:

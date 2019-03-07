@@ -1,5 +1,6 @@
 package iutfbleau.rubikscube.models.collide;
 
+import android.opengl.Matrix;
 import android.util.Log;
 
 import iutfbleau.rubikscube.models.cube.piece.Piece3D;
@@ -9,8 +10,6 @@ public class CollidePiece3D
     public CollidePiece3D()
     {
     }
-
-
 
     private float[][] getBoundingBox(Piece3D piece)
     {
