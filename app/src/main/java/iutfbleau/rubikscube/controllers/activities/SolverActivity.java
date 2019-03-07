@@ -1,26 +1,21 @@
 package iutfbleau.rubikscube.controllers.activities;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.controllers.listeners.CubeMotionListener;
-import iutfbleau.rubikscube.controllers.listeners.GeneratedCubeDemoActivityOnClickListener;
 import iutfbleau.rubikscube.controllers.listeners.SolverActivityOnClickListener;
 import iutfbleau.rubikscube.event.RotationEvent;
 import iutfbleau.rubikscube.models.Array3DTransmitter;
-import iutfbleau.rubikscube.models.cube.cube.Cube;
 import iutfbleau.rubikscube.models.cube.cube.Cube3D;
-import iutfbleau.rubikscube.models.shuffle.ShuffleRandom;
 import iutfbleau.rubikscube.models.solver.solver.beginner.SolverBeginner;
 import iutfbleau.rubikscube.view.CubeGl;
 import iutfbleau.rubikscube.view.renderer.OpenGLRenderer;
@@ -37,6 +32,8 @@ public class SolverActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_solver);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         prevMove = findViewById(R.id.prevMove);
         nextMove = findViewById(R.id.nextMove);
@@ -63,8 +60,6 @@ public class SolverActivity extends Activity {
             totalMoves += solution.get(i).size();
         }
 
-        totalMovesDisplay.setText("1 /"+totalMoves);
-
         OpenGLRenderer openglRenderer = new OpenGLRenderer(cubegl);
         GLSurfaceView solverGlSurfaceView = findViewById(R.id.solverGlSurfaceView);
         solverGlSurfaceView.setOnTouchListener(new CubeMotionListener(cubegl));
@@ -75,7 +70,7 @@ public class SolverActivity extends Activity {
         return totalMoves;
     }
 
-    public TextView getMovesDisplayer(){
+    public TextView getMovesDisplay(){
         return totalMovesDisplay;
     }
 
@@ -83,7 +78,11 @@ public class SolverActivity extends Activity {
         return prevMove;
     }
     public Button getNextMoveButton(){
-        return prevMove;
+        return nextMove;
+    }
+
+    public ArrayList<ArrayList<RotationEvent>> getSolverSolution(){
+        return solution;
     }
 
 }
