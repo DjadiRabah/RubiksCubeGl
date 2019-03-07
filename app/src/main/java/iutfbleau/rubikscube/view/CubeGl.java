@@ -1,5 +1,6 @@
 package iutfbleau.rubikscube.view;
 
+import android.opengl.GLSurfaceView;
 import android.util.Log;
 
 import java.nio.FloatBuffer;
@@ -15,10 +16,12 @@ import iutfbleau.rubikscube.models.cube.piece.Piece3D;
 public class CubeGl
 {
 	protected Cube3D cube;
+	protected GLSurfaceView surfaceView;
 
-	public CubeGl(Cube3D cube)
+	public CubeGl(Cube3D cube, GLSurfaceView surfaceView)
 	{
 		this.cube = cube;
+		this.surfaceView = surfaceView;
 	}
 
 	private float[] setColor(int color)
@@ -106,7 +109,6 @@ public class CubeGl
 
 	public void rotateY(double teta)
 	{
-
 		this.cube.rotateY(Math.toRadians(teta));
 	}
 

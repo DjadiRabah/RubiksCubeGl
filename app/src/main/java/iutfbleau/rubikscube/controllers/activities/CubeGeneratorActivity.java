@@ -72,7 +72,7 @@ public class CubeGeneratorActivity extends Activity {
         cube3D.rotateX(Math.toRadians(90.0));
         cube3D.rotateY(-Math.toRadians(15.0));
         cube3D.rotateX(Math.toRadians(15.0));
-        cube = new CubeGl(cube3D);
+        cube = new CubeGl(cube3D,glSurfaceView);
 
         cubeGeneratorOnClickListener = new CubeGeneratorOnClickListener((this));
 

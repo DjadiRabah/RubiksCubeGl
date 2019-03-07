@@ -53,7 +53,8 @@ public class SolverActivity extends Activity {
             cube3d.setFace(i, cubeFaces[i]);
         }
 
-        CubeGl cubegl = new CubeGl(cube3d);
+        GLSurfaceView solverGlSurfaceView = findViewById(R.id.solverGlSurfaceView);
+        CubeGl cubegl = new CubeGl(cube3d,solverGlSurfaceView);
         solution = new SolverBeginner().solve(cube3d);
 
         for (int i = 0; i < solution.size(); i++) {
@@ -61,7 +62,6 @@ public class SolverActivity extends Activity {
         }
 
         OpenGLRenderer openglRenderer = new OpenGLRenderer(cubegl);
-        GLSurfaceView solverGlSurfaceView = findViewById(R.id.solverGlSurfaceView);
         solverGlSurfaceView.setOnTouchListener(new CubeMotionListener(cubegl));
         solverGlSurfaceView.setRenderer(openglRenderer);
     }

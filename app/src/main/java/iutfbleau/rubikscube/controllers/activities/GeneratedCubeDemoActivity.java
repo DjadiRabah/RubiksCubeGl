@@ -52,14 +52,16 @@ public class GeneratedCubeDemoActivity extends AppCompatActivity {
 
         }
 
-        CubeGl cubegl = new CubeGl(cube3d);
-
         LinearLayout rootLayout = findViewById(R.id.rootLayout);
+        GLSurfaceView glSurfaceView = rootLayout.findViewById(R.id.solver_test_sv);
+        CubeGl cubegl = new CubeGl(cube3d, glSurfaceView);
+
+
         Button launchSolver = findViewById(R.id.launchSolver);
         launchSolver.setOnClickListener(new GeneratedCubeDemoActivityOnClickListener(this));
 
         OpenGLRenderer openglRenderer = new OpenGLRenderer(cubegl);
-        GLSurfaceView glSurfaceView = rootLayout.findViewById(R.id.solver_test_sv);
+
         glSurfaceView.setOnTouchListener(new CubeMotionListener(cubegl));
         glSurfaceView.setRenderer(openglRenderer);
     }

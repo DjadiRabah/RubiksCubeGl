@@ -11,17 +11,11 @@ import iutfbleau.rubikscube.view.CubeGl;
 
 public class OpenGLRenderer implements GLSurfaceView.Renderer {
     private CubeGl cube;
-    private float angleX;
-    private float angleY;
-    private float angleZ;
     private MatrixGrabber matrixGrabber;
 
     public OpenGLRenderer(CubeGl cube)
     {
         this.cube = cube;
-        this.angleX = 0.0f;
-        this.angleY = 0.0f;
-        this.angleZ = 0.0f;
         this.matrixGrabber = new MatrixGrabber();
     }
 
@@ -42,19 +36,13 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer {
     }
 
     @Override
-    public void onDrawFrame(GL10 gl) {
+    public void onDrawFrame(GL10 gl)
+    {
         gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
         gl.glLoadIdentity();
         gl.glTranslatef(0.0f, 0.0f, -10.0f);
-
-
         cube.drawCube(gl);
-
         gl.glLoadIdentity();
-        this.angleX = this.angleX - 0.15f;
-        /*this.cube.rotateX(Math.toRadians(1.0));
-        this.cube.rotateY(Math.toRadians(1.0));
-        this.cube.rotateZ(Math.toRadians(1.0));*/
     }
 
     @Override

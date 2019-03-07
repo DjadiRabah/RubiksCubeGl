@@ -58,10 +58,10 @@ public class PlayFragment extends Fragment {
             }
         });
 
-        cube = new CubeGl(new Cube3D(3));
+        GLSurfaceView glSurfaceView = view.findViewById(R.id.glsurfaceview);
+        cube = new CubeGl(new Cube3D(3),glSurfaceView);
         OpenGLRenderer openglRenderer = new OpenGLRenderer(cube);
         view.setOnTouchListener(new CubeMotionListener(cube));
-        GLSurfaceView glSurfaceView = view.findViewById(R.id.glsurfaceview);
         glSurfaceView.setRenderer(openglRenderer);
 
         return view;
