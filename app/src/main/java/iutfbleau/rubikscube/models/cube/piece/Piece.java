@@ -30,6 +30,11 @@ public class Piece
 	{
 		this.setColor(Piece.NONE);
 	}
+
+	public Piece(Piece piece)
+	{
+		this.color = piece.color;
+	}
 	
 	/**
      * Construit une piece avec une certaine couleur

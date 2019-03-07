@@ -23,7 +23,8 @@ import iutfbleau.rubikscube.models.cube.cube.Cube3D;
 import iutfbleau.rubikscube.models.shuffle.ShuffleRandom;
 import iutfbleau.rubikscube.models.solver.solver.beginner.SolverBeginner;
 import iutfbleau.rubikscube.view.CubeGl;
-import iutfbleau.rubikscube.view.OpenGLRenderer;
+import iutfbleau.rubikscube.view.renderer.OpenGLRenderer;
+
 
 public class SolverActivity extends Activity {
 
@@ -56,7 +57,7 @@ public class SolverActivity extends Activity {
         }
 
         CubeGl cubegl = new CubeGl(cube3d);
-        solution = new SolverBeginner().solve((Cube)cube3d);
+        solution = new SolverBeginner().solve(cube3d);
 
         for (int i = 0; i < solution.size(); i++) {
             totalMoves += solution.get(i).size();

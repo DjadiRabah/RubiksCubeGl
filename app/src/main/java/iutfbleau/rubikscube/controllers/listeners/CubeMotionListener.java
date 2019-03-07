@@ -35,10 +35,6 @@ public class CubeMotionListener implements View.OnTouchListener
             case MotionEvent.ACTION_DOWN:
                 this.initialX = x;
                 this.initialY = y;
-                if(new CollidePiece3D().isInBoundingBox(this.cube.getCube().getSquare(Cube.FRONT).getPiece(0,0),x,y))
-                {
-                    this.cube.getCube().getSquare(Cube.FRONT).getPiece(0,0).setColor(Piece.BLUE);
-                }
                 break;
 
             case MotionEvent.ACTION_MOVE:

@@ -78,7 +78,7 @@ public class Face
 		{
 			for(int j = 0; j < this.pieces[i].length; j++)
 			{
-				this.pieces[i][j] = face.pieces[i][j];
+				this.pieces[i][j] = new Piece(face.pieces[i][j]);
 			}
 		}
 	}
