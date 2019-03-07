@@ -36,16 +36,21 @@ public class SolverActivityOnClickListener implements View.OnClickListener {
                 solverActivity.getModelCube().rotate(rotation.getDirection(), rotation.getIndex());
                 currentRotation++;
 
-                if (currentRotation == solution.get(currentSolver).size()) {
-                    currentSolver++;
-                    currentRotation = 0;
+                if (currentRotation == solution.get(currentSolver).size())
+                {
+                    if(currentSolver < solution.size() - 1)
+                    {
+                        currentSolver++;
+                        currentRotation = 0;
+                    }
                 }
 
                 //Interface changes
                 counter++;
-                if (counter == 1) {
+                if (counter >= 1) {
                     solverActivity.getPrevMoveButton().setVisibility(View.VISIBLE);
-                } else if (counter == solverActivity.getNumberOfMoves()) {
+                }
+                if (counter == solverActivity.getNumberOfMoves()) {
                     solverActivity.getNextMoveButton().setVisibility(View.INVISIBLE);
                 }
                 solverActivity.getMovesDisplay().setText("Move "+counter + " of " + solverActivity.getNumberOfMoves());
@@ -53,22 +58,29 @@ public class SolverActivityOnClickListener implements View.OnClickListener {
                 break;
 
             case R.id.prevMove:
-
+                currentRotation--;
+                if(currentRotation == -1)
+                {
+                    if(currentSolver > 0)
+                    {
+                        currentSolver--;
+                        currentRotations = solution.get(currentSolver);
+                        currentRotation = currentRotations.size() - 1;
+                    }
+                    else
+                        currentRotation = 0;
+                }
                 //Rotations
                 rotation = currentRotations.get(currentRotation);
                 solverActivity.getModelCube().rotate(rotation.getOppositeDirection(), rotation.getIndex());
-                currentRotation--;
 
-                if (currentRotation == 0) {
-                    currentSolver--;
-                    currentRotation = solution.get(currentSolver).size();
-                }
 
                 //Interface changes
                 counter--;
                 if (counter == 1) {
                     solverActivity.getPrevMoveButton().setVisibility(View.INVISIBLE);
-                } else if (counter == solverActivity.getNumberOfMoves() - 1) {
+                }
+                if (counter <= solverActivity.getNumberOfMoves() - 1) {
                     solverActivity.getNextMoveButton().setVisibility(View.VISIBLE);
                 }
                 solverActivity.getMovesDisplay().setText("Move "+counter + " of " + solverActivity.getNumberOfMoves());
