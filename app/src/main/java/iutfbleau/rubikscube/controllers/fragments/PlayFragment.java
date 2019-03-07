@@ -22,14 +22,13 @@ public class PlayFragment extends Fragment {
 
     private boolean cubeLockState = false;
     private MediaPlayer touchsound;
-    private CubeGl cube;
-    private View view;
+    private Cube3D cube3D;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_play, container, false);
+        View view = inflater.inflate(R.layout.fragment_play, container, false);
 
         touchsound = MediaPlayer.create(getActivity(), R.raw.lock);
 
@@ -58,8 +57,9 @@ public class PlayFragment extends Fragment {
             }
         });
 
+        cube3D = new Cube3D(3);
         GLSurfaceView glSurfaceView = view.findViewById(R.id.glsurfaceview);
-        cube = new CubeGl(new Cube3D(3),glSurfaceView);
+        CubeGl cube = new CubeGl(cube3D, glSurfaceView);
         OpenGLRenderer openglRenderer = new OpenGLRenderer(cube);
         view.setOnTouchListener(new CubeMotionListener(cube));
         glSurfaceView.setRenderer(openglRenderer);
@@ -79,4 +79,11 @@ public class PlayFragment extends Fragment {
         this.cubeLockState = state;
     }
 
+    public int[][][] getPlayFragmentCubeFaces() {
+        int[][][] resArray = new int[6][3][3];
+        for (int i = 0; i < resArray.length; i++) {
+            resArray[i] = cube3D.getFace(i);
+        }
+        return resArray;
+    }
 }

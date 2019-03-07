@@ -20,12 +20,12 @@ import iutfbleau.rubikscube.models.FileManager;
 
 public class NavActivity extends AppCompatActivity {
 
-    public PlayFragment playFragment;
-    public CubeGeneratorFragment cubeGeneratorFragment;
-    public StatsFragment statsFragment;
+    private PlayFragment playFragment;
+    private CubeGeneratorFragment cubeGeneratorFragment;
+    private StatsFragment statsFragment;
 
-    public boolean fxSound;
-    public boolean backgroundMusic;
+    private boolean fxSound;
+    private boolean backgroundMusic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,5 +106,21 @@ public class NavActivity extends AppCompatActivity {
 
     public PlayFragment getPlayFragment() {
         return playFragment;
+    }
+
+    public StatsFragment getStatsFragment() {
+        return statsFragment;
+    }
+
+    public CubeGeneratorFragment getCubeGeneratorFragment() {
+        return cubeGeneratorFragment;
+    }
+
+    public boolean getFxSoundState(){
+        return fxSound;
+    }
+
+    public boolean getBackgroundSoundState(){
+        return backgroundMusic;
     }
 }

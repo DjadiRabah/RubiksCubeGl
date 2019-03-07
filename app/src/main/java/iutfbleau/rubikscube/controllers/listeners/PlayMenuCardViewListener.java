@@ -1,13 +1,17 @@
 package iutfbleau.rubikscube.controllers.listeners;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import iutfbleau.rubikscube.R;
+import iutfbleau.rubikscube.controllers.activities.GeneratedCubeDemoActivity;
 import iutfbleau.rubikscube.controllers.activities.NavActivity;
+import iutfbleau.rubikscube.controllers.activities.SolverActivity;
 import iutfbleau.rubikscube.controllers.fragments.PlayFragment;
 import iutfbleau.rubikscube.controllers.fragments.GameMenuFragment;
+import iutfbleau.rubikscube.models.Array3DTransmitter;
 
 public class PlayMenuCardViewListener implements View.OnClickListener {
 
@@ -20,6 +24,8 @@ public class PlayMenuCardViewListener implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+
+        PlayFragment playFragment = ((NavActivity) gameMenuFragment.getActivity()).getPlayFragment();
 
         switch (v.getId()) {
 
@@ -41,7 +47,6 @@ public class PlayMenuCardViewListener implements View.OnClickListener {
 
                 gameMenuFragment.closeFragment();
 
-                PlayFragment playFragment = ((NavActivity) gameMenuFragment.getActivity()).getPlayFragment();
                 TextView textView = v.findViewById(R.id.lock_textView);
 
                 if (!playFragment.isCubeLocked()) {
@@ -65,7 +70,12 @@ public class PlayMenuCardViewListener implements View.OnClickListener {
                 break;
 
             case R.id.launch_solver:
-                Toast.makeText(gameMenuFragment.getActivity(), "Solver", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(gameMenuFragment.getActivity(), SolverActivity.class);
+                intent.putExtra("task", GeneratedCubeDemoActivity.BUILD_FROM_ARRAY);
+                intent.putExtra("cubeDescriptor", new Array3DTransmitter(playFragment.getPlayFragmentCubeFaces()));
+                gameMenuFragment.startActivity(intent);
+
                 break;
 
             case R.id.website:

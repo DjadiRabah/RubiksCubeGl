@@ -22,22 +22,22 @@ public class BottomNavigationViewListener implements BottomNavigationView.OnNavi
     @Override
     public boolean onNavigationItemSelected(MenuItem menuItem) {
 
-        if (navActivity.fxSound) {
+        if (navActivity.getFxSoundState()) {
             mediaPlayerFx.start();
         }
 
         switch (menuItem.getItemId()) {
 
             case R.id.nav_play:
-                navActivity.setFragment(navActivity.playFragment, "playfragment");
+                navActivity.setFragment(navActivity.getPlayFragment(), "playfragment");
                 return true;
 
             case R.id.nav_generator:
-                navActivity.setFragment(navActivity.cubeGeneratorFragment, "solverfragment");
+                navActivity.setFragment(navActivity.getCubeGeneratorFragment(), "solverfragment");
                 return true;
 
             case R.id.nav_stats:
-                navActivity.setFragment(navActivity.statsFragment, "statsfragment");
+                navActivity.setFragment(navActivity.getStatsFragment(), "statsfragment");
                 return true;
 
             default:
