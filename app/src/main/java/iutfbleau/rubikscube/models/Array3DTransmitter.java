@@ -2,36 +2,35 @@ package iutfbleau.rubikscube.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
 
-public class CubeFaceColorDescriptor implements Parcelable {
+public class Array3DTransmitter implements Parcelable {
 
-    private int[][][] array;
+    private int[][][] arrayToTransmit;
 
-    public CubeFaceColorDescriptor(int[][][] array) {
+    public Array3DTransmitter(int[][][] arrayToTransmit) {
 
-        this.array = array;
+        this.arrayToTransmit = arrayToTransmit;
 
     }
 
-    protected CubeFaceColorDescriptor(Parcel in) {
-        array = read3DimArray(in);
+    protected Array3DTransmitter(Parcel in) {
+        arrayToTransmit = read3DimArray(in);
     }
 
-    public static final Creator<CubeFaceColorDescriptor> CREATOR = new Creator<CubeFaceColorDescriptor>() {
+    public static final Creator<Array3DTransmitter> CREATOR = new Creator<Array3DTransmitter>() {
         @Override
-        public CubeFaceColorDescriptor createFromParcel(Parcel in) {
-            return new CubeFaceColorDescriptor(in);
+        public Array3DTransmitter createFromParcel(Parcel in) {
+            return new Array3DTransmitter(in);
         }
 
         @Override
-        public CubeFaceColorDescriptor[] newArray(int size) {
-            return new CubeFaceColorDescriptor[size];
+        public Array3DTransmitter[] newArray(int size) {
+            return new Array3DTransmitter[size];
         }
     };
 
     public int[][][] getArray() {
-        return array;
+        return arrayToTransmit;
     }
 
     @Override
@@ -41,7 +40,7 @@ public class CubeFaceColorDescriptor implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        write3DimArray(array, dest);
+        write3DimArray(arrayToTransmit, dest);
     }
 
     private void write3DimArray(int[][][] array, Parcel parcel) {
@@ -54,18 +53,15 @@ public class CubeFaceColorDescriptor implements Parcelable {
             }
 
         }
-        Log.e("WRITE", ""+array.length);
     }
 
     private int[][][] read3DimArray(Parcel parcel) {
         int arrayL = parcel.readInt();
         int[][][] array = new int[arrayL][][];
-        for (int i = 0; i < array.length; i++)
-        {
+        for (int i = 0; i < array.length; i++) {
             int array1Size = parcel.readInt();
             array[i] = new int[array1Size][];
-            for (int j = 0; j < array1Size; j++)
-            {
+            for (int j = 0; j < array1Size; j++) {
                 int array2Size = parcel.readInt();
                 array[i][j] = new int[array2Size];
                 parcel.readIntArray(array[i][j]);

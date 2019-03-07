@@ -50,6 +50,10 @@ public class Cube3D extends Cube
         this.faces[face].setFace(colors);
     }
 
+    public int[][] getFace(int face){
+        return this.faces[face].getColors();
+    }
+
     public void rotateX(double teta)
     {
         for(int i = 0; i < this.faces.length; i++)
