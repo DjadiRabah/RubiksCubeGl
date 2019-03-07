@@ -16,7 +16,7 @@ import iutfbleau.rubikscube.controllers.activities.NavActivity;
 import iutfbleau.rubikscube.controllers.listeners.CubeMotionListener;
 import iutfbleau.rubikscube.models.cube.cube.Cube3D;
 import iutfbleau.rubikscube.view.CubeGl;
-import iutfbleau.rubikscube.view.OpenGLRenderer;
+import iutfbleau.rubikscube.view.renderer.OpenGLRenderer;
 
 public class PlayFragment extends Fragment {
 

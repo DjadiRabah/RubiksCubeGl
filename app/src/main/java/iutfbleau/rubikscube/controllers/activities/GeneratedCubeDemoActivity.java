@@ -13,7 +13,7 @@ import iutfbleau.rubikscube.models.CubeFaceColorDescriptor;
 import iutfbleau.rubikscube.models.cube.cube.Cube3D;
 import iutfbleau.rubikscube.models.shuffle.ShuffleRandom;
 import iutfbleau.rubikscube.view.CubeGl;
-import iutfbleau.rubikscube.view.OpenGLRenderer;
+import iutfbleau.rubikscube.view.renderer.OpenGLRenderer;
 
 public class GeneratedCubeDemoActivity extends AppCompatActivity {
 

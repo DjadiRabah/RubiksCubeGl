@@ -1,4 +1,4 @@
-package iutfbleau.rubikscube.view;
+package iutfbleau.rubikscube.view.renderer;
 
 import android.opengl.GLSurfaceView;
 import android.opengl.GLU;
@@ -6,12 +6,15 @@ import android.opengl.GLU;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
+import iutfbleau.rubikscube.view.CubeGl;
+
 
 public class OpenGLRenderer implements GLSurfaceView.Renderer {
     private CubeGl cube;
     private float angleX;
     private float angleY;
     private float angleZ;
+    private MatrixGrabber matrixGrabber;
 
     public OpenGLRenderer(CubeGl cube)
     {
@@ -19,6 +22,7 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer {
         this.angleX = 0.0f;
         this.angleY = 0.0f;
         this.angleZ = 0.0f;
+        this.matrixGrabber = new MatrixGrabber();
     }
 
 

@@ -28,7 +28,7 @@ import iutfbleau.rubikscube.models.BitmapToInt;
 import iutfbleau.rubikscube.models.RBColor;
 import iutfbleau.rubikscube.models.cube.cube.Cube3D;
 import iutfbleau.rubikscube.view.CubeGl;
-import iutfbleau.rubikscube.view.OpenGLRenderer;
+import iutfbleau.rubikscube.view.renderer.OpenGLRenderer;
 
 public class CubeGeneratorActivity extends Activity {
 
