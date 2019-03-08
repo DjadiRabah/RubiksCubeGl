@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import iutfbleau.rubikscube.controllers.activities.CubeGeneratorActivity;
-import iutfbleau.rubikscube.models.cube.cube.Cube3D;
+import iutfbleau.rubikscube.models.cube.Cube;
 
 public class ProgressHandler extends Handler {
 
@@ -19,7 +19,7 @@ public class ProgressHandler extends Handler {
     @Override
     public void handleMessage(Message msg) {
         super.handleMessage(msg);
-        Cube3D cube3D = (Cube3D)msg.obj;
+        Cube cube3D = (Cube)msg.obj;
         int face = msg.arg1;
 
         cube3D.setFace(cubeGeneratorActivity.getCubeGeneratorOnClickListener().getCurrentFace(), cubeGeneratorActivity.getColorsTab());

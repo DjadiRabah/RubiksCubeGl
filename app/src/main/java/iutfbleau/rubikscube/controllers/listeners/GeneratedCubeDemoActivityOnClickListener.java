@@ -21,7 +21,7 @@ public class GeneratedCubeDemoActivityOnClickListener implements View.OnClickLis
         int[][][] cubeFaces = new int[6][3][3];
 
         for (int i = 0; i < cubeFaces.length; i++) {
-            cubeFaces[i] = generatedCubeDemoActivity.getCubeModel().getFace(i);
+            cubeFaces[i] = generatedCubeDemoActivity.getCubeModel().getFace(i).getColors();
         }
 
         Intent intent = new Intent(generatedCubeDemoActivity, SolverActivity.class);

@@ -1,15 +1,19 @@
-package iutfbleau.rubikscube.models.cube.piece;
+package iutfbleau.rubikscube.view;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
 
-public class Piece3D extends Piece
+import javax.microedition.khronos.opengles.GL10;
+
+import iutfbleau.rubikscube.models.cube.Piece;
+
+public class PieceGL
 {
 	private float vertices;
-
-	protected float width;
+	private float width;
+	private float[] color;
 
     // The order we like to connect them.
     protected short[] indices = {0, 1, 2, 0, 2, 3};
@@ -20,14 +24,10 @@ public class Piece3D extends Piece
     // Our index buffer.
     protected ShortBuffer indexBuffer;
 
-	public Piece3D()
-	{
-		super();
-	}
 
-	public Piece3D(int color)
+	public PieceGL(int color)
 	{
-		super(color);
+	    this.setColor(color);
 	}
 
     /* x1 y1 z1 : Coordonnées du point haut gauche
@@ -129,5 +129,56 @@ public class Piece3D extends Piece
             vertices[i] = this.vertexBuffer.get(i);
         }
         return vertices;
+    }
+
+    private void setColor(int color)
+    {
+        switch(color)
+        {
+            case Piece.WHITE  : this.color = new float[]{1.0f,1.0f,1.0f};                     			break;
+            case Piece.GREEN  : this.color = new float[]{0.0f,1.0f,0.0f};                    	 		break;
+            case Piece.RED    : this.color = new float[]{1.0f,0.0f,0.0f};                     			break;
+            case Piece.BLUE   : this.color = new float[]{0.0f,0.0f,1.0f};                     			break;
+            case Piece.ORANGE : this.color = new float[]{1.0f,127.0f/255.0f,39.0f/255.0f};    			break;
+            case Piece.YELLOW : this.color = new float[]{1.0f,242.0f/255.0f,0.0f};            			break;
+            default           : this.color = new float[]{150.0f/255.0f,150.0f/255.0f,150.0f/255.0f};	break;
+        }
+    }
+
+    public float[] getColor()
+    {
+        return this.color;
+    }
+
+    /**
+     * This function draws our square on screen.
+     * @param gl
+     */
+    public void draw(GL10 gl)
+    {
+        // Sélectionner couleur du carré
+        gl.glColor4f(color[0], color[1], color[2], 0.0f);
+        // Counter-clockwise winding.
+        gl.glFrontFace(GL10.GL_CCW);
+        // Enable face culling.
+        gl.glEnable(GL10.GL_CULL_FACE);
+        // What faces to remove with the face culling.
+        gl.glCullFace(GL10.GL_BACK);
+
+        // Enabled the vertices buffer for writing and to be used during
+        // rendering.
+        gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
+        // Specifies the location and data format of an array of vertex
+        // coordinates to use when rendering.
+        gl.glVertexPointer(3, GL10.GL_FLOAT, 0,
+                vertexBuffer);
+
+        gl.glDrawElements(GL10.GL_TRIANGLES, indices.length,
+                GL10.GL_UNSIGNED_SHORT, indexBuffer);
+
+        // Disable the vertices buffer.
+        gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
+        // Disable face culling.
+        gl.glDisable(GL10.GL_CULL_FACE);
     }
 }

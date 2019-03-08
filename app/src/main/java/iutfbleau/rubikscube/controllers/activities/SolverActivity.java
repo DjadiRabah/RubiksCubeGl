@@ -15,7 +15,7 @@ import iutfbleau.rubikscube.controllers.listeners.CubeMotionListener;
 import iutfbleau.rubikscube.controllers.listeners.SolverActivityOnClickListener;
 import iutfbleau.rubikscube.event.RotationEvent;
 import iutfbleau.rubikscube.models.Array3DTransmitter;
-import iutfbleau.rubikscube.models.cube.cube.Cube3D;
+import iutfbleau.rubikscube.models.cube.Cube;
 import iutfbleau.rubikscube.models.solver.solver.beginner.SolverBeginner;
 import iutfbleau.rubikscube.view.CubeGl;
 import iutfbleau.rubikscube.view.renderer.OpenGLRenderer;
@@ -27,7 +27,7 @@ public class SolverActivity extends Activity {
     private int totalMoves;
     private TextView totalMovesDisplay;
     private Button prevMove, nextMove;
-    private Cube3D cube3d;
+    private Cube cube3d;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class SolverActivity extends Activity {
         Array3DTransmitter array3DTransmitter = getIntent().getParcelableExtra("cubeDescriptor");
         int[][][] cubeFaces = array3DTransmitter.getArray();
 
-        cube3d = new Cube3D(cubeFaces[0].length);
+        cube3d = new Cube(cubeFaces[0].length);
 
         for (int i = 0; i < cubeFaces.length; i++) {
             cube3d.setFace(i, cubeFaces[i]);
@@ -86,7 +86,7 @@ public class SolverActivity extends Activity {
         return solution;
     }
 
-    public Cube3D getModelCube(){
+    public Cube getModelCube(){
         return cube3d;
     }
 

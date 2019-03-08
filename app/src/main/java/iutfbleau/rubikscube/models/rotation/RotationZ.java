@@ -1,6 +1,6 @@
 package iutfbleau.rubikscube.models.rotation;
 
-import iutfbleau.rubikscube.models.cube.cube.Cube;
+import iutfbleau.rubikscube.models.cube.Cube;
 
 public class RotationZ implements RotationComplex
 {	
@@ -11,8 +11,8 @@ public class RotationZ implements RotationComplex
 		{
 			switch (direction) 
 			{
-	            case CLOCKWISE :        new RotationFace().rotate(cube.getSquare(Cube.FRONT), Rotation.CLOCKWISE);        break;
-	            case COUNTERCLOCKWISE : new RotationFace().rotate(cube.getSquare(Cube.FRONT), Rotation.COUNTERCLOCKWISE); break;
+	            case CLOCKWISE :        new RotationFace().rotate(cube.getFace(Cube.FRONT), Rotation.CLOCKWISE);        break;
+	            case COUNTERCLOCKWISE : new RotationFace().rotate(cube.getFace(Cube.FRONT), Rotation.COUNTERCLOCKWISE); break;
 	            default: break;
 			}
         }
@@ -20,26 +20,26 @@ public class RotationZ implements RotationComplex
 		{
 			switch (direction) 
 			{
-	            case CLOCKWISE :       new RotationFace().rotate(cube.getSquare(Cube.BACK), Rotation.COUNTERCLOCKWISE);  break;
-	            case COUNTERCLOCKWISE: new RotationFace().rotate(cube.getSquare(Cube.BACK), Rotation.CLOCKWISE);         break;
+	            case CLOCKWISE :       new RotationFace().rotate(cube.getFace(Cube.BACK), Rotation.COUNTERCLOCKWISE);  break;
+	            case COUNTERCLOCKWISE: new RotationFace().rotate(cube.getFace(Cube.BACK), Rotation.CLOCKWISE);         break;
 	            default: break;
 			}
 		}
 		switch (direction) 
 		{
             case CLOCKWISE :
-            	int[] top = cube.getSquare(Cube.TOP).getRow(cube.getSize() - index - 1);
-            	cube.getSquare(Cube.TOP).setRowReverse(cube.getSize() - index - 1, cube.getSquare(Cube.LEFT).getCol(cube.getSize() - index - 1));
-            	cube.getSquare(Cube.LEFT).setCol(cube.getSize() - index - 1, cube.getSquare(Cube.DOWN).getRow(index));
-            	cube.getSquare(Cube.DOWN).setRowReverse(index, cube.getSquare(Cube.RIGHT).getCol(index));
-            	cube.getSquare(Cube.RIGHT).setCol(index, top);
+            	int[] top = cube.getFace(Cube.TOP).getRow(cube.getSize() - index - 1);
+            	cube.getFace(Cube.TOP).setRowReverse(cube.getSize() - index - 1, cube.getFace(Cube.LEFT).getCol(cube.getSize() - index - 1));
+            	cube.getFace(Cube.LEFT).setCol(cube.getSize() - index - 1, cube.getFace(Cube.DOWN).getRow(index));
+            	cube.getFace(Cube.DOWN).setRowReverse(index, cube.getFace(Cube.RIGHT).getCol(index));
+            	cube.getFace(Cube.RIGHT).setCol(index, top);
             break;
             case COUNTERCLOCKWISE :
-            	int[] tp = cube.getSquare(Cube.TOP).getRow(cube.getSize() - index - 1);
-            	cube.getSquare(Cube.TOP).setRow(cube.getSize() - index - 1, cube.getSquare(Cube.RIGHT).getCol(index));
-            	cube.getSquare(Cube.RIGHT).setColReverse(index, cube.getSquare(Cube.DOWN).getRow(index));
-            	cube.getSquare(Cube.DOWN).setRow(index, cube.getSquare(Cube.LEFT).getCol(cube.getSize() - index - 1));
-            	cube.getSquare(Cube.LEFT).setColReverse(cube.getSize() - index - 1, tp);
+            	int[] tp = cube.getFace(Cube.TOP).getRow(cube.getSize() - index - 1);
+            	cube.getFace(Cube.TOP).setRow(cube.getSize() - index - 1, cube.getFace(Cube.RIGHT).getCol(index));
+            	cube.getFace(Cube.RIGHT).setColReverse(index, cube.getFace(Cube.DOWN).getRow(index));
+            	cube.getFace(Cube.DOWN).setRow(index, cube.getFace(Cube.LEFT).getCol(cube.getSize() - index - 1));
+            	cube.getFace(Cube.LEFT).setColReverse(cube.getSize() - index - 1, tp);
 			break;
             default: break;
 		}

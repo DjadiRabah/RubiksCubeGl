@@ -1,11 +1,10 @@
-package iutfbleau.rubikscube.models.cube.cube;
+package iutfbleau.rubikscube.models.cube;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 
-import iutfbleau.rubikscube.models.cube.face.Face;
 import iutfbleau.rubikscube.models.rotation.Rotation;
 import iutfbleau.rubikscube.models.rotation.RotationCube;
 import iutfbleau.rubikscube.models.rotation.RotationX;
@@ -46,7 +45,7 @@ public class Cube implements Observable, Observer
 		this.faces = new Face[6];
 		for(int i = 0; i < 6; i++)
 		{
-			this.faces[i] = new Face(copy.getSquare(i));
+			this.faces[i] = new Face(copy.getFace(i));
 		}
 		this.observers = new ArrayList<>();
 	}
@@ -55,10 +54,24 @@ public class Cube implements Observable, Observer
 	{
 		s.shuffle(this);
 	}
+	public void disableColors()
+	{
+		for(int currentFace = 0; currentFace < 6; currentFace++)
+		{
+			this.faces[currentFace].disableColors();
+		}
+	}
+
 	
-	public Face getSquare(int position)
+	public Face getFace(int position)
 	{
 		return this.faces[position];
+	}
+
+	public void setFace(int face, int[][] colors)
+	{
+		this.faces[face].setFace(colors);
+
 	}
 	
 	public int getSize()

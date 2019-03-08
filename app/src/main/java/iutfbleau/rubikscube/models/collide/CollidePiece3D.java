@@ -1,14 +1,6 @@
 package iutfbleau.rubikscube.models.collide;
 
-import android.opengl.GLU;
-import android.opengl.Matrix;
 import android.util.Log;
-
-import java.util.Vector;
-
-import javax.microedition.khronos.opengles.GL10;
-
-import iutfbleau.rubikscube.models.cube.piece.Piece3D;
 
 public class CollidePiece3D
 {
@@ -16,7 +8,7 @@ public class CollidePiece3D
     {
     }
 
-    private float[][] getBoundingBox(Piece3D piece)
+    /*private float[][] getBoundingBox(Piece3D piece)
     {
         float[][] box = new float[4][2];
         float[] vertices = piece.getVertices();
@@ -39,23 +31,23 @@ public class CollidePiece3D
         {
             return true;
         }
-        /*
+
          && (x <= box[3][0])
-            && (y >= box[0][1]) && (x <= box[1][1])*/
+            && (y >= box[0][1]) && (x <= box[1][1])
         return false;
     }
 
     public boolean isInPiece(Piece3D piece, float x, float y)
     {
         Log.e("lol", "ICCCCCCIIIIII " + x + " " + y);
-        /*
+
         float[] vertices = new float[]{
                 x1,  y1, z1,  // 0, Top Left
                 x1, y1 - this.width, z1,  // 1, Bottom Left
                 x2, y2, z2,  // 2, Bottom Right
                 x2,  y2 + this.width, z2,  // 3, Top Right
         };
-        */
+
 
         float[] vertices = piece.getVertices();
         Function function12 = new Function(-1.0f * vertices[4] / vertices[0],vertices[1] + vertices[4] + vertices[0]*vertices[4]/vertices[0]);
@@ -65,5 +57,5 @@ public class CollidePiece3D
             return true;
         }
         return false;
-    }
+    }*/
 }

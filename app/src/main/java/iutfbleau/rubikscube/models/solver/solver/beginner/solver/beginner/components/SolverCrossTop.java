@@ -4,9 +4,8 @@ import java.util.ArrayList;
 
 import iutfbleau.rubikscube.event.RotationEvent;
 import iutfbleau.rubikscube.models.solver.SolverComponent;
-import iutfbleau.rubikscube.models.cube.cube.Cube;
+import iutfbleau.rubikscube.models.cube.Cube;
 import iutfbleau.rubikscube.models.rotation.Rotation;
-import iutfbleau.rubikscube.models.solver.SolverComponent;
 
 public class SolverCrossTop extends SolverComponent
 {
@@ -18,11 +17,11 @@ public class SolverCrossTop extends SolverComponent
 	
 	private boolean checkCross(Cube cube)
 	{
-		int colorTop = cube.getSquare(Cube.TOP).getColor();
-		if ((cube.getSquare(Cube.TOP).getColor(0,1) == colorTop)
-			&& (cube.getSquare(Cube.TOP).getColor(1,0) == colorTop)
-			&& (cube.getSquare(Cube.TOP).getColor(1,2) == colorTop)
-			&& (cube.getSquare(Cube.TOP).getColor(2,1) == colorTop))
+		int colorTop = cube.getFace(Cube.TOP).getColor();
+		if ((cube.getFace(Cube.TOP).getColor(0,1) == colorTop)
+			&& (cube.getFace(Cube.TOP).getColor(1,0) == colorTop)
+			&& (cube.getFace(Cube.TOP).getColor(1,2) == colorTop)
+			&& (cube.getFace(Cube.TOP).getColor(2,1) == colorTop))
 		{
 			return true;
 		}
@@ -31,9 +30,9 @@ public class SolverCrossTop extends SolverComponent
 	
 	private boolean checkHorizontalLine(Cube cube)
 	{
-		int colorTop = cube.getSquare(Cube.TOP).getColor();
-		if ((cube.getSquare(Cube.TOP).getColor(1,0) == colorTop)
-			&& (cube.getSquare(Cube.TOP).getColor(1,2) == colorTop))
+		int colorTop = cube.getFace(Cube.TOP).getColor();
+		if ((cube.getFace(Cube.TOP).getColor(1,0) == colorTop)
+			&& (cube.getFace(Cube.TOP).getColor(1,2) == colorTop))
 		{
 			return true;
 		}
@@ -42,9 +41,9 @@ public class SolverCrossTop extends SolverComponent
 	
 	private boolean checkVerticalLine(Cube cube)
 	{
-		int colorTop = cube.getSquare(Cube.TOP).getColor();
-		if ((cube.getSquare(Cube.TOP).getColor(0,1) == colorTop)
-			&& (cube.getSquare(Cube.TOP).getColor(2,1) == colorTop))
+		int colorTop = cube.getFace(Cube.TOP).getColor();
+		if ((cube.getFace(Cube.TOP).getColor(0,1) == colorTop)
+			&& (cube.getFace(Cube.TOP).getColor(2,1) == colorTop))
 		{
 			return true;
 		}
@@ -53,9 +52,9 @@ public class SolverCrossTop extends SolverComponent
 	
 	private boolean checkLeftTopL(Cube cube)
 	{
-		int colorTop = cube.getSquare(Cube.TOP).getColor();
-		if ((cube.getSquare(Cube.TOP).getColor(0,1) == colorTop)
-			&& (cube.getSquare(Cube.TOP).getColor(1,0) == colorTop))
+		int colorTop = cube.getFace(Cube.TOP).getColor();
+		if ((cube.getFace(Cube.TOP).getColor(0,1) == colorTop)
+			&& (cube.getFace(Cube.TOP).getColor(1,0) == colorTop))
 		{
 			return true;
 		}
@@ -64,9 +63,9 @@ public class SolverCrossTop extends SolverComponent
 	
 	private boolean checkTopRightL(Cube cube)
 	{
-		int colorTop = cube.getSquare(Cube.TOP).getColor();
-		if ((cube.getSquare(Cube.TOP).getColor(0,1) == colorTop)
-			&& (cube.getSquare(Cube.TOP).getColor(1,2) == colorTop))
+		int colorTop = cube.getFace(Cube.TOP).getColor();
+		if ((cube.getFace(Cube.TOP).getColor(0,1) == colorTop)
+			&& (cube.getFace(Cube.TOP).getColor(1,2) == colorTop))
 		{
 			return true;
 		}
@@ -75,9 +74,9 @@ public class SolverCrossTop extends SolverComponent
 	
 	private boolean checkBotRightL(Cube cube)
 	{
-		int colorTop = cube.getSquare(Cube.TOP).getColor();
-		if ((cube.getSquare(Cube.TOP).getColor(2,1) == colorTop)
-			&& (cube.getSquare(Cube.TOP).getColor(1,2) == colorTop))
+		int colorTop = cube.getFace(Cube.TOP).getColor();
+		if ((cube.getFace(Cube.TOP).getColor(2,1) == colorTop)
+			&& (cube.getFace(Cube.TOP).getColor(1,2) == colorTop))
 		{
 			return true;
 		}
@@ -86,9 +85,9 @@ public class SolverCrossTop extends SolverComponent
 	
 	private boolean checkBotLeftL(Cube cube)
 	{
-		int colorTop = cube.getSquare(Cube.TOP).getColor();
-		if ((cube.getSquare(Cube.TOP).getColor(2,1) == colorTop)
-			&& (cube.getSquare(Cube.TOP).getColor(1,0) == colorTop))
+		int colorTop = cube.getFace(Cube.TOP).getColor();
+		if ((cube.getFace(Cube.TOP).getColor(2,1) == colorTop)
+			&& (cube.getFace(Cube.TOP).getColor(1,0) == colorTop))
 		{
 			return true;
 		}
