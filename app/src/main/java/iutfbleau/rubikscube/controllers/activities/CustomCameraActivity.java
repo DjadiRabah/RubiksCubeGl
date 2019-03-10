@@ -7,6 +7,7 @@ import android.hardware.Camera;
 import android.os.Environment;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Surface;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -26,24 +27,42 @@ public class CustomCameraActivity extends Activity {
     private Camera camera;
     private FrameLayout frameLayout;
     private Intent resultIntent = new Intent();
-    private Button flash, capture;
+    private Button flashButton, captureButton;
     private CameraPreview cameraPreview;
     private GridCameraOverlay gridCameraOverlay;
     private int cubeSize;
+    private int fmi = 0; //flash mode index
+    //Flash modes
+    private final String[] flashModes = {Camera.Parameters.FLASH_MODE_AUTO, Camera.Parameters.FLASH_MODE_ON, Camera.Parameters.FLASH_MODE_OFF};
+    //Camera info
+    private android.hardware.Camera.CameraInfo info;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_camera);
 
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         cubeSize = getIntent().getIntExtra("cube_size", 3);
 
-        flash = findViewById(R.id.flash);
-        capture = findViewById(R.id.capture);
+        flashButton = findViewById(R.id.flash);
+        captureButton = findViewById(R.id.capture);
         frameLayout = findViewById(R.id.frameLayout);
-        //flash.setOnClickListener(new CameraCaptureListener(this));
 
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        camera = getCameraInstance();
+        Camera.Parameters params = camera.getParameters();
+        params.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
+        setCameraDisplayOrientation(this, Camera.CameraInfo.CAMERA_FACING_BACK, camera);
+
+        flashButton.setOnClickListener(
+                new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        setFlashMode();
+                    }
+                }
+        );
 
         if (getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
             // this device has a camera
@@ -80,6 +99,8 @@ public class CustomCameraActivity extends Activity {
             startPreview();
         }
     }
+
+
 
     Camera.PictureCallback pictureCallback = new Camera.PictureCallback() {
         @Override
@@ -142,7 +163,6 @@ public class CustomCameraActivity extends Activity {
     }
 
     public void startPreview() {
-        camera = getCameraInstance(); // attempt to get a Camera instance
         cameraPreview = new CameraPreview(this, camera);
         frameLayout.addView(cameraPreview);
         gridCameraOverlay = new GridCameraOverlay(this, cubeSize);
@@ -168,6 +188,65 @@ public class CustomCameraActivity extends Activity {
             // Camera is not available (in use or does not exist)
         }
         return c; // returns null if camera is unavailable
+    }
+
+    private void setFlashMode(){
+        Camera.Parameters params = camera.getParameters();
+        switch(fmi){
+            case 0: //IF Flash AUTO
+            {
+                fmi = 1; //Flash ON
+                flashButton.setText("FLASH ON");
+                break;
+            }
+            case 1: //IF Flash ON
+            {
+                fmi = 2; //Flash OFF
+                flashButton.setText("FLASH DISABLED");
+                break;
+            }
+            case 2: //IF Flash OFF
+            {
+                fmi = 0; //Flash AUTO
+                flashButton.setText("FLASH AUTO");
+                break;
+            }
+            default:
+            {
+                fmi = 0; //Flash AUTO
+                flashButton.setText("FLASH AUTO");
+                break;
+            }
+        }
+
+        params.setFlashMode(Camera.Parameters.FLASH_MODE_ON);
+
+        Log.d("FLASH MODE", ""+params.getFlashMode());
+
+        //Set the new parameters to the camera:
+        camera.setParameters(params);
+    }
+
+    private void setCameraDisplayOrientation(Activity activity, int cameraId, android.hardware.Camera camera) {
+        info = new android.hardware.Camera.CameraInfo();
+        android.hardware.Camera.getCameraInfo(cameraId, info);
+        int rotation = activity.getWindowManager().getDefaultDisplay().getRotation();
+        int degrees = 0;
+        switch (rotation) {
+            case Surface.ROTATION_0: degrees = 0; break;
+            case Surface.ROTATION_90: degrees = 90; break;
+            case Surface.ROTATION_180: degrees = 180; break;
+            case Surface.ROTATION_270: degrees = 270; break;
+        }
+
+        int result;
+        if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
+            result = (info.orientation + degrees) % 360;
+            result = (360 - result) % 360;  // compensate the mirror
+        } else {  // back-facing
+            result = (info.orientation - degrees + 360) % 360;
+        }
+        camera.setDisplayOrientation(result);
     }
 }
 

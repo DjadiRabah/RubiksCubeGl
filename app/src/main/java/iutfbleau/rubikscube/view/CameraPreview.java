@@ -52,7 +52,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         camera.setDisplayOrientation(90);
 
 
-        params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
+
         // params.setFlashMode(Camera.Parameters.FLASH_MODE_ON);
 
         camera.setParameters(params);

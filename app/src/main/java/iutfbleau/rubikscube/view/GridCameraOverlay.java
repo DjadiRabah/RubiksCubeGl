@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import iutfbleau.rubikscube.R;
@@ -52,8 +51,6 @@ public class GridCameraOverlay extends View {
             canvas.drawLine(offset, middle - 0.5f * cubeWidth + ratio * cubeWidth, getWidth() - offset, middle - 0.5f * cubeWidth + ratio * cubeWidth, paint);
 
         }
-
-        Log.e("CANVAS", "WIDTH = " + getWidth() + ", HEIGHT = " + getHeight());
 
         coordTab[0] = offset;
         coordTab[1] = getHeight()/2.0f - cubeWidth/2.0f;
