@@ -9,6 +9,7 @@ import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.PreferenceManager;
+import android.util.Log;
 import android.view.WindowManager;
 
 import iutfbleau.rubikscube.R;
@@ -65,6 +66,7 @@ public class NavActivity extends AppCompatActivity {
     }
 
     public void setFragment(Fragment fragment, String tag) {
+
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_frame, fragment, tag);
         fragmentTransaction.commit();
@@ -74,9 +76,11 @@ public class NavActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        int count = getSupportFragmentManager().getBackStackEntryCount();
 
-        if (count < 1) {
+
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            getSupportFragmentManager().popBackStackImmediate();
+        } else {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MyDialogTheme);
 
@@ -98,10 +102,7 @@ public class NavActivity extends AppCompatActivity {
             AlertDialog dialog = builder.create();
             dialog.show();
 
-        } else {
-            getSupportFragmentManager().popBackStack();
         }
-
     }
 
     public PlayFragment getPlayFragment() {
@@ -116,11 +117,11 @@ public class NavActivity extends AppCompatActivity {
         return cubeGeneratorFragment;
     }
 
-    public boolean getFxSoundState(){
+    public boolean getFxSoundState() {
         return fxSound;
     }
 
-    public boolean getBackgroundSoundState(){
+    public boolean getBackgroundSoundState() {
         return backgroundMusic;
     }
 }

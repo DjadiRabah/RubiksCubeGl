@@ -41,6 +41,7 @@ public class CubeGeneratorActivity extends Activity {
     public static CubeGl cube;
     private int cubeSize;
     private int[][] colors;
+    private String takenImgPath;
 
     private int[] rbColor = {RBColor.GREEN, RBColor.ORANGE, RBColor.BLUE, RBColor.RED, RBColor.YELLOW, RBColor.WHITE};
     private String[] rbColorNames = {"green", "orange", "blue", "red", "yellow", "white"};
@@ -143,7 +144,9 @@ public class CubeGeneratorActivity extends Activity {
                 getGenerateButton().setVisibility(View.GONE);
                 getLoadingLayout().setVisibility(View.VISIBLE);
 
-                Bitmap bitmap = BitmapFactory.decodeFile(data.getStringExtra("img_path"));
+                takenImgPath = data.getStringExtra("img_path");
+
+                Bitmap bitmap = BitmapFactory.decodeFile(takenImgPath);
                 float[] coordinates = data.getFloatArrayExtra("coordinates");
 
                 if (bitmap.getWidth() > bitmap.getHeight()) {
@@ -243,6 +246,10 @@ public class CubeGeneratorActivity extends Activity {
 
     public CubeGeneratorOnClickListener getCubeGeneratorOnClickListener() {
         return cubeGeneratorOnClickListener;
+    }
+
+    public String getTakenImagePath(){
+        return takenImgPath;
     }
 
     public int[][][] getFullCubeColorsTab() {

@@ -18,7 +18,7 @@ public class SplashScreenActivity extends Activity {
 
     private FileManager fm;
 
-    public SplashScreenActivity(){
+    public SplashScreenActivity() {
 
         this.fm = new FileManager(this);
 
@@ -91,4 +91,7 @@ public class SplashScreenActivity extends Activity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+    }
 }

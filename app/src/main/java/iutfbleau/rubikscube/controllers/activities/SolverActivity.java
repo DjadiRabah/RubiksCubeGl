@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -25,9 +26,10 @@ public class SolverActivity extends Activity {
 
     private ArrayList<ArrayList<RotationEvent>> solution;
     private int totalMoves;
-    private TextView totalMovesDisplay;
+    private TextView totalMovesDisplay, currentSolverStep, stepGoal;
     private Button prevMove, nextMove;
     private Cube3D cube3d;
+    private RelativeLayout solverInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,14 @@ public class SolverActivity extends Activity {
 
         prevMove = findViewById(R.id.prevMove);
         nextMove = findViewById(R.id.nextMove);
+        nextMove.setText("Start ❱");
         totalMovesDisplay = findViewById(R.id.movesNumber);
+        currentSolverStep = findViewById(R.id.currentSolverStep);
+        stepGoal = findViewById(R.id.stepGoal);
+        solverInfo = findViewById(R.id.solverInfo);
+        solverInfo.setVisibility(View.GONE);
+        stepGoal.setText("Beginners Method Solver");
+
         prevMove.setVisibility(View.INVISIBLE);
 
         SolverActivityOnClickListener solverActivityOnClickListener = new SolverActivityOnClickListener(this);
@@ -55,7 +64,7 @@ public class SolverActivity extends Activity {
         }
 
         GLSurfaceView solverGlSurfaceView = findViewById(R.id.solverGlSurfaceView);
-        CubeGl cubegl = new CubeGl(cube3d,solverGlSurfaceView);
+        CubeGl cubegl = new CubeGl(cube3d, solverGlSurfaceView);
         solution = new SolverBeginner().solve(cube3d);
 
         for (int i = 0; i < solution.size(); i++) {
@@ -67,26 +76,39 @@ public class SolverActivity extends Activity {
         solverGlSurfaceView.setRenderer(openglRenderer);
     }
 
-    public int getNumberOfMoves(){
+    public int getNumberOfMoves() {
         return totalMoves;
     }
 
-    public TextView getMovesDisplay(){
+    public TextView getMovesDisplay() {
         return totalMovesDisplay;
     }
 
-    public Button getPrevMoveButton(){
+    public TextView getCurrentSolverStepDisplay() {
+        return currentSolverStep;
+    }
+
+    public TextView getStepGoalDisplay() {
+        return stepGoal;
+    }
+
+    public RelativeLayout getSolverInfoLayout() {
+        return solverInfo;
+    }
+
+    public Button getPrevMoveButton() {
         return prevMove;
     }
-    public Button getNextMoveButton(){
+
+    public Button getNextMoveButton() {
         return nextMove;
     }
 
-    public ArrayList<ArrayList<RotationEvent>> getSolverSolution(){
+    public ArrayList<ArrayList<RotationEvent>> getSolverSolution() {
         return solution;
     }
 
-    public Cube3D getModelCube(){
+    public Cube3D getModelCube() {
         return cube3d;
     }
 

@@ -5,15 +5,43 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/movesNumber"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_gravity="end"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/solverInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingRight="10sp"
-        android:paddingEnd="10sp" />
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/currentSolverStep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/movesNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/stepGoal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:lines="2"
+        android:padding="10sp"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <android.opengl.GLSurfaceView
         android:id="@+id/solverGlSurfaceView"
@@ -29,7 +57,7 @@
         <Button
             android:id="@+id/prevMove"
             style="?attr/buttonBarButtonStyle"
-            android:layout_width="40dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@id/analyze"
             android:layout_below="@id/topLayout"
@@ -37,13 +65,14 @@
             android:layout_alignParentLeft="true"
             android:gravity="center"
             android:text="@string/prev_button_text"
+            android:textAllCaps="false"
             android:textColor="@color/black"
-            android:textSize="40sp" />
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/nextMove"
             style="?attr/buttonBarButtonStyle"
-            android:layout_width="40dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@id/analyze"
             android:layout_below="@id/topLayout"
@@ -51,8 +80,9 @@
             android:layout_alignParentRight="true"
             android:gravity="center"
             android:text="@string/next_button_text"
+            android:textAllCaps="false"
             android:textColor="@color/black"
-            android:textSize="40sp" />
+            android:textSize="20sp" />
 
     </RelativeLayout>
 

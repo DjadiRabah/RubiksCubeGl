@@ -71,10 +71,14 @@ public class PlayMenuCardViewListener implements View.OnClickListener {
 
             case R.id.launch_solver:
 
-                Intent intent = new Intent(gameMenuFragment.getActivity(), SolverActivity.class);
-                intent.putExtra("task", GeneratedCubeDemoActivity.BUILD_FROM_ARRAY);
-                intent.putExtra("cubeDescriptor", new Array3DTransmitter(playFragment.getPlayFragmentCubeFaces()));
-                gameMenuFragment.startActivity(intent);
+                if (playFragment.getPlayFragmentCubeFaces()[0].length != 3) {
+                    Toast.makeText(gameMenuFragment.getActivity(), "The beginner method only works with cubes of size 3x3x3 !", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(gameMenuFragment.getActivity(), SolverActivity.class);
+                    intent.putExtra("task", GeneratedCubeDemoActivity.BUILD_FROM_ARRAY);
+                    intent.putExtra("cubeDescriptor", new Array3DTransmitter(playFragment.getPlayFragmentCubeFaces()));
+                    gameMenuFragment.startActivity(intent);
+                }
 
                 break;
 

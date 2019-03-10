@@ -66,7 +66,7 @@ public class GeneratedCubeDemoActivity extends AppCompatActivity {
         glSurfaceView.setRenderer(openglRenderer);
     }
 
-    public Cube3D getCubeModel(){
+    public Cube3D getCubeModel() {
         return cube3d;
     }
 

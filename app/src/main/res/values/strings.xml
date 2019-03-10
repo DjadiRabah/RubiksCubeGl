@@ -16,8 +16,10 @@
     <string name="item_default_desc">Success\' description</string>
     <string name="take_pictue_button">Analyze face 1</string>
 
-    <string name="prev_button_text">❰</string>
-    <string name="next_button_text">❱</string>
+    <string name="prev_button_text">❰ Prev</string>
+    <string name="next_button_text">Next ❱</string>
+    <string name="prev_button_icon">❰</string>
+    <string name="next_button_icon">❱</string>
     <string name="cube_size_param">Size : 2</string>
     <string name="generator1">1 - Select a cube size : </string>
     <string name="generator2">2 - Select generation type :</string>
