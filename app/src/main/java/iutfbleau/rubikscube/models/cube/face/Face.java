@@ -1,5 +1,6 @@
-package iutfbleau.rubikscube.models.cube;
+package iutfbleau.rubikscube.models.cube.face;
 
+import iutfbleau.rubikscube.models.cube.piece.Piece;
 import iutfbleau.rubikscube.models.rotation.Rotation;
 import iutfbleau.rubikscube.models.rotation.RotationFace;
 
@@ -99,7 +100,7 @@ public class Face
 		{
 			for(int j = 0; j < this.pieces[0].length; j++)
 			{
-				if ((i != (this.size - 1) / 2) || (j != (this.size - 1) / 2))
+				if ((i != 1) || (j != 1))
 					this.pieces[i][j].setColor(Piece.NONE);
 			}
 		}

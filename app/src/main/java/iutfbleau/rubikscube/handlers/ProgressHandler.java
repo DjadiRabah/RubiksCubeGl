@@ -23,7 +23,7 @@ public class ProgressHandler extends Handler {
     @Override
     public void handleMessage(Message msg) {
         super.handleMessage(msg);
-        Cube cube = (Cube)msg.obj;
+        Cube3D cube3D = (Cube3D)msg.obj;
         int face = msg.arg1;
 
         //Delete the taken photo to free space
@@ -34,7 +34,7 @@ public class ProgressHandler extends Handler {
             Log.i("Not Deleted", "Not Deleted");
         }
 
-        cube.setFace(cubeGeneratorActivity.getCubeGeneratorOnClickListener().getCurrentFace(), cubeGeneratorActivity.getColorsTab());
+        cube3D.setFace(cubeGeneratorActivity.getCubeGeneratorOnClickListener().getCurrentFace(), cubeGeneratorActivity.getColorsTab());
         cubeGeneratorActivity.getLoadingLayout().setVisibility(View.GONE);
         cubeGeneratorActivity.getFullCubeColorsTab()[face] = cubeGeneratorActivity.getColorsTab();
         cubeGeneratorActivity.getFacesScannedArray()[face] = true;

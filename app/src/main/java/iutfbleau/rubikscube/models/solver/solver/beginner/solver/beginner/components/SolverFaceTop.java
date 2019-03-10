@@ -4,8 +4,9 @@ import java.util.ArrayList;
 
 import iutfbleau.rubikscube.event.RotationEvent;
 import iutfbleau.rubikscube.models.solver.SolverComponent;
-import iutfbleau.rubikscube.models.cube.Cube;
+import iutfbleau.rubikscube.models.cube.cube.Cube;
 import iutfbleau.rubikscube.models.rotation.Rotation;
+import iutfbleau.rubikscube.models.solver.SolverComponent;
 
 public class SolverFaceTop extends SolverComponent
 {
@@ -16,22 +17,22 @@ public class SolverFaceTop extends SolverComponent
 	
 	private int getNumberCorner(Cube cube)
 	{
-		int colorTop = cube.getFace(Cube.TOP).getColor();
+		int colorTop = cube.getSquare(Cube.TOP).getColor();
 		int corner = 0;
 		
-		if (cube.getFace(Cube.TOP).getColor(0,0) == colorTop)
+		if (cube.getSquare(Cube.TOP).getColor(0,0) == colorTop)
 		{
 			corner++;
 		}
-		if (cube.getFace(Cube.TOP).getColor(0,2) == colorTop)
+		if (cube.getSquare(Cube.TOP).getColor(0,2) == colorTop)
 		{
 			corner++;
 		}
-		if (cube.getFace(Cube.TOP).getColor(2,0) == colorTop)
+		if (cube.getSquare(Cube.TOP).getColor(2,0) == colorTop)
 		{
 			corner++;
 		}
-		if (cube.getFace(Cube.TOP).getColor(2,2) == colorTop)
+		if (cube.getSquare(Cube.TOP).getColor(2,2) == colorTop)
 		{
 			corner++;
 		}
@@ -58,14 +59,14 @@ public class SolverFaceTop extends SolverComponent
 	public ArrayList<RotationEvent> solve(Cube cube) 
 	{
 		int corners = this.getNumberCorner(cube);
-		int colorTop = cube.getFace(Cube.TOP).getColor();
+		int colorTop = cube.getSquare(Cube.TOP).getColor();
 		
 		while(corners != 4)
 		{
 			ArrayList<RotationEvent> newRotations = new ArrayList<RotationEvent>();
 			if(corners == 0)
 			{
-				while(cube.getFace(Cube.LEFT).getColor(0,2) != colorTop)
+				while(cube.getSquare(Cube.LEFT).getColor(0,2) != colorTop)
 				{
 					newRotations.add(new RotationEvent(Rotation.LEFT,0));
 					cube.rotate(Rotation.LEFT,0);
@@ -74,7 +75,7 @@ public class SolverFaceTop extends SolverComponent
 			
 			else if(corners == 1)
 			{
-				while(cube.getFace(Cube.TOP).getColor(2,0) != colorTop)
+				while(cube.getSquare(Cube.TOP).getColor(2,0) != colorTop)
 				{
 					newRotations.add(new RotationEvent(Rotation.LEFT,0));
 					cube.rotate(Rotation.LEFT,0);

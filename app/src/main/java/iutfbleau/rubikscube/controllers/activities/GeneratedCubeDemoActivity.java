@@ -13,7 +13,6 @@ import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.controllers.listeners.CubeMotionListener;
 import iutfbleau.rubikscube.controllers.listeners.GeneratedCubeDemoActivityOnClickListener;
 import iutfbleau.rubikscube.models.Array3DTransmitter;
-import iutfbleau.rubikscube.models.cube.cube.Cube;
 import iutfbleau.rubikscube.models.cube.cube.Cube3D;
 import iutfbleau.rubikscube.models.shuffle.ShuffleRandom;
 import iutfbleau.rubikscube.models.solver.solver.beginner.SolverBeginner;
@@ -24,7 +23,7 @@ public class GeneratedCubeDemoActivity extends AppCompatActivity {
 
     public static int RANDOMIZE_CUBE = 0;
     public static int BUILD_FROM_ARRAY = 1;
-    private Cube cube;
+    private Cube3D cube3d;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,25 +36,25 @@ public class GeneratedCubeDemoActivity extends AppCompatActivity {
 
         if (intent.getIntExtra("task", RANDOMIZE_CUBE) == RANDOMIZE_CUBE) {
 
-            cube = new Cube(intent.getIntExtra("cube_size", 3));
-            cube.shuffle(new ShuffleRandom());
+            cube3d = new Cube3D(intent.getIntExtra("cube_size", 3));
+            cube3d.shuffle(new ShuffleRandom());
 
         } else if (intent.getIntExtra("task", RANDOMIZE_CUBE) == BUILD_FROM_ARRAY) {
 
             Array3DTransmitter array3DTransmitter = getIntent().getParcelableExtra("cubeDescriptor");
             int[][][] cubeFaces = array3DTransmitter.getArray();
 
-            cube = new Cube(cubeFaces[0].length);
+            cube3d = new Cube3D(cubeFaces[0].length);
 
             for (int i = 0; i < cubeFaces.length; i++) {
-                cube.setFace(i, cubeFaces[i]);
+                cube3d.setFace(i, cubeFaces[i]);
             }
 
         }
 
         LinearLayout rootLayout = findViewById(R.id.rootLayout);
         GLSurfaceView glSurfaceView = rootLayout.findViewById(R.id.solver_test_sv);
-        CubeGl cubegl = new CubeGl(cube, glSurfaceView);
+        CubeGl cubegl = new CubeGl(cube3d, glSurfaceView);
 
 
         Button launchSolver = findViewById(R.id.launchSolver);
@@ -67,8 +66,8 @@ public class GeneratedCubeDemoActivity extends AppCompatActivity {
         glSurfaceView.setRenderer(openglRenderer);
     }
 
-    public Cube getCubeModel(){
-        return cube;
+    public Cube3D getCubeModel(){
+        return cube3d;
     }
 
 }

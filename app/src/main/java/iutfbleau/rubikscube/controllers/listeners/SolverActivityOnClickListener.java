@@ -22,7 +22,6 @@ public class SolverActivityOnClickListener implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Log.e("curr", "" + currentSolver);
 
         ArrayList<ArrayList<RotationEvent>> solution = solverActivity.getSolverSolution();
         ArrayList<RotationEvent> currentRotations = solution.get(currentSolver);

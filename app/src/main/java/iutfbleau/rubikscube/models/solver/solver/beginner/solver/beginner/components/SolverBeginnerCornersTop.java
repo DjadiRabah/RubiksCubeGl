@@ -4,8 +4,9 @@ import java.util.ArrayList;
 
 import iutfbleau.rubikscube.event.RotationEvent;
 import iutfbleau.rubikscube.models.solver.SolverComponent;
-import iutfbleau.rubikscube.models.cube.Cube;
+import iutfbleau.rubikscube.models.cube.cube.Cube;
 import iutfbleau.rubikscube.models.rotation.Rotation;
+import iutfbleau.rubikscube.models.solver.SolverComponent;
 
 public class SolverBeginnerCornersTop extends SolverComponent
 {
@@ -16,10 +17,10 @@ public class SolverBeginnerCornersTop extends SolverComponent
 	
 	private boolean checkLeftBack(Cube cube)
 	{
-		int colorLeft = cube.getFace(Cube.LEFT).getColor();
-		int colorBack = cube.getFace(Cube.BACK).getColor();
-		if ((cube.getFace(Cube.LEFT).getColor(0,0) == colorLeft)
-			&& (cube.getFace(Cube.BACK).getColor(0,2) == colorBack))
+		int colorLeft = cube.getSquare(Cube.LEFT).getColor();
+		int colorBack = cube.getSquare(Cube.BACK).getColor();
+		if ((cube.getSquare(Cube.LEFT).getColor(0,0) == colorLeft)
+			&& (cube.getSquare(Cube.BACK).getColor(0,2) == colorBack))
 		{
 			return true;
 		}
@@ -28,10 +29,10 @@ public class SolverBeginnerCornersTop extends SolverComponent
 	
 	private boolean checkLeftFront(Cube cube)
 	{
-		int colorLeft = cube.getFace(Cube.LEFT).getColor();
-		int colorFront = cube.getFace(Cube.FRONT).getColor();
-		if ((cube.getFace(Cube.LEFT).getColor(0,2) == colorLeft)
-			&& (cube.getFace(Cube.FRONT).getColor(0,0) == colorFront))
+		int colorLeft = cube.getSquare(Cube.LEFT).getColor();
+		int colorFront = cube.getSquare(Cube.FRONT).getColor();
+		if ((cube.getSquare(Cube.LEFT).getColor(0,2) == colorLeft)
+			&& (cube.getSquare(Cube.FRONT).getColor(0,0) == colorFront))
 		{
 			return true;
 		}
@@ -40,10 +41,10 @@ public class SolverBeginnerCornersTop extends SolverComponent
 	
 	private boolean checkRightBack(Cube cube)
 	{
-		int colorRight = cube.getFace(Cube.RIGHT).getColor();
-		int colorBack = cube.getFace(Cube.BACK).getColor();
-		if ((cube.getFace(Cube.RIGHT).getColor(0,2) == colorRight)
-			&& (cube.getFace(Cube.BACK).getColor(0,0) == colorBack))
+		int colorRight = cube.getSquare(Cube.RIGHT).getColor();
+		int colorBack = cube.getSquare(Cube.BACK).getColor();
+		if ((cube.getSquare(Cube.RIGHT).getColor(0,2) == colorRight)
+			&& (cube.getSquare(Cube.BACK).getColor(0,0) == colorBack))
 		{
 			return true;
 		}
@@ -52,10 +53,10 @@ public class SolverBeginnerCornersTop extends SolverComponent
 	
 	private boolean checkRightFront(Cube cube)
 	{
-		int colorRight = cube.getFace(Cube.RIGHT).getColor();
-		int colorFront = cube.getFace(Cube.FRONT).getColor();
-		if ((cube.getFace(Cube.RIGHT).getColor(0,0) == colorRight)
-			&& (cube.getFace(Cube.FRONT).getColor(0,2) == colorFront))
+		int colorRight = cube.getSquare(Cube.RIGHT).getColor();
+		int colorFront = cube.getSquare(Cube.FRONT).getColor();
+		if ((cube.getSquare(Cube.RIGHT).getColor(0,0) == colorRight)
+			&& (cube.getSquare(Cube.FRONT).getColor(0,2) == colorFront))
 		{
 			return true;
 		}

@@ -30,7 +30,7 @@ public class SolverActivity extends Activity {
     private TextView totalMovesDisplay, currentSolverStep, stepGoal;
     private Button prevMove, nextMove;
     private RelativeLayout solverInfo;
-    private Cube cube3d;
+    private Cube3D cube3d;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +58,7 @@ public class SolverActivity extends Activity {
         Array3DTransmitter array3DTransmitter = getIntent().getParcelableExtra("cubeDescriptor");
         int[][][] cubeFaces = array3DTransmitter.getArray();
 
-        cube3d = new Cube(cubeFaces[0].length);
+        cube3d = new Cube3D(cubeFaces[0].length);
 
         for (int i = 0; i < cubeFaces.length; i++) {
             cube3d.setFace(i, cubeFaces[i]);

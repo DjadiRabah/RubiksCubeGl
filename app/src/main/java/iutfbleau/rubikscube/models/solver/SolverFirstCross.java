@@ -3,8 +3,9 @@ package iutfbleau.rubikscube.models.solver;
 import java.util.ArrayList;
 
 import iutfbleau.rubikscube.event.RotationEvent;
-import iutfbleau.rubikscube.models.cube.Cube;
-import iutfbleau.rubikscube.models.cube.Face;
+import iutfbleau.rubikscube.models.solver.SolverComponent;
+import iutfbleau.rubikscube.models.cube.cube.Cube;
+import iutfbleau.rubikscube.models.cube.face.Face;
 import iutfbleau.rubikscube.models.rotation.Rotation;
 
 public class SolverFirstCross extends SolverComponent
@@ -31,20 +32,20 @@ public class SolverFirstCross extends SolverComponent
 	protected int[] setEdgeTop(Cube cube, int square)
 	{
 		int[] edge = new int[5];
-		edge[0] = this.getSquareColor(cube.getFace(square), 0, 1);
+		edge[0] = this.getSquareColor(cube.getSquare(square), 0, 1);
 		
 		if(square == Cube.LEFT)
-			edge[1] = this.getSquareColor(cube.getFace(Cube.TOP), 1, 0);
+			edge[1] = this.getSquareColor(cube.getSquare(Cube.TOP), 1, 0);
 		else if(square == Cube.FRONT)
-			edge[1] = this.getSquareColor(cube.getFace(Cube.TOP), 2, 1);
+			edge[1] = this.getSquareColor(cube.getSquare(Cube.TOP), 2, 1);
 		else if(square == Cube.RIGHT)
-			edge[1] = this.getSquareColor(cube.getFace(Cube.TOP), 1, 2);
+			edge[1] = this.getSquareColor(cube.getSquare(Cube.TOP), 1, 2);
 		else if(square == Cube.BACK)
-			edge[1] = this.getSquareColor(cube.getFace(Cube.TOP), 0, 1);
+			edge[1] = this.getSquareColor(cube.getSquare(Cube.TOP), 0, 1);
 		else if(square == Cube.TOP)
-			edge[1] = this.getSquareColor(cube.getFace(Cube.BACK), 0, 1);
+			edge[1] = this.getSquareColor(cube.getSquare(Cube.BACK), 0, 1);
 		else if((square == Cube.DOWN))
-			edge[1] = this.getSquareColor(cube.getFace(Cube.FRONT), 2, 1);
+			edge[1] = this.getSquareColor(cube.getSquare(Cube.FRONT), 2, 1);
 		
 		edge[2] = square;
 		edge[3] = 0;
@@ -56,20 +57,20 @@ public class SolverFirstCross extends SolverComponent
 	protected int[] setEdgeDown(Cube cube, int square)
 	{
 		int[] edge = new int[5];
-		edge[0] = this.getSquareColor(cube.getFace(square), 2, 1);
+		edge[0] = this.getSquareColor(cube.getSquare(square), 2, 1);
 		
 		if(square == Cube.LEFT)
-			edge[1] = this.getSquareColor(cube.getFace(Cube.DOWN), 1, 0);
+			edge[1] = this.getSquareColor(cube.getSquare(Cube.DOWN), 1, 0);
 		else if(square == Cube.FRONT)
-			edge[1] = this.getSquareColor(cube.getFace(Cube.DOWN), 0, 1);
+			edge[1] = this.getSquareColor(cube.getSquare(Cube.DOWN), 0, 1);
 		else if(square == Cube.RIGHT)
-			edge[1] = this.getSquareColor(cube.getFace(Cube.DOWN), 1, 2);
+			edge[1] = this.getSquareColor(cube.getSquare(Cube.DOWN), 1, 2);
 		else if(square == Cube.BACK)
-			edge[1] = this.getSquareColor(cube.getFace(Cube.DOWN), 2, 1);
+			edge[1] = this.getSquareColor(cube.getSquare(Cube.DOWN), 2, 1);
 		else if(square == Cube.TOP)
-			edge[1] = this.getSquareColor(cube.getFace(Cube.FRONT), 0, 1);
+			edge[1] = this.getSquareColor(cube.getSquare(Cube.FRONT), 0, 1);
 		else if((square == Cube.DOWN))
-			edge[1] = this.getSquareColor(cube.getFace(Cube.BACK), 2, 1);
+			edge[1] = this.getSquareColor(cube.getSquare(Cube.BACK), 2, 1);
 		
 		edge[2] = square;
 		edge[3] = 2;
@@ -81,20 +82,20 @@ public class SolverFirstCross extends SolverComponent
 	protected int[] setEdgeLeft(Cube cube, int square)
 	{
 		int[] edge = new int[5];
-		edge[0] = this.getSquareColor(cube.getFace(square), 1, 0);
+		edge[0] = this.getSquareColor(cube.getSquare(square), 1, 0);
 		
 		if(square == Cube.LEFT)
-			edge[1] = this.getSquareColor(cube.getFace(Cube.BACK), 1, 2);
+			edge[1] = this.getSquareColor(cube.getSquare(Cube.BACK), 1, 2);
 		else if(square == Cube.FRONT)
-			edge[1] = this.getSquareColor(cube.getFace(Cube.LEFT), 1, 2);
+			edge[1] = this.getSquareColor(cube.getSquare(Cube.LEFT), 1, 2);
 		else if(square == Cube.RIGHT)
-			edge[1] = this.getSquareColor(cube.getFace(Cube.FRONT), 1, 2);
+			edge[1] = this.getSquareColor(cube.getSquare(Cube.FRONT), 1, 2);
 		else if(square == Cube.BACK)
-			edge[1] = this.getSquareColor(cube.getFace(Cube.RIGHT), 1, 2);
+			edge[1] = this.getSquareColor(cube.getSquare(Cube.RIGHT), 1, 2);
 		else if(square == Cube.TOP)
-			edge[1] = this.getSquareColor(cube.getFace(Cube.LEFT), 0, 1);
+			edge[1] = this.getSquareColor(cube.getSquare(Cube.LEFT), 0, 1);
 		else if((square == Cube.DOWN))
-			edge[1] = this.getSquareColor(cube.getFace(Cube.LEFT), 2, 1);
+			edge[1] = this.getSquareColor(cube.getSquare(Cube.LEFT), 2, 1);
 		
 		edge[2] = square;
 		edge[3] = 1;
@@ -106,20 +107,20 @@ public class SolverFirstCross extends SolverComponent
 	protected int[] setEdgeRight(Cube cube, int square)
 	{
 		int[] edge = new int[5];
-		edge[0] = this.getSquareColor(cube.getFace(square), 1, 2);
+		edge[0] = this.getSquareColor(cube.getSquare(square), 1, 2);
 		
 		if(square == Cube.LEFT)
-			edge[1] = this.getSquareColor(cube.getFace(Cube.FRONT), 1, 0);
+			edge[1] = this.getSquareColor(cube.getSquare(Cube.FRONT), 1, 0);
 		else if(square == Cube.FRONT)
-			edge[1] = this.getSquareColor(cube.getFace(Cube.RIGHT), 1, 0);
+			edge[1] = this.getSquareColor(cube.getSquare(Cube.RIGHT), 1, 0);
 		else if(square == Cube.RIGHT)
-			edge[1] = this.getSquareColor(cube.getFace(Cube.BACK), 1, 0);
+			edge[1] = this.getSquareColor(cube.getSquare(Cube.BACK), 1, 0);
 		else if(square == Cube.BACK)
-			edge[1] = this.getSquareColor(cube.getFace(Cube.LEFT), 1, 0);
+			edge[1] = this.getSquareColor(cube.getSquare(Cube.LEFT), 1, 0);
 		else if(square == Cube.TOP)
-			edge[1] = this.getSquareColor(cube.getFace(Cube.RIGHT), 0, 1);
+			edge[1] = this.getSquareColor(cube.getSquare(Cube.RIGHT), 0, 1);
 		else if((square == Cube.DOWN))
-			edge[1] = this.getSquareColor(cube.getFace(Cube.RIGHT), 2, 1);
+			edge[1] = this.getSquareColor(cube.getSquare(Cube.RIGHT), 2, 1);
 		
 		edge[2] = square;
 		edge[3] = 1;
@@ -179,8 +180,8 @@ public class SolverFirstCross extends SolverComponent
 		{
 			this.setEdges(cube);
 			ArrayList<RotationEvent> newRotations = new ArrayList<RotationEvent>();
-			int colorTop = this.getSquareColor(cube.getFace(Cube.TOP));
-			int colorFront = this.getSquareColor(cube.getFace(Cube.FRONT));
+			int colorTop = this.getSquareColor(cube.getSquare(Cube.TOP));
+			int colorFront = this.getSquareColor(cube.getSquare(Cube.FRONT));
 			if((this.getEdgeColor(Cube.TOP, 2, 1) != colorTop) || ((this.getEdgeColor(Cube.FRONT, 0, 1) != colorFront)))
 			{
 				int[] edgePosition = this.getEdgePosition(colorTop, colorFront);
