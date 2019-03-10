@@ -2,7 +2,7 @@ package iutfbleau.rubikscube.models.shuffle;
 
 import java.util.Deque;
 
-import iutfbleau.rubikscube.models.cube.cube.Cube;
+import iutfbleau.rubikscube.models.cube.Cube;
 
 public interface Shuffle 
 {

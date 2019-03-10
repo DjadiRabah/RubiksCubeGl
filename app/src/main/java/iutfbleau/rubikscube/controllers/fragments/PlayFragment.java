@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import iutfbleau.rubikscube.R;
 import iutfbleau.rubikscube.controllers.activities.NavActivity;
 import iutfbleau.rubikscube.controllers.listeners.CubeMotionListener;
-import iutfbleau.rubikscube.models.cube.cube.Cube3D;
+import iutfbleau.rubikscube.models.cube.Cube;
 import iutfbleau.rubikscube.view.CubeGl;
 import iutfbleau.rubikscube.view.renderer.OpenGLRenderer;
 
@@ -22,7 +22,7 @@ public class PlayFragment extends Fragment {
 
     private boolean cubeLockState = false;
     private MediaPlayer touchsound;
-    private Cube3D cube3D;
+    private Cube cube3D;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,7 +57,7 @@ public class PlayFragment extends Fragment {
             }
         });
 
-        cube3D = new Cube3D(3);
+        cube3D = new Cube(3);
         GLSurfaceView glSurfaceView = view.findViewById(R.id.glsurfaceview);
         CubeGl cube = new CubeGl(cube3D, glSurfaceView);
         OpenGLRenderer openglRenderer = new OpenGLRenderer(cube);
@@ -82,7 +82,7 @@ public class PlayFragment extends Fragment {
     public int[][][] getPlayFragmentCubeFaces() {
         int[][][] resArray = new int[6][3][3];
         for (int i = 0; i < resArray.length; i++) {
-            resArray[i] = cube3D.getFace(i);
+            resArray[i] = cube3D.getFace(i).getColors();
         }
         return resArray;
     }

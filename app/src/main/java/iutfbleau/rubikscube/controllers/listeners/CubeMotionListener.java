@@ -3,9 +3,6 @@ package iutfbleau.rubikscube.controllers.listeners;
 import android.view.MotionEvent;
 import android.view.View;
 
-import iutfbleau.rubikscube.models.collide.CollidePiece3D;
-import iutfbleau.rubikscube.models.cube.cube.Cube;
-import iutfbleau.rubikscube.models.cube.piece.Piece;
 import iutfbleau.rubikscube.models.rotation.Rotation;
 import iutfbleau.rubikscube.view.CubeGl;
 

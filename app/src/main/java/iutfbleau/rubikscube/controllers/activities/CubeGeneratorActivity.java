@@ -26,7 +26,7 @@ import iutfbleau.rubikscube.controllers.listeners.RBColorPickerOnClickListener;
 import iutfbleau.rubikscube.controllers.listeners.CubeGeneratorOnClickListener;
 import iutfbleau.rubikscube.models.BitmapToInt;
 import iutfbleau.rubikscube.models.RBColor;
-import iutfbleau.rubikscube.models.cube.cube.Cube3D;
+import iutfbleau.rubikscube.models.cube.Cube;
 import iutfbleau.rubikscube.view.CubeGl;
 import iutfbleau.rubikscube.view.renderer.OpenGLRenderer;
 
@@ -37,7 +37,7 @@ public class CubeGeneratorActivity extends Activity {
 
     public GLSurfaceView glSurfaceView;
     private Button btnCamera, btnNext, btnPrev, generate;
-    private Cube3D cube3D;
+    private Cube cube3D;
     public static CubeGl cube;
     private int cubeSize;
     private int[][] colors;
@@ -68,11 +68,11 @@ public class CubeGeneratorActivity extends Activity {
 
         cubeSize = getIntent().getIntExtra("cube_size", 3);
 
-        cube3D = new Cube3D(cubeSize);
+        cube3D = new Cube(cubeSize);
         cube3D.disableColors();
-        cube3D.rotateX(Math.toRadians(90.0));
+        /*cube3D.rotateX(Math.toRadians(90.0));
         cube3D.rotateY(-Math.toRadians(15.0));
-        cube3D.rotateX(Math.toRadians(15.0));
+        cube3D.rotateX(Math.toRadians(15.0));*/
         cube = new CubeGl(cube3D,glSurfaceView);
 
         cubeGeneratorOnClickListener = new CubeGeneratorOnClickListener((this));

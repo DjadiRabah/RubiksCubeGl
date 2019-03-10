@@ -1,4 +1,4 @@
-package iutfbleau.rubikscube.models.cube.piece;
+package iutfbleau.rubikscube.models.cube;
 
 /**
  * Represente une piece d'une des faces du Rubik's Cube

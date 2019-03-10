@@ -16,6 +16,7 @@ import iutfbleau.rubikscube.controllers.listeners.CubeMotionListener;
 import iutfbleau.rubikscube.controllers.listeners.SolverActivityOnClickListener;
 import iutfbleau.rubikscube.event.RotationEvent;
 import iutfbleau.rubikscube.models.Array3DTransmitter;
+import iutfbleau.rubikscube.models.cube.cube.Cube;
 import iutfbleau.rubikscube.models.cube.cube.Cube3D;
 import iutfbleau.rubikscube.models.solver.solver.beginner.SolverBeginner;
 import iutfbleau.rubikscube.view.CubeGl;
@@ -28,8 +29,8 @@ public class SolverActivity extends Activity {
     private int totalMoves;
     private TextView totalMovesDisplay, currentSolverStep, stepGoal;
     private Button prevMove, nextMove;
-    private Cube3D cube3d;
     private RelativeLayout solverInfo;
+    private Cube cube3d;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,14 +58,14 @@ public class SolverActivity extends Activity {
         Array3DTransmitter array3DTransmitter = getIntent().getParcelableExtra("cubeDescriptor");
         int[][][] cubeFaces = array3DTransmitter.getArray();
 
-        cube3d = new Cube3D(cubeFaces[0].length);
+        cube3d = new Cube(cubeFaces[0].length);
 
         for (int i = 0; i < cubeFaces.length; i++) {
             cube3d.setFace(i, cubeFaces[i]);
         }
 
         GLSurfaceView solverGlSurfaceView = findViewById(R.id.solverGlSurfaceView);
-        CubeGl cubegl = new CubeGl(cube3d, solverGlSurfaceView);
+        CubeGl cubegl = new CubeGl(cube3d,solverGlSurfaceView);
         solution = new SolverBeginner().solve(cube3d);
 
         for (int i = 0; i < solution.size(); i++) {
@@ -108,7 +109,7 @@ public class SolverActivity extends Activity {
         return solution;
     }
 
-    public Cube3D getModelCube() {
+    public Cube getModelCube(){
         return cube3d;
     }
 
