@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,6 +20,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import iutfbleau.rubikscube.R;
+import iutfbleau.rubikscube.controllers.listeners.CustomCameraActivityOnClickListener;
 import iutfbleau.rubikscube.view.GridCameraOverlay;
 import iutfbleau.rubikscube.view.CameraPreview;
 
@@ -27,15 +29,13 @@ public class CustomCameraActivity extends Activity {
     private Camera camera;
     private FrameLayout frameLayout;
     private Intent resultIntent = new Intent();
-    private Button flashButton, captureButton;
+    private ImageButton flashImageButton;
     private CameraPreview cameraPreview;
     private GridCameraOverlay gridCameraOverlay;
     private int cubeSize;
     private int fmi = 0; //flash mode index
     //Flash modes
-    private final String[] flashModes = {Camera.Parameters.FLASH_MODE_AUTO, Camera.Parameters.FLASH_MODE_ON, Camera.Parameters.FLASH_MODE_OFF};
-    //Camera info
-    private android.hardware.Camera.CameraInfo info;
+    private final String[] flashModes = {Camera.Parameters.FLASH_MODE_OFF, Camera.Parameters.FLASH_MODE_ON, Camera.Parameters.FLASH_MODE_AUTO};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +45,8 @@ public class CustomCameraActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         cubeSize = getIntent().getIntExtra("cube_size", 3);
 
-        flashButton = findViewById(R.id.flash);
-        captureButton = findViewById(R.id.capture);
+        flashImageButton = findViewById(R.id.flashImageButton);
+        ImageButton captureImageButton = findViewById(R.id.captureImageButton);
         frameLayout = findViewById(R.id.frameLayout);
 
         camera = getCameraInstance();
@@ -54,15 +54,8 @@ public class CustomCameraActivity extends Activity {
         params.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
         setCameraDisplayOrientation(this, Camera.CameraInfo.CAMERA_FACING_BACK, camera);
 
-        flashButton.setOnClickListener(
-                new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        setFlashMode();
-                    }
-                }
-        );
+        flashImageButton.setOnClickListener(new CustomCameraActivityOnClickListener(this));
+        captureImageButton.setOnClickListener(new CustomCameraActivityOnClickListener(this));
 
         if (getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
             // this device has a camera
@@ -78,7 +71,6 @@ public class CustomCameraActivity extends Activity {
             setResult(Activity.RESULT_CANCELED);
             finish();
         }
-
     }
 
     @Override
@@ -99,7 +91,6 @@ public class CustomCameraActivity extends Activity {
             startPreview();
         }
     }
-
 
 
     Camera.PictureCallback pictureCallback = new Camera.PictureCallback() {
@@ -156,7 +147,6 @@ public class CustomCameraActivity extends Activity {
             }
 
             return image;
-
         } else {
             return null;
         }
@@ -190,53 +180,60 @@ public class CustomCameraActivity extends Activity {
         return c; // returns null if camera is unavailable
     }
 
-    private void setFlashMode(){
+    public void setFlashMode() {
         Camera.Parameters params = camera.getParameters();
-        switch(fmi){
-            case 0: //IF Flash AUTO
+        switch (fmi) {
+            case 0: //IF Flash OFF
             {
                 fmi = 1; //Flash ON
-                flashButton.setText("FLASH ON");
+                flashImageButton.setImageResource(R.drawable.baseline_flash_on_black_24dp);
                 break;
             }
             case 1: //IF Flash ON
             {
-                fmi = 2; //Flash OFF
-                flashButton.setText("FLASH DISABLED");
+                fmi = 2; //Flash AUTO
+                flashImageButton.setImageResource(R.drawable.baseline_flash_auto_black_24dp);
                 break;
             }
-            case 2: //IF Flash OFF
+            case 2: //IF Flash AUTO
             {
-                fmi = 0; //Flash AUTO
-                flashButton.setText("FLASH AUTO");
+                fmi = 0; //Flash OFF
+                flashImageButton.setImageResource(R.drawable.baseline_flash_off_black_24dp);
                 break;
             }
-            default:
-            {
-                fmi = 0; //Flash AUTO
-                flashButton.setText("FLASH AUTO");
+            default: {
+                fmi = 0; //Flash OFF
+                flashImageButton.setImageResource(R.drawable.baseline_flash_off_black_24dp);
                 break;
             }
         }
 
-        params.setFlashMode(Camera.Parameters.FLASH_MODE_ON);
-
-        Log.d("FLASH MODE", ""+params.getFlashMode());
+        params.setFlashMode(flashModes[fmi]);
+        Log.i("FLASH MODE", "" + params.getFlashMode());
 
         //Set the new parameters to the camera:
         camera.setParameters(params);
     }
 
     private void setCameraDisplayOrientation(Activity activity, int cameraId, android.hardware.Camera camera) {
-        info = new android.hardware.Camera.CameraInfo();
+        //Camera info
+        Camera.CameraInfo info = new Camera.CameraInfo();
         android.hardware.Camera.getCameraInfo(cameraId, info);
         int rotation = activity.getWindowManager().getDefaultDisplay().getRotation();
         int degrees = 0;
         switch (rotation) {
-            case Surface.ROTATION_0: degrees = 0; break;
-            case Surface.ROTATION_90: degrees = 90; break;
-            case Surface.ROTATION_180: degrees = 180; break;
-            case Surface.ROTATION_270: degrees = 270; break;
+            case Surface.ROTATION_0:
+                degrees = 0;
+                break;
+            case Surface.ROTATION_90:
+                degrees = 90;
+                break;
+            case Surface.ROTATION_180:
+                degrees = 180;
+                break;
+            case Surface.ROTATION_270:
+                degrees = 270;
+                break;
         }
 
         int result;

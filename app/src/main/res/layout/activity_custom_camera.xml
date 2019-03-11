@@ -17,25 +17,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/flash"
-            android:height="60dp"
+        <ImageButton
+            android:id="@+id/flashImageButton"
             style="?attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
+            android:height="60dp"
+            android:src="@drawable/baseline_flash_off_black_24dp"
             android:text="@string/flash_button" />
 
-        <Button
-            android:id="@+id/capture"
-            android:height="60dp"
+        <ImageButton
+            android:id="@+id/captureImageButton"
             style="?attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:height="60dp"
             android:onClick="captureImage"
+            android:src="@drawable/baseline_camera_black_24dp"
             android:text="@string/capture_button" />
 
     </RelativeLayout>
