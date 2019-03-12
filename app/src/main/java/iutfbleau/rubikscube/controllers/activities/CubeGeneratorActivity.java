@@ -71,6 +71,7 @@ public class CubeGeneratorActivity extends Activity {
         cube3D = new Cube3D(cubeSize);
         cube3D.disableColors();
         cube = new CubeGl(cube3D,glSurfaceView);
+        cube.rotateX(90.0f);
         cube.rotateY(-15.0);
         cube.rotateX(15.0);
 
