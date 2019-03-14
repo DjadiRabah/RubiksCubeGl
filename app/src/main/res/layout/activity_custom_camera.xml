@@ -36,7 +36,6 @@
             android:layout_centerInParent="true"
             android:layout_centerHorizontal="true"
             android:height="60dp"
-            android:onClick="captureImage"
             android:src="@drawable/baseline_camera_black_24dp"
             android:text="@string/capture_button" />
 
