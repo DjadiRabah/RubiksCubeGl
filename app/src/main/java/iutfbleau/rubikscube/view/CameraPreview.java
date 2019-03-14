@@ -10,6 +10,8 @@ import android.view.SurfaceView;
 import java.io.IOException;
 import java.util.List;
 
+import iutfbleau.rubikscube.controllers.activities.CustomCameraActivity;
+
 public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback {
 
     private Camera camera;
@@ -31,7 +33,13 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
 
-       params = camera.getParameters();
+        if (camera == null){
+            camera = CustomCameraActivity.getCameraInstance();
+        }
+
+        params = camera.getParameters();
+
+
 
         // set preview size and make any resize, rotate or
         // reformatting changes here

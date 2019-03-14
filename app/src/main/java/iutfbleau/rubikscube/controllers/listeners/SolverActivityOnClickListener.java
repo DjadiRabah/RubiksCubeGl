@@ -45,7 +45,7 @@ public class SolverActivityOnClickListener implements View.OnClickListener {
 
                 //Interface changes
                 solverActivity.getCurrentSolverStepDisplay().setText("Step " + (currentSolver + 1));
-                solverActivity.getStepGoalDisplay().setText(getCurrentSolverStep(currentSolver));
+                solverActivity.getStepGoalDisplay().setText(getCurrentSolverStep(currentSolver) + ", " + (currentRotation + 1) + " / " + solution.get(currentSolver).size());
 
                 counter++;
                 if (counter == 1) {
@@ -83,7 +83,7 @@ public class SolverActivityOnClickListener implements View.OnClickListener {
 
                 //Interface changes
                 solverActivity.getCurrentSolverStepDisplay().setText("Step " + (currentSolver + 1));
-                solverActivity.getStepGoalDisplay().setText(getCurrentSolverStep(currentSolver));
+                solverActivity.getStepGoalDisplay().setText(getCurrentSolverStep(currentSolver) + ", " + (currentRotation + 1) + " / " + solution.get(currentSolver).size());
 
                 counter--;
                 if (counter == 1) {
@@ -103,19 +103,19 @@ public class SolverActivityOnClickListener implements View.OnClickListener {
         switch (pos) {
 
             case 0:
-                return "Construction of a cross on one of the faces :"; //Construction de la croix sur une des faces
+                return "Construction of a cross on one of the faces"; //Construction de la croix sur une des faces
             case 1:
-                return "Construction of the first crown :"; //Construction de la première couronne
+                return "Construction of the first crown"; //Construction de la première couronne
             case 2:
-                return "Construction of the second crown :"; //Construction de la deuxième couronne
+                return "Construction of the second crown"; //Construction de la deuxième couronne
             case 3:
-                return "Construction of a cross on the opposite side to the first :"; //Croix sur la dernière face
+                return "Construction of a cross on the opposite side to the first"; //Croix sur la dernière face
             case 4:
-                return "Place the edges :"; //Placer les arêtes
+                return "Place the edges"; //Placer les arêtes
             case 5:
-                return "Place the corners :"; //Placer les coins
+                return "Place the corners"; //Placer les coins
             case 6:
-                return "Orient the corners :"; //Orienter les coins
+                return "Orient the corners"; //Orienter les coins
             default:
                 return "";
 

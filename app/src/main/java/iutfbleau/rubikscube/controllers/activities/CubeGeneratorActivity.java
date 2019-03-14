@@ -35,10 +35,10 @@ public class CubeGeneratorActivity extends Activity {
     public static final int CAMERA_REQUEST = 1;
     private static final int ALL_PERMISSIONS = 2;
 
-    public GLSurfaceView glSurfaceView;
+    private GLSurfaceView glSurfaceView;
     private Button btnCamera, btnNext, btnPrev, generate;
     private Cube3D cube3D;
-    public static CubeGl cube;
+    private CubeGl cube;
     private int cubeSize;
     private int[][] colors;
     private String takenImgPath;
