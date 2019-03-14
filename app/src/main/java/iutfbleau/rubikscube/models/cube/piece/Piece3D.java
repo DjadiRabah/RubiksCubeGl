@@ -33,9 +33,9 @@ public class Piece3D extends Piece
     /* x1 y1 z1 : Coordonnées du point haut gauche
        x2 y2 z2 : Coordonnées du point bas droit
      */
-    public void setPosition(float x1, float y1, float z1, float x2, float y2, float z2)
+    public void setPosition(float x1, float y1, float z1, float x2, float y2, float z2, float width)
     {
-    	this.width = (float)Math.sqrt((x2 - x1)*(x2 - x1) + (y2 - y1)*(y2 - y1) + (z2 - z1)*(z2 - z1)) / (float)Math.sqrt(2.0f);
+    	this.width = width;
         float[] vertices = new float[]{
                 x1,  y1, z1,  // 0, Top Left
                 x1, y1 - this.width, z1,  // 1, Bottom Left

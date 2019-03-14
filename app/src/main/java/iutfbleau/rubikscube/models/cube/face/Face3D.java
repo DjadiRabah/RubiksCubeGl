@@ -31,7 +31,7 @@ public class Face3D extends Face
         {
             for(int j = 0; j < this.size; j++)
             {
-                ((Piece3D)this.pieces[i][j]).setPosition(x1 + j * (width + offset),y1 - i * (width + offset),z,x1 + (j+1) * width + j * offset ,y1 - (i+1) * width - i * offset,z);
+                ((Piece3D)this.pieces[i][j]).setPosition(x1 + j * (width + offset),y1 - i * (width + offset),z,x1 + (j+1) * width + j * offset ,y1 - (i+1) * width - i * offset,z, width);
             }
         }
     }
